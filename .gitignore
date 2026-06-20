@@ -7,3 +7,7 @@ data/qwen36-w8a8-gemm-parity-*/*.bin
 data/qwen36-onednn-moe-island-*/*.bin
 data/qwen36-onednn-moe-island-*/**/*.bin
 data/**/model.safetensors
+
+# root password - never commit
+SUDOPASSWORD.txt
+*.password.txt
