@@ -12,6 +12,7 @@ Community setup guides, benchmark recipes, troubleshooting notes, and patches fo
 - Production service notes: [docs/minimax-production-c1-service.md](docs/minimax-production-c1-service.md)
 - Model recipes: [docs/model-recipes.md](docs/model-recipes.md)
 - FAQ: [docs/faq.md](docs/faq.md)
+- LocalMaxxing submissions: [docs/localmaxxing.md](docs/localmaxxing.md)
 
 ## What This Is
 
@@ -35,6 +36,7 @@ This repository is meant to become a stable community hub for Intel XPU local AI
 | Run the endpoint as a service | [Production c1 service](docs/minimax-production-c1-service.md) |
 | Find model-specific recipes | [Model recipes](docs/model-recipes.md) |
 | Share a benchmark | [Community results guide](docs/community-results.md) |
+| Submit a LocalMaxxing record | [LocalMaxxing submissions](docs/localmaxxing.md) |
 | Compare GPUs | [GPU comparison](docs/gpu-comparison-local-ai.md) |
 | Send Intel feedback | [Feedback for Intel](docs/feedback-for-intel.md) |
 
@@ -331,7 +333,7 @@ The rest of this README is dense historical lab context. New users should start 
 - `scripts/qwen36-hotset-split-floor-model.py`: CPU-only Qwen3.6 hotset split break-even analyzer for dry-run route replay JSON; estimates cold fallback size, extra launches, and the body-speedup needed before a real XPU benchmark.
 - `scripts/summarize-vllm-aot-collectives.sh`: helper for inspecting vLLM AOT cache allreduce/wait/RMS patterns.
 - `scripts/add-qwen35-fused-ba-gguf.py`: experimental augmented-GGUF generator that adds fused Qwen35 `ssm_ba` tensors from separate alpha/beta tensors.
-- `scripts/submit_localmaxxing_results.py`: LocalMaxxing submission helper. Requires `LMX_API_KEY` in the environment; no API key is stored in this repo.
+- `scripts/submit_localmaxxing_results.py`: LocalMaxxing submission helper. Reads `LMX_API_KEY` first, then falls back to `~/.config/localmaxxing/api_key`; no API key is stored in this repo. See [docs/localmaxxing.md](docs/localmaxxing.md).
 - `benchmarks/b70_xccl_allreduce_bench.py`: XPU all-reduce/P2P microbenchmark.
 - `data/localmaxxing_payloads.json`: sanitized benchmark payloads submitted or queued for LocalMaxxing.
 - `notes/2026-05-10-fast-nvme-model-placement.md`: model placement update after moving the MiniMax GGUF shards to `/mnt/fast-ai` and preserving the original path as a symlink.

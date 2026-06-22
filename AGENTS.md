@@ -13,10 +13,34 @@ Read these in order before changing runtime behavior:
 3. `AGENT_HANDOFF.md`
 4. `repro/minimax-m27-b70-110tps-ubuntu24-20260523/README.md`
 5. `experiments/minimax_xpu_kv_offload/REPRODUCE.md`
+6. [docs/localmaxxing.md](docs/localmaxxing.md) before submitting or editing LocalMaxxing payloads.
 
 The model weights, secrets, and full raw `/mnt/fast-ai/bench-results` tree are
 not in GitHub. The repo does include scripts, patch artifacts, summarized
 results, payloads, and notes needed to rebuild or review the work.
+
+## Repo Structure Pointers
+
+Use the standard folders so future agents can find work quickly:
+
+- [notes/](notes/): chronological experiment notes, including losses and inconclusive
+  results.
+- [patches/](patches/): patch snapshots, source deltas, and failed-patch records that
+  should not be lost.
+- [data/](data/): structured run summaries, LocalMaxxing payloads/responses, small
+  logs, and benchmark artifacts that are reasonable to track.
+- [results/](results/): promoted or summarized result ledgers.
+- [scripts/](scripts/): reusable harnesses, parsers, service helpers, and submission
+  helpers.
+- [experiments/](experiments/): active research lanes that are not production recipes yet.
+- [repro/](repro/): promoted reproduction recipes that should be runnable by another
+  person or agent.
+- [docs/](docs/): human-facing maps, deployment docs, and policy pages.
+
+For LocalMaxxing, use [docs/localmaxxing.md](docs/localmaxxing.md) as the credential/submission
+source of truth. The API key is outside Git at
+`/home/steve/.config/localmaxxing/api_key`; the helper also accepts
+`LMX_API_KEY`. Never print, paste, or commit the key.
 
 ## Current Stable Mode
 
@@ -109,5 +133,10 @@ the known-good baseline.
 - Record commands, logs, result paths, patches, and caveats.
 - Put scripts and patches in GitHub whenever they are needed to reproduce a
   result.
+- Keep experiment patches and their results together. Successful patches should
+  be promoted after verification; failed patches should stay archived unless a
+  clearly linked fix supersedes them.
+- Commit focused, reproducible state regularly with explicit path staging. Do
+  not use broad `git add -A` in mixed experiment worktrees.
 - Do not claim c4, c8, TurboQuant, or CPU-paged attention is production-ready
   until the documented blockers are cleared.

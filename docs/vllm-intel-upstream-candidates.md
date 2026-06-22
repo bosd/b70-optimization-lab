@@ -11,6 +11,9 @@ This is not a claim that each item is already upstream-ready. The goal is to
 identify reusable patches, diagnostics, and design directions that could be
 turned into clean PRs or maintainer-actionable issues.
 
+LocalMaxxing result submission credentials and helper usage are documented in
+[localmaxxing.md](localmaxxing.md); keep the API key outside Git.
+
 ## Highest-Value Candidates
 
 ### 1. XPU W8A8 INT8 grouped GEMM and MoE support

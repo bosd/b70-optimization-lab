@@ -5,6 +5,9 @@ the session-cache experiments, the TurboQuant patch, and the long-context
 research path. It is meant for a fresh human or agent who needs to reproduce or
 review the current work without reading every historical note first.
 
+LocalMaxxing submission credentials and helper usage are documented in
+[localmaxxing.md](localmaxxing.md); keep the API key outside Git.
+
 ## What Is Production Today
 
 The active LAN endpoint on this host is the Gemma 4 c8 model-slot profile:

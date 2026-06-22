@@ -12,6 +12,7 @@ This docs folder is the human entry point for the B70 optimization work. The exe
 - [FAQ](faq.md): practical answers for users new to B70s, vLLM, XPU, and local model deployment.
 - [GPU Comparison for Local AI](gpu-comparison-local-ai.md): rough pricing/spec/performance framing for B70s versus common alternatives.
 - [Community Results And Build Notes](community-results.md): how to share records, build photos, reproducible logs, and discussion links.
+- [LocalMaxxing Submissions](localmaxxing.md): credential location, submit helper, and secret-handling rules.
 - [Feedback for Intel](feedback-for-intel.md): short discussion guide plus the detailed Intel feedback note.
 
 ## Build Photos
@@ -35,6 +36,7 @@ The community build guide includes example B70 photos and explains what details 
 - Maintainer/site: https://steveseguin.com
 - X feed with ongoing build notes: https://x.com/xyster
 - LocalMaxxing profile/results: https://localmaxxing.com/user/steveseguin
+- LocalMaxxing submission credentials and helper: [localmaxxing.md](localmaxxing.md)
 - Project pages timeline: https://steveseguin.github.io/llm-optimizations/optimization-timeline.html
 
 ## Current Deployable Baseline

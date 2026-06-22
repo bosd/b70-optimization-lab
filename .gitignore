@@ -11,3 +11,10 @@ data/**/model.safetensors
 # root password - never commit
 SUDOPASSWORD.txt
 *.password.txt
+
+# LocalMaxxing API credentials - never commit
+.config/localmaxxing/api_key
+**/.config/localmaxxing/api_key
+**/localmaxxing/api_key
+**/localmaxxing/api_key.*
+**/*localmaxxing*api*key*

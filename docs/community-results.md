@@ -116,6 +116,7 @@ Four cards can be worse than two or three for some workloads if communication ov
 
 - Steve on X: https://x.com/xyster
 - LocalMaxxing profile: https://localmaxxing.com/user/steveseguin
+- LocalMaxxing submission credentials and helper: [localmaxxing.md](localmaxxing.md)
 - Project timeline: https://steveseguin.github.io/llm-optimizations/optimization-timeline.html
 
 The X feed is useful for chronology and informal discussion. The repo should remain the source for reproducible commands, patches, artifacts, and final notes.
