@@ -1,0 +1,14 @@
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 0, "num_scheduled_tokens": 502, "pid": 3743286, "prev_state_idx": -1, "prev_state_idx_raw": null, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "preprocess_req", "ts": 1781788156.1535797}
+{"pid": 3743286, "stage": "copy_skip_empty", "ts": 1781788156.1536865}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 0, "num_scheduled_tokens": 502, "pid": 3743287, "prev_state_idx": -1, "prev_state_idx_raw": null, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "preprocess_req", "ts": 1781788156.1704652}
+{"pid": 3743287, "stage": "copy_skip_empty", "ts": 1781788156.1705515}
+{"pid": 3743287, "stage": "copy_skip_empty", "ts": 1781788161.931866}
+{"pid": 3743286, "stage": "copy_skip_empty", "ts": 1781788161.9407067}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 9, "pid": 3743287, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "preprocess_req", "ts": 1781788161.9431329}
+{"pid": 3743287, "stage": "copy_skip_empty", "ts": 1781788161.9431877}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 9, "pid": 3743286, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "preprocess_req", "ts": 1781788161.9435725}
+{"pid": 3743286, "stage": "copy_skip_empty", "ts": 1781788161.9436255}
+{"input_batch_index": 0, "pid": 3743286, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "postprocess_skip_req", "ts": 1781788169.4798691}
+{"pid": 3743286, "stage": "copy_skip_empty", "ts": 1781788169.479914}
+{"input_batch_index": 0, "pid": 3743287, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618a-000000-0-8126d632", "stage": "postprocess_skip_req", "ts": 1781788169.4807367}
+{"pid": 3743287, "stage": "copy_skip_empty", "ts": 1781788169.4808128}

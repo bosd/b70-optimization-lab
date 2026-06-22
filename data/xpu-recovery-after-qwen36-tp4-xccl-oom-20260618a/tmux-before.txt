@@ -1,0 +1,2 @@
+$ tmux ls 2>/dev/null || true
+exit_status=0

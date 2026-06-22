@@ -1,0 +1,155 @@
+{
+  "cases": [
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 1,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 142.844,
+          "mean_us": 142.1576,
+          "median_us": 142.324,
+          "min_us": 141.284
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 126.67200000000001,
+          "mean_us": 123.968,
+          "median_us": 123.812,
+          "min_us": 122.304
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 128.59599999999998,
+          "mean_us": 124.41519999999998,
+          "median_us": 126.776,
+          "min_us": 118.66399999999999
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 131.04,
+          "mean_us": 125.72559999999999,
+          "median_us": 124.8,
+          "min_us": 123.55199999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 136.81199999999998,
+          "mean_us": 133.0888,
+          "median_us": 132.964,
+          "min_us": 131.248
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 263.58799999999997,
+          "mean_us": 252.7616,
+          "median_us": 252.82399999999998,
+          "min_us": 246.48
+        },
+        "fused_alloc": {
+          "max_us": 259.84399999999994,
+          "mean_us": 243.35999999999999,
+          "median_us": 239.304,
+          "min_us": 237.068
+        },
+        "fused_out": {
+          "max_us": 243.35999999999999,
+          "mean_us": 237.8064,
+          "median_us": 236.96399999999997,
+          "min_us": 234.468
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 2,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 310.596,
+          "mean_us": 174.8552,
+          "median_us": 141.33599999999998,
+          "min_us": 139.82799999999997
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 124.592,
+          "mean_us": 122.824,
+          "median_us": 122.668,
+          "min_us": 121.10799999999999
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 117.104,
+          "mean_us": 116.62559999999999,
+          "median_us": 116.74,
+          "min_us": 115.908
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 123.39599999999999,
+          "mean_us": 123.1568,
+          "median_us": 123.136,
+          "min_us": 122.72
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 156.728,
+          "mean_us": 140.54559999999998,
+          "median_us": 132.44400000000002,
+          "min_us": 130.78
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 282.67199999999997,
+          "mean_us": 264.72159999999997,
+          "median_us": 255.94400000000002,
+          "min_us": 251.056
+        },
+        "fused_alloc": {
+          "max_us": 249.132,
+          "mean_us": 240.99920000000003,
+          "median_us": 238.316,
+          "min_us": 237.796
+        },
+        "fused_out": {
+          "max_us": 236.49599999999998,
+          "mean_us": 234.37439999999998,
+          "median_us": 234.676,
+          "min_us": 232.85599999999997
+        }
+      }
+    }
+  ],
+  "config": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118/config.json",
+  "device_selector": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "dtype": "bfloat16",
+  "iters": 5,
+  "kind": "qwen36_shared_expert_replay",
+  "tp_size": 2,
+  "warmup": 2
+}

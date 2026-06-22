@@ -1,0 +1,344 @@
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299] 
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.20.2rc1.dev2+gc51df4300.d20260523
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299]   █▄█▀ █     █     █     █  model   /mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:299] 
+(APIServer pid=3347632) INFO 06-17 12:02:09 [utils.py:233] non-default args: {'model_tag': '/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118', 'host': '127.0.0.1', 'port': 18181, 'uvicorn_log_level': 'warning', 'model': '/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118', 'trust_remote_code': True, 'max_model_len': 32768, 'quantization': 'quark', 'served_model_name': ['qwen36-35b-a3b-fp8'], 'generation_config': 'vllm', 'distributed_executor_backend': 'mp', 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.9, 'enable_prefix_caching': False, 'language_model_only': True, 'max_num_batched_tokens': 8192, 'max_num_seqs': 48, 'speculative_config': {'method': 'ngram', 'num_speculative_tokens': 2, 'prompt_lookup_min': 2, 'prompt_lookup_max': 5}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': 128, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_ZERO_FRESH_GDN_STATE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_HOLD_SPEC_DECODE_WHEN_WAITING
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_RESUME_AFTER_RECOVERY_PREEMPT
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_SUPPRESS_REPLACEMENT
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_FORCE_QUARK_REPACK
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_EXTRA_ARGS
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_GDN_NATIVE_FALLBACK
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_BONUS_MIN_MARGIN
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_FORCE_GRAPH_WITH_COMM
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_GRAPH_NO_EMPTY_CACHE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_RECOVER_SUPPRESSED_REPLACEMENT
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_CUSTOM_ALLREDUCE_CLONE_INPUT
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_RECOMPUTE_VERIFIER_ROW
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_SPEC_DECODE_TRACE_MAX_LINES
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_COMPILE_ALLREDUCE_CUSTOM_OP
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_ORACLE_DRAFT_MIN_PREFIX
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_USE_CUSTOM_OP_COLLECTIVES
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_ORACLE_DRAFT_LOG
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_GRAPH_NOOP_COMM_CAPTURE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_GDN_PREFILL_RECURRENT_FALLBACK
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_CUSTOM_ALLREDUCE_GRAPH_CLONE_INPUT
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_QUARK_W8A8_MOE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_INT8_MOE_MIXED_WORKSPACE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_ORACLE_DRAFT_TRACE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_PREEMPT_SUPPRESSED_BONUS
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_ORACLE_DRAFT_LOG_MAX_LINES
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_DISABLE_PREFILL_CUDAGRAPH_REPLAY
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_SPEC_DECODE_TRACE_FILE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_GREEDY_SAMPLE_TOPK_FALLBACK
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_FILTER_SUPPRESSED_BONUS_CACHE
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_XPU_SPEC_DECODE_RECOVERY_FORCE_SINGLE_STEPS
+(APIServer pid=3347632) WARNING 06-17 12:02:09 [envs.py:1941] Unknown vLLM environment variable detected: VLLM_USE_V1
+(APIServer pid=3347632) INFO 06-17 12:02:16 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.
+(APIServer pid=3347632) WARNING 06-17 12:02:16 [nixl_utils.py:34] NIXL is not available
+(APIServer pid=3347632) WARNING 06-17 12:02:16 [nixl_utils.py:44] NIXL agent config is not available
+(APIServer pid=3347632) INFO 06-17 12:02:16 [model.py:563] Resolved architecture: Qwen3_5MoeForConditionalGeneration
+(APIServer pid=3347632) INFO 06-17 12:02:16 [model.py:1692] Using max model len 32768
+(APIServer pid=3347632) INFO 06-17 12:02:17 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(APIServer pid=3347632) WARNING 06-17 12:02:17 [vllm.py:819] Async scheduling not supported with ngram-based speculative decoding and will be disabled.
+(APIServer pid=3347632) INFO 06-17 12:02:17 [vllm.py:844] Asynchronous scheduling is disabled.
+(APIServer pid=3347632) INFO 06-17 12:02:17 [kernel.py:210] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=3347632) WARNING 06-17 12:02:17 [xpu.py:208] Forcing XPU Graph with communication ops because VLLM_XPU_FORCE_GRAPH_WITH_COMM=1.
+(APIServer pid=3347632) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+(APIServer pid=3347632) INFO 06-17 12:02:18 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+WARNING 06-17 12:02:23 [nixl_utils.py:34] NIXL is not available
+WARNING 06-17 12:02:23 [nixl_utils.py:44] NIXL agent config is not available
+(EngineCore pid=3347847) INFO 06-17 12:02:23 [core.py:246] Initializing a V1 LLM engine (v0.20.2rc1.dev2+gc51df4300.d20260523) with config: model='/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118', speculative_config=SpeculativeConfig(method='ngram', model=None, num_spec_tokens=2), tokenizer='/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=quark, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=xpu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=qwen36-35b-a3b-fp8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 128, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=False, moe_backend='auto')
+(EngineCore pid=3347847) WARNING 06-17 12:02:23 [multiproc_executor.py:1367] Reducing Torch parallelism from 16 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore pid=3347847) INFO 06-17 12:02:23 [multiproc_executor.py:243] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=10.0.0.65 (local), world_size=4, local_world_size=4
+WARNING 06-17 12:02:28 [nixl_utils.py:34] NIXL is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:44] NIXL agent config is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:34] NIXL is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:44] NIXL agent config is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:34] NIXL is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:44] NIXL agent config is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:34] NIXL is not available
+WARNING 06-17 12:02:28 [nixl_utils.py:44] NIXL agent config is not available
+[transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+[transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+[transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+[transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+INFO 06-17 12:02:31 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+INFO 06-17 12:02:31 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+INFO 06-17 12:02:31 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+INFO 06-17 12:02:31 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(Worker pid=3347949) INFO 06-17 12:02:34 [parallel_state.py:1542] world_size=4 rank=3 local_rank=3 distributed_init_method=tcp://127.0.0.1:44747 backend=xccl
+(Worker pid=3347948) INFO 06-17 12:02:34 [parallel_state.py:1542] world_size=4 rank=2 local_rank=2 distributed_init_method=tcp://127.0.0.1:44747 backend=xccl
+(Worker pid=3347947) INFO 06-17 12:02:34 [parallel_state.py:1542] world_size=4 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:44747 backend=xccl
+(Worker pid=3347946) INFO 06-17 12:02:34 [parallel_state.py:1542] world_size=4 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:44747 backend=xccl
+(Worker pid=3347946) INFO 06-17 12:02:34 [parallel_state.py:1855] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+2026:06:17-12:02:34:3347949 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:17-12:02:34:3347949 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:17-12:02:34:3347947 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:17-12:02:34:3347948 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:17-12:02:34:3347947 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:17-12:02:34:3347948 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:17-12:02:34:3347946 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:17-12:02:34:3347946 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:17-12:02:34:3347949 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:17-12:02:34:3347947 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:17-12:02:34:3347948 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:17-12:02:34:3347946 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:17-12:02:34:3347949:[3] |CCL_WARN| topology recognition shows PCIe connection between devices. If this is not correct, you can disable topology recognition, with CCL_TOPO_FABRIC_VERTEX_CONNECTION_CHECK=0. This will assume XeLinks across devices
+2026:06:17-12:02:34:3347947:[1] |CCL_WARN| topology recognition shows PCIe connection between devices. If this is not correct, you can disable topology recognition, with CCL_TOPO_FABRIC_VERTEX_CONNECTION_CHECK=0. This will assume XeLinks across devices
+2026:06:17-12:02:34:3347948:[2] |CCL_WARN| topology recognition shows PCIe connection between devices. If this is not correct, you can disable topology recognition, with CCL_TOPO_FABRIC_VERTEX_CONNECTION_CHECK=0. This will assume XeLinks across devices
+2026:06:17-12:02:34:3347946:[0] |CCL_WARN| topology recognition shows PCIe connection between devices. If this is not correct, you can disable topology recognition, with CCL_TOPO_FABRIC_VERTEX_CONNECTION_CHECK=0. This will assume XeLinks across devices
+(Worker pid=3347946) WARNING 06-17 12:02:35 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3347947) WARNING 06-17 12:02:35 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3347949) WARNING 06-17 12:02:35 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3347948) WARNING 06-17 12:02:35 [__init__.py:204] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:35 [gpu_model_runner.py:8697] Starting to load model /mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118...
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:35 [xpu.py:122] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:35 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [__init__.py:463] Selected XPUInt8ScaledMMLinearKernel for QuarkW8A8Int8
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [gdn_linear_attn.py:657] Using Triton/FLA GDN prefill kernel
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [int8.py:152] Using XPU Int8 MoE backend out of potential backends: ['XPU', 'TRITON'].
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [xpu.py:59] Setting VLLM_KV_CACHE_LAYOUT to 'NHD' for XPU; only NHD layout is supported by XPU attention kernels.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [xpu.py:87] Using Flash Attention backend.
+(Worker_TP3 pid=3347949) INFO 06-17 12:02:36 [xpu.py:59] Setting VLLM_KV_CACHE_LAYOUT to 'NHD' for XPU; only NHD layout is supported by XPU attention kernels.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [flash_attn.py:649] Using FlashAttention version 2
+(Worker_TP2 pid=3347948) INFO 06-17 12:02:36 [xpu.py:59] Setting VLLM_KV_CACHE_LAYOUT to 'NHD' for XPU; only NHD layout is supported by XPU attention kernels.
+(Worker_TP1 pid=3347947) INFO 06-17 12:02:36 [xpu.py:59] Setting VLLM_KV_CACHE_LAYOUT to 'NHD' for XPU; only NHD layout is supported by XPU attention kernels.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [weight_utils.py:904] Filesystem type for checkpoints: EXT4. Checkpoint size: 34.15 GiB. Available RAM: 110.75 GiB.
+(Worker_TP0 pid=3347946) INFO 06-17 12:02:36 [weight_utils.py:927] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:   0% Completed | 0/7 [00:00<?, ?it/s]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  14% Completed | 1/7 [00:02<00:15,  2.65s/it]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  29% Completed | 2/7 [00:07<00:19,  3.80s/it]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  43% Completed | 3/7 [00:11<00:16,  4.21s/it]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  57% Completed | 4/7 [00:16<00:12,  4.33s/it]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  71% Completed | 5/7 [00:20<00:08,  4.40s/it]
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  86% Completed | 6/7 [00:25<00:04,  4.43s/it]
+(APIServer pid=3347632) Traceback (most recent call last):
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/utils/network_utils.py", line 358, in zmq_socket_ctx
+(APIServer pid=3347632)     yield make_zmq_socket(
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/utils.py", line 1119, in launch_core_engines
+(APIServer pid=3347632)     wait_for_engine_startup(
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/utils.py", line 1160, in wait_for_engine_startup
+(APIServer pid=3347632)     events = poller.poll(STARTUP_POLL_PERIOD_MS)
+(APIServer pid=3347632)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/zmq/sugar/poll.py", line 106, in poll
+(APIServer pid=3347632)     return zmq_poll(self.sockets, timeout=timeout)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "zmq/backend/cython/_zmq.py", line 1680, in zmq.backend.cython._zmq.zmq_poll
+(APIServer pid=3347632)   File "zmq/backend/cython/_zmq.py", line 179, in zmq.backend.cython._zmq._check_rc
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 564, in signal_handler
+(APIServer pid=3347632)     raise KeyboardInterrupt("terminated")
+(APIServer pid=3347632) KeyboardInterrupt: terminated
+(APIServer pid=3347632) 
+(APIServer pid=3347632) During handling of the above exception, another exception occurred:
+(APIServer pid=3347632) 
+(APIServer pid=3347632) Traceback (most recent call last):
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/core_client.py", line 535, in __init__
+(APIServer pid=3347632)     with launch_core_engines(
+(APIServer pid=3347632)          ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=3347632)     next(self.gen)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/utils.py", line 1096, in launch_core_engines
+(APIServer pid=3347632)     with zmq_socket_ctx(
+(APIServer pid=3347632)          ^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 158, in __exit__
+(APIServer pid=3347632)     self.gen.throw(value)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/utils/network_utils.py", line 370, in zmq_socket_ctx
+(APIServer pid=3347632)     ctx.destroy(linger=linger)
+(APIServer pid=3347632)   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/zmq/sugar/context.py", line 319, in destroy
+(APIServer pid=3347632)     s.setsockopt(SocketOption.LINGER, linger)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 564, in signal_handler
+(APIServer pid=3347632)     raise KeyboardInterrupt("terminated")
+(APIServer pid=3347632) KeyboardInterrupt: terminated
+(APIServer pid=3347632) 
+(APIServer pid=3347632) During handling of the above exception, another exception occurred:
+(APIServer pid=3347632) 
+(APIServer pid=3347632) Traceback (most recent call last):
+(APIServer pid=3347632)   File "/home/steve/.venvs/vllm-xpu/bin/vllm", line 6, in <module>
+(APIServer pid=3347632)     sys.exit(main())
+(Worker_TP0 pid=3347946) Loading safetensors checkpoint shards:  86% Completed | 6/7 [00:25<00:04,  4.27s/it]
+(APIServer pid=3347632)              ^^^^^^
+(Worker_TP0 pid=3347946) 
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/cli/main.py", line 92, in main
+(APIServer pid=3347632)     args.dispatch_function(args)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/cli/serve.py", line 122, in cmd
+(APIServer pid=3347632)     uvloop.run(run_server(args))
+(APIServer pid=3347632)   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=3347632)     return __asyncio.run(
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 195, in run
+(APIServer pid=3347632)     return runner.run(main)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=3347632)     return self._loop.run_until_complete(task)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=3347632)   File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=3347632)   File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+(APIServer pid=3347632)   File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+(APIServer pid=3347632)   File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+(APIServer pid=3347632)   File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+(APIServer pid=3347632)   File "uvloop/cbhandles.pyx", line 61, in uvloop.loop.Handle._run
+(APIServer pid=3347632)   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=3347632)     return await main
+(APIServer pid=3347632)            ^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 678, in run_server
+(APIServer pid=3347632)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 692, in run_server_worker
+(APIServer pid=3347632)     async with build_async_engine_client(
+(APIServer pid=3347632)                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=3347632)     return await anext(self.gen)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 100, in build_async_engine_client
+(APIServer pid=3347632)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=3347632)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=3347632)     return await anext(self.gen)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 136, in build_async_engine_client_from_engine_args
+(APIServer pid=3347632)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=3347632)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=3347632)     return cls(
+(APIServer pid=3347632)            ^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=3347632)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=3347632)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=3347632)     return func(*args, **kwargs)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/core_client.py", line 130, in make_async_mp_client
+(APIServer pid=3347632)     return AsyncMPClient(*client_args)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=3347632)     return func(*args, **kwargs)
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/core_client.py", line 900, in __init__
+(APIServer pid=3347632)     super().__init__(
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/core_client.py", line 611, in __init__
+(APIServer pid=3347632)     self._finalizer()
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/weakref.py", line 590, in __call__
+(APIServer pid=3347632)     return info.func(*info.args, **(info.kwargs or {}))
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/core_client.py", line 395, in __call__
+(APIServer pid=3347632)     self.engine_manager.shutdown()
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/engine/utils.py", line 197, in shutdown
+(APIServer pid=3347632)     shutdown(self.processes, timeout=timeout)
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/v1/utils.py", line 353, in shutdown
+(APIServer pid=3347632)     proc.join(remaining)
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/process.py", line 149, in join
+(APIServer pid=3347632)     res = self._popen.wait(timeout)
+(APIServer pid=3347632)           ^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/popen_fork.py", line 40, in wait
+(APIServer pid=3347632)     if not wait([self.sentinel], timeout):
+(APIServer pid=3347632)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/connection.py", line 1136, in wait
+(APIServer pid=3347632)     ready = selector.select(timeout)
+(APIServer pid=3347632)             ^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/selectors.py", line 415, in select
+(APIServer pid=3347632)     fd_event_list = self._selector.poll(timeout)
+(APIServer pid=3347632)                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3347632)   File "/home/steve/src/vllm/vllm/entrypoints/openai/api_server.py", line 564, in signal_handler
+(APIServer pid=3347632)     raise KeyboardInterrupt("terminated")
+(APIServer pid=3347632) KeyboardInterrupt: terminated
+(Worker_TP2 pid=3347948) WARNING 06-17 12:03:02 [multiproc_executor.py:1039] WorkerProc was terminated
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025] WorkerProc failed to start.
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025] Traceback (most recent call last):
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/v1/executor/multiproc_executor.py", line 992, in worker_main
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return func(*args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/v1/executor/multiproc_executor.py", line 774, in __init__
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     self.worker.load_model()
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/v1/worker/gpu_worker.py", line 343, in load_model
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return func(*args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/v1/worker/gpu_model_runner.py", line 8713, in load_model
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     self.model = model_loader.load_model(
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                  ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return func(*args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/base_loader.py", line 64, in load_model
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     self.load_weights(model, model_config)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return func(*args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/default_loader.py", line 388, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     loaded_weights = model.load_weights(self.get_all_weights(model_config, model))
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/qwen3_5.py", line 725, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return loader.load_weights(weights, mapper=self.hf_to_vllm_mapper)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/reload/torchao_decorator.py", line 50, in patched_model_load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return original_load_weights(self, weights, *args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 355, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     autoloaded_weights = set(self._load_module("", self.module, weights))
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 302, in _load_module
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     yield from self._load_module(
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 275, in _load_module
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     loaded_params = module_load_weights(weights)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/qwen3_5.py", line 552, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return loader.load_weights(weights)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/reload/torchao_decorator.py", line 50, in patched_model_load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return original_load_weights(self, weights, *args, **kwargs)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 355, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     autoloaded_weights = set(self._load_module("", self.module, weights))
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 302, in _load_module
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     yield from self._load_module(
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 275, in _load_module
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     loaded_params = module_load_weights(weights)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/qwen3_5.py", line 319, in load_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for name, loaded_weight in weights:
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 177, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for parts, weights_data in group
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                ^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 167, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for weight_name, weight_data in weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                     ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 352, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     (name, weight) for name, weight in weights if not self._can_skip(name)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                        ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 177, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for parts, weights_data in group
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                ^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 167, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for weight_name, weight_data in weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                     ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 352, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     (name, weight) for name, weight in weights if not self._can_skip(name)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                        ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/models/utils.py", line 98, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     for name, data in weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                       ^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/default_loader.py", line 294, in get_all_weights
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     yield from self._get_weights_iterator(primary_weights)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/default_loader.py", line 280, in <genexpr>
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     return ((source.prefix + name, tensor) for (name, tensor) in weights_iterator)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]                                                                  ^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]   File "/home/steve/src/vllm/vllm/model_executor/model_loader/weight_utils.py", line 1004, in safetensors_weights_iterator
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]     param = f.get_tensor(name)
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025]             ^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3347946) ERROR 06-17 12:03:02 [multiproc_executor.py:1025] ValueError: could not determine the shape of object type 'torch.storage.UntypedStorage'
+(Worker_TP3 pid=3347949) WARNING 06-17 12:03:02 [multiproc_executor.py:1039] WorkerProc was terminated
+(Worker_TP1 pid=3347947) WARNING 06-17 12:03:02 [multiproc_executor.py:1039] WorkerProc was terminated
+/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/home/steve/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 2 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

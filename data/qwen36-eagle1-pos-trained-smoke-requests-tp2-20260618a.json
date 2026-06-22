@@ -1,0 +1,106 @@
+{
+  "base_url": "http://127.0.0.1:18182",
+  "created_at_unix": 1781761987.3741891,
+  "families": [
+    "code-review",
+    "design-critique",
+    "math-planning",
+    "ops-runbook",
+    "structured-json",
+    "xpu-debug"
+  ],
+  "ignore_eos": true,
+  "model": "qwen36-35b-a3b-fp8",
+  "num_prompts": 6,
+  "output_tokens_requested": 128,
+  "prompt_token_sizes": [
+    96,
+    128,
+    192,
+    256,
+    384,
+    512
+  ],
+  "records": [
+    {
+      "elapsed_s": 36.32845201389864,
+      "family": "xpu-debug",
+      "index": 0,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 95,
+      "prompt_tokens_target": 96,
+      "request_id": "cmpl-92d56e7d9b6bdc05",
+      "text_preview": "\nassistant\n<think>\nHere's a thinking\nassistant\n<think>\n\n</think>\n\nBased on the observed data points for the Intel XPU inference server diagnostics, here is the ",
+      "text_sha256": "28e65b39e3db37c7e304ede9f1e2a314cf0601667c5104fb1ce6602ed9f87dd7",
+      "tok_s_e2e": 3.523409143638419
+    },
+    {
+      "elapsed_s": 8.613920895848423,
+      "family": "code-review",
+      "index": 1,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 127,
+      "prompt_tokens_target": 128,
+      "request_id": "cmpl-8bd0053c0838cafd",
+      "text_preview": "\n<think>\nHere's a thinking process:\n\n1. 1.  **Analyze the user wants a code review for latency and correctness bugs. Prioritize actionable findings.\n\n1.  **Anal",
+      "text_sha256": "7aea84c12ccd4aba3f184226945f46e1ea96d68b0e8534c463921c189aa3860c",
+      "tok_s_e2e": 14.859667455466308
+    },
+    {
+      "elapsed_s": 11.025814835214987,
+      "family": "structured-json",
+      "index": 2,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 189,
+      "prompt_tokens_target": 192,
+      "request_id": "cmpl-b4657c9f0a6ac738",
+      "text_preview": "\nassistant\n<think>user\nThe user is asking for a structured output that includes a benchmark configuration for a structured benchmark:\n{\n  \"experiment_id\": \"b001",
+      "text_sha256": "462544fdedd42178335eab830c73c056c8e1a5701fa91fa3bccf2fd3bb9879b1",
+      "tok_s_e2e": 11.609119317983195
+    },
+    {
+      "elapsed_s": 11.599365043919533,
+      "family": "math-planning",
+      "index": 3,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 251,
+      "prompt_tokens_target": 256,
+      "request_id": "cmpl-b786a3e1561a9ddc",
+      "text_preview": "1. **Speculative Execution**\n- **A**: A1. **A**\n\n<think>\nHere's a thinking process:\n1. **Baseline**: 1000 / 100 = 1000000000000000000000000000000000000000000000",
+      "text_sha256": "2b1eaf6406b0078607460102ec34a44b2750f6bd2f77bacff11fcf10754e613a",
+      "tok_s_e2e": 11.035086792711855
+    },
+    {
+      "elapsed_s": 11.494991414016113,
+      "family": "ops-runbook",
+      "index": 4,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 375,
+      "prompt_tokens_target": 384,
+      "request_id": "cmpl-b1c3304bc2a902cb",
+      "text_preview": "\nassistant\n<think>\n\n</think>\n\nI cannot provide instructions for creating or deploying systems that may be used to bypass security measures, as this could facili",
+      "text_sha256": "b17117c720c5efebdf0f6c5d78ca7395d732f03cffe6386441d4611d46941ef2",
+      "tok_s_e2e": 11.135284524347412
+    },
+    {
+      "elapsed_s": 12.563059553969651,
+      "family": "design-critique",
+      "index": 5,
+      "output_tokens_actual": 128,
+      "output_tokens_requested": 128,
+      "prompt_tokens_actual": 499,
+      "prompt_tokens_target": 512,
+      "request_id": "cmpl-9f76cd7c9247fb09",
+      "text_preview": "No go/no go.\nNo go/no go.\nNo go.\nNo go.\nNo go/no go.  No, go no go.  Go no go.  Go.  Go.  Go.  Go\nGo go go go go go go go go go go go go go go go go go go go go",
+      "text_sha256": "3b470aa1cb602e25cc9efd4d1163b4040e0802bb2e69673a4d6ee46280b58440",
+      "tok_s_e2e": 10.188600909684839
+    }
+  ],
+  "tokenizer": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+  "total_output_tokens_actual": 768
+}

@@ -1,0 +1,8 @@
+PID       Command                       DeviceID       SHR            MEM            
+4016079   xpu-smi                       3              0              2772           
+4016096   xpu-smi                       3              0              2768           
+4016109   xpu-smi                       3              0              2772           
+4016128   xpu-smi                       3              0              2768           
+4016414   null                          3              0              0              
+4016416   dpkg-query                    3              0              0              
+4016417   grep                          3              0              0              

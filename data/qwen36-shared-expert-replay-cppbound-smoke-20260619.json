@@ -1,0 +1,177 @@
+{
+  "cases": [
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 1,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 158.86,
+          "mean_us": 151.2472,
+          "median_us": 150.28,
+          "min_us": 148.25199999999998
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 141.544,
+          "mean_us": 132.15279999999998,
+          "median_us": 130.31199999999998,
+          "min_us": 128.492
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 139.41199999999998,
+          "mean_us": 129.82319999999999,
+          "median_us": 127.34799999999998,
+          "min_us": 126.04799999999999
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 132.652,
+          "mean_us": 131.5288,
+          "median_us": 131.55999999999997,
+          "min_us": 130.416
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 155.532,
+          "mean_us": 145.2464,
+          "median_us": 143.676,
+          "min_us": 141.284
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 275.08,
+          "mean_us": 265.29359999999997,
+          "median_us": 266.39599999999996,
+          "min_us": 254.28
+        },
+        "cpp_boundary_out": {
+          "max_us": 221.416,
+          "mean_us": 218.5664,
+          "median_us": 218.192,
+          "min_us": 217.1
+        },
+        "fused_alloc": {
+          "max_us": 257.608,
+          "mean_us": 252.71999999999997,
+          "median_us": 252.35599999999997,
+          "min_us": 249.75599999999997
+        },
+        "fused_out": {
+          "max_us": 262.808,
+          "mean_us": 251.9712,
+          "median_us": 248.50799999999998,
+          "min_us": 248.196
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 2,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 160.108,
+          "mean_us": 153.4936,
+          "median_us": 152.672,
+          "min_us": 150.43599999999998
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 143.416,
+          "mean_us": 136.84319999999997,
+          "median_us": 132.808,
+          "min_us": 132.75599999999997
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 137.748,
+          "mean_us": 131.4144,
+          "median_us": 130.78,
+          "min_us": 128.44
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 144.35199999999998,
+          "mean_us": 135.6888,
+          "median_us": 134.212,
+          "min_us": 131.456
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 157.04,
+          "mean_us": 146.2344,
+          "median_us": 144.196,
+          "min_us": 141.43999999999997
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 284.804,
+          "mean_us": 265.512,
+          "median_us": 261.248,
+          "min_us": 253.29199999999997
+        },
+        "cpp_boundary_out": {
+          "max_us": 236.91199999999998,
+          "mean_us": 230.0272,
+          "median_us": 232.43999999999997,
+          "min_us": 223.496
+        },
+        "fused_alloc": {
+          "max_us": 270.192,
+          "mean_us": 262.0176,
+          "median_us": 258.23199999999997,
+          "min_us": 256.984
+        },
+        "fused_out": {
+          "max_us": 260.20799999999997,
+          "mean_us": 254.4152,
+          "median_us": 252.772,
+          "min_us": 251.42
+        }
+      }
+    }
+  ],
+  "config": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118/config.json",
+  "device_selector": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "dtype": "bfloat16",
+  "iters": 5,
+  "kind": "qwen36_shared_expert_replay",
+  "tp_size": 2,
+  "warmup": 2
+}

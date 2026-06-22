@@ -1,0 +1,4 @@
+{"ts":1781749651.9933078,"row_index":0,"matched":true,"match_name":"natural_latency_plan","prefix_len":1,"num_tokens":503,"draft_len":8,"draft_token_ids":[440,27044,47193,14246,8129,13,24985,383]}
+{"ts":1781749651.9948618,"row_index":0,"matched":true,"match_name":"natural_latency_plan","prefix_len":1,"num_tokens":503,"draft_len":8,"draft_token_ids":[440,27044,47193,14246,8129,13,24985,383]}
+{"ts":1781749660.2983272,"row_index":0,"matched":false,"match_name":null,"prefix_len":null,"num_tokens":510,"draft_len":0,"draft_token_ids":[]}
+{"ts":1781749660.3040493,"row_index":0,"matched":false,"match_name":null,"prefix_len":null,"num_tokens":510,"draft_len":0,"draft_token_ids":[]}

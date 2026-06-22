@@ -1,0 +1,37 @@
++-----------------------------+--------------------------------------------------------------------+
+| Device ID                   | 3                                                                  |
++-----------------------------+--------------------------------------------------------------------+
+| Average % utilization of    | N/A                                                                |
+|   all GPU Engines           |                                                                    |
+| EU Array Active (%)         | N/A                                                                |
+| EU Array Stall (%)          | N/A                                                                |
+| EU Array Idle (%)           | N/A                                                                |
+|                             |                                                                    |
+| Compute Engine Util (%)     | N/A                                                                |
+| Render Engine Util (%)      | N/A                                                                |
+| Media Engine Util (%)       | N/A                                                                |
+| Decoder Engine Util (%)     | N/A                                                                |
+| Encoder Engine Util (%)     | N/A                                                                |
+| Copy Engine Util (%)        | N/A                                                                |
+| Media EM Engine Util (%)    | N/A                                                                |
++-----------------------------+--------------------------------------------------------------------+
+| Reset                       | N/A                                                                |
+| Programming Errors          | N/A                                                                |
+| Driver Errors               | N/A                                                                |
+| Cache Errors Correctable    | N/A                                                                |
+| Cache Errors Uncorrectable  | N/A                                                                |
+| Mem Errors Correctable      | N/A                                                                |
+| Mem Errors Uncorrectable    | N/A                                                                |
++-----------------------------+--------------------------------------------------------------------+
+| GPU Power (W)               | 11                                                                 |
+| GPU Frequency (MHz)         | 517                                                                |
+| Media Engine Freq (MHz)     | 400                                                                |
+| GPU Core Temperature (C)    | N/A                                                                |
+| GPU Memory Temperature (C)  | N/A                                                                |
+| GPU Memory Read (kB/s)      | N/A                                                                |
+| GPU Memory Write (kB/s)     | N/A                                                                |
+| GPU Memory Bandwidth (%)    | N/A                                                                |
+| GPU Memory Used (MiB)       | 34                                                                 |
+| GPU Memory Util (%)         | 0                                                                  |
+| Xe Link Throughput (kB/s)   | N/A                                                                |
++-----------------------------+--------------------------------------------------------------------+

@@ -1,0 +1,16 @@
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 8, "num_draft_tokens": 8, "pid": 3800003, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_full_accept", "ts": 1781804275.729927}
+{"pid": 3800003, "stage": "copy_skip_empty", "ts": 1781804275.730047}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 8, "num_draft_tokens": 8, "pid": 3800004, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_full_accept", "ts": 1781804275.73567}
+{"pid": 3800004, "stage": "copy_skip_empty", "ts": 1781804275.735747}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_draft_tokens": 8, "pid": 3800003, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_zero_accept", "ts": 1781804276.578167}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_draft_tokens": 8, "pid": 3800004, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_zero_accept", "ts": 1781804276.578167}
+{"pid": 3800004, "stage": "copy_skip_empty", "ts": 1781804276.5782437}
+{"pid": 3800003, "stage": "copy_skip_empty", "ts": 1781804276.5782435}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 8, "num_draft_tokens": 8, "pid": 3800003, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_full_accept", "ts": 1781804285.3302302}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 8, "num_draft_tokens": 8, "pid": 3800004, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_full_accept", "ts": 1781804285.33023}
+{"pid": 3800004, "stage": "copy_skip_empty", "ts": 1781804285.3303125}
+{"pid": 3800003, "stage": "copy_skip_empty", "ts": 1781804285.330317}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_draft_tokens": 8, "pid": 3800003, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_zero_accept", "ts": 1781804286.1714664}
+{"input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_draft_tokens": 8, "pid": 3800004, "req_id": "cmpl-qwen36-oracle-k8-draftonly-serialgdn-postcommit-skipfull-nopreempt-rollback1-currenttree-eager-tp2-20260618a-000000-0-86948927", "stage": "non_align_postprocess_skip_zero_accept", "ts": 1781804286.1714659}
+{"pid": 3800003, "stage": "copy_skip_empty", "ts": 1781804286.1715405}
+{"pid": 3800004, "stage": "copy_skip_empty", "ts": 1781804286.1715405}

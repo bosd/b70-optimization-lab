@@ -1,0 +1,60 @@
+{"epoch": 1, "feature_loss": 0.91015625, "loss": 1.1927372217178345, "rollout_steps": 5, "step": 100, "token_loss": 2.8258092403411865, "tokens": 1074, "top1": 0.4952830374240875, "top3": 0.6273584961891174}
+{"epoch": 1, "feature_loss": 0.8359375, "loss": 1.0950039625167847, "rollout_steps": 5, "step": 200, "token_loss": 2.5906646251678467, "tokens": 1074, "top1": 0.5566037893295288, "top3": 0.6698113083839417}
+{"epoch": 1, "feature_loss": 0.87890625, "loss": 1.068648099899292, "rollout_steps": 5, "step": 300, "token_loss": 1.8974179029464722, "tokens": 1074, "top1": 0.5188679099082947, "top3": 0.6415094137191772}
+{"epoch": 2, "feature_loss": 0.921875, "loss": 1.1962379217147827, "rollout_steps": 5, "step": 400, "token_loss": 2.743629217147827, "tokens": 1074, "top1": 0.4858490526676178, "top3": 0.6226415038108826}
+{"epoch": 2, "feature_loss": 0.765625, "loss": 0.9017083048820496, "rollout_steps": 5, "step": 500, "token_loss": 1.3608330488204956, "tokens": 1228, "top1": 0.5655737519264221, "top3": 0.7499999403953552}
+{"epoch": 2, "feature_loss": 0.95703125, "loss": 1.3569724559783936, "rollout_steps": 5, "step": 600, "token_loss": 3.9994125366210938, "tokens": 908, "top1": 0.3499999940395355, "top3": 0.4611111283302307}
+{"epoch": 3, "feature_loss": 0.9921875, "loss": 1.3137001991271973, "rollout_steps": 5, "step": 700, "token_loss": 3.2151265144348145, "tokens": 1074, "top1": 0.38679245114326477, "top3": 0.5141509771347046}
+{"epoch": 3, "feature_loss": 0.76953125, "loss": 0.9955072999000549, "rollout_steps": 5, "step": 800, "token_loss": 2.2597603797912598, "tokens": 1074, "top1": 0.5896226763725281, "top3": 0.7028301954269409}
+{"epoch": 3, "feature_loss": 0.9765625, "loss": 1.2617169618606567, "rollout_steps": 5, "step": 900, "token_loss": 2.851544141769409, "tokens": 1228, "top1": 0.19672130048274994, "top3": 0.39754095673561096}
+{
+  "batch_size": 2,
+  "dataset_dir": [
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-corpus-tp2-20260618a",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-corpus2-tp2-20260618a",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-pos-tp2-20260618a",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-expanded-tp2-20260618k",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-expanded-tp2-20260618k",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-expanded-tp2-20260618k",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-expanded-tp2-20260618k"
+  ],
+  "dataset_samples": 612,
+  "device": "xpu:0",
+  "epochs": 3,
+  "export_dtype": "bfloat16",
+  "feature_loss_weight": 1.0,
+  "final_metrics": {
+    "epoch": 3,
+    "feature_loss": 0.87890625,
+    "loss": 1.140528678894043,
+    "rollout_steps": 5,
+    "step": 918,
+    "token_loss": 2.616224527359009,
+    "tokens": 1074,
+    "top1": 0.5,
+    "top3": 0.599056601524353
+  },
+  "grad_clip": 1.0,
+  "init_checkpoint": "/home/steve/llm-optimizations/data/qwen36-eagle2-corpus2-tokenheavy-rollout5-trained-20260618h",
+  "lr": 2e-06,
+  "max_len": 128,
+  "num_layers": 2,
+  "out_dir": "/home/steve/llm-optimizations/data/qwen36-eagle2-rollout5-expanded-oversample4-trained-20260618m",
+  "rollout_steps": 5,
+  "shape": {
+    "head_dim": 128,
+    "hidden_size": 2048,
+    "intermediate_size": 4096,
+    "max_position_embeddings": 262144,
+    "num_attention_heads": 16,
+    "num_hidden_layers": 2,
+    "num_key_value_heads": 2,
+    "rms_norm_eps": 1e-06,
+    "rope_theta": 10000000.0,
+    "vocab_size": 248320
+  },
+  "shuffle_seed": 25,
+  "target_model": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+  "token_loss_weight": 0.1,
+  "train_dtype": "bfloat16"
+}

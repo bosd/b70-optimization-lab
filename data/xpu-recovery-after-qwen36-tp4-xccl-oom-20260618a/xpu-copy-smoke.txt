@@ -1,0 +1,5 @@
+$ /home/steve/.venvs/vllm-xpu/bin/python - <<'PY'
+Traceback (most recent call last):
+  File "<stdin>", line 16, in <module>
+RuntimeError: level_zero backend failed with error: 40 (UR_RESULT_ERROR_OUT_OF_RESOURCES)
+exit_status=1

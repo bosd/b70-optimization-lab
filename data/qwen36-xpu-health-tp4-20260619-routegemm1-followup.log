@@ -1,0 +1,22 @@
+[xpu-health] physical_devices=0,1,2,3
+[xpu-health] single-device smoke level_zero:0
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:1
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:2
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:3
+device_count 1
+[xpu-health] xccl_devices=0,1,2,3 nproc=4
+rank 1 init ok
+rank 0 init ok
+2026:06:19-11:50:34:3940829 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:19-11:50:34:3940829 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:19-11:50:34:3940829 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+rank 3 init ok
+rank 2 init ok
+2026:06:19-11:50:34:3940830 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:19-11:50:35:3940831 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL

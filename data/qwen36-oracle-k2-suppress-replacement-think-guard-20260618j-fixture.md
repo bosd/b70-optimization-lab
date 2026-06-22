@@ -1,0 +1,43 @@
+# Qwen3.6 Oracle k=1 Drift Fixture
+
+- Accepted: `/home/steve/llm-optimizations/data/qwen36-nospec-notrace-fixture-eager-tp2-20260617ao-candidate.json`
+- Candidate: `/home/steve/llm-optimizations/data/qwen36-oracle-k2-suppress-replacement-think-guard-20260618j-candidate.json`
+- Exact match all: `False`
+- Mismatches: `1` / `1`
+
+## Scheduler Summary
+
+- Rows: `3`
+- Requests: `1`
+- Draft tokens: `6`
+- Accepted: `4`
+- Rejected: `2`
+- Accept rate: `66.66666666666667`
+- Full accept rows: `2`
+- Full reject rows: `1`
+
+## Case Diffs
+
+### natural_latency_plan
+
+- Status: `mismatch`
+- First diff index: `7`
+- Accepted token: `24985` ` Focus`
+- Candidate token: `271` `
+
+`
+- Accepted window: `Continue with dense numbered engineering notes. Focus on single-request decode speed, reliability gates`
+- Candidate window: `Continue with dense numbered engineering notes.
+
+<think>
+
+</think>
+
+1. **Graph`
+- Replay mapping: `trace_emitted_sequence_not_found_in_candidate`
+
+## Next Actions
+
+- Use this fixture as the token-parity gate for any speculative scheduler/KV patch.
+- First repair k=1 oracle parity before enabling DFlash, MTP, n-gram, or learned proposers.
+- If a patch passes this fixture, rerun full r8 quality through the paused-local public frontdoor.

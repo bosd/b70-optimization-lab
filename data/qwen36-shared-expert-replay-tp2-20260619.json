@@ -1,0 +1,443 @@
+{
+  "cases": [
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 1,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 154.59599999999998,
+          "mean_us": 140.64544,
+          "median_us": 139.152,
+          "min_us": 135.66799999999998
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 139.204,
+          "mean_us": 123.15992,
+          "median_us": 122.19999999999999,
+          "min_us": 120.53599999999999
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 141.43999999999997,
+          "mean_us": 118.68116,
+          "median_us": 117.46799999999999,
+          "min_us": 115.908
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 145.288,
+          "mean_us": 125.1432,
+          "median_us": 123.5,
+          "min_us": 121.67999999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 149.864,
+          "mean_us": 132.48716000000002,
+          "median_us": 130.988,
+          "min_us": 128.804
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 471.01599999999996,
+          "mean_us": 257.74996,
+          "median_us": 250.822,
+          "min_us": 247.51999999999998
+        },
+        "fused_alloc": {
+          "max_us": 325.57199999999995,
+          "mean_us": 248.09095999999997,
+          "median_us": 247.702,
+          "min_us": 236.34
+        },
+        "fused_out": {
+          "max_us": 255.63199999999998,
+          "mean_us": 237.16888,
+          "median_us": 234.728,
+          "min_us": 232.02399999999997
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 2,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 311.79200000000003,
+          "mean_us": 143.33072,
+          "median_us": 140.478,
+          "min_us": 137.904
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 136.18800000000002,
+          "mean_us": 123.11156,
+          "median_us": 121.836,
+          "min_us": 120.588
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 137.27999999999997,
+          "mean_us": 118.84755999999999,
+          "median_us": 117.54599999999999,
+          "min_us": 115.96
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 134.47199999999998,
+          "mean_us": 124.17392,
+          "median_us": 123.03199999999998,
+          "min_us": 121.52399999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 142.792,
+          "mean_us": 132.07116,
+          "median_us": 130.832,
+          "min_us": 129.636
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 275.548,
+          "mean_us": 251.641,
+          "median_us": 248.612,
+          "min_us": 245.128
+        },
+        "fused_alloc": {
+          "max_us": 260.988,
+          "mean_us": 241.31016,
+          "median_us": 238.75799999999998,
+          "min_us": 235.404
+        },
+        "fused_out": {
+          "max_us": 268.11199999999997,
+          "mean_us": 237.01912000000002,
+          "median_us": 234.078,
+          "min_us": 231.65999999999997
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 4,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 247.78,
+          "mean_us": 194.43788,
+          "median_us": 193.206,
+          "min_us": 141.596
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 142.272,
+          "mean_us": 129.87519999999998,
+          "median_us": 128.54399999999998,
+          "min_us": 126.93199999999999
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 173.732,
+          "mean_us": 128.04584,
+          "median_us": 118.06599999999999,
+          "min_us": 115.908
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 142.844,
+          "mean_us": 130.75555999999997,
+          "median_us": 129.402,
+          "min_us": 127.192
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 159.016,
+          "mean_us": 139.89715999999999,
+          "median_us": 138.762,
+          "min_us": 132.75599999999997
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 280.28,
+          "mean_us": 251.93167999999997,
+          "median_us": 249.236,
+          "min_us": 245.7
+        },
+        "fused_alloc": {
+          "max_us": 271.96,
+          "mean_us": 243.70007999999999,
+          "median_us": 239.04399999999998,
+          "min_us": 235.456
+        },
+        "fused_out": {
+          "max_us": 267.644,
+          "mean_us": 251.57755999999998,
+          "median_us": 249.652,
+          "min_us": 241.07199999999997
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 8,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 161.72,
+          "mean_us": 147.20576,
+          "median_us": 145.96399999999997,
+          "min_us": 140.452
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 140.452,
+          "mean_us": 130.60892,
+          "median_us": 129.428,
+          "min_us": 126.61999999999998
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 134.316,
+          "mean_us": 125.25916,
+          "median_us": 124.332,
+          "min_us": 121.472
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 146.27599999999998,
+          "mean_us": 131.14867999999998,
+          "median_us": 130.208,
+          "min_us": 124.27999999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 149.916,
+          "mean_us": 139.32047999999998,
+          "median_us": 138.762,
+          "min_us": 131.14399999999998
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 278.2,
+          "mean_us": 260.58032,
+          "median_us": 263.35400000000004,
+          "min_us": 246.32399999999998
+        },
+        "fused_alloc": {
+          "max_us": 267.95599999999996,
+          "mean_us": 249.66135999999997,
+          "median_us": 251.888,
+          "min_us": 236.444
+        },
+        "fused_out": {
+          "max_us": 262.652,
+          "mean_us": 249.49131999999997,
+          "median_us": 249.15800000000002,
+          "min_us": 233.792
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 16,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 152.516,
+          "mean_us": 141.11448,
+          "median_us": 139.88,
+          "min_us": 137.488
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 234.624,
+          "mean_us": 119.75756,
+          "median_us": 117.806,
+          "min_us": 115.908
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 129.22,
+          "mean_us": 114.13792,
+          "median_us": 113.02199999999999,
+          "min_us": 111.592
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 132.6,
+          "mean_us": 120.29992,
+          "median_us": 119.33999999999999,
+          "min_us": 117.572
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 154.128,
+          "mean_us": 127.94652,
+          "median_us": 126.88,
+          "min_us": 124.64399999999999
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 272.272,
+          "mean_us": 256.05216,
+          "median_us": 256.672,
+          "min_us": 240.968
+        },
+        "fused_alloc": {
+          "max_us": 354.38,
+          "mean_us": 241.95444,
+          "median_us": 242.892,
+          "min_us": 227.91599999999997
+        },
+        "fused_out": {
+          "max_us": 239.928,
+          "mean_us": 228.37203999999997,
+          "median_us": 226.772,
+          "min_us": 220.73999999999998
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 32,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 160.212,
+          "mean_us": 147.90152,
+          "median_us": 146.74399999999997,
+          "min_us": 143.676
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 137.436,
+          "mean_us": 125.957,
+          "median_us": 124.72200000000001,
+          "min_us": 122.668
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 130.0,
+          "mean_us": 120.58956,
+          "median_us": 119.886,
+          "min_us": 118.09199999999998
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 138.06,
+          "mean_us": 126.60804,
+          "median_us": 125.814,
+          "min_us": 119.13199999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 152.048,
+          "mean_us": 130.75815999999998,
+          "median_us": 128.7,
+          "min_us": 125.84
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 289.016,
+          "mean_us": 252.93944,
+          "median_us": 253.23999999999995,
+          "min_us": 240.552
+        },
+        "fused_alloc": {
+          "max_us": 275.75600000000003,
+          "mean_us": 247.93651999999997,
+          "median_us": 246.402,
+          "min_us": 230.56799999999998
+        },
+        "fused_out": {
+          "max_us": 271.024,
+          "mean_us": 240.45216,
+          "median_us": 242.216,
+          "min_us": 222.14399999999998
+        }
+      }
+    }
+  ],
+  "config": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118/config.json",
+  "device_selector": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "dtype": "bfloat16",
+  "iters": 100,
+  "kind": "qwen36_shared_expert_replay",
+  "tp_size": 2,
+  "warmup": 20
+}

@@ -1,0 +1,2 @@
+usage: vllm serve [model_tag] [options]
+vllm serve: error: argument --speculative-config/-sc: Value {"method":"mtp","num_speculative_tokens":5,"max_model_len":32768}} cannot be converted to <function loads at 0x70e1faef9580>.

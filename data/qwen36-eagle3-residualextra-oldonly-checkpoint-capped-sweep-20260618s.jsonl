@@ -1,0 +1,11 @@
+{"checkpoint":"step-000050","mean_accepted":1.9296875,"acceptance_histogram":{"0":12,"1":45,"2":41,"3":13,"4":4,"5":13}}
+{"checkpoint":"step-000100","mean_accepted":1.9296875,"acceptance_histogram":{"0":12,"1":45,"2":41,"3":13,"4":4,"5":13}}
+{"checkpoint":"step-000150","mean_accepted":1.9140625,"acceptance_histogram":{"0":12,"1":46,"2":41,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000200","mean_accepted":1.921875,"acceptance_histogram":{"0":12,"1":45,"2":42,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000250","mean_accepted":1.921875,"acceptance_histogram":{"0":12,"1":45,"2":42,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000300","mean_accepted":1.921875,"acceptance_histogram":{"0":12,"1":45,"2":42,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000350","mean_accepted":1.921875,"acceptance_histogram":{"0":12,"1":45,"2":42,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000400","mean_accepted":1.9140625,"acceptance_histogram":{"0":12,"1":46,"2":41,"3":12,"4":4,"5":13}}
+{"checkpoint":"step-000450","mean_accepted":1.921875,"acceptance_histogram":{"0":12,"1":46,"2":40,"3":13,"4":4,"5":13}}
+{"checkpoint":"step-000500","mean_accepted":1.9296875,"acceptance_histogram":{"0":12,"1":45,"2":41,"3":13,"4":4,"5":13}}
+{"checkpoint":"final","mean_accepted":1.9296875,"acceptance_histogram":{"0":12,"1":45,"2":41,"3":13,"4":4,"5":13}}

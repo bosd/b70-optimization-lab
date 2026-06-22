@@ -1,0 +1,54 @@
+{"epoch": 1, "feature_loss": 0.9375, "loss": 2.9447991847991943, "rollout_steps": 5, "step": 100, "token_loss": 2.7104241847991943, "tokens": 1228, "top1": 0.368852436542511, "top3": 0.5409835577011108}
+{"epoch": 2, "feature_loss": 1.125, "loss": 3.5360100269317627, "rollout_steps": 5, "step": 200, "token_loss": 3.2547600269317627, "tokens": 1228, "top1": 0.1844262182712555, "top3": 0.30737704038619995}
+{"epoch": 2, "feature_loss": 0.99609375, "loss": 2.924377202987671, "rollout_steps": 5, "step": 300, "token_loss": 2.675353765487671, "tokens": 1074, "top1": 0.28301888704299927, "top3": 0.41981133818626404}
+{"epoch": 3, "feature_loss": 1.15625, "loss": 4.1218976974487305, "rollout_steps": 5, "step": 400, "token_loss": 3.8328354358673096, "tokens": 1228, "top1": 0.18852457404136658, "top3": 0.3237704634666443}
+{"epoch": 3, "feature_loss": 0.88671875, "loss": 2.424855947494507, "rollout_steps": 5, "step": 500, "token_loss": 2.203176259994507, "tokens": 1074, "top1": 0.3962264060974121, "top3": 0.5141509771347046}
+{"epoch": 4, "feature_loss": 0.99609375, "loss": 2.7844486236572266, "rollout_steps": 5, "step": 600, "token_loss": 2.5354251861572266, "tokens": 1228, "top1": 0.19262294471263885, "top3": 0.33196720480918884}
+{"epoch": 4, "feature_loss": 1.109375, "loss": 3.7825591564178467, "rollout_steps": 5, "step": 700, "token_loss": 3.5052154064178467, "tokens": 1228, "top1": 0.19262294471263885, "top3": 0.31147539615631104}
+{
+  "batch_size": 2,
+  "dataset_dir": [
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-corpus-tp2-20260618a",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-corpus2-tp2-20260618a",
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-pos-tp2-20260618a"
+  ],
+  "dataset_samples": 356,
+  "device": "xpu:0",
+  "epochs": 4,
+  "export_dtype": "bfloat16",
+  "feature_loss_weight": 0.25,
+  "final_metrics": {
+    "epoch": 4,
+    "feature_loss": 0.90625,
+    "loss": 2.2564892768859863,
+    "rollout_steps": 5,
+    "step": 712,
+    "token_loss": 2.0299267768859863,
+    "tokens": 1228,
+    "top1": 0.3155737519264221,
+    "top3": 0.45081964135169983
+  },
+  "grad_clip": 1.0,
+  "init_checkpoint": "/home/steve/llm-optimizations/data/qwen36-eagle2-corpus2-tokenheavy-trained-20260618a",
+  "lr": 2e-06,
+  "max_len": 128,
+  "num_layers": 2,
+  "out_dir": "/home/steve/llm-optimizations/data/qwen36-eagle2-tokenfocused-rollout5-trained-20260618i",
+  "rollout_steps": 5,
+  "shape": {
+    "head_dim": 128,
+    "hidden_size": 2048,
+    "intermediate_size": 4096,
+    "max_position_embeddings": 262144,
+    "num_attention_heads": 16,
+    "num_hidden_layers": 2,
+    "num_key_value_heads": 2,
+    "rms_norm_eps": 1e-06,
+    "rope_theta": 10000000.0,
+    "vocab_size": 248320
+  },
+  "shuffle_seed": 22,
+  "target_model": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+  "token_loss_weight": 1.0,
+  "train_dtype": "bfloat16"
+}

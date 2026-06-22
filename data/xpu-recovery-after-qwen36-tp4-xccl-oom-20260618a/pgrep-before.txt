@@ -1,0 +1,5 @@
+$ pgrep -af 'vllm serve|VLLM::Worker|multiprocessing.resource_tracker|qwen36|run-qwen36' || true
+3549777 /bin/bash -c OUT=/home/steve/llm-optimizations/data/xpu-recovery-after-qwen36-tp4-xccl-oom-20260618a; /home/steve/llm-optimizations/scripts/qwen36-xpu-recovery-snapshot.sh --out-dir "$OUT" --copy-smoke --wait-seconds 2; find "$OUT" -maxdepth 1 -type f -printf '%f\n' | sort | head -n 40
+3549778 bash /home/steve/llm-optimizations/scripts/qwen36-xpu-recovery-snapshot.sh --out-dir /home/steve/llm-optimizations/data/xpu-recovery-after-qwen36-tp4-xccl-oom-20260618a --copy-smoke --wait-seconds 2
+3551440 bash -lc pgrep -af 'vllm serve|VLLM::Worker|multiprocessing.resource_tracker|qwen36|run-qwen36' || true
+exit_status=0

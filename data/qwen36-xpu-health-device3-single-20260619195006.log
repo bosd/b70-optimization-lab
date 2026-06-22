@@ -1,0 +1,5 @@
+device_count 1
+allocated-before 0 reserved-before 0
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+RuntimeError: level_zero backend failed with error: 40 (UR_RESULT_ERROR_OUT_OF_RESOURCES)

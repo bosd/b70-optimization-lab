@@ -1,0 +1,222 @@
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 0, "num_scheduled_tokens": 502, "pid": 3745267, "prev_state_idx": -1, "prev_state_idx_raw": null, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788459.69185}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788459.6919572}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 0, "num_scheduled_tokens": 502, "pid": 3745266, "prev_state_idx": -1, "prev_state_idx_raw": null, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788459.6969047}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788459.6969783}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788465.4737704}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788465.4750388}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 9, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788465.4772718}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788465.4773273}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 9, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788465.4778166}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788465.477877}
+{"input_batch_index": 0, "pid": 3745267, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788473.0302238}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788473.0303369}
+{"input_batch_index": 0, "pid": 3745266, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788473.037073}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788473.0371156}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788475.3999705}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788475.4000576}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 502, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788475.4008977}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788475.4009538}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788480.836156}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788480.8361557}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 503, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788480.8378053}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788480.8378701}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 503, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788480.8385537}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788480.8386161}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788480.9381518}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788480.9381518}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 504, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788480.939569}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788480.9396234}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 504, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788480.940104}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788480.940155}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.0365524}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.036563}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 505, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.0380642}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.0381176}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 505, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.0386093}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.03866}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.1349201}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.1349201}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 506, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.1362963}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.1363492}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 506, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.1368036}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.1368625}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.23325}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.23325}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 507, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.234617}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.2346761}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 507, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.2351398}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.2351909}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.331094}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.3310943}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 508, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.3324769}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.332531}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 508, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.333011}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.3330624}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.4289432}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.4289432}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 509, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.4303195}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.4303737}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 509, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.4308398}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.430891}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.5266798}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.5266793}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 510, "num_scheduled_tokens": 9, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.5281746}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.5282285}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 510, "num_scheduled_tokens": 9, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.5287576}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.5288105}
+{"input_batch_index": 0, "pid": 3745267, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788481.6314144}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.6314802}
+{"input_batch_index": 0, "pid": 3745266, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788481.6323178}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.6323586}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 510, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.6339133}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.6339667}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 510, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.6344101}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.634461}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.7307029}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.7307029}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 511, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.7321057}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.7321591}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 511, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.7326105}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.732662}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.8285954}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.8285954}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 512, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.8299508}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.830004}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 512, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.8304558}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.8305073}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.926573}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.9265728}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 513, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.927933}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788481.9279926}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 513, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788481.928457}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788481.9285088}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.0245032}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.0245035}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 514, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.0258534}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.0259092}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 514, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.0263886}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.0264404}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.1221805}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.1221812}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 515, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.1235123}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.123567}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 515, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.1240468}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.1240973}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.2199323}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.219932}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 516, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.2212753}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.221329}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 516, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.2217987}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.2218583}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.317983}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.3179827}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 517, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.3193529}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.3194122}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 517, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.3199015}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.3199527}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.415885}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.4158852}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 518, "num_scheduled_tokens": 9, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.4173632}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.4174173}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 518, "num_scheduled_tokens": 9, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.4179397}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.417992}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.5198293}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.5198293}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_blocks": 9, "num_computed_tokens": 518, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.521308}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.5213628}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 0, "num_blocks": 9, "num_computed_tokens": 518, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.5218382}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.5218904}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.6178243}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.6178243}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 519, "num_scheduled_tokens": 9, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.6193588}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.6194122}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 519, "num_scheduled_tokens": 9, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.6199324}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.6199892}
+{"input_batch_index": 0, "pid": 3745267, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788482.7225206}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.7225795}
+{"input_batch_index": 0, "pid": 3745266, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "postprocess_skip_req", "ts": 1781788482.7234662}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.7235062}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 519, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.7249646}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.7250187}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 519, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.7254653}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.7255168}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.8216395}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.8216398}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 520, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.822974}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.8230283}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 520, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.8235087}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.82356}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.9195435}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.9195445}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 521, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.9208724}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788482.9209266}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 521, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788482.9213946}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788482.9214468}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.0174553}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.0174553}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 522, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.0188088}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.018877}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 522, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.019334}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.019385}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.1154444}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.1154468}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 523, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.1167731}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.1168275}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 523, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.117304}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.117356}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.21337}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.21337}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 524, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.214711}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.2147655}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 524, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.2152555}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.215307}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.3114777}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.3114765}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 525, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.3128135}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.3128755}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 525, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.3133395}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.3133907}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.4093888}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.4093883}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 526, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.4107668}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.4108217}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 526, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.4113047}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.4113684}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.507396}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.5073967}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 527, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.508767}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.5088215}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 527, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.509292}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.5093427}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.6095219}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.609522}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 528, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.610936}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.61099}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 528, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.6115336}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.6115844}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.7122972}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.7122974}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 529, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.7136807}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.7137356}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 529, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.7142093}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.7142663}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.815051}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.815052}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 530, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.816421}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.816476}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 530, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.8170114}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.8170645}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.9180026}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.918004}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 531, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.919382}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788483.9194357}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 531, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788483.9199758}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788483.9200294}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788484.021019}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788484.0210226}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 532, "num_scheduled_tokens": 1, "pid": 3745267, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788484.0223827}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788484.0224383}
+{"block_ids_tail": [4, 5, 6, 7, 8, 9], "curr_state_idx": 0, "input_batch_index": 0, "num_accepted_tokens_cpu": 1, "num_blocks": 9, "num_computed_tokens": 532, "num_scheduled_tokens": 1, "pid": 3745266, "prev_state_idx": 0, "prev_state_idx_raw": 0, "req_id": "cmpl-qwen36-oracle-k8-draftonly-fullacceptrestore-align-eager-20260618c-000000-0-b888a9f9", "stage": "preprocess_req", "ts": 1781788484.022962}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788484.023016}
+{"pid": 3745267, "stage": "copy_skip_empty", "ts": 1781788484.1239367}
+{"pid": 3745266, "stage": "copy_skip_empty", "ts": 1781788484.1239367}

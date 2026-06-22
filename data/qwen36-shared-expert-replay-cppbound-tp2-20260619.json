@@ -1,0 +1,509 @@
+{
+  "cases": [
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 1,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 151.372,
+          "mean_us": 139.50248,
+          "median_us": 137.956,
+          "min_us": 133.11999999999998
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 178.82799999999997,
+          "mean_us": 131.75292,
+          "median_us": 128.18,
+          "min_us": 119.964
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 132.28799999999998,
+          "mean_us": 118.08264,
+          "median_us": 116.74,
+          "min_us": 115.28399999999999
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 244.504,
+          "mean_us": 143.48308,
+          "median_us": 128.596,
+          "min_us": 124.904
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 249.496,
+          "mean_us": 183.11487999999997,
+          "median_us": 179.52999999999997,
+          "min_us": 154.804
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 511.316,
+          "mean_us": 264.54012,
+          "median_us": 259.324,
+          "min_us": 252.35599999999997
+        },
+        "cpp_boundary_out": {
+          "max_us": 238.16,
+          "mean_us": 216.18012,
+          "median_us": 213.84999999999997,
+          "min_us": 210.34
+        },
+        "fused_alloc": {
+          "max_us": 329.16,
+          "mean_us": 251.12048,
+          "median_us": 247.676,
+          "min_us": 235.456
+        },
+        "fused_out": {
+          "max_us": 266.032,
+          "mean_us": 245.52631999999997,
+          "median_us": 243.23,
+          "min_us": 231.712
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 2,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 148.928,
+          "mean_us": 139.12807999999998,
+          "median_us": 137.852,
+          "min_us": 135.824
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 142.16799999999998,
+          "mean_us": 122.98935999999999,
+          "median_us": 121.368,
+          "min_us": 115.856
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 127.14,
+          "mean_us": 117.6604,
+          "median_us": 116.74,
+          "min_us": 115.232
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 141.80399999999997,
+          "mean_us": 124.51971999999999,
+          "median_us": 123.084,
+          "min_us": 120.796
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 142.896,
+          "mean_us": 131.58236,
+          "median_us": 130.52,
+          "min_us": 128.284
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 425.46399999999994,
+          "mean_us": 250.99464,
+          "median_us": 244.894,
+          "min_us": 241.48799999999997
+        },
+        "cpp_boundary_out": {
+          "max_us": 220.168,
+          "mean_us": 206.86847999999998,
+          "median_us": 204.93200000000002,
+          "min_us": 201.76
+        },
+        "fused_alloc": {
+          "max_us": 464.308,
+          "mean_us": 283.9148,
+          "median_us": 245.518,
+          "min_us": 232.07599999999996
+        },
+        "fused_out": {
+          "max_us": 336.856,
+          "mean_us": 245.30323999999996,
+          "median_us": 235.534,
+          "min_us": 228.748
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 4,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 157.50799999999998,
+          "mean_us": 141.44467999999998,
+          "median_us": 140.634,
+          "min_us": 134.316
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 224.38,
+          "mean_us": 176.54624,
+          "median_us": 173.238,
+          "min_us": 150.644
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 235.35199999999998,
+          "mean_us": 149.92848,
+          "median_us": 149.864,
+          "min_us": 118.196
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 240.344,
+          "mean_us": 171.68788,
+          "median_us": 168.896,
+          "min_us": 144.872
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 257.816,
+          "mean_us": 189.25503999999998,
+          "median_us": 182.338,
+          "min_us": 176.54
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 261.612,
+          "mean_us": 247.80703999999997,
+          "median_us": 245.44,
+          "min_us": 241.956
+        },
+        "cpp_boundary_out": {
+          "max_us": 359.216,
+          "mean_us": 260.85696,
+          "median_us": 253.03199999999998,
+          "min_us": 204.204
+        },
+        "fused_alloc": {
+          "max_us": 255.16400000000002,
+          "mean_us": 236.52824,
+          "median_us": 234.624,
+          "min_us": 231.60799999999998
+        },
+        "fused_out": {
+          "max_us": 250.79599999999996,
+          "mean_us": 233.32348,
+          "median_us": 230.932,
+          "min_us": 227.968
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 8,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 206.232,
+          "mean_us": 157.2714,
+          "median_us": 145.34,
+          "min_us": 136.81199999999998
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 279.13599999999997,
+          "mean_us": 159.33944,
+          "median_us": 167.80399999999997,
+          "min_us": 121.836
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 209.144,
+          "mean_us": 160.1132,
+          "median_us": 160.05599999999998,
+          "min_us": 128.284
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 211.432,
+          "mean_us": 142.26628,
+          "median_us": 127.998,
+          "min_us": 125.00800000000001
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 149.39600000000002,
+          "mean_us": 137.46876,
+          "median_us": 136.188,
+          "min_us": 131.09199999999998
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 271.284,
+          "mean_us": 248.31092,
+          "median_us": 245.23199999999997,
+          "min_us": 241.644
+        },
+        "cpp_boundary_out": {
+          "max_us": 399.36,
+          "mean_us": 273.69108,
+          "median_us": 281.996,
+          "min_us": 203.736
+        },
+        "fused_alloc": {
+          "max_us": 254.228,
+          "mean_us": 237.14236,
+          "median_us": 234.832,
+          "min_us": 232.12800000000001
+        },
+        "fused_out": {
+          "max_us": 291.408,
+          "mean_us": 236.46376,
+          "median_us": 232.31,
+          "min_us": 229.684
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 16,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 282.62,
+          "mean_us": 200.4236,
+          "median_us": 193.362,
+          "min_us": 186.836
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 176.01999999999998,
+          "mean_us": 136.23844,
+          "median_us": 123.422,
+          "min_us": 119.496
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 212.47199999999998,
+          "mean_us": 144.5756,
+          "median_us": 154.752,
+          "min_us": 111.07199999999999
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 149.084,
+          "mean_us": 124.55351999999999,
+          "median_us": 122.97999999999999,
+          "min_us": 121.056
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 144.248,
+          "mean_us": 132.30828,
+          "median_us": 131.14399999999998,
+          "min_us": 128.54399999999998
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 464.87999999999994,
+          "mean_us": 283.55132,
+          "median_us": 256.412,
+          "min_us": 241.53999999999996
+        },
+        "cpp_boundary_out": {
+          "max_us": 223.132,
+          "mean_us": 208.77739999999997,
+          "median_us": 207.142,
+          "min_us": 202.904
+        },
+        "fused_alloc": {
+          "max_us": 280.176,
+          "mean_us": 243.30748,
+          "median_us": 239.87599999999998,
+          "min_us": 226.98
+        },
+        "fused_out": {
+          "max_us": 250.848,
+          "mean_us": 237.07476,
+          "median_us": 235.56,
+          "min_us": 223.86
+        }
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "hidden": 2048,
+      "parity": {
+        "cpp_boundary_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_alloc_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        },
+        "fused_out_vs_baseline": {
+          "exact": true,
+          "max_abs_diff": 0.0,
+          "mean_abs_diff": 0.0
+        }
+      },
+      "rows": 32,
+      "shared_intermediate_global": 512,
+      "shared_intermediate_local": 256,
+      "stages": {
+        "expert_gate_sigmoid_mul": {
+          "max_us": 156.51999999999998,
+          "mean_us": 139.23936,
+          "median_us": 137.618,
+          "min_us": 136.08399999999997
+        },
+        "fused_alloc_silu_quant_down_int8_gemm": {
+          "max_us": 138.84,
+          "mean_us": 118.20848,
+          "median_us": 117.15599999999999,
+          "min_us": 114.868
+        },
+        "fused_out_silu_quant_down_int8_gemm": {
+          "max_us": 126.98399999999998,
+          "mean_us": 113.54928,
+          "median_us": 112.606,
+          "min_us": 110.916
+        },
+        "quant_x_plus_gate_up_int8_gemm": {
+          "max_us": 202.79999999999998,
+          "mean_us": 156.82368,
+          "median_us": 162.76,
+          "min_us": 121.78399999999999
+        },
+        "separate_silu_mul_quant_down_int8_gemm": {
+          "max_us": 238.26399999999998,
+          "mean_us": 166.465,
+          "median_us": 170.63799999999998,
+          "min_us": 125.476
+        }
+      },
+      "tp_size": 2,
+      "whole_path": {
+        "baseline": {
+          "max_us": 455.1039999999999,
+          "mean_us": 311.49663999999996,
+          "median_us": 309.894,
+          "min_us": 236.65200000000002
+        },
+        "cpp_boundary_out": {
+          "max_us": 850.9799999999999,
+          "mean_us": 215.3684,
+          "median_us": 207.16799999999998,
+          "min_us": 199.05599999999998
+        },
+        "fused_alloc": {
+          "max_us": 389.116,
+          "mean_us": 260.77011999999996,
+          "median_us": 241.25399999999996,
+          "min_us": 225.524
+        },
+        "fused_out": {
+          "max_us": 345.852,
+          "mean_us": 270.6548,
+          "median_us": 252.85,
+          "min_us": 223.28799999999998
+        }
+      }
+    }
+  ],
+  "config": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118/config.json",
+  "device_selector": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "dtype": "bfloat16",
+  "iters": 100,
+  "kind": "qwen36_shared_expert_replay",
+  "tp_size": 2,
+  "warmup": 20
+}

@@ -1,0 +1,229 @@
+{
+  "created_at_unix": 1781744551.7432904,
+  "base_url": "http://127.0.0.1:18080",
+  "model": "qwen36-35b-a3b-fp8",
+  "tokenizer": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+  "server_model_record": {
+    "id": "qwen36-35b-a3b-fp8",
+    "object": "model",
+    "created": 1781744521,
+    "owned_by": "vllm",
+    "root": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+    "parent": null,
+    "max_model_len": 32768,
+    "permission": [
+      {
+        "id": "modelperm-899d34705829a99f",
+        "object": "model_permission",
+        "created": 1781744521,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+      }
+    ]
+  },
+  "prompt_kind": "preset",
+  "prompt_preset": "natural-chat",
+  "prompt_file": null,
+  "endpoint": "completions",
+  "seed": 0,
+  "random_prefix_len": 0,
+  "prompt_tokens_requested": 128,
+  "prompt_tokens_actual": 126,
+  "output_tokens_requested": 64,
+  "mode": "stream",
+  "ignore_eos": true,
+  "skip_vram": true,
+  "repeats": 1,
+  "measurement_notes": [
+    "TTFT and e2e are measured both client-side and from vLLM Prometheus histogram deltas.",
+    "tok_s_prefill_lower_bound_from_ttft is prompt_tokens / TTFT, so it is conservative and includes first-token scheduling/decode overhead.",
+    "tok_s_out_client_after_first_chunk is generated-token-only throughput after the first streamed text chunk.",
+    "tok_s_out_client_after_first_chunk_corrected subtracts the estimated first streamed chunk tokens from the numerator; this is more stable when --stream-interval > 1."
+  ],
+  "vram_mib_before_all": {},
+  "peak_vram_mib_observed": {},
+  "records": [
+    {
+      "repeat": 1,
+      "request_id": "cmpl-911c7a5dc7a3503b",
+      "request_started_at_unix": 1781744522.496752,
+      "request_finished_at_unix": 1781744551.7377121,
+      "prompt_tokens_client": 126,
+      "prompt_tokens_estimated_before_request": 126,
+      "output_tokens_client": 64,
+      "elapsed_s_client": 29.24088547611609,
+      "ttft_ms_client": 24771.2179729715,
+      "tok_s_out_client_after_first_chunk": 14.318738464320536,
+      "tok_s_out_client_after_first_chunk_corrected": 14.095008175815527,
+      "tok_s_out_client_e2e": 2.188716208757601,
+      "tok_s_total_client": 6.497751244749127,
+      "tok_s_prefill_lower_bound_from_ttft": 5.086548434456545,
+      "vllm_metric_deltas": {
+        "prompt_tokens": 126.0,
+        "generation_tokens": 64.0,
+        "ttft_count": 1.0,
+        "ttft_sum_s": 14.264054298400879,
+        "e2e_count": 1.0,
+        "e2e_sum_s": 29.23905634880066
+      },
+      "vllm_histogram_deltas": {
+        "vllm:request_queue_time_seconds": {
+          "count": 1.0,
+          "sum": 3.647804260253906e-05,
+          "mean": 3.647804260253906e-05
+        },
+        "vllm:request_prefill_time_seconds": {
+          "count": 1.0,
+          "sum": 14.249461628962308,
+          "mean": 14.249461628962308
+        },
+        "vllm:request_decode_time_seconds": {
+          "count": 1.0,
+          "sum": 14.97526692901738,
+          "mean": 14.97526692901738
+        },
+        "vllm:request_inference_time_seconds": {
+          "count": 1.0,
+          "sum": 29.224728557979688,
+          "mean": 29.224728557979688
+        },
+        "vllm:request_time_per_output_token_seconds": {
+          "count": 1.0,
+          "sum": 0.23770264966694254,
+          "mean": 0.23770264966694254
+        },
+        "vllm:inter_token_latency_seconds": {
+          "count": 63.0,
+          "sum": 14.97526692901738,
+          "mean": 0.23770264966694254
+        },
+        "vllm:iteration_tokens_total": {
+          "count": 64.0,
+          "sum": 190.0,
+          "mean": 2.96875
+        }
+      },
+      "ttft_ms_vllm_metrics": 14264.054298400879,
+      "e2e_ms_vllm_metrics": 29239.05634880066,
+      "queue_ms_vllm_histogram": 0.03647804260253906,
+      "prefill_ms_vllm_histogram": 14249.461628962308,
+      "decode_ms_vllm_histogram": 14975.26692901738,
+      "decode_ms_per_generation_token_vllm_histogram": 233.98854576589656,
+      "inference_ms_vllm_histogram": 29224.728557979688,
+      "time_per_output_token_ms_vllm_histogram": 237.70264966694253,
+      "inter_token_ms_vllm_histogram": 237.70264966694253,
+      "iteration_tokens_per_step_vllm_histogram": 2.96875,
+      "vram_mib_before": {},
+      "vram_mib_after": {},
+      "first_chunk_tokens_client_estimate": 1,
+      "streamed_text_chunks": 62,
+      "text_preview": "\nassistant<think>\nHere's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Context:** Tuning an Intel XPU inference server.\n   - **Recent Observations:** \n     - Stable baseline decoding\n     - Prompt-sensitive speculative acceptance\n",
+      "text": "\nassistant<think>\nHere's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Context:** Tuning an Intel XPU inference server.\n   - **Recent Observations:** \n     - Stable baseline decoding\n     - Prompt-sensitive speculative acceptance\n     - Graph capture bucket"
+    }
+  ],
+  "summary": {
+    "tok_s_out_client_after_first_chunk": {
+      "mean": 14.318738464320536,
+      "median": 14.318738464320536,
+      "min": 14.318738464320536,
+      "max": 14.318738464320536
+    },
+    "tok_s_out_client_after_first_chunk_corrected": {
+      "mean": 14.095008175815527,
+      "median": 14.095008175815527,
+      "min": 14.095008175815527,
+      "max": 14.095008175815527
+    },
+    "tok_s_out_client_e2e": {
+      "mean": 2.188716208757601,
+      "median": 2.188716208757601,
+      "min": 2.188716208757601,
+      "max": 2.188716208757601
+    },
+    "tok_s_total_client": {
+      "mean": 6.497751244749127,
+      "median": 6.497751244749127,
+      "min": 6.497751244749127,
+      "max": 6.497751244749127
+    },
+    "ttft_ms_client": {
+      "mean": 24771.2179729715,
+      "median": 24771.2179729715,
+      "min": 24771.2179729715,
+      "max": 24771.2179729715
+    },
+    "ttft_ms_vllm_metrics": {
+      "mean": 14264.054298400879,
+      "median": 14264.054298400879,
+      "min": 14264.054298400879,
+      "max": 14264.054298400879
+    },
+    "tok_s_prefill_lower_bound_from_ttft": {
+      "mean": 5.086548434456545,
+      "median": 5.086548434456545,
+      "min": 5.086548434456545,
+      "max": 5.086548434456545
+    },
+    "e2e_ms_vllm_metrics": {
+      "mean": 29239.05634880066,
+      "median": 29239.05634880066,
+      "min": 29239.05634880066,
+      "max": 29239.05634880066
+    },
+    "queue_ms_vllm_histogram": {
+      "mean": 0.03647804260253906,
+      "median": 0.03647804260253906,
+      "min": 0.03647804260253906,
+      "max": 0.03647804260253906
+    },
+    "prefill_ms_vllm_histogram": {
+      "mean": 14249.461628962308,
+      "median": 14249.461628962308,
+      "min": 14249.461628962308,
+      "max": 14249.461628962308
+    },
+    "decode_ms_vllm_histogram": {
+      "mean": 14975.26692901738,
+      "median": 14975.26692901738,
+      "min": 14975.26692901738,
+      "max": 14975.26692901738
+    },
+    "decode_ms_per_generation_token_vllm_histogram": {
+      "mean": 233.98854576589656,
+      "median": 233.98854576589656,
+      "min": 233.98854576589656,
+      "max": 233.98854576589656
+    },
+    "inference_ms_vllm_histogram": {
+      "mean": 29224.728557979688,
+      "median": 29224.728557979688,
+      "min": 29224.728557979688,
+      "max": 29224.728557979688
+    },
+    "time_per_output_token_ms_vllm_histogram": {
+      "mean": 237.70264966694253,
+      "median": 237.70264966694253,
+      "min": 237.70264966694253,
+      "max": 237.70264966694253
+    },
+    "inter_token_ms_vllm_histogram": {
+      "mean": 237.70264966694253,
+      "median": 237.70264966694253,
+      "min": 237.70264966694253,
+      "max": 237.70264966694253
+    },
+    "iteration_tokens_per_step_vllm_histogram": {
+      "mean": 2.96875,
+      "median": 2.96875,
+      "min": 2.96875,
+      "max": 2.96875
+    }
+  }
+}

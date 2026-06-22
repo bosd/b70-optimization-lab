@@ -1,0 +1,50 @@
+{"epoch": 2, "feature_loss": 1.046875, "loss": 1.4852405786514282, "rollout_steps": 5, "step": 50, "token_loss": 4.383655548095703, "tokens": 908, "top1": 0.32777777314186096, "top3": 0.41111111640930176}
+{"epoch": 4, "feature_loss": 1.15625, "loss": 1.7000055313110352, "rollout_steps": 5, "step": 100, "token_loss": 5.437554836273193, "tokens": 908, "top1": 0.17777778208255768, "top3": 0.2611111104488373}
+{"epoch": 5, "feature_loss": 1.09375, "loss": 1.525965690612793, "rollout_steps": 5, "step": 150, "token_loss": 4.3221564292907715, "tokens": 908, "top1": 0.23888888955116272, "top3": 0.3333333432674408}
+{"epoch": 7, "feature_loss": 0.96484375, "loss": 1.3024823665618896, "rollout_steps": 5, "step": 200, "token_loss": 3.3763866424560547, "tokens": 908, "top1": 0.4333333373069763, "top3": 0.5444444417953491}
+{"epoch": 8, "feature_loss": 1.03125, "loss": 1.4315574169158936, "rollout_steps": 5, "step": 250, "token_loss": 4.003074645996094, "tokens": 908, "top1": 0.3499999940395355, "top3": 0.4611111283302307}
+{
+  "batch_size": 2,
+  "dataset_dir": [
+    "/home/steve/llm-optimizations/data/qwen36-eagle-hidden-dataset-expanded-tp2-20260618k"
+  ],
+  "dataset_samples": 64,
+  "device": "xpu:0",
+  "epochs": 8,
+  "export_dtype": "bfloat16",
+  "feature_loss_weight": 1.0,
+  "final_metrics": {
+    "epoch": 8,
+    "feature_loss": 0.92578125,
+    "loss": 1.267102837562561,
+    "rollout_steps": 5,
+    "step": 256,
+    "token_loss": 3.413215398788452,
+    "tokens": 908,
+    "top1": 0.41111111640930176,
+    "top3": 0.5
+  },
+  "grad_clip": 1.0,
+  "init_checkpoint": "/home/steve/llm-optimizations/data/qwen36-eagle2-corpus2-tokenheavy-rollout5-trained-20260618h",
+  "lr": 5e-06,
+  "max_len": 128,
+  "num_layers": 2,
+  "out_dir": "/home/steve/llm-optimizations/data/qwen36-eagle2-rollout5-expanded-only-trained-20260618l",
+  "rollout_steps": 5,
+  "shape": {
+    "head_dim": 128,
+    "hidden_size": 2048,
+    "intermediate_size": 4096,
+    "max_position_embeddings": 262144,
+    "num_attention_heads": 16,
+    "num_hidden_layers": 2,
+    "num_key_value_heads": 2,
+    "rms_norm_eps": 1e-06,
+    "rope_theta": 10000000.0,
+    "vocab_size": 248320
+  },
+  "shuffle_seed": 24,
+  "target_model": "/mnt/fast-ai/llm-cache/hf/models--nameistoken--Qwen3.6-35B-A3B-Quark-W8A8-INT8/snapshots/cced56592e8c8935f8220836b4baa04dfd389118",
+  "token_loss_weight": 0.1,
+  "train_dtype": "bfloat16"
+}

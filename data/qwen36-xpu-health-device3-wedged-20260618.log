@@ -1,0 +1,100 @@
+[xpu-health] physical_devices=0,1,2,3
+[xpu-health] single-device smoke level_zero:0
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:1
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:2
+device_count 1
+ok 2097152.0
+[xpu-health] single-device smoke level_zero:3
+device_count 1
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+RuntimeError: level_zero backend failed with error: 40 (UR_RESULT_ERROR_OUT_OF_RESOURCES)
+[xpu-health] single-device smoke FAILED for physical device 3
+[xpu-health] xccl_devices=0,1,2,3 nproc=4
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+rank 3 init ok
+rank 2 init ok
+rank 0 init ok
+rank 1 init ok
+2026:06:18-15:52:44:3845677 |CCL_WARN| value of CCL_ATL_TRANSPORT changed to be ofi (default:mpi)
+2026:06:18-15:52:44:3845677 |CCL_WARN| value of CCL_TOPO_P2P_ACCESS changed to be 1 (default:-1)
+2026:06:18-15:52:44:3845677 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:18-15:52:45:3845678 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+2026:06:18-15:52:45:3845679 |CCL_WARN| could not get local_idx/count from environment variables, trying to get them from ATL
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/steve/llm-optimizations/tools/xccl_probe.py", line 31, in <module>
+[rank3]:     main()
+[rank3]:   File "/home/steve/llm-optimizations/tools/xccl_probe.py", line 18, in main
+[rank3]:     dist.barrier(device_ids=[local_rank])
+[rank3]:   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 83, in wrapper
+[rank3]:     return func(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 5030, in barrier
+[rank3]:     work = group.barrier(opts=opts)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]: RuntimeError: level_zero backend failed with error: 40 (UR_RESULT_ERROR_OUT_OF_RESOURCES)
+W0618 15:52:57.287000 3845642 .venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:1012] Sending process 3845677 closing signal SIGTERM
+W0618 15:52:57.288000 3845642 .venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:1012] Sending process 3845678 closing signal SIGTERM
+W0618 15:52:57.288000 3845642 .venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:1012] Sending process 3845679 closing signal SIGTERM
+E0618 15:52:57.352000 3845642 .venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:986] failed (exitcode: 1) local_rank: 3 (pid: 3845680) of binary: /home/steve/.venvs/vllm-xpu/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/run.py", line 994, in <module>
+    main()
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/run.py", line 990, in main
+    run(args)
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/run.py", line 981, in run
+    elastic_launch(
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/steve/llm-optimizations/tools/xccl_probe.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-06-18_15:52:57
+  host      : steve-b70s
+  rank      : 0 (local_rank: 0)
+  exitcode  : -15 (pid: 3845677)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 3845677
+[2]:
+  time      : 2026-06-18_15:52:57
+  host      : steve-b70s
+  rank      : 1 (local_rank: 1)
+  exitcode  : -15 (pid: 3845678)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 3845678
+[3]:
+  time      : 2026-06-18_15:52:57
+  host      : steve-b70s
+  rank      : 2 (local_rank: 2)
+  exitcode  : -15 (pid: 3845679)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 3845679
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-06-18_15:52:57
+  host      : steve-b70s
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 3845680)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+[xpu-health] XCCL all-reduce FAILED for devices 0,1,2,3

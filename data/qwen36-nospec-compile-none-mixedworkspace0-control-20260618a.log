@@ -1,0 +1,32 @@
+/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/torch/xpu/__init__.py:68: UserWarning: XPU device count is zero! (Triggered internally at /pytorch/c10/xpu/XPUFunctions.cpp:113.)
+  return torch._C._xpu_getDeviceCount()
+Traceback (most recent call last):
+  File "/home/steve/.venvs/vllm-xpu/bin/vllm", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/steve/src/vllm/vllm/entrypoints/cli/main.py", line 85, in main
+    cmd.subparser_init(subparsers).set_defaults(dispatch_function=cmd.cmd)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/entrypoints/cli/serve.py", line 138, in subparser_init
+    serve_parser = make_arg_parser(serve_parser)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/entrypoints/openai/cli_args.py", line 371, in make_arg_parser
+    parser = AsyncEngineArgs.add_cli_args(parser)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/engine/arg_utils.py", line 2457, in add_cli_args
+    parser = EngineArgs.add_cli_args(parser)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/engine/arg_utils.py", line 1395, in add_cli_args
+    vllm_kwargs = get_kwargs(VllmConfig)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/engine/arg_utils.py", line 399, in get_kwargs
+    return copy.deepcopy(_compute_kwargs(cls))
+                         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/src/vllm/vllm/engine/arg_utils.py", line 309, in _compute_kwargs
+    default = default.default_factory()  # type: ignore[call-arg]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/steve/.venvs/vllm-xpu/lib/python3.12/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+    s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+  File "/home/steve/src/vllm/vllm/config/device.py", line 56, in __post_init__
+    raise RuntimeError(
+RuntimeError: Failed to infer device type, please set the environment variable `VLLM_LOGGING_LEVEL=DEBUG` to turn on verbose logging to help debug the issue.

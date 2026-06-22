@@ -1,0 +1,2 @@
+usage: vllm serve [model_tag] [options]
+vllm serve: error: argument --speculative-config/-sc: Value '{"method":"ngram","num_speculative_tokens":8,"prompt_lookup_min":2,"prompt_lookup_max":5}' cannot be converted to <function loads at 0x7114de8f94e0>.
