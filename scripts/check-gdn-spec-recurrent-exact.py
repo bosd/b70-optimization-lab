@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Synthetic GDN speculative recurrent-state parity check.
 
 This exercises the verifier state contract without launching a vLLM server:

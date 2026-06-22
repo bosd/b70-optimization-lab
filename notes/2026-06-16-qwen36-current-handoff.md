@@ -3492,3 +3492,185 @@ Next branch:
 - If the trace says full-layerlet local work is already near the floor and the
   endpoint wall is elsewhere, pivot back to async/PIECEWISE correctness or
   exact verifier/spec parity rather than adding more MoE micro-knobs.
+
+## 2026-06-20 Addendum - Route-GEMM1 B-Layout Fixed, Endpoint Gate Still Not Active
+
+Root cause fixed:
+
+- The routed topk8 GEMM1/GEMM2-gather kernels in
+  `/home/steve/src/vllm-xpu-kernels/csrc/xpu/grouped_gemm/xe_2/grouped_gemm_xe2.hpp`
+  used the wrong B tensor layout.
+- The existing offsets grouped GEMM path is launched through
+  `MoEGEMMLauncherOffsets<'R','R',...>`, but internally flips B to
+  column-major (`actual_layout_of_B='C'`).
+- The routed topk8 kernels hardcoded B as row-major. Changing the B tensor
+  construction to `'C'` made routed GEMM1 exact.
+
+Direct GEMM1 proof:
+
+- Before fix:
+  `/home/steve/llm-optimizations/data/qwen36-route-gemm1-direct-compare-route80-20260620.json`
+  had `overall_max_abs_diff=16.75`.
+- After B-layout fix:
+  `/home/steve/llm-optimizations/data/qwen36-route-gemm1-direct-compare-route80-blayoutfix-20260620.json`
+  had `overall_max_abs_diff=0.0`.
+- After restoring the hand-written routed body:
+  `/home/steve/llm-optimizations/data/qwen36-route-gemm1-direct-compare-route80-blayoutfix-handbody-20260620.json`
+  also had `overall_max_abs_diff=0.0`.
+
+Replay results:
+
+- Route-80 full layerlet with B-layout fix, Q1, route-GEMM1 hand body:
+  `/home/steve/llm-optimizations/data/qwen36-int8-moe-layerlet-blayoutfix-handbody-q1-routegemm1-smoke-route80-device0-20260620.json`
+  exact, `full_layerlet_total_us_mean=138.69128`.
+- Seven-route replay with the same path:
+  `/home/steve/llm-optimizations/data/qwen36-int8-moe-layerlet-blayoutfix-handbody-q1-routegemm1-routes7-device0-20260620.json`
+  all exact. Route means:
+  `0=139.78`, `40=141.45`, `80=139.00`, `85=136.67`,
+  `95=138.02`, `100=160.80`, `115=148.58 us`.
+- MTILE=8 was mixed: route-100 alone improved to `143.38 us`, but the seven
+  route set still had a `165.67 us` worst row. Do not promote MTILE=8 yet.
+
+Endpoint A/B results:
+
+- TP2 graph-none control:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-control-blayoutfix-summary-20260620tp2ctlblayout1.json`
+  passed JSON/color canaries, `13.95497 tok/s`.
+- TP2 graph-none layerlet flags:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-fulllayerlet-q1-routegemm1-blayoutfix-summary-20260620tp2fulllayerlet1.json`
+  passed JSON/color canaries, `13.89789 tok/s`.
+- TP2 PIECEWISE forced-comm control:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-piecewise-control-blayoutfix-summary-20260620tp2piecewisectl1.json`
+  passed JSON/color canaries, `83.56112 tok/s`.
+- TP2 PIECEWISE layerlet flags:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-piecewise-fulllayerlet-q1-routegemm1-blayoutfix-summary-20260620tp2piecewisefulllayerlet1.json`
+  passed JSON/color canaries, `82.32790 tok/s`.
+
+Important correction:
+
+- The endpoint layerlet-flag runs above did **not** actually prove the C++
+  full-layerlet path was active.
+- A C++ opt-in trace was added in
+  `/home/steve/src/vllm-xpu-kernels/csrc/xpu/moe_layerlet.cpp`:
+  `VLLM_XPU_MOE_W8A8_FULL_LAYERLET_TRACE_FILE`.
+- Trace run without fused-prologue offset gate:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-piecewise-fulllayerlet-trace-blayoutfix-summary-20260620tp2piecewisefulllayerlettrace1.json`
+  produced no C++ trace file, meaning `qwen36_moe_w8a8_full_layerlet` was not
+  entered.
+- Trace run with:
+  `VLLM_XPU_INT8_MOE_FUSED_PROLOGUE_OFFSET=1` and
+  `VLLM_XPU_INT8_MOE_FUSED_PROLOGUE_OFFSET_ALLOW_CAPTURE=1`
+  also produced no C++ trace file:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-piecewise-fulllayerlet-offset-trace-blayoutfix-summary-20260620tp2piecewisefulllayerlettraceoffset1.json`.
+- Therefore the current endpoint is failing a higher-level Python gate before
+  the C++ op. Do not interpret the endpoint layerlet A/B as a real full-layerlet
+  speed test until the Python gate reason is captured.
+
+Interrupted loose end:
+
+- A Python gate-reason trace was added in
+  `/home/steve/src/vllm-xpu-kernels/vllm_xpu_kernels/fused_moe_interface.py`:
+  `VLLM_XPU_MOE_W8A8_FULL_LAYERLET_GATE_TRACE_FILE`.
+- The first gate-reason trace run was interrupted before it reached metrics:
+  label `tp2-piecewise-fulllayerlet-gatetrace-blayoutfix`,
+  stamp `20260620tp2piecewisefulllayerletgatetrace1`.
+- It had not yet produced:
+  `/home/steve/llm-optimizations/data/qwen36-full-layerlet-gate-trace-tp2-piecewise-20260620.jsonl`
+  or
+  `/home/steve/llm-optimizations/data/qwen36-full-layerlet-trace-tp2-piecewise-gatereason-20260620.jsonl`
+  before the stop.
+
+Current active library hashes after trace instrumentation:
+
+- `_xpu_C.abi3.so`:
+  `1797dca305004d09fe89d76f071766b290ecb356adf188faf1b2931a9742fa33`
+- `libgrouped_gemm_xe_2.so`:
+  `d7ac20974b96f7429350ddb0319384386cf2433442bdda1e878537eca60b0be1`
+
+Saved patches:
+
+- Kernel repo patch:
+  `/home/steve/llm-optimizations/patches/vllm-xpu-kernels-qwen36-routegemm1-blayoutfix-20260620.patch`
+- Lab repo patch:
+  `/home/steve/llm-optimizations/patches/llm-optimizations-qwen36-routegemm1-blayoutfix-results-20260620.patch`
+
+Immediate next command to resume:
+
+```bash
+TRACE=/home/steve/llm-optimizations/data/qwen36-full-layerlet-trace-tp2-piecewise-gatereason-20260620.jsonl
+GATE=/home/steve/llm-optimizations/data/qwen36-full-layerlet-gate-trace-tp2-piecewise-20260620.jsonl
+rm -f "$TRACE" "$GATE"
+STAMP=20260620tp2piecewisefulllayerletgatetrace2 \
+PORT=18184 \
+TP_SIZE=2 \
+ONEAPI_DEVICE_SELECTOR=level_zero:0,1 \
+ZE_AFFINITY_MASK=0,1 \
+QWEN36_XPU_PREFLIGHT=0 \
+METRICS_REPEATS=1 \
+METRICS_PROMPT_TOKENS=128 \
+METRICS_OUTPUT_TOKENS=64 \
+METRICS_WARMUP_OUTPUT_TOKENS=16 \
+ABLATION_SKIP_CANARIES=1 \
+ABLATION_RUN_QUALITY=0 \
+ABLATION_SKIP_METRICS=0 \
+VLLM_XPU_GDN_NATIVE_FALLBACK=prefill \
+XPU_GRAPH=1 \
+VLLM_XPU_ENABLE_XPU_GRAPH=1 \
+VLLM_XPU_FORCE_GRAPH_WITH_COMM=1 \
+VLLM_XPU_GRAPH_NOOP_COMM_CAPTURE=1 \
+COMPILATION_CONFIG='{"cudagraph_mode":"PIECEWISE"}' \
+VLLM_XPU_W8A8_EXPERIMENTAL_ALLOW=1 \
+VLLM_XPU_INT8_MOE_FUSED_PROLOGUE_OFFSET=1 \
+VLLM_XPU_INT8_MOE_FUSED_PROLOGUE_OFFSET_ALLOW_CAPTURE=1 \
+VLLM_XPU_MOE_W8A8_FULL_LAYERLET=1 \
+VLLM_XPU_MOE_W8A8_FUSED_Q1=1 \
+VLLM_XPU_MOE_W8A8_ROUTE_GEMM1=1 \
+VLLM_XPU_MOE_W8A8_FULL_LAYERLET_TRACE_FILE="$TRACE" \
+VLLM_XPU_MOE_W8A8_FULL_LAYERLET_TRACE_MAX_LINES=512 \
+VLLM_XPU_MOE_W8A8_FULL_LAYERLET_GATE_TRACE_FILE="$GATE" \
+VLLM_XPU_MOE_W8A8_FULL_LAYERLET_GATE_TRACE_MAX_LINES=512 \
+/home/steve/llm-optimizations/scripts/run-qwen36-ablation-candidate.sh \
+  tp2-piecewise-fulllayerlet-gatetrace-blayoutfix
+```
+
+Decision tree when resuming:
+
+- If the Python gate trace says missing scratch keys, fix scratch allocation in
+  the endpoint path before benchmarking again.
+- If it says `num_rows != 1`, the PIECEWISE bucket is not exercising the
+  single-token layerlet path; add a compatible decode-only gate or layerlet
+  variant for that shape.
+- If it says `stream_capture_active` blocks the fused offset gate, keep
+  `VLLM_XPU_INT8_MOE_FUSED_PROLOGUE_OFFSET_ALLOW_CAPTURE=1` and find the next
+  false prerequisite.
+- Only after the C++ trace shows real calls to
+  `qwen36_moe_w8a8_full_layerlet` should a full canary-clean endpoint A/B be
+  treated as a real layerlet result.
+
+## 2026-06-21 Follow-Up - Full-Layerlet Gate Trace
+
+The gate trace follow-up produced two useful artifacts:
+
+- TP2 PIECEWISE forced-comm:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-piecewise-fulllayerlet-gatetrace-blayoutfix-summary-20260621tp2piecewisefulllayerletgatetrace1.json`
+  and
+  `/home/steve/llm-optimizations/data/qwen36-full-layerlet-gate-trace-tp2-piecewise-20260621.jsonl`.
+- TP2 graph-none with mixed workspace:
+  `/home/steve/llm-optimizations/data/qwen36-ablation-tp2-graphnone-fulllayerlet-mixedws-gatetrace-summary-20260621tp2graphnonefulllayerletmixedws1.json`
+  and
+  `/home/steve/llm-optimizations/data/qwen36-full-layerlet-gate-trace-tp2-graphnone-mixedws-20260621.jsonl`.
+
+The PIECEWISE trace repeatedly had no scratch keys or W8A8 offset scratch and
+never enabled the full-layerlet op (`use_w8a8_full_layerlet=false`). The
+graph-none mixed-workspace run had scratch keys, W8A8 offsets, and finally
+`num_rows=1` with `prologue_workspace=true` and
+`use_w8a8_full_layerlet=true`.
+
+Interpretation:
+
+- The endpoint gate issue is not the C++ route-GEMM1 B-layout fix itself.
+- PIECEWISE is still missing or not preserving the required per-layer scratch
+  state at the point where the MoE path asks for the full-layerlet op.
+- Graph-none can reach the intended rows=1 layerlet gate when the workspace
+  shape is compatible, so the next useful patch should target PIECEWISE scratch
+  lifetime/allocation or the capture-compatible path that supplies those keys.
