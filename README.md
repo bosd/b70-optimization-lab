@@ -10,6 +10,8 @@ Community setup guides, benchmark recipes, troubleshooting notes, and patches fo
 - Current reproducibility map: [docs/current-reproducibility-map.md](docs/current-reproducibility-map.md)
 - MiniMax install guide: [docs/b70-minimax-ubuntu24-deployment.md](docs/b70-minimax-ubuntu24-deployment.md)
 - Production service notes: [docs/minimax-production-c1-service.md](docs/minimax-production-c1-service.md)
+- Active Qwen research: [docs/qwen36-research-map.md](docs/qwen36-research-map.md)
+- Local ops and Codex delegation: [docs/local-ops.md](docs/local-ops.md)
 - Model recipes: [docs/model-recipes.md](docs/model-recipes.md)
 - FAQ: [docs/faq.md](docs/faq.md)
 - LocalMaxxing submissions: [docs/localmaxxing.md](docs/localmaxxing.md)
