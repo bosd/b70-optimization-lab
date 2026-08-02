@@ -21,3 +21,13 @@ The returned-from-RMA Sparkle **B60 (G21, 24 GB)** dropped into the TRX50 alongs
 - **B60 POSTs** (G21 has mature DP+HDMI GOP); the B70 (G31) gives no pre-OS video on this board, so the B60's slot can double as console **and** compute.
 
 **Verdict:** the B60 is the **efficiency + console** card; the B70 is the **VRAM + prompt-throughput** card. Don't put a B60 in a `-sm layer` tensor-split with B70s (bottlenecks them; the 24/32 GB mismatch wastes the B70's VRAM). For a VRAM-bound big-model mission, expand with **uniform B70s**; the B60's efficiency edge pays off best on an always-on box.
+
+## Data point: mixing B60 + B70 in a tensor-split is B60-bottlenecked
+
+Concrete number behind the "don't mix" rule — **Llama-3.3-Nemotron-Super-49B** (dense, Q4_K_M, 28 GiB) across a **B60 + B70** `-sm layer` pair:
+
+| Config | tg128 |
+|---|---|
+| 49B dense, **B60+B70 mixed `-sm layer`** | **13.4 t/s** |
+
+The pair runs at ~B60-class speed — the slower/smaller card drags the faster one, and the 24/32 GB asymmetry means the B70's extra VRAM sits unused. A **uniform 2× B70** split of the same model is meaningfully faster. **Takeaway for anyone with a mixed Arc box:** run the two cards as independent single-GPU workers, not one tensor-split — heterogeneous `-sm layer` gives you the worse card's throughput.

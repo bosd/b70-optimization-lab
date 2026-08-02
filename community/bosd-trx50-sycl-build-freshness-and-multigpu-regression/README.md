@@ -29,3 +29,17 @@ Qwen3.6-35B-A3B Q8_0 across two B70s (`--device SYCL1,SYCL2 -sm layer`):
 Updating the host kernel 7.0.10 → 7.1.5 changed nothing: b9455 works on both, the newer builds crash on both. So the crash is a **regression in `b9455..dee2a84`** on the SYCL device-to-device tensor-copy path — a **build** regression, likely the same class as [#23797](https://github.com/ggml-org/llama.cpp/issues/23797). This gives a **good/bad build window for a `git bisect`**.
 
 **Supporting single-card numbers** (llama-bench, fa-on): gemma-4-26B-A4B UD-Q8_K_XL 26.8 tg/s (B70, base/no-spec); Laguna-XS-2.1 (poolside 30B-A3B coder) Q4_K_M **87.7 (B70) / 72.5 (B60)**.
+
+## 3. Batched throughput — one B70 does ~383 gen / ~600 total t/s at 50 concurrent
+
+`llama-batched-bench`, Qwen3-30B-A3B-2507 UD-Q4_K_XL, **single B70**, `-npp 128 -ntg 128 -fa 1`:
+
+| concurrent (npl) | S_TG t/s (gen aggregate) | S t/s (total incl prompt) | per-request gen |
+|---|---|---|---|
+| 1 | 65.7 | 115.8 | 65.7 |
+| 4 | 110.7 | 199.8 | 27.7 |
+| 16 | 202.5 | 354.1 | 12.7 |
+| 32 | 299.8 | 495.2 | 9.4 |
+| **50** | **382.7** | **601.5** | 7.7 |
+
+Continuous batching gives **~5.8× aggregate** from 1→50 concurrent. This **independently confirms** community reports of a single B70 hitting ~370 t/s (peaks ~550) at 50-way concurrency — here **382.7 gen / 601.5 total on plain llama.cpp** (no vLLM), on a 3B-active MoE. A dense model or vLLM-XPU would shift the mix (more prompt-compute-bound) but the batched throughput ceiling is real. Prompt-processing stays ~1400 t/s throughout.
