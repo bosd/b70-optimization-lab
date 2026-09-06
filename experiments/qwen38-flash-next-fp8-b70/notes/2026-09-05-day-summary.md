@@ -332,5 +332,9 @@ Diagnostics head `93985742` (placement + all fixes + hooks), exact-2K r1/r2 conv
 | A232 | `moe_allreduce` (the 48 MoE final all-reduces become no-ops) | 27.59 / 27.58 | 36.3 ms | **~0.3 ms**: the all-reduces are negligible once paging is gone (the 40 ms of A151 was rank skew) |
 | A233 | `moe` (whole routed-expert block) | 45.84 / 45.96 | 21.8 ms | **14.7 ms (40%)** |
 | A234 | `moe_gemm` (only the two grouped GEMM launches) | 39.80 / 39.78 | 25.1 ms | **11.4 ms (31%)**: 0.12 ms per launch; routing, alignment, quantization, activation and combine are the remaining 3.3 ms |
+| A235 | `gdn_core` (the GDN attention core kernel) | 30.35 / 30.43 | 32.9 ms | **4.3 ms (12%)** against the diagnostics-head control |
+| A236 | control on the diagnostics head (hooks on, nothing skipped) | 26.90 / 26.82 | **37.2 ms** | the hooks cost 0.7 ms against the clean head's 36.5; deltas below use 37.2 |
+
+Against the A236 control: MoE block 15.4 ms (41%), of which the two GEMMs 12.1 ms (33%) and the surround 3.3 ms (9%); GDN core 4.3 ms (12%); MoE all-reduces 0.9 ms (2%); everything else (QSA attention, GDN projections and norm, hyper-connection mixes, norms, sampling, embeddings) about 16.6 ms (45%) in aggregate, none of it a single measured item yet. Data `20260906-tp4-mtp0-a23[2-6]-skip-*-exact-depth-2k-r{1,2}.json`.
 
 So the two Triton block-FP8 GEMMs are the largest single item (11.4 ms) and the non-MoE part of the step is about 21.8 ms (attention, hyper-connections, norms, sampling); A235 (skip `gdn_core`) measures the GDN attention core next. The GEMMs move about 7 MB of expert weights per launch at 2-3 local hits, i.e. ~60 GB/s against a 500 GB/s card, and their tile map is the sweep optimum, so the lever is a decode-specialised kernel with more parallelism per launch (new accumulation order, re-oracled at promotion).
