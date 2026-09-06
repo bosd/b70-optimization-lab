@@ -244,17 +244,27 @@ order of operations rather than a tested transcript.
    `realistic_final_gate.passed`, `fresh_response_validity.valid`, and all
    `cached_tokens` values are zero.
 
-Status (2026-09-06): the Dockerfile, shim and install helper are committed;
-the image build on the lab host was still fetching the oneAPI 2026.0 packages
-when this text was written (the host WAN was throttled to ~0.4 MB/s all
-afternoon), so the container path is **not yet verified** here. A clearly
-labelled compatibility rebuild of the same source with the host's oneAPI
-2026.1.1 compiler (`icx`/`icpx` 2026.1, same cmake definition, receipt field
-`compatibility_build`) completed in 12 minutes and enumerates both B70s
-(`llama-server --list-devices`: `SYCL0`/`SYCL1` Intel Arc Pro B70, 32656 MiB);
-its `llama-server` SHA-256 is `26fc4868e496ebdb93724b64f0e228c75bb6317129eaf5b942a281673f1b8fb4`.
-The record gate replay for both binaries is queued behind the model download
-and will be recorded here when it lands.
+Status (2026-09-06, verified on the lab host): the image built from this
+Dockerfile (id `e22b500d1672…`, 11.6 GB) reports `version: 1 (c926ad0)`,
+`built with IntelLLVM 2026.0.0`, enumerates both B70s through the shim
+(`SYCL0`/`SYCL1`, 32656 MiB), and its receipt carries `llama-server`
+SHA-256 `ae45b2f0dfa650f330979e600e585c28571227ec0ae269aaaff7d00c994c93bb` and
+`llama-quantize` SHA-256
+`c16bd2ec76e4dc6544fb5fd0f2ab2a0faec6c14ff203f7ecb91175ddc1fa89a8`. Two
+details the build surfaced, both handled by the image's entrypoint: the
+2026.0 oneDNN package pulls in the 2026.1 DPC++ runtime as a dependency and
+`setvars.sh` would put that runtime first on the library path, so the
+entrypoint sources the `umf/1.1`, `tbb/2023.0`, `compiler/2026.0`,
+`mkl/2026.0` and `dnnl/2026.0` component environments explicitly (the binary
+then resolves `libsycl.so.9` from `compiler/2026.0`); and those `vars.sh`
+scripts consume the shell's positional parameters when sourced, so the
+entrypoint saves its arguments first. The build took about 10 minutes of
+compile on eight cores after the package fetch. A separately labelled
+compatibility rebuild with the host's oneAPI 2026.1.1 compiler (`llama-server`
+SHA-256 `26fc4868e496ebdb93724b64f0e228c75bb6317129eaf5b942a281673f1b8fb4`)
+also enumerates both cards. The record gate replay for both binaries is queued
+behind the pinned model download (the host WAN was throttled to about
+0.5 MB/s all afternoon) and will be recorded here when it lands.
 
 ## Reproduce
 

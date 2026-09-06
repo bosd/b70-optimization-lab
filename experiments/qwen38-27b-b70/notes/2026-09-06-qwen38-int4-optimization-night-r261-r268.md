@@ -236,3 +236,12 @@ on the FP8 lane. MTP0 on the same server: c16 533.8, c32 815.0, c64 991.4/991.7 
 and above ~32 users MTP0 is both faster and cleaner. Site/package updated: MTP4 many-users cell now R284 c32 641.3 (32/32 both
 passes), MTP0 cell keeps R253 1000.2 with the R284 confirmation. Tool: scripts/append-ladder-result-entry.py.
 
+## R285 - the same ladders on one card (TP1)
+
+Depth 4: c16 237.3 (16/16), c32 243.7 (32/32), c64 246.2 (62/64), c96 243.4 (90/96), c128 243.9 (123/128) - a ~245 tok/s
+ceiling from 16 users, ttft_max 5-64 s (prefill queueing behind the 1024-token batch budget on one card). MTP0: c16 345.9,
+c32 514.0, c64 418.5, c96 403.7, c128 443.8, exact at every rung in both passes (128/128). Two observations: (1) one card
+without speculation beats one card with depth 4 from ~16 users on, and two cards double the many-user ceiling (992 vs 514);
+(2) TP1 MTP0 has no near-tie flips at c96/c128 where TP2 MTP0 showed single flips, so those TP2 flips involve the two-rank
+reduction order, not only the >32-row GEMM tier. Package profiles added for both TP1 ladders.
+

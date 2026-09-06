@@ -267,6 +267,17 @@ to about 32 users with depth 4 and more than that without speculation.
 Entry `R284_ladders_tp2_big_admission_mtp4_vs_mtp0` in the graph-capture
 result JSON carries every rung and the per-request divergence positions.
 
+### One card, many users (R285, 2026-09-06)
+
+The same large-admission ladders on one B70 (TP1): depth 4 saturates at about
+245 tok/s from 16 users (c16 237.3 exact 16/16, c32 243.7 exact 32/32, then
+62/64, 90/96, 123/128 with the same near-tie pattern), while MTP0 on the same
+card is exact at every rung in both passes and peaks at 514.0 tok/s at 32
+users (c64 418.5, c96 403.7, c128 443.8, all 128/128). One card therefore
+wants depth 4 only up to about 8-16 users; two cards roughly double the
+many-user ceiling (992 tok/s exact at 64 users) rather than the single-user
+rate. Entry `R285_ladders_tp1_big_admission_mtp4_vs_mtp0` in the same JSON.
+
 ### Kernel-library build reproducibility (clean-clone replay, 2026-09-06)
 
 The published R220 + R221 build scripts were re-run from fresh clones of the

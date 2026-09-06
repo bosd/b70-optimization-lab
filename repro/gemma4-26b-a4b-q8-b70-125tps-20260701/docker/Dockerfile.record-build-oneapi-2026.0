@@ -33,8 +33,12 @@ RUN bash -lc 'set -e; source /opt/intel/oneapi/setvars.sh --force >/dev/null; \
   B=/src/llama.cpp/build-sycl-b70-aot-bmg-g31-q8reorder-vdr2; S=$(sha256sum $B/bin/llama-server | cut -d" " -f1); Q=$(sha256sum $B/bin/llama-quantize | cut -d" " -f1); \
   printf "{\n  \"base_commit\": \"%s\",\n  \"aggregate_patch_sha256\": \"%s\",\n  \"compiler_c\": \"/opt/intel/oneapi/compiler/%s/bin/icx\",\n  \"compiler_cxx\": \"/opt/intel/oneapi/compiler/%s/bin/icpx\",\n  \"vdr_mmvq\": 2,\n  \"llama_server_sha256\": \"%s\",\n  \"llama_quantize_sha256\": \"%s\",\n  \"historical_binary_identity\": false,\n  \"container_build\": true\n}\n" '"${BASE_COMMIT}"' '"${PATCH_SHA}"' '"${ONEAPI_VERSION}"' '"${ONEAPI_VERSION}"' $S $Q > $B/b70-gemma4-record-source.json; cat $B/b70-gemma4-record-source.json'
 ENV ONEAPI_ROOT=/opt/intel/oneapi
-RUN printf '%s\n' '#!/usr/bin/env bash' 'set -euo pipefail' 'set +u; source /opt/intel/oneapi/setvars.sh --force >/dev/null; set -u' \
-      'B=/src/llama.cpp/build-sycl-b70-aot-bmg-g31-q8reorder-vdr2/bin' 'tool=${LLAMA_TOOL:-llama-server}' 'exec "$B/$tool" "$@"' > /usr/local/bin/llama-entry \
+RUN printf '%s\n' '#!/usr/bin/env bash' 'set -euo pipefail' \
+      '# Pin the record toolchain version at run time: the 2026.0 oneDNN package pulls in the 2026.1 DPC++ runtime as a dependency,' \
+      '# and setvars.sh would put "latest" (2026.1) first on the library path; source the 2026.0 component environments explicitly.' \
+      'args=("$@"); set --  # the oneAPI vars.sh scripts read and clobber the positional parameters when sourced' \
+      'set +u; for v in umf/1.1 tbb/2023.0 compiler/2026.0 mkl/2026.0 dnnl/2026.0; do source /opt/intel/oneapi/$v/env/vars.sh >/dev/null; done; set -u' \
+      'B=/src/llama.cpp/build-sycl-b70-aot-bmg-g31-q8reorder-vdr2/bin' 'tool=${LLAMA_TOOL:-llama-server}' 'exec "$B/$tool" "${args[@]}"' > /usr/local/bin/llama-entry \
  && chmod +x /usr/local/bin/llama-entry
 ENTRYPOINT ["/usr/local/bin/llama-entry"]
 CMD ["--help"]

@@ -2847,5 +2847,267 @@
    ]
   },
   "verdict": "The c64 rung was not admission-limited: MTP4 plateaus at 585-641 tok/s from c32 to c128 (warm c32 641.3 32/32, c64 591.4 58/64, c96 590.6 89/96, c128 584.7 117/128) with the same prompts diverging at the same token positions in every rung of 64 and above (near-tie flips in the >32-row W4A16 GEMM tier), while MTP0 keeps scaling: warm c16 533.8 16/16, c32 815.0 32/32, c64 991.4 64/64 (both passes exact), c96 915.4 95/96, c128 1085.3 128/128 (pass 1 127/128). Crossover between 16 and 32 users: above it, serve without speculation."
+ },
+ "R285_ladders_tp1_big_admission_mtp4_vs_mtp0": {
+  "date": "2026-09-06",
+  "boot": "bf8e504b",
+  "image": "R276 (sync-free grouped GDN branch)",
+  "config": "R284 configuration on one B70 (TENSOR_PARALLEL_SIZE=1, XPU_DEVICE_MASK=0, GPU_MEMORY_UTILIZATION=0.96): group 16, capture sizes to 320, pad off, max-num-seqs 128, max-model-len 512, max-num-batched-tokens 1024; rungs 16/32/64/96/128, two passes",
+  "ladder": [
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 197.8,
+    "ttft_s_max": 6.51
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 244.5,
+    "ttft_s_max": 14.38
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "62/64",
+    "aggregate_tok_s_wall": 244.7,
+    "ttft_s_max": 30.82
+   },
+   {
+    "concurrency": 96,
+    "repeat": 1,
+    "exact": "93/96",
+    "aggregate_tok_s_wall": 249.5,
+    "ttft_s_max": 46.69
+   },
+   {
+    "concurrency": 128,
+    "repeat": 1,
+    "exact": "122/128",
+    "aggregate_tok_s_wall": 246.9,
+    "ttft_s_max": 64.16
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 237.3,
+    "ttft_s_max": 5.1
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 243.7,
+    "ttft_s_max": 14.32
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "62/64",
+    "aggregate_tok_s_wall": 246.2,
+    "ttft_s_max": 30.42
+   },
+   {
+    "concurrency": 96,
+    "repeat": 2,
+    "exact": "90/96",
+    "aggregate_tok_s_wall": 243.4,
+    "ttft_s_max": 47.66
+   },
+   {
+    "concurrency": 128,
+    "repeat": 2,
+    "exact": "123/128",
+    "aggregate_tok_s_wall": 243.9,
+    "ttft_s_max": 64.33
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c64_r1": [
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "index-c009",
+     79
+    ]
+   ],
+   "c96_r1": [
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "capacity-c046",
+     92
+    ]
+   ],
+   "c128_r1": [
+    [
+     "evidence-c127",
+     10
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "index-c105",
+     23
+    ],
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "index-c121",
+     54
+    ]
+   ],
+   "c64_r2": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "benchmark-c003",
+     60
+    ]
+   ],
+   "c96_r2": [
+    [
+     "testing-c085",
+     13
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "benchmark-c003",
+     60
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "evidence-c079",
+     87
+    ]
+   ],
+   "c128_r2": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "index-c033",
+     23
+    ],
+    [
+     "monitoring-c100",
+     26
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "capacity-c102",
+     107
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 345.3,
+    "ttft_s_max": 0.43
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 514.4,
+    "ttft_s_max": 0.78
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 417.9,
+    "ttft_s_max": 13.53
+   },
+   {
+    "concurrency": 96,
+    "repeat": 1,
+    "exact": "96/96",
+    "aggregate_tok_s_wall": 403.6,
+    "ttft_s_max": 26.27
+   },
+   {
+    "concurrency": 128,
+    "repeat": 1,
+    "exact": "128/128",
+    "aggregate_tok_s_wall": 444.9,
+    "ttft_s_max": 26.98
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 345.9,
+    "ttft_s_max": 0.43
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 514.0,
+    "ttft_s_max": 0.78
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 418.5,
+    "ttft_s_max": 13.5
+   },
+   {
+    "concurrency": 96,
+    "repeat": 2,
+    "exact": "96/96",
+    "aggregate_tok_s_wall": 403.7,
+    "ttft_s_max": 26.27
+   },
+   {
+    "concurrency": 128,
+    "repeat": 2,
+    "exact": "128/128",
+    "aggregate_tok_s_wall": 443.8,
+    "ttft_s_max": 27.07
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {},
+  "verdict": "One B70: depth 4 saturates at ~245 tok/s from 16 users (warm c16 237.3 16/16, c32 243.7 32/32, c64 246.2 62/64, c96 243.4 90/96, c128 243.9 123/128; ttft_max 5-64 s from prefill queueing) with the same near-tie divergences above 32 users as TP2; MTP0 on the same card is exact at every rung in both passes (c16 345.9, c32 514.0, c64 418.5, c96 403.7, c128 443.8, 128/128) - unlike TP2, where single flips appear at c96/c128, so the TP2 flips at those rungs involve the two-rank reduction, not only the GEMM tier. One-card guidance: depth 4 up to ~8-16 users, no speculation beyond; the one-card ceiling is ~514 tok/s at 32 users."
  }
 }
