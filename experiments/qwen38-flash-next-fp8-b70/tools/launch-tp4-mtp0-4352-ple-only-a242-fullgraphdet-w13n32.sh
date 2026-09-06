@@ -5,7 +5,7 @@ script_dir=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/t
 base="${script_dir}/launch-tp4-ep4-eager-mtp0-long-context-base.sh"
 derived=/tmp/q38-ple2k-a242-base.sh
 expected_base=d5ccc4d52220f7ef46f19202436edf56e0c40f125b1b807c84125df18093b5c1
-expected_derived=313d16346848fca406c4938c1d215cc7d90ab55a0c4562c4c1ec4f5f3aa6393c
+expected_derived=c87cdaacab3f1d221b51b63e2bbc9ad0b45a6e0dbcc1c5d7b4eabbbd2bc097a0
 campaign=qwen38-flash-next-fp8-tp4-ep4-fullgraphdet-mtp0-4352-ple-only-r1
 tuned_config_folder=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n32
 tuned_config_map='/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n32/E=128,N=640,device_name=Intel(R)_Arc(TM)_Pro_B70_Graphics,dtype=fp8_w8a8,block_shape=[128,128].json'
@@ -45,7 +45,7 @@ $0 == "rpc_dir=\"/tmp/${campaign}-attempt${attempt}-rpc\"" {
   next
 }
 $0 == "expected_vllm_head=\"1372c62d975c554f4b465c8299bc5f3295301ceb\"" {
-  print "expected_vllm_head=\"\""
+  print "expected_vllm_head=\"5c66fa53984f36dab8fedc9c9936cca46f2856ae\""
   next
 }
 /^[[:space:]]*'\''ple_embedding.ngram_embedding.weight'\'', '\''embed_tokens.weight'\''$/ {
@@ -192,7 +192,7 @@ grep -Fxq '  --cpu-offload-gb 12.25' "$derived"
 grep -Fxq '  --cpu-offload-params ple_embedding.ngram_embedding.weight embed_tokens.weight' "$derived"
 grep -Fxq '  printf '\''cpu_offload_gb=12.25\n'\''' "$derived"
 grep -Fxq '  printf '\''cpu_offload_params=ple_embedding.ngram_embedding.weight,embed_tokens.weight\n'\''' "$derived"
-grep -Fxq 'expected_vllm_head=""' "$derived"
+grep -Fxq 'expected_vllm_head="5c66fa53984f36dab8fedc9c9936cca46f2856ae"' "$derived"
 grep -Fxq "  printf 'diagnostics=full-decode-graph-public-oneccl-torch-trace\n'" "$derived"
 ! grep -Fq "diagnostics=none" "$derived"
 grep -Fxq 'rpc_dir=/tmp/q38-ple2k-a242-rpc' "$derived"

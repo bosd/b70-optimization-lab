@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent
 VALIDATE_ONLY = os.environ.get("Q38_A242_REWRITE_VALIDATE_ONLY") == "1"
 SOURCES = {'launch-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32.sh': '736b5b92a757e4fd22ba271f42eabba72bf0c889018578d80c9a9246d3cd6a37', 'run-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32-client.sh': '38e0388cce6a39f9348a4e76051f96b0d912f7a4cd60d0e42aa9022d9a79185d', 'supervise-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32.sh': '8a2b632651fdb14340f7f3643a839c7de9739b65be154f178e6871979da35134', 'run-q38-a78-host-controlled.sh': '7444be0bf492b73f4fd3a5aed2c8e54b32600d51b9d3f7dc0c4e0d32b9fea910'}
 OLD_HEAD = "2169dbfe38c2954edc5ae50e94f68d45be071b79"
-NEW_HEAD = ""  # q38-placement-v5: table kernel + load-time never-hit expert placement
+NEW_HEAD = "5c66fa53984f36dab8fedc9c9936cca46f2856ae"  # q38-placement-v5: table kernel + load-time never-hit expert placement
 HASH_TOKEN = re.compile(r"[0-9a-f]{64}|[0-9a-f]{40}")
 def digest(data):
     if isinstance(data, str): data = data.encode()
