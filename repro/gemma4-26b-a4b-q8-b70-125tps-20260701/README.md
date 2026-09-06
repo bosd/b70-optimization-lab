@@ -210,6 +210,40 @@ directories read-only at their host paths (`GEMMA4_MOUNT_DIRS`, default
 the shim stops the container. Use the printed paths as `LLAMA_QUANTIZE` for
 `prepare-draft.sh` and `LLAMA_SERVER` for `run.sh` exactly as documented above.
 
+### Beginner recovery flow (clean Ubuntu 24.04 host, one B70)
+
+Written 2026-09-06 from the container path above; it has not yet been
+exercised end-to-end on a freshly installed host, so treat it as the intended
+order of operations rather than a tested transcript.
+
+1. Host packages: Intel's GPU kernel driver comes with Ubuntu 24.04's HWE kernel
+   (`xe`; check `ls /dev/dri/renderD*` shows one node per card and that your
+   user is in the `render` and `video` groups). Install Docker
+   (`apt-get install docker.io`, add your user to `docker`) and
+   `git`, `jq`, `aria2`. Install any oneAPI base toolkit for the harness's
+   `setvars.sh` (the container carries the pinned 2026.0 compiler; the host
+   copy only needs to exist).
+2. Clone this repository and build the image with the `docker build` command in
+   the previous section (about 2 GB of Intel packages plus a 10-minute SYCL AOT
+   compile; on a 16 GB host pass `--build-arg BUILD_JOBS=4`).
+3. Download the two pinned GGUFs with a resumable, multi-connection tool, for
+   example `aria2c -c -x 8 -s 8 -o gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf <url>`
+   for the 27.6 GB target and the same for the 0.86 GB F16 MTP file into an
+   `MTP/` subdirectory next to it, keeping the exact filenames. Check the sizes
+   and SHA-256 values against `model-manifest.json`.
+4. `docker/install-container-build-dir.sh /path/to/gemma4-record-container`
+   prints the `LLAMA_SERVER` and `LLAMA_QUANTIZE` paths to use next.
+5. Quantize the draft with `prepare-draft.sh` (previous section); keep the
+   printed `DRAFT_SHA256`. A match with `1f6706e4…` is expected but not
+   required.
+6. Run `run.sh` with `GPU_INDEX` set to the card you want, `PORT=19350`, and
+   the environment shown under "Reproduce". `preflight.sh` runs first and
+   refuses to start if any hash, receipt, or `setvars.sh` check fails, so a
+   failure there is a setup problem, not a measurement.
+7. Read `data/<LABEL>/summary.json`: promote nothing unless
+   `realistic_final_gate.passed`, `fresh_response_validity.valid`, and all
+   `cached_tokens` values are zero.
+
 Status (2026-09-06): the Dockerfile, shim and install helper are committed;
 the image build on the lab host was still fetching the oneAPI 2026.0 packages
 when this text was written (the host WAN was throttled to ~0.4 MB/s all
