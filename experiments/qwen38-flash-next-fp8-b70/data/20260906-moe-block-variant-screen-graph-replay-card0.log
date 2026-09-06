@@ -1,0 +1,30 @@
+== baseline hits=2
+WALL M=1 hits=2 events=0: 0.4457 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=2: 10.109 ms per replay of 48 MoE blocks = 0.2106 ms per block
+== split-K 4 hits=2
+WALL M=1 hits=2 events=0: 0.5404 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=2: 6.858 ms per replay of 48 MoE blocks = 0.1429 ms per block
+== split-K 8 hits=2
+WALL M=1 hits=2 events=0: 0.5394 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=2: 6.488 ms per replay of 48 MoE blocks = 0.1352 ms per block
+== swap_ab hits=2
+WALL M=1 hits=2 events=0: 0.4390 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=2: 10.484 ms per replay of 48 MoE blocks = 0.2184 ms per block
+== swap_ab + split-K 4 hits=2
+WALL M=1 hits=2 events=0: 0.5364 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=2: 7.846 ms per replay of 48 MoE blocks = 0.1635 ms per block
+== baseline hits=3
+WALL M=1 hits=3 events=0: 0.4357 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=3: 10.219 ms per replay of 48 MoE blocks = 0.2129 ms per block
+== split-K 4 hits=3
+WALL M=1 hits=3 events=0: 0.5372 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=3: 7.956 ms per replay of 48 MoE blocks = 0.1658 ms per block
+== split-K 8 hits=3
+WALL M=1 hits=3 events=0: 0.5362 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=3: 8.474 ms per replay of 48 MoE blocks = 0.1765 ms per block
+== swap_ab hits=3
+WALL M=1 hits=3 events=0: 0.4381 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=3: 10.646 ms per replay of 48 MoE blocks = 0.2218 ms per block
+== swap_ab + split-K 4 hits=3
+WALL M=1 hits=3 events=0: 0.5403 ms per fused_experts call (whole MoE block: align + 2 GEMMs + activation + sum), 96 calls
+GRAPH M=1 hits=3: 8.861 ms per replay of 48 MoE blocks = 0.1846 ms per block

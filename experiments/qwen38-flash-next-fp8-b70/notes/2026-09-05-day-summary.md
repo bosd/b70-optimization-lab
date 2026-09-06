@@ -338,3 +338,17 @@ Diagnostics head `93985742` (placement + all fixes + hooks), exact-2K r1/r2 conv
 Against the A236 control: MoE block 15.4 ms (41%), of which the two GEMMs 12.1 ms (33%) and the surround 3.3 ms (9%); GDN core 4.3 ms (12%); MoE all-reduces 0.9 ms (2%); everything else (QSA attention, GDN projections and norm, hyper-connection mixes, norms, sampling, embeddings) about 16.6 ms (45%) in aggregate, none of it a single measured item yet. Data `20260906-tp4-mtp0-a23[2-6]-skip-*-exact-depth-2k-r{1,2}.json`.
 
 So the two Triton block-FP8 GEMMs are the largest single item (11.4 ms) and the non-MoE part of the step is about 21.8 ms (attention, hyper-connections, norms, sampling); A235 (skip `gdn_core`) measures the GDN attention core next. The GEMMs move about 7 MB of expert weights per launch at 2-3 local hits, i.e. ~60 GB/s against a 500 GB/s card, and their tile map is the sweep optimum, so the lever is a decode-specialised kernel with more parallelism per launch (new accumulation order, re-oracled at promotion).
+
+## 17:57 09-06 — offline graph-replay screen: deterministic split-K cuts the MoE block by a third; SWAP_AB does nothing
+
+Card 0, `timing-moe-block-graph-offline.py` under the sweep worktree (diagnostics head plus an XPU `VLLM_XPU_MOE_SWAP_AB` toggle), 48 fused-MoE blocks per graph replay, fresh routing:
+
+| variant | 2 local hits | 3 local hits |
+|---|---|---|
+| baseline (W13-N32 map) | 0.2106 ms / block | 0.2129 |
+| `VLLM_XPU_MOE_SPLIT_K=4` (fp32 partials, fixed-order reduce) | **0.1429** | **0.1658** |
+| `VLLM_XPU_MOE_SPLIT_K=8` | **0.1352** | 0.1765 |
+| SWAP_AB forced (weights as the MMA M dimension) | 0.2184 | 0.2218 |
+| SWAP_AB + split-K 4 | 0.1635 | 0.1846 |
+
+At the server's 2-3 local hits, split-K 4 saves 0.05-0.07 ms per layer, i.e. 2.3-3.3 ms of the 36.5 ms step. A193/A194 had found split-K "exact and neutral" on the 13.4 identity (tensor descriptors are off for quantized weights, so the path was live then too); A237 (split-K 4) and A238 (split-K 8) re-screen it in the server at the placement identity against the A236 control. Log `20260906-moe-block-variant-screen-graph-replay-card0.log`.
