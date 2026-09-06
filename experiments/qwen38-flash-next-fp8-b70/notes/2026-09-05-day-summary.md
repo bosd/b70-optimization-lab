@@ -336,6 +336,9 @@ Diagnostics head `93985742` (placement + all fixes + hooks), exact-2K r1/r2 conv
 | A236 | control on the diagnostics head (hooks on, nothing skipped) | 26.90 / 26.82 | **37.2 ms** | the hooks cost 0.7 ms against the clean head's 36.5; deltas below use 37.2 |
 | A239 | `qsa_attn` (the whole QSA attention module on full-attention layers, output zeroed) | 31.21 / 31.21 | 32.0 ms | **5.2 ms (14%)** |
 | A240 | `gdn_attn` (the whole GDN attention module on linear-attention layers, output zeroed) | 29.09 / 29.06 | 34.4 ms | **2.8 ms**: less than the core alone (A235, 4.3), so zeroing a block perturbs downstream routing by about a millisecond; read these deltas at ±1 ms |
+| A242 | `hc_mix` (both per-layer hyper-connection mixes: combine-norm, LoRA down and up projections, gate mix; the block input becomes the first stream, a zero injection keeps the combine) | 34.76 / 34.76 | 28.8 ms | **8.4 ms (23%)**: the second-largest item, above QSA attention |
+
+Ranking at the placement identity (37.2 ms on the diagnostics head): MoE GEMMs 12.1, hyper-connection mixes 8.4, QSA attention 5.2, GDN attention 3-4, MoE surround 3.3, MoE all-reduces 0.9; the remaining ~4-5 ms is norms, embeddings, sampling and glue. The mixes are 96 per step of about six tiny kernels each at M=1 (combine-norm, down GEMM to lora_rank + injection logits, SiLU, up GEMM, gate mix), i.e. ~15 µs per launch: a fusion target, one Triton kernel per mix.
 
 Against the A236 control: MoE block 15.4 ms (41%), of which the two GEMMs 12.1 ms (33%) and the surround 3.3 ms (9%); GDN core 4.3 ms (12%); MoE all-reduces 0.9 ms (2%); everything else (QSA attention, GDN projections and norm, hyper-connection mixes, norms, sampling, embeddings) about 16.6 ms (45%) in aggregate, none of it a single measured item yet. Data `20260906-tp4-mtp0-a23[2-6]-skip-*-exact-depth-2k-r{1,2}.json`.
 
