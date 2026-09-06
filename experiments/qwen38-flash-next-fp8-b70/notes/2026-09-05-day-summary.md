@@ -352,3 +352,7 @@ Card 0, `timing-moe-block-graph-offline.py` under the sweep worktree (diagnostic
 | SWAP_AB + split-K 4 | 0.1635 | 0.1846 |
 
 At the server's 2-3 local hits, split-K 4 saves 0.05-0.07 ms per layer, i.e. 2.3-3.3 ms of the 36.5 ms step. A193/A194 had found split-K "exact and neutral" on the 13.4 identity (tensor descriptors are off for quantized weights, so the path was live then too); A237 (split-K 4) and A238 (split-K 8) re-screen it in the server at the placement identity against the A236 control. Log `20260906-moe-block-variant-screen-graph-replay-card0.log`.
+
+## 18:03–18:38 09-06 — split-K in the server at the placement identity: neutral again (closed)
+
+A237 (`VLLM_XPU_MOE_SPLIT_K=4`, `MAX_TOKENS=40`): exact-2K 26.88 / 26.89; A238 (split-K 8): 26.82 / 26.87; the A236 control 26.90 / 26.82; authority hash held on all. The offline graph-replay gain (0.211 → 0.143 ms per block) does not transfer because the offline harness runs the functional path with the flat tuned entry (w13 at BLOCK_N 64), while the server's modular M1 path applies the W13 BLOCK_N 32 phase delta, which already doubles the w13 grid; the remaining per-launch cost is not parallelism-bound. Split-K is closed on this stack for the third time. Lesson for the offline harness: screen through the modular path (or force the phase-delta config) before believing a kernel-variant gain. Data `20260906-tp4-mtp0-a23[78]-splitk*-exact-depth-2k-r{1,2}.json`.
