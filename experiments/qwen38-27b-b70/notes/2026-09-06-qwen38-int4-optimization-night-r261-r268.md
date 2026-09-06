@@ -245,3 +245,12 @@ without speculation beats one card with depth 4 from ~16 users on, and two cards
 (2) TP1 MTP0 has no near-tie flips at c96/c128 where TP2 MTP0 showed single flips, so those TP2 flips involve the two-rank
 reduction order, not only the >32-row GEMM tier. Package profiles added for both TP1 ladders.
 
+## R286 / R287 - depth 2 and depth 1 on the large-admission ladders
+
+Depth 2 (R286, warm): c16 591.0 (16/16), c32 723.4 (29/32), c64 815.2 (59/64), c96 777.8 (90/96), c128 815.0 (121/128).
+Depth 1 (R287, warm): c16 711.0 (16/16; cold pass 15/16), c32 854.4 (32/32 both passes), c64 842.0 (61/64), c96 906.3
+(92/96), c128 894.8 (121/128). The MTP0 stage of R286 reproduced R284 (c64 992.0 64/64, c128 1083.9 128/128). So the
+many-user picture is: depth 1 is the fastest exact setting from ~8 to 32 users, every depth plateaus once the verify batch
+passes ~32 rows, and MTP0 is fastest and exact from 64 users. Recipe README carries the table; package profile added for
+depth 1 (c16/c32).
+

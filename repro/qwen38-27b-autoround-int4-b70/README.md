@@ -251,21 +251,31 @@ and the result files `2026-09-06-qwen38-int4-r262-headline-decode-profile-result
   captured (R275 fails capture at 320 tokens). `docker/r276-gdn-spec-group-sync-free.py` computes the group boundaries
   arithmetically (uniform k+1 rows) so capture succeeds with the published group size.
 
-### Many users: the c64 rung was never admission-limited (R284, 2026-09-06)
+### Many users: the c64 rung was never admission-limited (R284/R286/R287, 2026-09-06)
 
 R284 re-ran the R282 ladders with max-num-seqs 128, max-model-len 512 and
-max-num-batched-tokens 1024 (rungs 16, 32, 64, 96, 128; two passes; R276
-image). Depth 4 plateaus at 585-641 tok/s from 32 users up (warm pass: c16
-574.3 exact 16/16, c32 641.3 exact 32/32, c64 591.4 58/64, c96 590.6 89/96,
-c128 584.7 117/128), and the same prompts diverge at the same token positions
-in every rung of 64 and above (for example `capacity-c006` at token 11), the
-signature of near-tie flips in the >32-row W4A16 GEMM tier rather than
-anything in the harness. Without speculation the same server keeps scaling:
-c16 533.8, c32 815.0, c64 991.4 (exact 64/64 in both passes), c96 915.4
-(95/96), c128 1085.3 (128/128 warm, 127/128 first pass). Guidance: serve up
-to about 32 users with depth 4 and more than that without speculation.
-Entry `R284_ladders_tp2_big_admission_mtp4_vs_mtp0` in the graph-capture
-result JSON carries every rung and the per-request divergence positions.
+max-num-batched-tokens 1024 (rungs 16 to 128; two passes; R276 image), and
+R286/R287 repeated them at MTP depth 2 and depth 1. Warm-pass aggregate
+tok/s with the exact-output count against each request's sequential oracle:
+
+| users | no speculation | depth 1 | depth 2 | depth 4 |
+| --- | --- | --- | --- | --- |
+| 16 | 533.8 (16/16) | 711.0 (16/16) | 591.0 (16/16) | 574.3 (16/16) |
+| 32 | 815.0 (32/32) | 854.4 (32/32) | 723.4 (29/32) | 641.3 (32/32) |
+| 64 | 991.4 (64/64) | 842.0 (61/64) | 815.2 (59/64) | 591.4 (58/64) |
+| 96 | 915.4 (95/96) | 906.3 (92/96) | 777.8 (90/96) | 590.6 (89/96) |
+| 128 | 1085.3 (128/128) | 894.8 (121/128) | 815.0 (121/128) | 584.7 (117/128) |
+
+Every speculative depth plateaus once the verify batch exceeds about 32 rows,
+and the non-exact requests above 32 users are the same prompts diverging at
+the same token positions in every rung (for example `capacity-c006` at token
+11), the signature of near-tie flips in the >32-row W4A16 GEMM tier rather
+than anything in the harness. Guidance: depth 4 for one to a few users
+(112 tok/s single-user), depth 1 from about 8 to 32 users (854 tok/s at 32,
+exact), and no speculation beyond that (992 tok/s exact at 64). Entries
+`R284_ladders_tp2_big_admission_mtp4_vs_mtp0`, `R286_…_mtp2` and
+`R287_…_mtp1` in the graph-capture result JSON carry every rung and the
+per-request divergence positions.
 
 ### One card, many users (R285, 2026-09-06)
 

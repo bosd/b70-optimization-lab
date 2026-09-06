@@ -579,6 +579,30 @@
           "per_user_value": 7.6156
         }
       ]
+    },
+    {
+      "id": "http-int4-fixed-k-graph-drafthead-r276-big-admission-tp2-mtp1-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "INT4 fixed-K TP2 MTP depth 1 (draft-only INT4 head), R276 image, 128-sequence admission, identity-qualified aggregate decode vs concurrent users (c16-c32; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "R287 (2026-09-06): as the R284 profiles (two B70s, R276 image, capture sizes to 320, pad off, max-num-seqs 128, max-model-len 512, max-num-batched-tokens 1024, two passes, warm pass shown) with qwen3_next_mtp depth 1. c32 is output-identity-qualified in both passes (32/32); c16 in the warm pass (16/16; the first pass of the fresh server had one near-tie flip, 15/16). Measured but withheld: c64 842.0 (61/64), c96 906.3 (92/96), c128 894.8 (121/128). Depth 1 is the fastest setting through 32 users (depth 2: 723.4, depth 4: 641.3, no speculation: 815.0 at c32); from 64 users no speculation is faster and exact (992 at c64).",
+      "evidence": "experiments/qwen38-27b-b70/data/2026-09-05-qwen38-int4-graph-capture-tp2-mtp4-r247-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 16,
+          "value": 711.0,
+          "samples": 1,
+          "per_user_value": 44.4375
+        },
+        {
+          "concurrent_sequences": 32,
+          "value": 854.4,
+          "samples": 1,
+          "per_user_value": 26.7
+        }
+      ]
     }
   ],
   "missing": [

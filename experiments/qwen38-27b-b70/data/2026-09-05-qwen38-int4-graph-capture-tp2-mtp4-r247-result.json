@@ -3109,5 +3109,591 @@
   ],
   "ladder-mtp0_first_divergence_vs_oracle": {},
   "verdict": "One B70: depth 4 saturates at ~245 tok/s from 16 users (warm c16 237.3 16/16, c32 243.7 32/32, c64 246.2 62/64, c96 243.4 90/96, c128 243.9 123/128; ttft_max 5-64 s from prefill queueing) with the same near-tie divergences above 32 users as TP2; MTP0 on the same card is exact at every rung in both passes (c16 345.9, c32 514.0, c64 418.5, c96 403.7, c128 443.8, 128/128) - unlike TP2, where single flips appear at c96/c128, so the TP2 flips at those rungs involve the two-rank reduction, not only the GEMM tier. One-card guidance: depth 4 up to ~8-16 users, no speculation beyond; the one-card ceiling is ~514 tok/s at 32 users."
+ },
+ "R286_ladders_tp2_big_admission_mtp2": {
+  "date": "2026-09-06",
+  "boot": "bf8e504b",
+  "image": "R276 (sync-free grouped GDN branch)",
+  "config": "R284 configuration (TP2, group 16, capture sizes to 320, pad off, mns 128, mml 512, mbt 1024, rungs 16-128, two passes) at MTP depth 2",
+  "ladder": [
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 403.0,
+    "ttft_s_max": 1.15
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 708.7,
+    "ttft_s_max": 0.61
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "59/64",
+    "aggregate_tok_s_wall": 814.4,
+    "ttft_s_max": 1.08
+   },
+   {
+    "concurrency": 96,
+    "repeat": 1,
+    "exact": "90/96",
+    "aggregate_tok_s_wall": 778.6,
+    "ttft_s_max": 10.84
+   },
+   {
+    "concurrency": 128,
+    "repeat": 1,
+    "exact": "117/128",
+    "aggregate_tok_s_wall": 817.0,
+    "ttft_s_max": 11.61
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 591.0,
+    "ttft_s_max": 0.3
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "29/32",
+    "aggregate_tok_s_wall": 723.4,
+    "ttft_s_max": 0.57
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "59/64",
+    "aggregate_tok_s_wall": 815.2,
+    "ttft_s_max": 1.07
+   },
+   {
+    "concurrency": 96,
+    "repeat": 2,
+    "exact": "90/96",
+    "aggregate_tok_s_wall": 777.8,
+    "ttft_s_max": 10.72
+   },
+   {
+    "concurrency": 128,
+    "repeat": 2,
+    "exact": "121/128",
+    "aggregate_tok_s_wall": 815.0,
+    "ttft_s_max": 11.66
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c64_r1": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "index-c033",
+     23
+    ]
+   ],
+   "c96_r1": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "cache-c080",
+     70
+    ],
+    [
+     "rollback-c018",
+     77
+    ]
+   ],
+   "c128_r1": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "index-c033",
+     23
+    ],
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "index-c121",
+     54
+    ],
+    [
+     "rollback-c122",
+     71
+    ],
+    [
+     "rollback-c018",
+     77
+    ]
+   ],
+   "c32_r2": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "index-c009",
+     79
+    ]
+   ],
+   "c64_r2": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "index-c033",
+     23
+    ]
+   ],
+   "c96_r2": [
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "index-c009",
+     23
+    ],
+    [
+     "rollback-c018",
+     123
+    ]
+   ],
+   "c128_r2": [
+    [
+     "evidence-c127",
+     10
+    ],
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "benchmark-c115",
+     45
+    ],
+    [
+     "cache-c080",
+     70
+    ],
+    [
+     "rollback-c018",
+     123
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 536.2,
+    "ttft_s_max": 0.26
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 813.8,
+    "ttft_s_max": 0.46
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 991.8,
+    "ttft_s_max": 0.94
+   },
+   {
+    "concurrency": 96,
+    "repeat": 1,
+    "exact": "96/96",
+    "aggregate_tok_s_wall": 916.5,
+    "ttft_s_max": 1.43
+   },
+   {
+    "concurrency": 128,
+    "repeat": 1,
+    "exact": "128/128",
+    "aggregate_tok_s_wall": 1083.7,
+    "ttft_s_max": 1.97
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 534.7,
+    "ttft_s_max": 0.26
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 811.2,
+    "ttft_s_max": 0.48
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 992.0,
+    "ttft_s_max": 0.93
+   },
+   {
+    "concurrency": 96,
+    "repeat": 2,
+    "exact": "95/96",
+    "aggregate_tok_s_wall": 916.0,
+    "ttft_s_max": 1.43
+   },
+   {
+    "concurrency": 128,
+    "repeat": 2,
+    "exact": "128/128",
+    "aggregate_tok_s_wall": 1083.9,
+    "ttft_s_max": 1.97
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {
+   "c96_r2": [
+    [
+     "evidence-c079",
+     87
+    ]
+   ]
+  },
+  "verdict": "Depth 2, warm pass: c16 591.0 (16/16), c32 723.4 (29/32; first pass 32/32), c64 815.2 (59/64), c96 777.8 (90/96), c128 815.0 (121/128). Between depth 4 and MTP0 everywhere above 16 users; the MTP0 repeat reproduces R284 (c64 992.0 64/64, c128 1083.9 128/128, c96 95/96)."
+ },
+ "R287_ladders_tp2_big_admission_mtp1": {
+  "date": "2026-09-06",
+  "boot": "bf8e504b",
+  "image": "R276 (sync-free grouped GDN branch)",
+  "config": "as R286 at MTP depth 1",
+  "ladder": [
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "15/16",
+    "aggregate_tok_s_wall": 463.6,
+    "ttft_s_max": 1.1
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 852.6,
+    "ttft_s_max": 0.5
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "59/64",
+    "aggregate_tok_s_wall": 842.3,
+    "ttft_s_max": 1.05
+   },
+   {
+    "concurrency": 96,
+    "repeat": 1,
+    "exact": "88/96",
+    "aggregate_tok_s_wall": 910.0,
+    "ttft_s_max": 1.64
+   },
+   {
+    "concurrency": 128,
+    "repeat": 1,
+    "exact": "120/128",
+    "aggregate_tok_s_wall": 895.0,
+    "ttft_s_max": 13.8
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 711.0,
+    "ttft_s_max": 0.29
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 854.4,
+    "ttft_s_max": 0.51
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "61/64",
+    "aggregate_tok_s_wall": 842.0,
+    "ttft_s_max": 1.04
+   },
+   {
+    "concurrency": 96,
+    "repeat": 2,
+    "exact": "92/96",
+    "aggregate_tok_s_wall": 906.3,
+    "ttft_s_max": 1.62
+   },
+   {
+    "concurrency": 128,
+    "repeat": 2,
+    "exact": "121/128",
+    "aggregate_tok_s_wall": 894.8,
+    "ttft_s_max": 13.78
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c16_r1": [
+    [
+     "index-c009",
+     23
+    ]
+   ],
+   "c64_r1": [
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ],
+    [
+     "index-c009",
+     79
+    ]
+   ],
+   "c96_r1": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "testing-c061",
+     49
+    ],
+    [
+     "rollback-c010",
+     68
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "index-c009",
+     79
+    ]
+   ],
+   "c128_r1": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "testing-c061",
+     49
+    ],
+    [
+     "index-c121",
+     54
+    ],
+    [
+     "rollback-c010",
+     68
+    ],
+    [
+     "cache-c080",
+     70
+    ],
+    [
+     "index-c009",
+     79
+    ],
+    [
+     "evidence-c079",
+     87
+    ],
+    [
+     "rollback-c018",
+     123
+    ]
+   ],
+   "c64_r2": [
+    [
+     "evidence-c039",
+     13
+    ],
+    [
+     "capacity-c046",
+     18
+    ],
+    [
+     "benchmark-c043",
+     19
+    ]
+   ],
+   "c96_r2": [
+    [
+     "cache-c080",
+     70
+    ],
+    [
+     "rollback-c018",
+     77
+    ],
+    [
+     "index-c009",
+     79
+    ],
+    [
+     "evidence-c079",
+     87
+    ]
+   ],
+   "c128_r2": [
+    [
+     "capacity-c006",
+     11
+    ],
+    [
+     "testing-c085",
+     13
+    ],
+    [
+     "capacity-c014",
+     18
+    ],
+    [
+     "index-c121",
+     54
+    ],
+    [
+     "index-c009",
+     79
+    ],
+    [
+     "rollback-c018",
+     123
+    ],
+    [
+     "testing-c069",
+     123
+    ]
+   ]
+  },
+  "verdict": "Depth 1, warm pass: c16 711.0 (16/16; first pass 15/16), c32 854.4 (32/32 in both passes), c64 842.0 (61/64), c96 906.3 (92/96), c128 894.8 (121/128). The best setting through 32 users (854 vs depth 2 723, depth 4 641, MTP0 811-815); from 64 users MTP0 wins (992 exact vs 842)."
  }
 }
