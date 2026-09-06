@@ -251,6 +251,22 @@ and the result files `2026-09-06-qwen38-int4-r262-headline-decode-profile-result
   captured (R275 fails capture at 320 tokens). `docker/r276-gdn-spec-group-sync-free.py` computes the group boundaries
   arithmetically (uniform k+1 rows) so capture succeeds with the published group size.
 
+### Many users: the c64 rung was never admission-limited (R284, 2026-09-06)
+
+R284 re-ran the R282 ladders with max-num-seqs 128, max-model-len 512 and
+max-num-batched-tokens 1024 (rungs 16, 32, 64, 96, 128; two passes; R276
+image). Depth 4 plateaus at 585-641 tok/s from 32 users up (warm pass: c16
+574.3 exact 16/16, c32 641.3 exact 32/32, c64 591.4 58/64, c96 590.6 89/96,
+c128 584.7 117/128), and the same prompts diverge at the same token positions
+in every rung of 64 and above (for example `capacity-c006` at token 11), the
+signature of near-tie flips in the >32-row W4A16 GEMM tier rather than
+anything in the harness. Without speculation the same server keeps scaling:
+c16 533.8, c32 815.0, c64 991.4 (exact 64/64 in both passes), c96 915.4
+(95/96), c128 1085.3 (128/128 warm, 127/128 first pass). Guidance: serve up
+to about 32 users with depth 4 and more than that without speculation.
+Entry `R284_ladders_tp2_big_admission_mtp4_vs_mtp0` in the graph-capture
+result JSON carries every rung and the per-request divergence positions.
+
 ### Kernel-library build reproducibility (clean-clone replay, 2026-09-06)
 
 The published R220 + R221 build scripts were re-run from fresh clones of the

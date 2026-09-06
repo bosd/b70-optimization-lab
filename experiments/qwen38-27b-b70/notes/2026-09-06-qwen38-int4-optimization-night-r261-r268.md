@@ -221,3 +221,18 @@ user, better at two and four: R276 is the served image from now on (GHCR `@sha25
 launcher default with `cudagraph_capture_sizes` to 320; `XPU_GRAPH_SIZES=8` keeps the R228/R256 behaviour). The
 LocalMaxxing-approved headline remains the R257 pair (112.344 center); the site's identity-qualified many-users cell stays
 R265b's exact chain (580.4 at c16), with R281/R282's c32/c64 recorded as withheld near-tie rungs.
+
+## R284 - larger admission budget: the depth-4 plateau is the GEMM ceiling, MTP0 keeps scaling
+
+Same R282 configuration with max-num-seqs 128 / max-model-len 512 / max-num-batched-tokens 1024, rungs 16-128, two passes
+(boot bf8e504b, run while the Gemma download crawled). Depth 4, warm pass: c16 574.3 (16/16), c32 641.3 (32/32), c64 591.4
+(58/64), c96 590.6 (89/96), c128 584.7 (117/128); ttft_max grows from 0.45 s at c32 to 25 s at c128 (prefill queueing behind
+the 1024-token batch budget). The non-exact requests are the same prompts at the same positions in every rung of 64 and above
+(capacity-c006 @11, capacity-c046 @18, benchmark-c043 @19, index-c009 @23, cache-c080 @70, rollback-c018 @77/123, ...): the
+>32-row GEMM tier resolves near-ties differently from the sequential oracle, exactly the FP16-tie + M-class mechanism seen
+on the FP8 lane. MTP0 on the same server: c16 533.8, c32 815.0, c64 991.4/991.7 (64/64 both passes), c96 915.4 (95/96 warm,
+96/96 first), c128 1085.3 (128/128 warm, 127/128 first; single flips capacity-c006 @11 and capacity-c086 @23). So the c64
+"admission-limited" reading in R281 was wrong: depth 4 tops out around 590-640 tok/s aggregate however many rows are admitted,
+and above ~32 users MTP0 is both faster and cleaner. Site/package updated: MTP4 many-users cell now R284 c32 641.3 (32/32 both
+passes), MTP0 cell keeps R253 1000.2 with the R284 confirmation. Tool: scripts/append-ladder-result-entry.py.
+
