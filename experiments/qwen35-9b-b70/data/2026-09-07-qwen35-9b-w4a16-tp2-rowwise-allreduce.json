@@ -1,0 +1,365 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-9b-w4a16-tp2-rowwise-r0/r1 (2026-09-07)",
+ "question": "Whether the two-card identity loss comes from the cross-card reduction. On one card this route is exact at every rung through 64 users in both passes; on two cards it scores 63/64 at 64 users, and the 4B shows the same shape. XCCL's reduction order depends on message size, so an [M,N] all-reduce need not agree with M separate [1,N] all-reduces, which would make a step depend on how many rows share it.",
+ "method": "A diagnostic overlay image, R276 plus a row-wise TP all-reduce (pure Python; every pinned kernel digest unchanged, the replaced communicator declared through EXPECTED_XPU_COMMUNICATOR_SHA256). Two arms on that same image so the rebuild is not the variable: r0 with the row-wise path off, r1 with it on for inputs of 2..64 rows.",
+ "image": {
+  "tag": "neural-download/vllm-openai-xpu:qwen38-int4-r276-rowwise-allreduce-diag",
+  "id": "sha256:30226665158aedffc34806565bf362eee1abb407350edf5303d21c46ba59ee46",
+  "xpu_communicator_sha256": "97c75747e93e557dae3db632f3aab2cc38649eddb561316737cb596816c9f2fa"
+ },
+ "control_validity": "r0 reproduces the published R276 result: 63/64 at 64 users in both passes at 2091.9/2093.0 tok/s against the R276 control's 63/64 twice at 2083.7/2092.9. The overlay changes nothing on its own.",
+ "finding": "Not a fix, and not enough evidence to call it a partial one. With the row-wise all-reduce on, 64 users without speculation scored 64/64 in the first pass and 63/64 in the second, against a control that scored 63/64 in both passes on two separate images. That is a one-request difference in one pass of two, which supports no claim by itself. What it does establish is that the cross-card all-reduce is not by itself the whole cause: forcing every 2..64-row reduction onto the same path the single-row step uses did not reliably restore identity.",
+ "cost": "Without speculation the row-wise path is close to free at the rung where it matters: 2086.7/2088.2 tok/s against 2091.9/2093.0, about -0.25%. With MTP depth 3 it is severe, because there the row count is users x (depth+1) and so stays under the threshold at every low rung and pays M collectives on every step: 8 users fell from 938.4 to 398.9 tok/s (-57%) and 16 users from 974.7 to 406.4 (-58%). At 32 users with depth 3 the row count exceeds the threshold, the path is not taken, and the gap narrows to -11%.",
+ "next": "The Flash-Next lane needed two row-wise switches, not one: an all-reduce switch and a second for per-row variance in a grouped RMSNorm, because that norm's mean was also reduced in a shape-dependent order. Its patch targets vllm/models/qwen4_exp/amd/ops/hc.py, a path Qwen3.5 does not use, so it does not transfer directly - but it says to look for a second shape-dependent reduction rather than to assume the collective is the only one. Qwen3.5's RMSNorm runs its native path here (VLLM_XPU_RMSNORM_TRITON=0) and is the obvious next suspect.",
+ "ladders": {
+  "r0_rowwise_off": {
+   "mtp0": [
+    {
+     "concurrency": 1,
+     "pass": 1,
+     "aggregate_tok_s_wall": 97.1,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 1,
+     "aggregate_tok_s_wall": 181.2,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 1,
+     "aggregate_tok_s_wall": 354.1,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 1,
+     "aggregate_tok_s_wall": 656.9,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1154.2,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1839.9,
+     "exact_vs_sequential_oracle": "32/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 1,
+     "aggregate_tok_s_wall": 2091.9,
+     "exact_vs_sequential_oracle": "63/64"
+    },
+    {
+     "concurrency": 1,
+     "pass": 2,
+     "aggregate_tok_s_wall": 97.5,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 2,
+     "aggregate_tok_s_wall": 186.3,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 2,
+     "aggregate_tok_s_wall": 356.3,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 2,
+     "aggregate_tok_s_wall": 662.2,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1151.6,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1843.7,
+     "exact_vs_sequential_oracle": "32/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 2,
+     "aggregate_tok_s_wall": 2093.0,
+     "exact_vs_sequential_oracle": "63/64"
+    }
+   ],
+   "mtp3": [
+    {
+     "concurrency": 1,
+     "pass": 1,
+     "aggregate_tok_s_wall": 175.9,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 1,
+     "aggregate_tok_s_wall": 109.9,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 1,
+     "aggregate_tok_s_wall": 534.8,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 1,
+     "aggregate_tok_s_wall": 938.4,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 1,
+     "aggregate_tok_s_wall": 974.7,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1356.2,
+     "exact_vs_sequential_oracle": "31/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1467.7,
+     "exact_vs_sequential_oracle": "61/64"
+    },
+    {
+     "concurrency": 1,
+     "pass": 2,
+     "aggregate_tok_s_wall": 176.6,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 2,
+     "aggregate_tok_s_wall": 336.4,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 2,
+     "aggregate_tok_s_wall": 564.8,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 2,
+     "aggregate_tok_s_wall": 979.7,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1172.1,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1366.6,
+     "exact_vs_sequential_oracle": "31/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1449.0,
+     "exact_vs_sequential_oracle": "60/64"
+    }
+   ]
+  },
+  "r1_rowwise_on_max_rows_64": {
+   "mtp0": [
+    {
+     "concurrency": 1,
+     "pass": 1,
+     "aggregate_tok_s_wall": 97.1,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 1,
+     "aggregate_tok_s_wall": 182.3,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 1,
+     "aggregate_tok_s_wall": 355.5,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 1,
+     "aggregate_tok_s_wall": 660.5,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1150.3,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1845.8,
+     "exact_vs_sequential_oracle": "32/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 1,
+     "aggregate_tok_s_wall": 2086.7,
+     "exact_vs_sequential_oracle": "64/64"
+    },
+    {
+     "concurrency": 1,
+     "pass": 2,
+     "aggregate_tok_s_wall": 97.5,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 2,
+     "aggregate_tok_s_wall": 186.4,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 2,
+     "aggregate_tok_s_wall": 355.9,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 2,
+     "aggregate_tok_s_wall": 655.2,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1145.7,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1838.5,
+     "exact_vs_sequential_oracle": "32/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 2,
+     "aggregate_tok_s_wall": 2088.2,
+     "exact_vs_sequential_oracle": "63/64"
+    }
+   ],
+   "mtp3": [
+    {
+     "concurrency": 1,
+     "pass": 1,
+     "aggregate_tok_s_wall": 137.5,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 1,
+     "aggregate_tok_s_wall": 115.3,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 1,
+     "aggregate_tok_s_wall": 225.2,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 1,
+     "aggregate_tok_s_wall": 398.9,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 1,
+     "aggregate_tok_s_wall": 406.4,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1200.9,
+     "exact_vs_sequential_oracle": "31/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 1,
+     "aggregate_tok_s_wall": 1349.7,
+     "exact_vs_sequential_oracle": "60/64"
+    },
+    {
+     "concurrency": 1,
+     "pass": 2,
+     "aggregate_tok_s_wall": 137.9,
+     "exact_vs_sequential_oracle": "1/1"
+    },
+    {
+     "concurrency": 2,
+     "pass": 2,
+     "aggregate_tok_s_wall": 222.8,
+     "exact_vs_sequential_oracle": "2/2"
+    },
+    {
+     "concurrency": 4,
+     "pass": 2,
+     "aggregate_tok_s_wall": 317.0,
+     "exact_vs_sequential_oracle": "4/4"
+    },
+    {
+     "concurrency": 8,
+     "pass": 2,
+     "aggregate_tok_s_wall": 411.9,
+     "exact_vs_sequential_oracle": "8/8"
+    },
+    {
+     "concurrency": 16,
+     "pass": 2,
+     "aggregate_tok_s_wall": 430.1,
+     "exact_vs_sequential_oracle": "16/16"
+    },
+    {
+     "concurrency": 32,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1161.6,
+     "exact_vs_sequential_oracle": "32/32"
+    },
+    {
+     "concurrency": 64,
+     "pass": 2,
+     "aggregate_tok_s_wall": 1351.2,
+     "exact_vs_sequential_oracle": "61/64"
+    }
+   ]
+  }
+ }
+}
