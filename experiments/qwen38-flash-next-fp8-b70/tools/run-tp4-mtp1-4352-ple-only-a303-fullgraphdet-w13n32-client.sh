@@ -87,7 +87,7 @@ grep -zFxq 'VLLM_TUNED_CONFIG_FOLDER=/home/steve/llm-optimizations/experiments/q
   printf 'FAIL: A303 tuned M1 map drifted before client work\n' >&2
   exit 1
 }
-[[ "$(sha256sum "${repo}/experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py" | cut -d' ' -f1)" == aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434 ]] || {
+[[ "$(sha256sum "${repo}/experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py" | cut -d' ' -f1)" == c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e ]] || {
   printf 'FAIL: W13-N32 selection verifier drifted\n' >&2
   exit 1
 }
@@ -142,7 +142,7 @@ if grep -zEq '^(Q38_REPEATABILITY_TRACE_FILE|VLLM_XPU_QWEN4_EXP_REPEATABILITY_TR
   printf 'FAIL: trace selector unexpectedly present in live server environment\n' >&2
   exit 1
 fi
-[[ "$(git -C /home/steve/src/vllm-current-main rev-parse HEAD)" == 54f02431a5a8fd3b6fd23a74277a0138b5e46bb5 ]] || {
+[[ "$(git -C /home/steve/src/vllm-current-main rev-parse HEAD)" == 6d8724577dabbee5fa0bbc70c4d927c6174c8d8a ]] || {
   printf 'FAIL: live vLLM checkout head changed\n' >&2
   exit 1
 }
@@ -166,7 +166,7 @@ fi
   exit 1
 }
 for receipt in \
-  'vllm_head=54f02431a5a8fd3b6fd23a74277a0138b5e46bb5' \
+  'vllm_head=6d8724577dabbee5fa0bbc70c4d927c6174c8d8a' \
   'kernels_head=e421889999bc1e5a5f11044d14548b9afdba644d' \
   'runtime_stage_build_head=2f829747503c77d4814834dffd0840fb1dd9f75a' \
   'cpu_offload_gb=12.25' 'cpu_offload_params=ple_embedding.ngram_embedding.weight,embed_tokens.weight' \
@@ -369,7 +369,7 @@ summary = {
     "status": "passed",
     "identity": {
         "model_revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
-        "vllm_head": "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5",
+        "vllm_head": "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a",
         "kernel_head": "e421889999bc1e5a5f11044d14548b9afdba644d",
         "stage_build_head": "2f829747503c77d4814834dffd0840fb1dd9f75a",
         "tp": 4, "ep": 4, "mtp": 1, "graph": "FULL_DECODE_ONLY",

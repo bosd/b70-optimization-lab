@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create the A303 packet from frozen A120 (MTP1) for the A213 identity: PLE + embeddings offloaded at 12.25 (12.22 GiB), hot experts resident, never-hit experts host-placed at load time (/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json) on clean head 54f02431a5a8; realistic suite (LocalMaxxing metric)."""
+"""Create the A303 packet from frozen A120 (MTP1) for the A213 identity: PLE + embeddings offloaded at 12.25 (12.22 GiB), hot experts resident, never-hit experts host-placed at load time (/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json) on clean head 6d8724577dab; realistic suite (LocalMaxxing metric)."""
 from __future__ import annotations
 import hashlib, os, re, subprocess
 from pathlib import Path
@@ -70,7 +70,7 @@ def patch_client(c):
     return replace_once(c, "'cpu_offload_gb=12.0' 'cpu_offload_params=ple_embedding.ngram_embedding.weight'", "'cpu_offload_gb=12.25' 'cpu_offload_params=" + PARAMS4_CSV + "'")
 
 OLD_HEAD = "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60"
-NEW_HEAD = "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5"  # q38-placement-mtp1-clean: lossless MTP1 head + table kernel + load-time never-hit expert placement
+NEW_HEAD = "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a"  # q38-placement-mtp1-clean: lossless MTP1 head + table kernel + load-time never-hit expert placement
 def patch_a303_launcher(l):
     assert l.count(OLD_HEAD) == 2, l.count(OLD_HEAD)
     l = replace_once(l, "export MODEL_PATH=/mnt/fast-ai/llm-models/Qwen3.8-Flash-Next-FP8\n", "export MODEL_PATH=/mnt/usb-models/llm-models/Qwen3.8-Flash-Next-FP8\n")
@@ -89,7 +89,7 @@ def main():
     launcher = successor(launcher)
     launcher = patch_a303_launcher(launcher)
     launcher = replace_n(launcher, OLD_HEAD, NEW_HEAD, 2)
-    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n')  # glue + fused indexer; the client keeps the CERTIFIED asserts
+    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n')  # glue + fused indexer; client keeps the CERTIFIED asserts
     launcher = replace_once(launcher, "export KV_CACHE_MEMORY_BYTES=376569856\n", "export KV_CACHE_MEMORY_BYTES=376569856\nexport Q38_EXPERT_HOST_PLACEMENT=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json\n")
     env = os.environ.copy(); env["Q38_A303_DERIVED_SOURCE_ONLY"] = "1"
     derived = subprocess.run(["bash"], input=launcher, text=True, capture_output=True, check=True, env=env).stdout
@@ -100,8 +100,8 @@ def main():
     client = replace_once(client, '"placement": "ple_only_uva", "ple_host_bytes_per_rank": 12800061440,', '"placement": "ple_embed_budget12p25_uva_cold_expert_host_placement_hctriton_qsafused", "ple_host_bytes_per_rank": 12800061440, "host_offload_bytes_per_rank": 13117911040, "host_offload_params": "ple_embedding.ngram_embedding.weight,embed_tokens.weight", "expert_host_placement": "/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json",')
     client = patch_a303_client(client)
     client = client.replace(OLD_HEAD, NEW_HEAD)
-    client = client.replace("0bd36f13056d79924e7598bf8d844db3a5b8b35639737c0ef0b5af68cad14753", "aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434").replace("4f4942289f3853f0dec60b9fcd14c644ca300abaaa9d9fa2ea56135f4d9f9c52", "aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434")
-    assert client.count("aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434") >= 1
+    client = client.replace("0bd36f13056d79924e7598bf8d844db3a5b8b35639737c0ef0b5af68cad14753", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e").replace("4f4942289f3853f0dec60b9fcd14c644ca300abaaa9d9fa2ea56135f4d9f9c52", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e")
+    assert client.count("c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e") >= 1
     supervisor = successor(source("supervise-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh"))
     supervisor = patch_a303_supervisor(supervisor)
     supervisor = replace_once(supervisor, "expected_wrapper=" + SOURCES["launch-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh"], "expected_wrapper=" + digest(launcher))

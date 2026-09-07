@@ -3,9 +3,9 @@ set -Eeuo pipefail
 
 script_dir=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/tools
 wrapper="${script_dir}/launch-tp4-mtp1-4352-ple-only-a302-fullgraphdet-w13n32.sh"
-expected_wrapper=c3feb5e5102fc6bf64929e3d6a037f211028124a93bf5fac56cfc23e0959221d
+expected_wrapper=c8e2dfe092129294307809f0f52b3c24ee679dc986fe40d7baf27ac8dc495e38
 client="${script_dir}/run-tp4-mtp1-4352-ple-only-a302-fullgraphdet-w13n32-client.sh"
-expected_client=2d00e9b7f91a948e21a330996910380731fe7b395a33f147bbcd3fe5ec2dede4
+expected_client=d6d32cfd0d57c2862826cacff7880911284966f17522ceab9b785f93fd35483f
 state=/tmp/q38-mtp1-ple-only-a302
 stop_file="${state}.stop"
 failure_file="${state}.failed"
