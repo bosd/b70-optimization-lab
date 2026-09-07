@@ -1,0 +1,300 @@
+{
+ "lane": "qwen35-9b-w4a16-b70",
+ "date": "2026-09-07",
+ "suite": "strict 12-prompt six-class realistic suite over the completions API, 512-token cap, class-balanced median tok/s over tokens 1-100 after TTFT; ladders: 2026-08-25 small-context suite, 128 tokens, two passes",
+ "image": "R276 sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "model": "RedHatAI/Qwen3.5-9B-quantized.w4a16 a398088c4228b0ae0c8c78df88fd1e4bf445f068",
+ "kernel_route": "vLLM CompressedTensorsWNA16 -> the lab's XPUwNa16LinearKernel (_xpu_C.int4_gemm_w4a16), the same fixed-K two-tier W4A16 strategy the Qwen3.8 INT4 lane serves. No config relabel was needed: compressed-tensors selects the wNa16 path directly, unlike AutoRound weights.",
+ "w1_tp1_depth3_graph_draft_int4_head": {
+  "config": "one B70, depth 3 (qwen3_5_mtp) + draft-only INT4 lm_head, FULL_DECODE_ONLY capture sizes 1-64, strict launcher env, W4A16 determinism pad off",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 64.332,
+    "median_tok_s_1_100": 64.982,
+    "p10_tok_s_1_100": 64.95,
+    "median_tok_s_full": 64.176,
+    "ttft_ms_median": 48.19
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 64.338,
+    "median_tok_s_1_100": 64.988,
+    "p10_tok_s_1_100": 64.973,
+    "median_tok_s_full": 64.185,
+    "ttft_ms_median": 47.02
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 113.627,
+    "median_tok_s_1_100": 114.725,
+    "p10_tok_s_1_100": 102.341,
+    "median_tok_s_full": 111.461,
+    "ttft_ms_median": 67.65
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 112.904,
+    "median_tok_s_1_100": 114.592,
+    "p10_tok_s_1_100": 102.294,
+    "median_tok_s_full": 111.357,
+    "ttft_ms_median": 67.61
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "12/12",
+   "G3 b": "12/12"
+  },
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-w1"
+ },
+ "w1_ladders_tp1_depth3_graph_draft_int4_head": {
+  "date": "2026-09-07",
+  "boot": "bf8e504b",
+  "image": "R276",
+  "config": "TP1 depth 3 + draft INT4 head, full capture, strict env, pad off, mml 256 mns 64 mbt 512, two passes",
+  "ladder": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 116.2,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 118.6,
+    "ttft_s_max": 0.85
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 259.7,
+    "ttft_s_max": 0.68
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 637.6,
+    "ttft_s_max": 0.16
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 688.2,
+    "ttft_s_max": 0.48
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 819.5,
+    "ttft_s_max": 0.52
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "59/64",
+    "aggregate_tok_s_wall": 783.9,
+    "ttft_s_max": 8.45
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 116.5,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 224.2,
+    "ttft_s_max": 0.07
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 371.3,
+    "ttft_s_max": 0.09
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 649.8,
+    "ttft_s_max": 0.14
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 750.8,
+    "ttft_s_max": 0.22
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 827.3,
+    "ttft_s_max": 0.47
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "61/64",
+    "aggregate_tok_s_wall": 789.2,
+    "ttft_s_max": 8.44
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c32_r1": [
+    [
+     "index-c025",
+     107
+    ]
+   ],
+   "c64_r1": [
+    [
+     "capacity-c022",
+     5
+    ],
+    [
+     "rollback-c042",
+     38
+    ],
+    [
+     "evidence-c031",
+     90
+    ],
+    [
+     "monitoring-c036",
+     90
+    ],
+    [
+     "monitoring-c052",
+     94
+    ]
+   ],
+   "c64_r2": [
+    [
+     "capacity-c022",
+     5
+    ],
+    [
+     "monitoring-c036",
+     90
+    ],
+    [
+     "index-c025",
+     107
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 64.0,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 122.0,
+    "ttft_s_max": 0.07
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 235.6,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 435.6,
+    "ttft_s_max": 0.13
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 747.6,
+    "ttft_s_max": 0.19
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1181.6,
+    "ttft_s_max": 0.38
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 1266.2,
+    "ttft_s_max": 0.79
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 64.2,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 124.0,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 236.2,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 437.7,
+    "ttft_s_max": 0.12
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 746.7,
+    "ttft_s_max": 0.2
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1184.0,
+    "ttft_s_max": 0.37
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 1268.4,
+    "ttft_s_max": 0.78
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {},
+  "verdict": "No speculation is exact at EVERY rung in BOTH passes through 64 users: c1 64.2, c2 124.0, c4 236.2, c8 437.7, c16 746.7, c32 1184.0, c64 1268.4, all 64/64. Depth 3 exact through c16 in both passes (750.8), c32 32/32 warm (827.3) and 31/32 cold, c64 61/64 (789.2). The FP8 route on the same model withheld everything above c8."
+ }
+}

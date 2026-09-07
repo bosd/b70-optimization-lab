@@ -684,6 +684,14 @@ All three approved on submission (HTTP 201). Attestations: `experiments/qwen38-2
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp4-strict-82tok-20260904` | `cmtmk61qo01x8l601vtqbitg5` | 1 | 56 | 512 | **82.396 median 1-100 after TTFT** | R197 depth-4 strict pair 82.447/82.345, 12/12 vs oracle; identity c1-c16 (two ladders, R197/R201) |
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp5-strict-86tok-20260904` | `cmtn23c500005mm010ierd4g3` | 1 | 56 | 512 | **86.182 median 1-100 after TTFT** | R200 depth-5 strict pair 86.266/86.097, 12/12 vs oracle; identity c1-c16 (two ladders, R204a/b) |
 
+## Qwen3.5 9B W4A16 (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
+
+Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-w1-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-9B-quantized.w4a16` a398088c served as published (compressed-tensors W4A16, publisher MTP head) through the R276 image and the shared Qwen3.5 launcher; recipe `repro/qwen35-9b-w4a16-b70/`.
+
+| label | run id | c | prompt tok | output tok | headline | notes |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `qwen35-9b-w4a16-tp1-mtp3-graph-drafthead-strict-113tok-20260907` | `cmtrhoyl1000cps01o43bhl72` | 1 | 56 | 512 | **113.265 median 1-100 after TTFT** | campaign w1 depth-3 strict pair 113.627/112.904, 12/12 vs sibling and vs the MTP0 oracle (64.332/64.338, G1 12/12); 15% faster than the FP8 route on the same model and, without speculation, byte-exact at every concurrency rung through 64 users in both passes (1268.4 tok/s at c64, 64/64) where the FP8 route flips from c16 |
+
 ## Qwen3.5 9B FP8-dynamic (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
 
 Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c2-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-9B-FP8-dynamic` 790f0576 served as published (compressed-tensors FP8, publisher MTP head) through the R276 image and the FP8 recipe's strict launchers; recipe `repro/qwen35-9b-fp8-b70/`.

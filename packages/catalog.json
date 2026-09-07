@@ -1983,6 +1983,262 @@
       ]
     },
     {
+      "manifest": "packages/qwen35-9b-w4a16-b70/package.json",
+      "format": "b70-model-package-v1",
+      "id": "qwen35-9b-w4a16-b70",
+      "name": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70",
+      "status": "candidate",
+      "audience": "intermediate",
+      "guide": "repro/qwen35-9b-w4a16-b70/README.md",
+      "clean_host_tested": false,
+      "library": {
+        "model_family": "Qwen3.5",
+        "publisher": "RedHatAI (W4A16 of Alibaba / Qwen)",
+        "variant": "9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head",
+        "summary": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it.",
+        "quantization": "W4A16 (compressed-tensors INT4 weights, FP16 activations)",
+        "runtime_label": "vLLM XPU",
+        "operating_systems": [
+          "Linux"
+        ],
+        "delivery": [
+          "container"
+        ],
+        "modalities": [
+          "text"
+        ],
+        "use_cases": [
+          "general",
+          "coding"
+        ],
+        "tags": [
+          "qwen3.5",
+          "9b",
+          "int4",
+          "w4a16",
+          "compressed-tensors",
+          "vllm",
+          "xpu",
+          "b70",
+          "one card",
+          "mtp",
+          "draft int4 head",
+          "batch-invariant",
+          "xpu graph"
+        ],
+        "published_at": "2026-09-07",
+        "featured_metric": {
+          "value": 113.265,
+          "unit": "tok/s",
+          "label": "MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 113.627 / 112.904)",
+          "scope": "Center of two fresh-server class-balanced medians over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (64.332 / 64.338), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, draft-only INT4 lm_head, full decode-only XPU graph capture.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
+        },
+        "benchmark_status": "Candidate (2026-09-07, campaign w1, one B70, R276 image): two fresh depth-3 servers 113.627 / 112.904 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite, 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 64.332 / 64.338 matched 12/12; canaries on every server; cache zero. Identity ladders (128 tokens, two passes): without speculation exact at every rung in both passes through 64 users (c16 746.7, c32 1184.0, c64 1268.4, all 64/64); with depth 3 exact through c16 (750.8), c32 32/32 warm (827.3), c64 61/64 (789.2). LocalMaxxing cmtrhoyl1000cps01o43bhl72 at 113.265."
+      },
+      "contributors": [
+        {
+          "id": "b70-optimization-lab",
+          "name": "neural.download lab",
+          "kind": "lab",
+          "profile": "https://github.com/steveseguin/b70-optimization-lab",
+          "contribution": "Fixed-K two-tier W4A16 kernel strategy (built for the Qwen3.8 INT4 lane and reused here unchanged), lane composition on the R276 image and strict launchers, speculative and identity gating, packaging.",
+          "status": "integrated",
+          "validated_effect": "The row-invariant W4A16 kernel keeps every concurrency rung through 64 users byte-exact without speculation (1268.4 tok/s at 64 users, 64/64 in both passes) where the FP8 route on the same model flips from 16 users; MTP depth 3 with the draft-only INT4 head raises single-user decode from 64.3 to 113.6 tok/s, 12/12 exact against the oracle.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
+        },
+        {
+          "id": "redhatai-qwen35-9b-w4a16",
+          "name": "RedHatAI",
+          "kind": "external",
+          "profile": "https://huggingface.co/RedHatAI/Qwen3.5-9B-quantized.w4a16",
+          "contribution": "W4A16 quantization of Qwen3.5-9B and the MTP head checkpoint served here unchanged.",
+          "status": "credited",
+          "validated_effect": "The published tensors serve as-is through vLLM's compressed-tensors path, which selects the lab's wNa16 INT4 kernel with no config relabel.",
+          "evidence": "repro/qwen35-9b-w4a16-b70/manifests/model-direct-redhatai-qwen35-9b-w4a16-a398088c.json"
+        }
+      ],
+      "performance_profiles": [
+        {
+          "id": "http-w4a16-mtp0-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
+          "label": "Qwen3.5-9B W4A16 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c64; warm pass)",
+          "metric": "aggregate_decode",
+          "unit": "tok/s",
+          "x_metric": "concurrent_sequences",
+          "x_label": "Concurrent HTTP users",
+          "scope": "Campaign w1 (2026-09-07): one B70, R276 image, strict launcher env, FULL_DECODE_ONLY capture sizes 1-64, no speculation, max-model-len 256, max-num-seqs 64, max-num-batched-tokens 512, 128 returned raw token IDs per response on the small-context suite, two passes on one server, warm pass shown. Every rung is output-identity-qualified in both passes, including c64 (64/64 twice). Nothing is withheld on this profile.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+          "points": [
+            {
+              "concurrent_sequences": 1,
+              "value": 64.2,
+              "samples": 1,
+              "per_user_value": 64.2
+            },
+            {
+              "concurrent_sequences": 2,
+              "value": 124.0,
+              "samples": 1,
+              "per_user_value": 62.0
+            },
+            {
+              "concurrent_sequences": 4,
+              "value": 236.2,
+              "samples": 1,
+              "per_user_value": 59.05
+            },
+            {
+              "concurrent_sequences": 8,
+              "value": 437.7,
+              "samples": 1,
+              "per_user_value": 54.7125
+            },
+            {
+              "concurrent_sequences": 16,
+              "value": 746.7,
+              "samples": 1,
+              "per_user_value": 46.6688
+            },
+            {
+              "concurrent_sequences": 32,
+              "value": 1184.0,
+              "samples": 1,
+              "per_user_value": 37.0
+            },
+            {
+              "concurrent_sequences": 64,
+              "value": 1268.4,
+              "samples": 1,
+              "per_user_value": 19.8188
+            }
+          ]
+        },
+        {
+          "id": "http-w4a16-mtp3-drafthead-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
+          "label": "Qwen3.5-9B W4A16 one card, MTP depth 3 with the draft INT4 head, identity-qualified aggregate decode vs concurrent users (c1-c16; warm pass)",
+          "metric": "aggregate_decode",
+          "unit": "tok/s",
+          "x_metric": "concurrent_sequences",
+          "x_label": "Concurrent HTTP users",
+          "scope": "As above with qwen3_5_mtp depth 3 and the draft-only INT4 lm_head. c1-c16 output-identity-qualified in both passes. Measured but withheld: c32 827.3 (32/32 warm, 31/32 cold) and c64 789.2 (61/64).",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+          "points": [
+            {
+              "concurrent_sequences": 1,
+              "value": 116.5,
+              "samples": 1,
+              "per_user_value": 116.5
+            },
+            {
+              "concurrent_sequences": 2,
+              "value": 224.2,
+              "samples": 1,
+              "per_user_value": 112.1
+            },
+            {
+              "concurrent_sequences": 4,
+              "value": 371.3,
+              "samples": 1,
+              "per_user_value": 92.825
+            },
+            {
+              "concurrent_sequences": 8,
+              "value": 649.8,
+              "samples": 1,
+              "per_user_value": 81.225
+            },
+            {
+              "concurrent_sequences": 16,
+              "value": 750.8,
+              "samples": 1,
+              "per_user_value": 46.925
+            }
+          ]
+        }
+      ],
+      "hardware": {
+        "accelerator": "Intel Arc Pro B70 32 GiB",
+        "cards": 1,
+        "host_ram_min_bytes": 16106127360,
+        "host_ram_plus_swap_min_bytes": 21474836480,
+        "model_weight_bytes": 11456765607
+      },
+      "model": {
+        "repository": "RedHatAI/Qwen3.5-9B-quantized.w4a16",
+        "revision": "a398088c4228b0ae0c8c78df88fd1e4bf445f068",
+        "manifest": "repro/qwen35-9b-w4a16-b70/manifests/model-direct-redhatai-qwen35-9b-w4a16-a398088c.json",
+        "note": "Served exactly as published; the launcher verifies every LFS file against the manifest before the container starts. No config relabel is needed: compressed-tensors selects the wNa16 INT4 kernel directly."
+      },
+      "runtime": {
+        "kind": "container",
+        "image": "ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+        "image_id_validated": "sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+        "local_tag": "neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276",
+        "engine": "vLLM 0.27.2rc1.dev77+gac7509e2b (XPU) with the lab kernel library (vllm-xpu-kernels 1e90ffa6 + patches, oneDNN 0e2a5bfe + patches)",
+        "launcher": "repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh"
+      },
+      "project_patches": {
+        "required": true,
+        "items": [
+          "experiments/qwen38-27b-b70/docker/r213b-w4a16-determinism-pad-op.py",
+          "experiments/qwen38-27b-b70/docker/r224-fp16-linear-rowchunk.py",
+          "experiments/qwen38-27b-b70/docker/r228-gdn-spec-group.py",
+          "experiments/qwen38-27b-b70/docker/r256-draft-int4-head-fallback.py",
+          "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-fixed-k-two-tier-r221-20260905.patch",
+          "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-strategy-override-dump-r220-20260905.patch",
+          "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-c-default-align-r137b-20260902.patch",
+          "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-fixed-k-align16-r137a-20260902.patch"
+        ],
+        "note": "The image is the Qwen3.8 INT4 lane's R276 image; its overlays (determinism pad op inert here, FP16 row-chunk linears, grouped GDN speculative rows, draft-head fallback unused, sync-free GDN grouping) ship inside the container. No 9B-specific patch."
+      },
+      "commands": {
+        "preflight": "docker pull ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad && docker tag ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276",
+        "launch": "MODEL_DIR=/models/Qwen3.5-9B-quantized.w4a16 VLLM_CACHE_DIR=/tmp/qwen35-w4a16-cache MTP_DEPTH=3 repro/qwen35-9b-w4a16-b70/scripts/run-qwen35-9b-w4a16-server.sh",
+        "health": "curl -fsS http://127.0.0.1:18131/health",
+        "benchmark": "OUT_DIR=<new dir> BASE_URL=http://127.0.0.1:18131 MODEL_NAME=qwen35-9b-w4a16-mtp3 repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/bench-w8a16-mtp1-strict.sh",
+        "stop": "docker stop qwen35-9b-w4a16-mtp3"
+      },
+      "dependencies": [
+        "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+        "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+        "experiments/qwen35-9b-b70/notes/2026-09-07-qwen35-9b-fp8-one-card-quick-lane.md",
+        "experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-9b-campaign-v2.sh",
+        "experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-campaign.sh",
+        "experiments/qwen38-27b-b70/data/2026-08-25-qwen38-q4km-tp2-http-smallctx-suite.json",
+        "experiments/qwen38-27b-b70/docker/r213b-w4a16-determinism-pad-op.py",
+        "experiments/qwen38-27b-b70/docker/r224-fp16-linear-rowchunk.py",
+        "experiments/qwen38-27b-b70/docker/r228-gdn-spec-group.py",
+        "experiments/qwen38-27b-b70/docker/r256-draft-int4-head-fallback.py",
+        "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-fixed-k-two-tier-r221-20260905.patch",
+        "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-strategy-override-dump-r220-20260905.patch",
+        "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-c-default-align-r137b-20260902.patch",
+        "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-fixed-k-align16-r137a-20260902.patch",
+        "repro/gemma4-26b-a4b-q8-b70/realistic-suite-v1.json",
+        "repro/qwen35-9b-fp8-b70/README.md",
+        "repro/qwen35-9b-fp8-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json",
+        "repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh",
+        "repro/qwen35-9b-w4a16-b70/README.md",
+        "repro/qwen35-9b-w4a16-b70/manifests/model-direct-redhatai-qwen35-9b-w4a16-a398088c.json",
+        "repro/qwen35-9b-w4a16-b70/scripts/run-qwen35-9b-w4a16-server.sh",
+        "repro/qwen36-27b-autoround-int4-b70/realistic-suite-v1.json",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/bench-w8a16-mtp1-strict.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/run-w8a16-mtp0-strict-server.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/run-w8a16-mtp1-strict-server.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/verify-model-direct.sh",
+        "scripts/bench-openai-concurrency-oracle.py",
+        "scripts/bench-openai-realistic-suite.py",
+        "scripts/compare-strict-attempt-outputs.py",
+        "scripts/neural-download-canaries.py"
+      ],
+      "evidence": [
+        "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
+      ],
+      "missing": [
+        "clean-host replay",
+        "two-card, graph-off and 2K-32K rows (measured on the FP8 route only)"
+      ]
+    },
+    {
       "manifest": "packages/qwen38-27b-256k-vision-mtp-b70/package.json",
       "format": "b70-model-package-v1",
       "id": "qwen38-27b-256k-vision-mtp-b70",

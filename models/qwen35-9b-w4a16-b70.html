@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured — neural.download</title>
+<meta name="description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="canonical" href="https://neural.download/models/qwen35-9b-w4a16-b70.html">
+<meta name="theme-color" content="#0f62e8">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="neural.download">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://neural.download/models/qwen35-9b-w4a16-b70.html">
+<meta property="og:title" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured">
+<meta property="og:description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
+<meta property="og:image" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
+<meta property="og:image:secure_url" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@xyster">
+<meta name="twitter:creator" content="@xyster">
+<meta name="twitter:url" content="https://neural.download/models/qwen35-9b-w4a16-b70.html">
+<meta name="twitter:title" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured">
+<meta name="twitter:description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
+<meta name="twitter:image" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
+<meta name="twitter:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70", "description": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it. Measured 113 tok/s MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 113.627 / 112.904) on 1× Intel Arc Pro B70 32 GiB with vLLM XPU (W4A16 (compressed-tensors INT4 weights, FP16 activations)). Exact pins, patches, proof, and a clearly labeled optimization projection.", "url": "https://neural.download/models/qwen35-9b-w4a16-b70.html", "dateModified": "2026-09-07", "inLanguage": "en", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "Unofficial Intel XPU Optimization Lab", "url": "https://neural.download/"}, "publisher": {"@type": "Organization", "name": "neural.download", "url": "https://neural.download/"}, "isPartOf": {"@type": "WebSite", "name": "neural.download", "url": "https://neural.download/"}, "about": ["Qwen3.5", "Intel Arc Pro B70", "local LLM inference"]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "neural.download", "item": "https://neural.download/"}, {"@type": "ListItem", "position": 2, "name": "Models", "item": "https://neural.download/models/"}, {"@type": "ListItem", "position": 3, "name": "Qwen3.5 9B", "item": "https://neural.download/models/qwen-9b.html"}, {"@type": "ListItem", "position": 4, "name": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70", "item": "https://neural.download/models/qwen35-9b-w4a16-b70.html"}]}
+</script>
+<link rel="stylesheet" href="../learn/learn.css">
+<link rel="preconnect" href="https://mlbottleneck.com">
+<style>
+  .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px 16px; margin: 14px 0 22px; padding: 14px 16px; border: 2px solid var(--ink); background: var(--paper); }
+  .facts div { min-width: 0; }
+  .facts dt { font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .facts dd { margin: 2px 0 0; font-size: 13.5px; overflow-wrap: anywhere; }
+  .use-chip { display: inline-block; border: 1px solid var(--ink); padding: 1px 7px 0; font: 700 11px var(--mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; margin: 0 4px 4px 0; }
+  .placeholder { margin: 10px 0 22px; padding: 12px 16px; border: 2px solid var(--line); background: var(--surface); color: var(--muted); }
+  .placeholder p { margin: 0; font-size: 13.5px; }
+  .badge.todo { background: var(--surface); color: var(--muted); border-color: var(--muted); }
+  .missing { margin: 0 0 22px; padding: 12px 16px; border: 2px solid var(--ink); background: var(--surface); }
+  .missing-tag { margin: 0 0 6px; font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--warn); }
+  .missing ul { margin: 0; padding-left: 18px; font-size: 13px; }
+  .limitations { margin: 0 0 22px; padding: 12px 16px; border: 2px solid var(--line); background: var(--surface); }
+  .limitations-tag { margin: 0 0 6px; font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink); }
+  .limitations ul { margin: 0; padding-left: 18px; font-size: 13px; }
+  .measured { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin: 8px 0 6px; }
+  .measured .big { font: 900 44px/1 var(--display); color: var(--spot-dark); }
+  .measured .unit { font: 700 13px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .scope { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+  .scope-gloss { margin: 0 0 12px; color: var(--muted); font-size: 11.5px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 9px 12px; margin: 14px 0 22px; align-items: center; }
+  .actions .button { display: inline-flex; align-items: center; min-height: 36px; padding: 7px 12px; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+  .actions .button:hover { background: var(--spot); border-color: var(--spot); color: #fff; }
+  .actions .button.secondary { background: transparent; color: var(--ink); }
+  .actions .button.secondary:hover { background: var(--ink); color: var(--paper); }
+  .copy-md { appearance: none; border: 2px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); min-height: 36px; padding: 6px 10px; font: 700 11px var(--mono); letter-spacing: .05em; text-transform: uppercase; cursor: pointer; }
+  .copy-md:hover { background: var(--ink); color: var(--paper); }
+  .copy-md.copied { background: var(--spot); border-color: var(--spot); color: #fff; }
+  .copy-md.failed { border-color: #a12820; color: #a12820; }
+  .hr-card { border: 2px solid var(--ink); background: var(--paper); padding: 13px 14px 11px; margin: 0 0 12px; }
+  .hr-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  .hr-card h3 { margin: 0; font: 900 15px var(--display); text-transform: uppercase; }
+  .hr-deploy { margin: 3px 0 0; color: var(--muted); font: 10.5px var(--mono); }
+  .hr-grade { flex: 0 0 auto; text-align: right; }
+  .hr-grade-letter { display: block; font: 900 26px/1 var(--display); color: var(--spot-dark); }
+  .hr-grade-note { display: block; margin-top: 3px; color: var(--muted); font: 700 9.5px var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+  .hr-bar-row { display: grid; grid-template-columns: 108px 1fr 78px; align-items: center; gap: 8px; margin: 5px 0; font: 10.5px var(--mono); }
+  .hr-bar-label { color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .hr-bar-track { display: block; height: 9px; background: var(--surface); border: 1px solid var(--ink); }
+  .hr-bar { display: block; height: 100%; background: var(--ink); }
+  .hr-bar.is-measured { background: var(--spot); }
+  .hr-bar.is-stock { background: var(--ink); opacity: .45; }
+  .hr-bar.is-physical { background: var(--muted); opacity: .55; }
+  .hr-bar-value { text-align: right; font-weight: 700; white-space: nowrap; }
+  .hr-bar-value small { font-weight: 400; color: var(--muted); }
+  .hr-why { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+  .hr-links { margin: 7px 0 0; font: 10.5px var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+  .hr-links a { border-bottom: 1px solid currentColor; }
+  @media (max-width: 520px) { .hr-bar-row { grid-template-columns: 92px 1fr 70px; } .measured .big { font-size: 36px; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="site-nav"><div class="wrap">
+  <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">▮▮▮</span>neural.download</a>
+  <nav aria-label="Primary">
+    <a href="index.html" aria-current="page">Models</a>
+    <a href="../learn.html">Learn</a>
+    <a href="../guides.html">Recipes</a>
+    <a href="../index.html#lab-speeds">Benchmarks</a>
+    <a href="../index.html#contribute">Contribute</a>
+    <a class="github" href="https://github.com/steveseguin/b70-optimization-lab">GitHub</a>
+  </nav>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Models</a> / <a href="qwen-9b.html">Qwen3.5 9B</a> / 9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head</p>
+  <p class="eyebrow">Candidate package · vLLM XPU · 1× Intel Arc Pro B70</p>
+  <h1>Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70</h1>
+  <p>RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft. vLLM&#x27;s compressed-tensors path selects the lab&#x27;s wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it.</p>
+</div></header>
+
+<main id="main"><div class="wrap"><div class="col prose" id="package-page" data-ml-model="qwen3.5_9b" data-ml-quant="int4" data-ml-runtime="vllm" data-ml-cards="1" data-ml-hardware="Intel Arc Pro B70" data-ml-hardware-label="B70" data-ml-spec="mtp:3" data-ml-measured="113.265" data-ml-quant-label="W4A16 (compressed-tensors INT4 weights, FP16 activations)" data-ml-runtime-label="vLLM XPU" data-ml-prompt="128" data-ml-output="100">
+
+  <h2 id="measured">What we measured <span class="badge lab">Lab-measured</span></h2><div class="measured"><span class="big">113</span><span class="unit">tok/s MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 113.627 / 112.904)</span></div><p class="scope">Center of two fresh-server class-balanced medians over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (64.332 / 64.338), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, draft-only INT4 lm_head, full decode-only XPU graph capture. <a class="inline" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json">proof file</a></p><p class="scope-gloss">MTP = multi-token prediction, a small draft the main model verifies · oracle = the fixed prompt set whose exact outputs are checked</p>
+  <div class="actions">
+    <a class="button" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/repro/qwen35-9b-w4a16-b70/README.md">Open the full guide</a>
+    <button type="button" class="copy-md" data-copy-markdown="../repro/qwen35-9b-w4a16-b70/README.md" aria-label="Copy the guide Markdown" aria-live="polite">Copy Markdown</button>
+    <a class="button secondary" href="https://github.com/steveseguin/b70-optimization-lab/issues/new?template=result.yml&title=Qwen3.5%209B%20W4A16%20with%20its%20own%20MTP%20head%20on%20one%20Intel%20Arc%20Pro%20B70">Submit an improvement</a>
+  </div>
+
+  <dl class="facts"><div><dt>Model</dt><dd>Qwen3.5 9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head</dd></div><div><dt>Publisher</dt><dd>RedHatAI (W4A16 of Alibaba / Qwen)</dd></div><div><dt>Checkpoint</dt><dd>RedHatAI/Qwen3.5-9B-quantized.w4a16</dd></div><div><dt>Compression</dt><dd>W4A16 (compressed-tensors INT4 weights, FP16 activations)</dd></div><div><dt>Software</dt><dd>vLLM XPU</dd></div><div><dt>Cards</dt><dd>1× Intel Arc Pro B70 32 GiB</dd></div><div><dt>Model weight bytes</dt><dd>11.5 GB</dd></div><div><dt>Operating systems</dt><dd>Linux</dd></div><div><dt>Delivery</dt><dd>Docker / container</dd></div><div><dt>Good for</dt><dd><span class="use-chip">general</span> <span class="use-chip">coding</span></dd></div><div><dt>Published</dt><dd>2026-09-07</dd></div><div><dt>Clean-host replay</dt><dd>not yet</dd></div></dl>
+<div class="missing"><p class="missing-tag">Still missing before this becomes an install guide</p><ul><li>clean-host replay</li><li>two-card, graph-off and 2K-32K rows (measured on the FP8 route only)</li></ul></div>
+
+<h2 id="profiles">Measured performance profiles <span class="badge todo">Not published</span></h2><div class="placeholder"><p>No qualified structured context or depth profile is published for this package. Diagnostic evidence may still be linked under “What to know” or in the full guide; nothing is estimated in its place — the clearly labeled projection block below is the current best guess.</p></div>
+<h2 id="multi-user">Many people at once <span class="badge lab">Lab-measured</span></h2><figure class="chart"><h4>Qwen3.5-9B W4A16 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c64; warm pass) <span class="badge lab">Lab-measured</span></h4><svg viewBox="0 0 640 260" width="100%" role="img" aria-label="Qwen3.5-9B W4A16 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c64; warm pass)" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="216.0" x2="620" y2="216.0" stroke="var(--ink)" stroke-width="2"></line><path d="M64.0,207.0 L156.7,198.6 L249.3,182.8 L342.0,154.5 L434.7,111.1 L527.3,49.7 L620.0,37.8" fill="none" stroke="var(--spot)" stroke-width="3"></path><circle cx="64.0" cy="207.0" r="4" fill="var(--spot)"></circle><text x="64.0" y="198.0" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">64.2</text><circle cx="156.7" cy="198.6" r="4" fill="var(--spot)"></circle><text x="156.7" y="189.6" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">124</text><circle cx="249.3" cy="182.8" r="4" fill="var(--spot)"></circle><text x="249.3" y="173.8" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">236</text><circle cx="342.0" cy="154.5" r="4" fill="var(--spot)"></circle><text x="342.0" y="145.5" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">438</text><circle cx="434.7" cy="111.1" r="4" fill="var(--spot)"></circle><text x="434.7" y="102.1" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">747</text><circle cx="527.3" cy="49.7" r="4" fill="var(--spot)"></circle><text x="527.3" y="40.7" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">1,184</text><circle cx="620.0" cy="37.8" r="4" fill="var(--spot)"></circle><text x="620.0" y="28.8" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">1,268</text><text x="64.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">1</text><text x="156.7" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">2</text><text x="249.3" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">4</text><text x="342.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">8</text><text x="434.7" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">16</text><text x="527.3" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">32</text><text x="620.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">64</text><text x="64" y="254" font-size="11" font-family="var(--mono)" fill="var(--muted)">Concurrent HTTP users · log2 spacing · y: tok/s</text></svg><figcaption>Campaign w1 (2026-09-07): one B70, R276 image, strict launcher env, FULL_DECODE_ONLY capture sizes 1-64, no speculation, max-model-len 256, max-num-seqs 64, max-num-batched-tokens 512, 128 returned raw token IDs per response on the small-context suite, two passes on one server, warm pass shown. Every rung is output-identity-qualified in both passes, including c64 (64/64 twice). Nothing is withheld on this profile. <a class="inline" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json">evidence</a></figcaption></figure><figure class="chart"><h4>Qwen3.5-9B W4A16 one card, MTP depth 3 with the draft INT4 head, identity-qualified aggregate decode vs concurrent users (c1-c16; warm pass) <span class="badge lab">Lab-measured</span></h4><svg viewBox="0 0 640 260" width="100%" role="img" aria-label="Qwen3.5-9B W4A16 one card, MTP depth 3 with the draft INT4 head, identity-qualified aggregate decode vs concurrent users (c1-c16; warm pass)" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="216.0" x2="620" y2="216.0" stroke="var(--ink)" stroke-width="2"></line><path d="M64.0,188.4 L203.0,162.8 L342.0,127.9 L481.0,61.8 L620.0,37.8" fill="none" stroke="var(--spot)" stroke-width="3"></path><circle cx="64.0" cy="188.4" r="4" fill="var(--spot)"></circle><text x="64.0" y="179.4" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">116</text><circle cx="203.0" cy="162.8" r="4" fill="var(--spot)"></circle><text x="203.0" y="153.8" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">224</text><circle cx="342.0" cy="127.9" r="4" fill="var(--spot)"></circle><text x="342.0" y="118.9" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">371</text><circle cx="481.0" cy="61.8" r="4" fill="var(--spot)"></circle><text x="481.0" y="52.8" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">650</text><circle cx="620.0" cy="37.8" r="4" fill="var(--spot)"></circle><text x="620.0" y="28.8" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink)">751</text><text x="64.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">1</text><text x="203.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">2</text><text x="342.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">4</text><text x="481.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">8</text><text x="620.0" y="236" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--muted)">16</text><text x="64" y="254" font-size="11" font-family="var(--mono)" fill="var(--muted)">Concurrent HTTP users · log2 spacing · y: tok/s</text></svg><figcaption>As above with qwen3_5_mtp depth 3 and the draft-only INT4 lm_head. c1-c16 output-identity-qualified in both passes. Measured but withheld: c32 827.3 (32/32 warm, 31/32 cold) and c64 789.2 (61/64). <a class="inline" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json">evidence</a></figcaption></figure>
+
+  <h2 id="projection">How much faster could this get? <span class="badge spec">Projected — not measured</span></h2>
+  <p>The <a class="inline" href="https://mlbottleneck.com/">ML Bottleneck</a> physics engine projects what stock software, a tuned run, and the physical ceiling look like for this exact model, compression, card count, and software. The grade is optimization headroom against the tuned-run target, not model quality.</p>
+  <div id="package-projection" class="projection" hidden>
+    <p class="projection-status" data-projection-status>Loading projections from mlbottleneck.com…</p>
+    <div data-package-card></div>
+    <div data-package-charts></div>
+  </div>
+  <noscript><p class="projection-status">Projections need JavaScript; the measured numbers above are static.</p></noscript>
+
+  <div class="related">
+    <h2>Keep going</h2>
+    <div class="related-grid">
+      <a href="qwen-9b.html"><b>Qwen3.5 9B coverage</b><span>Variants, evidence, gaps, and recipes</span></a>
+      <a href="qwen35-9b-fp8-b70.html"><b>Qwen3.5 9B FP8-dynamic with its own MTP head on one Intel Arc Pro B70</b><span>98.1 tok/s · vLLM XPU</span></a>
+      <a href="../learn.html"><b>Learn</b><span>What sets these numbers</span></a>
+      <a href="../guides.html"><b>Recipes</b><span>Every package, filterable</span></a>
+      <a href="../index.html#contribute"><b>Contribute</b><span>Made it faster? Send it in</span></a>
+    </div>
+  </div>
+
+</div></div></main>
+
+<footer><div class="wrap">
+  <span>Unofficial lab, not affiliated with Intel. Measured numbers link to proof; projections are labeled.</span>
+  <span><a href="../learn.html">Learn</a> · <a href="../guides.html">Recipes</a> · <a href="https://github.com/steveseguin/b70-optimization-lab">GitHub</a> · <a href="https://mlbottleneck.com/" title="Physics-based LLM speed and memory planner for any GPU — same author">ML Bottleneck</a> · <a href="https://style-genome.com/" title="Design-system generator used to style this site — same author">Style Genome</a></span>
+</div></footer>
+<script defer src="../learn/assets/mlbottleneck-bridge.js?v=1d7b21a0d3"></script>
+<script>
+(() => {
+  document.querySelectorAll("[data-copy-markdown]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const original = button.textContent; button.disabled = true; button.textContent = "Copying…";
+      try {
+        const response = await fetch(button.dataset.copyMarkdown, { cache: "no-store" });
+        if (!response.ok) throw new Error("fetch failed");
+        await navigator.clipboard.writeText(await response.text());
+        button.textContent = "Copied"; button.classList.add("copied");
+      } catch (error) { button.textContent = "Copy failed"; button.classList.add("failed"); }
+      window.setTimeout(() => { button.textContent = original; button.classList.remove("copied", "failed"); button.disabled = false; }, 1800);
+    });
+  });
+})();
+</script>
+</body>
+</html>
