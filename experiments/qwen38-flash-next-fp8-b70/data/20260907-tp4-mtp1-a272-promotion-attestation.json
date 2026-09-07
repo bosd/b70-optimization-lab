@@ -1,0 +1,56 @@
+{
+ "schema": "neural.download.promotion-attestation.v1",
+ "created_utc": "2026-09-07T05:24:11Z",
+ "profile_id": "qwen38-flash-next-fp8-tp4-mtp1-fullgraphdet-4352-placement-hctriton-realistic-v1",
+ "decision": "promote",
+ "promotion_authorized": true,
+ "headline": {
+  "value": 37.04584447577281,
+  "unit": "tok/s",
+  "aggregation": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed realistic suite run once cold",
+  "metric_events": 100,
+  "metric_intervals": 99,
+  "note": "deterministic full-decode-graph line with one publisher MTP token, Triton-HC overlay 62219122 (one commit, VLLM_XPU_HC_TRITON=1, over the certified lossless-MTP1 placement head 005dc578): the model's Triton hyper-connection glue kernels (gate-mix, combine, combine-norm, silu; the reference path on CUDA) run on XPU instead of the torch fallbacks; PLE n-gram table and input embeddings host-offloaded over UVA (12.25 GiB budget), every hot routed expert resident, 3.5 GiB/rank of never-routed experts in pinned host memory behind the per-expert offset table (placement sha f3f4812cfae2), tuned W13/N32 map, MoE kernel and math unchanged. NEW OUTPUT AUTHORITY: the Triton glue rounds differently from the torch fallbacks at the last bf16 bit, so outputs are not bit-identical to the approved 31.93 / 27.64 rows (exact-2K 86b5b6c7 and exact-4K b89822ce instead of afffd211 / c6193cc6); within the lineage MTP1 stays lossless (every pin equal to the Triton-HC MTP0 line, LocalMaxxing cmtqqyulr006fpa01erfuiri8), every pin is deterministic and reproduced on the A266/A267/A269 MTP0 servers and the A268/A271 MTP1 servers, the quality profile equals the certified rows case by case (six of seven exact cases with the inherited code_execution miss, byte-identical outputs on all seven, 16/16 repeats one hash, exact needle), and the twelve suite rows pass the fresh-response gate with cached_tokens 0"
+ },
+ "performance_evidence": {
+  "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a272-realistic-suite-v1-result.json",
+  "sha256": "d026633b07d6ae5cf50423db07dba7accf24abf736af3e5c14cb3d034e971002"
+ },
+ "identity": {
+  "model_revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+  "runtime_revision": "622191221475b53cc6f7f4d847860939f4c300ab",
+  "optimization_identity": "tp4-ep4-fullgraphdet-mtp1-4352-ple-embed-budget12p25-uva-coldexperts-hostplaced-3p5gib-w13n32-mkldnndet-oneccl-twoshots-hctriton",
+  "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812"
+ },
+ "gates": {
+  "varied_task_quality_passed": true,
+  "exact_or_target_oracle_passed": true,
+  "deterministic_repeats_passed": true,
+  "fresh_server_repeat_passed": true,
+  "target_model_unchanged": true,
+  "no_quality_loss": true
+ },
+ "quality_evidence": [
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a271-fresh-repeat-deterministic-summary.json",
+   "sha256": "0bdb69ed57b4005be171e1777cf9b6ee5c87a2f83c217910deec65493fa97063",
+   "supports": [
+    "varied_task_quality_passed",
+    "exact_or_target_oracle_passed",
+    "deterministic_repeats_passed",
+    "fresh_server_repeat_passed",
+    "target_model_unchanged",
+    "no_quality_loss"
+   ]
+  },
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a266-a268-a271-exact-2k-pair-summary.json",
+   "sha256": "17da804f9648c56cd8fa0eea146d0ba005a25b125f3fc402cf92e1015a7630b2",
+   "supports": [
+    "fresh_server_repeat_passed",
+    "deterministic_repeats_passed",
+    "exact_or_target_oracle_passed"
+   ]
+  }
+ ]
+}

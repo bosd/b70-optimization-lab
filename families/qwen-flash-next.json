@@ -6,11 +6,27 @@
   "name": "Qwen Flash-Next",
   "display_name": "Qwen3.8 Flash-Next · 125B-A6B",
   "publisher": "Qwen",
-  "updated_at": "2026-09-06",
+  "updated_at": "2026-09-07",
   "summary": "Qwen's experimental 125B-A6B hybrid-attention MoE. The official FP8 export serves on four B70s with selective host placement, and all 25 practical TP4 eager-text MTP/context cells through 8K are classified. The retained current runtime now independently qualifies TP4 eager MTP0 at short context and exact active 4K: 5.224 tok/s on the established short screen and 4.758 tok/s conventional at exact 4K, with 6/7 semantic quality, 16/16 repeats, an exact cache-zero 4K needle, and card-clean teardown. At 16K, current-source MTP0 completed one exact generic-depth request, then the semantic program produced one correct fresh response, a corrupted same-server repeat, and a separate fresh-server worker timeout at 1,600 computed prompt tokens. This is Grade-D quarantined capability and nondeterministic runtime-stability evidence; it does not authorize 24K/32K. MTP2's bounded 16K treatment tranche is exhausted. MTP3 remains the preferred exact-4K recipe at 15.502 tok/s decode. The target-only official-thinking MTP0 profile passed 25/25, and graph, vision, other topologies, clean-host replay, and deployment qualification remain open.",
   "featured_results": [
     {
       "role": "hero",
+      "label": "Qwen3.8 Flash-Next FP8 · TP4 lossless MTP1, exact-4K, never-routed experts host-placed, Triton HC glue",
+      "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-context4k-a271",
+      "metric": "decode_tok_s",
+      "sample_index": 0,
+      "quality_label": "New deterministic authority reproduced on five servers; quality profile equal to the certified rows; lossless MTP1 within the lineage; LocalMaxxing 37.05 tok/s approved"
+    },
+    {
+      "role": "support",
+      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP0, exact-4K, never-routed experts host-placed, Triton HC glue",
+      "measurement_id": "qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-context4k-a269",
+      "metric": "decode_tok_s",
+      "sample_index": 0,
+      "quality_label": "New deterministic authority reproduced on three servers; quality profile equal to the certified rows; LocalMaxxing 32.90 tok/s approved"
+    },
+    {
+      "role": "support",
       "label": "Qwen3.8 Flash-Next FP8 · TP4 deterministic full-decode graph, exact-4K, never-routed experts host-placed (no speculation)",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp0-placement-context4k-a223",
       "metric": "decode_tok_s",
@@ -1639,6 +1655,102 @@
         }
       ],
       "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a225-fresh-repeat-deterministic-summary.json"
+    },
+    {
+      "id": "qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-context4k-a269",
+      "state": "lab-measured",
+      "revision": "qwen38-flash-next",
+      "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
+      "variant": "official FP8 block-128",
+      "quantization": "FP8 block-128",
+      "runtime": "vLLM XPU 8d7d6fd8 (Triton-HC overlay on the MTP0 placement head cb59004b) + staged kernels 2f829747",
+      "runtime_family": "vLLM XPU",
+      "config": {
+        "tp": 4,
+        "ep": 4,
+        "parallel_profile": "TP=EP",
+        "mtp": 0,
+        "active_context_tokens": 4096,
+        "configured_max_context_tokens": 4352,
+        "graph_mode": "FULL_DECODE_ONLY",
+        "kv": "auto",
+        "modality": "text"
+      },
+      "profile_id": "flash-next-tp4-mtp0-placement-hctriton-ctx4096-v1",
+      "measurement_class": "certified frozen-client exact-4K p4096/o128 rows (conventional 99 inter-token intervals) with never-routed experts host-placed",
+      "promotion_status": "certified 2026-09-07 as a new Triton-HC authority (A269: every pin deterministic and equal to the A266/A267 screens; outputs not bit-identical to the torch-fallback rows); LocalMaxxing cmtqqyulr006fpa01erfuiri8 approved 2026-09-07 on the fixed realistic suite (32.898806 tok/s class-balanced median)",
+      "quality_scope": "6/7 semantic (sole miss code_execution), byte-identical outputs to the certified placement battery on all seven cases, 16/16 repeat with one hash, exact needle; exact-2K 86b5b6c7 and exact-4K b89822ce (new authority) reproduced on three servers",
+      "workload": "two exact p4096/o128 requests per server on two servers, cache zero; 99-interval rate; PLE and embeddings host-offloaded over UVA (12.22 GiB/rank), every hot routed expert resident, 3.5 GiB/rank of never-routed experts in pinned host memory behind a per-expert offset table; the Triton hyper-connection glue kernels run on XPU (VLLM_XPU_HC_TRITON=1)",
+      "metrics": {
+        "decode_tok_s": [
+          32.595981
+        ]
+      },
+      "raw_observations": {
+        "decode_tok_s": [
+          32.576113,
+          32.615849
+        ],
+        "aggregation": "median of two rows on one server (A269 r1/r2)",
+        "output_sha256": "b89822ce3b8a2719e0824d0e49222d535c8bd9fd86bc58feebd3cddaa9477b7c"
+      },
+      "sample_annotations": [
+        {
+          "metric": "decode_tok_s",
+          "index": 0,
+          "value": 32.595981,
+          "label": "Triton HC glue on the MTP0 placement line: 1.19x the placement row at exact 4K, new output authority"
+        }
+      ],
+      "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a269-fresh-repeat-deterministic-summary.json"
+    },
+    {
+      "id": "qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-context4k-a271",
+      "state": "lab-measured",
+      "revision": "qwen38-flash-next",
+      "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
+      "variant": "official FP8 block-128",
+      "quantization": "FP8 block-128",
+      "runtime": "vLLM XPU 62219122 (Triton-HC overlay on the lossless MTP1 placement head 005dc578) + staged kernels 2f829747",
+      "runtime_family": "vLLM XPU",
+      "config": {
+        "tp": 4,
+        "ep": 4,
+        "parallel_profile": "TP=EP",
+        "mtp": 1,
+        "active_context_tokens": 4096,
+        "configured_max_context_tokens": 4352,
+        "graph_mode": "FULL_DECODE_ONLY",
+        "kv": "auto",
+        "modality": "text"
+      },
+      "profile_id": "flash-next-tp4-mtp1-placement-hctriton-ctx4096-v1",
+      "measurement_class": "certified (new Triton-HC authority) frozen-client exact-4K p4096/o128 rows with one speculative token and never-routed experts host-placed",
+      "promotion_status": "certified 2026-09-07 (A271: every pin equal to the Triton-HC MTP0 line, lossless MTP1 within the new authority); LocalMaxxing cmtqspsy00092pa01kli5htlb approved 2026-09-07 on the fixed realistic suite (37.045844 tok/s class-balanced median), the fastest Flash-Next row; outputs not bit-identical to the torch-fallback rows",
+      "quality_scope": "6/7 semantic (sole miss code_execution), byte-identical outputs to the certified placement battery on all seven cases, 16/16 repeat with one hash, exact needle; exact-2K 86b5b6c7 and exact-4K b89822ce authorities reproduced with MTP1 (lossless within the lineage)",
+      "workload": "two exact p4096/o128 requests per server on two servers, cache zero; 99-interval rate; PLE and embeddings host-offloaded over UVA (12.22 GiB/rank), every hot routed expert resident, 3.5 GiB/rank of never-routed experts in pinned host memory behind a per-expert offset table; the Triton hyper-connection glue kernels run on XPU (VLLM_XPU_HC_TRITON=1)",
+      "metrics": {
+        "decode_tok_s": [
+          36.365674
+        ]
+      },
+      "raw_observations": {
+        "decode_tok_s": [
+          36.368651,
+          36.362698
+        ],
+        "aggregation": "median of two rows on one server (A271 r1/r2)",
+        "output_sha256": "b89822ce3b8a2719e0824d0e49222d535c8bd9fd86bc58feebd3cddaa9477b7c"
+      },
+      "sample_annotations": [
+        {
+          "metric": "decode_tok_s",
+          "index": 0,
+          "value": 36.365674,
+          "label": "lossless MTP1 with the Triton HC glue: the fastest certified Flash-Next row at exact 4K, new output authority"
+        }
+      ],
+      "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a271-fresh-repeat-deterministic-summary.json"
     }
   ],
   "series_measurements": [
@@ -1800,6 +1912,47 @@
           "evidence": [
             "results/qwen38-flash-next-fp8-b70/README.md",
             "experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a226-promotion-attestation.json"
+          ]
+        },
+        "evidence": {
+          "grade": "B",
+          "scope": "exact TP4/EP4 graph lossless-MTP1 placement record at 31.929 tok/s class-balanced (A226) with the A225 battery on a separate server",
+          "basis": "Model, placement overlay commit, hosted kernel stage, hosted oneCCL build, tuned map, placement file and frozen packet are pinned by hash; the record run retained every prompt and output SHA-256 (equal to the approved MTP0 and MTP1 rows), cache-zero fresh-response gates and the tuned-map selection receipt; a separate server reproduced both exact-depth authorities bit-for-bit. Only the originating host has replayed it.",
+          "reviewed_at": "2026-09-06",
+          "evidence": [
+            "experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a226-realistic-suite-v1-result.json",
+            "experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a225-fresh-repeat-deterministic-summary.json"
+          ]
+        }
+      }
+    },
+    {
+      "id": "qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907",
+      "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed + Triton HC glue",
+      "revision": "qwen38-flash-next",
+      "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
+      "quantization": "FP8 block-128",
+      "runtime": "vLLM XPU 622191221475b53cc6f7f4d847860939f4c300ab (Triton-HC overlay on the placement head 005dc578) + staged kernels 2f829747 + public oneCCL 4ceafd1",
+      "cards": 4,
+      "status": "candidate",
+      "evidence_level": "B70-verified originating-host replay",
+      "coverage": [
+        "decode",
+        "exactness",
+        "quality",
+        "runtime provenance",
+        "recipe"
+      ],
+      "manifest": "packages/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/package.json",
+      "grades": {
+        "capability": {
+          "grade": "B",
+          "scope": "user-facing TP4/EP4 deterministic full-decode-graph text serving with lossless MTP1 at configured max 4,352, one sequence, on the fixed cold realistic suite",
+          "basis": "The certified line answers the 12-prompt realistic suite deterministically with the quality profile of the certified rows (byte-identical exact-case outputs, one repeat hash, exact needle), reproduced its exact-2K and exact-4K pins on five servers, and keeps MTP1 lossless within the lineage; its outputs are a new authority (the Triton hyper-connection glue rounds at the last bf16 bit) rather than bit-identical to the torch-fallback rows; a workload that routes to a host-placed expert pays a PCIe read for that row; long-context, concurrency, and clean-host installation are not covered.",
+          "reviewed_at": "2026-09-07",
+          "evidence": [
+            "results/qwen38-flash-next-fp8-b70/README.md",
+            "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a272-promotion-attestation.json"
           ]
         },
         "evidence": {

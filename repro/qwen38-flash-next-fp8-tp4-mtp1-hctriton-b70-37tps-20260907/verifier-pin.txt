@@ -1,0 +1,4 @@
+sha256=20546ff1b349ce5d969d29855ed9a95b38c5be2d22084b6cb4326bac4a7e8849
+blob=4845ae4cbb258a3691f41bedd496ceaf03d28d04
+lab_commit=33500141c1a7977a1cc9d651fb4a4cec053ee0af
+path=experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py

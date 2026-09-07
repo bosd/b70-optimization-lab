@@ -5342,6 +5342,7 @@ class FamilyCoverageTest(unittest.TestCase):
             },
             {
                 "qwen38-flash-next-fp8-tp4-mtp1-placement-b70-32tps-20260906": "B",
+                "qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907": "B",
                 "qwen38-flash-next-fp8-tp4-mtp1-lossless-b70-27tps-20260905": "B",
                 "qwen38-flash-next-fp8-tp4-research": "C",
                 "qwen38-flash-next-fp8-tp4-mtp0-current-research": "C",

@@ -156,6 +156,43 @@ Data: [A226 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4
 [A190/A225 pair](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a190-a225-exact-2k-pair-summary.json),
 [attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a226-promotion-attestation.json).
 
+## 2026-09-07: the Triton hyper-connection glue on XPU, +19% at a new output authority
+
+The XPU port routed the model's hyper-connection glue (the per-layer mix, combine,
+combine-norm and silu between the residual streams) to torch fallbacks; the model's own
+Triton kernels for them, the reference path on CUDA, run ten times faster. The graph-step
+decomposition on the placement identity had put the mixes at 8.4 ms of a 37 ms step. One
+commit (`VLLM_XPU_HC_TRITON=1`, overlay `8d7d6fd8` on the MTP0 placement head `cb59004b`,
+`62219122` on the lossless MTP1 head `005dc578`; the MoE kernel, tuned map, offload and
+placement untouched) runs them on XPU. The Triton glue rounds differently at the last bf16
+bit, so this is the lab's first line published as a **new output authority**: exact-2K
+`86b5b6c7…` and exact-4K `b89822ce…` instead of `afffd211…` / `c6193cc6…`. It earned it the
+same way the torch-fallback rows did — deterministic repeats, fresh-server pairs (three MTP0
+servers, two MTP1 servers), the quality profile equal to the certified battery case by case
+(byte-identical outputs on all seven exact cases, one hash over 16 repeats, exact needle),
+and twelve cold suite rows — and the disclosure travels with every artifact. Split-K in the
+MoE GEMM, screened the same night, was exact at 2K but not at 4K and is excluded from both
+ladders.
+
+| screen | expert placement (2026-09-06) | Triton HC glue (2026-09-07) | outputs |
+|---|---|---|---|
+| exact-2K conventional 99-interval, MTP0 | 27.48 / 27.34 (A223) | **32.58 / 32.56** (A269), 32.64 / 32.59 (A266), 32.61 / 32.56 (A267) | `86b5b6c7…` on every run |
+| exact-4K conventional 99-interval, MTP0 | 27.40 / 27.43 (A223) | **32.58 / 32.62** (A269) | `b89822ce…` |
+| fixed cold realistic suite, MTP0 | 27.640875 (A227) | **32.898806 tok/s** (A270), LocalMaxxing run `cmtqqyulr006fpa01erfuiri8` approved | twelve fresh rows, cached_tokens 0 |
+| exact-2K / exact-4K, lossless MTP1 | 33.21 / 33.22, 32.48 / 32.50 (A225) | **36.43 / 36.47**, **36.37 / 36.36** (A271); 36.47 / 36.49, 36.41 / 36.42 (A268) | the MTP0 pins |
+| fixed cold realistic suite, lossless MTP1 | 31.929484 (A226) | **37.045844 tok/s** (A272), LocalMaxxing run `cmtqspsy00092pa01kli5htlb` approved | twelve fresh rows, cached_tokens 0 |
+
+Certification: frozen-client batteries on the HC heads with the client pinned to the new
+hashes (A269 MTP0, A271 MTP1: 6/7 quality with the inherited miss, 16/16 repeat, exact
+needle, both depth pins), quality screens on A266/A267/A268, verifier receipt for the
+tuned-map selection, [MTP0 attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a270-promotion-attestation.json),
+[MTP1 attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a272-promotion-attestation.json).
+Data: [A270 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a270-realistic-suite-v1-result.json), [A272 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a272-realistic-suite-v1-result.json),
+[A269 summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a269-fresh-repeat-deterministic-summary.json), [A271 summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a271-fresh-repeat-deterministic-summary.json),
+[MTP0 pair summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a266-a267-a269-exact-2k-pair-summary.json), [MTP1 pair summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a266-a268-a271-exact-2k-pair-summary.json),
+[overlay series](../../patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/README.md), [day summary](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-05-day-summary.md).
+Replay guide: [`repro/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/`](../../repro/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/README.md) (`lab-replay`, candidate package).
+
 LocalMaxxing: the promoted MTP0 line is submitted and approved
 (`cmtn32b2w000tmm01t7j2wlpn`, 2026-09-04) on the fixed realistic suite run
 once cold: 14.433684 tok/s class-balanced median of prompt-class medians
