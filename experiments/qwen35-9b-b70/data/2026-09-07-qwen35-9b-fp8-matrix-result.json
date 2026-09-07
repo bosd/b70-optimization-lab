@@ -417,5 +417,46 @@
    ]
   },
   "verdict": "Depth 3 warm: c1 88.4, c2 166.7, c4 255.9, c8 463.3 (8/8), c16 636.3 (15/16), c32 804.4 (28/32), c64 744.6 (59/64). MTP0 warm: c1 50.1, c2 97.3, c4 187.9, c8 354.8 (7/8), c16 634.1 (15/16), c32 1055.0 (30/32), c64 1254.3 (58/64). Exact through c8 (depth 3) / c4 (MTP0) in both passes; near-tie flips from there."
+ },
+ "c2_tp1_depth3_graph_draft_int4_head": {
+  "config": "as c1 plus VLLM_XPU_DRAFT_LM_HEAD_INT4=1 (draft-only INT4 copy of the 248K-row lm_head; FP8 target verifier unchanged)",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 50.165,
+    "median_tok_s_1_100": 50.67,
+    "p10_tok_s_1_100": 50.661,
+    "median_tok_s_full": 50.096,
+    "ttft_ms_median": 56.09
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 50.173,
+    "median_tok_s_1_100": 50.68,
+    "p10_tok_s_1_100": 50.479,
+    "median_tok_s_full": 50.108,
+    "ttft_ms_median": 53.06
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 98.251,
+    "median_tok_s_1_100": 101.157,
+    "p10_tok_s_1_100": 86.27,
+    "median_tok_s_full": 96.539,
+    "ttft_ms_median": 73.89
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 98.027,
+    "median_tok_s_1_100": 101.122,
+    "p10_tok_s_1_100": 86.783,
+    "median_tok_s_full": 96.491,
+    "ttft_ms_median": 76.46
+   }
+  },
+  "gates": {
+   "G1 mtp0-a vs mtp0-b": "12/12",
+   "G2 mtp3-a vs mtp3-b": "12/12",
+   "G3 mtp3-a vs mtp0-a": "12/12",
+   "G3 mtp3-b vs mtp0-a": "12/12"
+  },
+  "verdict": "The draft-only INT4 lm_head lifts depth 3 from 76.917/76.879 (c1) to 98.251/98.027 tok/s (+27.6%) with every gate exact: the FP8 target still verifies each draft token.",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c2"
  }
 }

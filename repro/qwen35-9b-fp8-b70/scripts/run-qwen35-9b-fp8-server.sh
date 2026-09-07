@@ -7,6 +7,8 @@
 #   MTP_DEPTH           speculative tokens per step, default 3 (0 = no speculation)
 #   TENSOR_PARALLEL_SIZE 1 (default) or 2; XPU_DEVICE_MASK selects the card(s), default 0 (TP1) / 0,1 (TP2)
 #   XPU_GRAPH           1 (default, FULL_DECODE_ONLY capture sizes 1-64) or 0 (piecewise compile, XPU graph off)
+#   DRAFT_HEAD_INT4     1 (default): the MTP draft passes use a draft-only INT4 copy of the 248K-row lm_head (the FP8 target verifier is
+#                       unchanged, so outputs are identical); 0 keeps the FP8 head for drafts too
 #   PORT / CONTAINER_NAME / SERVED_MODEL_NAME / MAX_MODEL_LEN / MAX_NUM_SEQS / MAX_NUM_BATCHED_TOKENS / VLLM_CACHE_DIR as the FP8 recipe
 set -euo pipefail
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd); repo_root=$(cd -- "${script_dir}/../../.." && pwd)
@@ -28,7 +30,7 @@ export EXPECTED_XPU_OPS_SHA256=${EXPECTED_XPU_OPS_SHA256:-6ee6b8db18759873246aca
 export EXPECTED_LAYERNORM_SHA256=${EXPECTED_LAYERNORM_SHA256:-50cf5f4f9c72f679e4318cd3e3e021a844f59ac188a891d9a4f9638188f4bce8}
 export MODEL_DIR=${MODEL_DIR:?set MODEL_DIR to the downloaded RedHatAI/Qwen3.5-9B-FP8-dynamic directory (revision 790f0576)}
 export MODEL_MANIFEST=${MODEL_MANIFEST:-${script_dir}/../manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json}
-export QUANTIZATION=compressed-tensors VLLM_XPU_FP8_BLOCK_W8A16=0 VLLM_XPU_DRAFT_LM_HEAD_INT4=0 VLLM_XPU_W4A16_DETERMINISM_PAD=0
+export QUANTIZATION=compressed-tensors VLLM_XPU_FP8_BLOCK_W8A16=0 VLLM_XPU_DRAFT_LM_HEAD_INT4=${DRAFT_HEAD_INT4:-1} VLLM_XPU_W4A16_DETERMINISM_PAD=0
 export VLLM_BATCH_INVARIANT=0 VLLM_XPU_GDN_SPLIT_MIXED=1 VLLM_XPU_GDN_SPEC_GROUP=${VLLM_XPU_GDN_SPEC_GROUP:-16}
 export VLLM_XPU_GEMMA_RMSNORM_TRITON=0 VLLM_XPU_RMSNORM_TRITON=0 VLLM_XPU_ENABLE_XPU_GRAPH=${xpu_graph}
 export TENSOR_PARALLEL_SIZE=${tp} XPU_DEVICE_MASK=${XPU_DEVICE_MASK:-$([[ "${tp}" == 2 ]] && echo 0,1 || echo 0)}
