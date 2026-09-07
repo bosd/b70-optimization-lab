@@ -2,7 +2,7 @@
   "repository": "devan-carlin/Qwen3.8-27B-int4-AutoRound",
   "revision": "bce40cacab0a4535b92fb3d57615c2bea9adf3d1",
   "revision_url": "https://huggingface.co/devan-carlin/Qwen3.8-27B-int4-AutoRound/tree/bce40cacab0a4535b92fb3d57615c2bea9adf3d1",
-  "revision_note": "The Hugging Face model API resolved this exact revision on 2026-08-18. Its LFS SHA-256 values, byte sizes, and small-file identities match both the original /mnt/usb-models copy and the independently downloaded /mnt/fast-ai copy.",
+  "revision_note": "The Hugging Face model API resolved this exact revision on 2026-08-18. Its LFS SHA-256 values, byte sizes, and small-file identities match both the original /mnt/usb-models copy and the independently downloaded /mnt/fast-ai copy. One entry, model-mtp-bf16.safetensors, is marked origin=derived-locally: it is produced by the BF16 draft relabel script on this host and is deliberately absent upstream, so a check against Hugging Face should skip it.",
   "base_model": "Qwen/Qwen3.8-27B",
   "total_bytes_reported_by_hugging_face": 19016930167,
   "identity": {
@@ -52,7 +52,9 @@
     {
       "path": "model-mtp-bf16.safetensors",
       "bytes": 849400424,
-      "sha256": "90fa0e3eed5a647c035c6df9ecabc416c0f8d573ff84ac12485b085f00a7cdf2"
+      "sha256": "90fa0e3eed5a647c035c6df9ecabc416c0f8d573ff84ac12485b085f00a7cdf2",
+      "origin": "derived-locally",
+      "origin_note": "Not a publisher file. Produced on this host by scripts/make-gptq-relabel-bf16-draft.py, which casts the AutoRound MTP draft weights to BF16; the digest pins that local conversion so the serving directory can be verified, but it will not be found at the upstream revision."
     }
   ],
   "small_files": [
