@@ -1,4 +1,4 @@
-# Reproduce Qwen3.5 4B W4A16 with its own MTP head on one B70
+# Reproduce Qwen3.5 4B W4A16 with its own MTP head on one or two B70s
 
 > **Certification: `candidate-portable-repro`, not a starter guide.** Model
 > revision, container image, launch chain and validation identities are pinned
@@ -25,6 +25,29 @@ same stack and launcher as the
 - **Lossless:** G1, G2 and both G3 comparisons matched 12/12 complete token
   arrays; canaries passed on every server.
 - LocalMaxxing: `cmtrj2tp3000hps01n3fadg9d`, `177.287 tok/s`.
+
+## Two cards (campaign t1, TP2)
+
+A 4B model is small enough that the second card could plausibly cost more in collective traffic than it returns. It
+does not: the second card is worth more to this model than to the 9B.
+
+| measurement | one card | two cards |
+| --- | ---: | ---: |
+| no speculation | 102.63 / 102.38 | **138.17 / 138.06** |
+| MTP depth 3, one user | 177.41 / 177.17 | **240.62 / 227.53** |
+| 32 users, no speculation | 1593.9 (32/32) | **2342.9 / 2353.9 (32/32)** |
+| 64 users, no speculation | 1725.1 (63/64) | **2752.6 / 2777.7 (62/64, 64/64)** |
+
+All strict gates pass 12/12 on both card counts, and the two two-card depth-3 servers returned byte-identical answers
+on all 12 prompts.
+
+Two caveats belong with those numbers. The two-card depth-3 pair measured `240.615` and `227.533 tok/s`, a `5.8%`
+spread, where the one-card pair of the same lane differed by `0.13%`; two-card speculative decode is markedly noisier
+here, so its center is quoted with that spread rather than as a tight figure. And concurrency identity is weaker on
+two cards: without speculation the route is exact through 32 users in both passes but scores 62/64 then 64/64 at 64
+users, and with depth 3 it is exact only through 16. The 9B on this same kernel is exact at every rung through 64
+users on one card and drops to 63/64 on two, so on both models the loss appears when the second card joins. That
+points at the cross-card reduction rather than the GEMM.
 
 ## Why this route and not the FP8 one
 
@@ -105,5 +128,7 @@ All 18 depth-3 answers matched the oracle. This model holds its speed at length 
 
 ## Known limits
 
-- One card only; depths other than 0 and 3 were not run.
+- Depths other than 0 and 3 were not run.
+- Two-card concurrency identity is not qualified above 32 users without
+  speculation, or above 16 with it.
 - Not yet clean-host tested.

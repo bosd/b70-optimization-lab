@@ -1566,7 +1566,7 @@
       "manifest": "packages/qwen35-4b-w4a16-b70/package.json",
       "format": "b70-model-package-v1",
       "id": "qwen35-4b-w4a16-b70",
-      "name": "Qwen3.5 4B W4A16 with its own MTP head on one Intel Arc Pro B70",
+      "name": "Qwen3.5 4B W4A16 with its own MTP head on one or two Intel Arc Pro B70",
       "status": "candidate",
       "audience": "intermediate",
       "guide": "repro/qwen35-4b-w4a16-b70/README.md",
@@ -1643,7 +1643,8 @@
         "cards": 1,
         "host_ram_min_bytes": 16106127360,
         "host_ram_plus_swap_min_bytes": 21474836480,
-        "model_weight_bytes": 5542033615
+        "model_weight_bytes": 5542033615,
+        "note": "One card is the default profile; the two-card (TP2) profile is measured in the same recipe at 138.1 tok/s without speculation and a 240.6/227.5 depth-3 pair."
       },
       "model": {
         "repository": "RedHatAI/Qwen3.5-4B-quantized.w4a16",
@@ -1683,6 +1684,7 @@
       "dependencies": [
         "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
         "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+        "experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1-strict-result.json",
         "experiments/qwen35-4b-b70/notes/2026-09-07-qwen35-4b-fp8-not-repeat-exact.md",
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
@@ -1719,8 +1721,9 @@
         "scripts/neural-download-canaries.py"
       ],
       "evidence": [
+        "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
         "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
-        "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json"
+        "experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1-strict-result.json"
       ],
       "missing": [
         "clean-host replay"

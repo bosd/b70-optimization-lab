@@ -1,0 +1,285 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1",
+ "status": "Qwen3.5-4B W4A16, two B70s (TP2), MTP depth 3 via qwen3_5_mtp with full decode-only XPU graph capture: strict pair 240.615100/227.533300 tok/s class-balanced median (tokens 1-100 after TTFT), G1/G2/G3 exact",
+ "image_id": "sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "image_tag": "neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276",
+ "image_ghcr": "ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad (public; the identical image also sits in the private ghcr.io/steveseguin/vllm-openai-xpu-b70)",
+ "compilation_config": null,
+ "speculative_config": {
+  "method": "qwen3_5_mtp",
+  "num_speculative_tokens": 3
+ },
+ "oracle_root": "qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1/mtp0-a (same-configuration MTP0, two fresh servers G1 12/12)",
+ "boot_id": "bf8e504b-4d60-4142-8b2b-e60d65fec77e",
+ "repo_head_at_launch": "f0571146ffaf3d06590935de5b519aba98a96fea",
+ "campaign_config": "LANE=qwen35-4b-w4a16 RUN=t1 TP=2 DEPTH=3 GRAPH=1 DRAFT_HEAD=1 QUANT=compressed-tensors PAD=0 mask=0,1 model=/home/steve/llm-models/qwen35-4b-w4a16 image=sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "model": {
+  "hf_id": "RedHatAI/Qwen3.5-4B-quantized.w4a16",
+  "revision": "7a613872f394578b0b52b683ff4ac47516b4bcaf",
+  "served_as": "compressed-tensors W4A16 INT4 weights, FP16 activations, publisher MTP head as draft, draft-only INT4 lm_head copy"
+ },
+ "runtime_env": {
+  "VLLM_XPU_ENABLE_XPU_GRAPH": "1",
+  "VLLM_XPU_DRAFT_LM_HEAD_INT4": "1",
+  "VLLM_XPU_GDN_SPEC_GROUP": "16",
+  "VLLM_XPU_GDN_SPLIT_MIXED": "1",
+  "VLLM_BATCH_INVARIANT": "0",
+  "TORCHINDUCTOR_DETERMINISTIC": "1",
+  "PYTHONHASHSEED": "0",
+  "QUANTIZATION": null,
+  "VLLM_XPU_FP8_BLOCK_W8A16": "1"
+ },
+ "gates_passed": {
+  "G1 mtp0-a vs mtp0-b": "12/12",
+  "G2 mtp3-a vs mtp3-b": "12/12",
+  "G3 mtp3-a vs mtp0-a": "12/12",
+  "G3 mtp3-b vs mtp0-a": "12/12"
+ },
+ "attempts": {
+  "mtp0-a": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1/mtp0-a/strict",
+  "mtp0-b": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1/mtp0-b/strict",
+  "mtp3-a": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1/mtp3-a/strict",
+  "mtp3-b": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1/mtp3-b/strict"
+ },
+ "centers": {
+  "mtp3_class_balanced_tok_s": 234.0742,
+  "mtp0_class_balanced_tok_s": 138.11605
+ },
+ "performance_evidence": {
+  "mtp0-a": {
+   "class_balanced_tok_s_1_100_intervals_after_ttft": 138.1695,
+   "tok_s_1_100_after_ttft": 139.5559,
+   "tok_s_after_ttft_full": 137.1276,
+   "tok_s_wall_full": 135.8687,
+   "ttft_ms": 35.1013
+  },
+  "mtp0-b": {
+   "class_balanced_tok_s_1_100_intervals_after_ttft": 138.0626,
+   "tok_s_1_100_after_ttft": 139.4362,
+   "tok_s_after_ttft_full": 137.0588,
+   "tok_s_wall_full": 135.9543,
+   "ttft_ms": 31.2028
+  },
+  "mtp3-a": {
+   "class_balanced_tok_s_1_100_intervals_after_ttft": 240.6151,
+   "tok_s_1_100_after_ttft": 226.1593,
+   "tok_s_after_ttft_full": 223.5832,
+   "tok_s_wall_full": 220.1226,
+   "ttft_ms": 38.3345
+  },
+  "mtp3-b": {
+   "class_balanced_tok_s_1_100_intervals_after_ttft": 227.5333,
+   "tok_s_1_100_after_ttft": 220.8964,
+   "tok_s_after_ttft_full": 216.9143,
+   "tok_s_wall_full": 213.4012,
+   "ttft_ms": 39.2588
+  }
+ },
+ "identity_ladders": {
+  "mtp0": [
+   {
+    "concurrency": 1,
+    "pass": 1,
+    "aggregate_tok_s_wall": 135.4,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 1,
+    "aggregate_tok_s_wall": 248.7,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 1,
+    "aggregate_tok_s_wall": 486.8,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 1,
+    "aggregate_tok_s_wall": 898.0,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1516.6,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 1,
+    "aggregate_tok_s_wall": 2342.9,
+    "exact_vs_sequential_oracle": "32/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 1,
+    "aggregate_tok_s_wall": 2752.6,
+    "exact_vs_sequential_oracle": "62/64"
+   },
+   {
+    "concurrency": 1,
+    "pass": 2,
+    "aggregate_tok_s_wall": 136.3,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 2,
+    "aggregate_tok_s_wall": 258.9,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 2,
+    "aggregate_tok_s_wall": 492.1,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 2,
+    "aggregate_tok_s_wall": 900.3,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1492.3,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 2,
+    "aggregate_tok_s_wall": 2353.9,
+    "exact_vs_sequential_oracle": "32/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 2,
+    "aggregate_tok_s_wall": 2777.7,
+    "exact_vs_sequential_oracle": "64/64"
+   }
+  ],
+  "mtp3": [
+   {
+    "concurrency": 1,
+    "pass": 1,
+    "aggregate_tok_s_wall": 224.2,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 1,
+    "aggregate_tok_s_wall": 150.9,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 1,
+    "aggregate_tok_s_wall": 400.4,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1241.5,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1360.3,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1853.4,
+    "exact_vs_sequential_oracle": "30/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 1,
+    "aggregate_tok_s_wall": 2023.0,
+    "exact_vs_sequential_oracle": "60/64"
+   },
+   {
+    "concurrency": 1,
+    "pass": 2,
+    "aggregate_tok_s_wall": 227.3,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 2,
+    "aggregate_tok_s_wall": 428.4,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 2,
+    "aggregate_tok_s_wall": 759.6,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1289.6,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1588.1,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1848.9,
+    "exact_vs_sequential_oracle": "28/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 2,
+    "aggregate_tok_s_wall": 2020.6,
+    "exact_vs_sequential_oracle": "59/64"
+   }
+  ]
+ },
+ "output_sha256": {
+  "mtp3-a": [
+   "976e0856681b4852cbc1556dfa477300370cc465898e4018b977197cb0d299e6",
+   "5df6e4c75e437b836947c43fd54224e8d472f424d7da025e31a36af57921fa8f",
+   "c19b99400de4ba410a0a9e151fb2e8f4aec2d76eb3cc4ee428ed28d17e77bfec",
+   "e9ea2ac5b2a21c2310cfd4002326732b4aadd91e541de9b67e25e2e518db2382",
+   "03011e49458bf5345f83ba034d8f9a9dcb037fbc54dcf69561f13c6ddeae9c54",
+   "c56e710f2fa147daf0f5013b8cc0488ec138059d5d98ca4f996d2a452f52f14b",
+   "a776be6d34fb7d42ba921810572a58ede8c1dd22b87bb40c1f7257d488f4e1bd",
+   "da29d4ceb3adbb45bfa3aaf2786e679ae3f7eecc1a11e0458e6e0dabd7054011",
+   "3b7ca4db6f5564aa1242e4409458b773a73da6b11826a7af29bc731fb970d21d",
+   "2ef9e760d7b2834e0b872682dc6f63da8925100504c20b96c24c8adcdd397e31",
+   "990b5b6d0e2a04aa0b13f173a8af3d334d3f34584dad0b9239448eee4e5eab3b",
+   "1b7bed443101e60a46d1236366579558de177191424ec5bef89356da94ced0e6"
+  ],
+  "mtp3-b": [
+   "976e0856681b4852cbc1556dfa477300370cc465898e4018b977197cb0d299e6",
+   "5df6e4c75e437b836947c43fd54224e8d472f424d7da025e31a36af57921fa8f",
+   "c19b99400de4ba410a0a9e151fb2e8f4aec2d76eb3cc4ee428ed28d17e77bfec",
+   "e9ea2ac5b2a21c2310cfd4002326732b4aadd91e541de9b67e25e2e518db2382",
+   "03011e49458bf5345f83ba034d8f9a9dcb037fbc54dcf69561f13c6ddeae9c54",
+   "c56e710f2fa147daf0f5013b8cc0488ec138059d5d98ca4f996d2a452f52f14b",
+   "a776be6d34fb7d42ba921810572a58ede8c1dd22b87bb40c1f7257d488f4e1bd",
+   "da29d4ceb3adbb45bfa3aaf2786e679ae3f7eecc1a11e0458e6e0dabd7054011",
+   "3b7ca4db6f5564aa1242e4409458b773a73da6b11826a7af29bc731fb970d21d",
+   "2ef9e760d7b2834e0b872682dc6f63da8925100504c20b96c24c8adcdd397e31",
+   "990b5b6d0e2a04aa0b13f173a8af3d334d3f34584dad0b9239448eee4e5eab3b",
+   "1b7bed443101e60a46d1236366579558de177191424ec5bef89356da94ced0e6"
+  ]
+ },
+ "identity_claim": "Single-request identity holds: both depth-3 servers matched each other and the same-configuration MTP0 oracle on all 12 complete token arrays. Concurrency identity does not hold to the top of the ladder on two cards: without speculation the route is exact through 32 users in both passes and 62/64 then 64/64 at 64 users; with depth 3 it is exact through 16 users, 30/32 and 28/32 at 32, and 60/64 then 59/64 at 64. The one-card 9B on this same kernel is exact at every rung through 64 in both passes, so the loss appears when a second card joins.",
+ "notes": "Canaries passed on every server; cached_tokens 0 on every request. The two depth-3 servers measured 240.615 and 227.533 tok/s, a 5.8% spread, against 0.13% between the two one-card servers of the same lane: two-card speculative decode is markedly noisier here, so its center is reported with that spread stated."
+}
