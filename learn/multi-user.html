@@ -188,6 +188,54 @@
     combined tok/s at 32 users without speculation and 465 at 16 with depth 1.
   </p>
 
+  <h2 id="identity-kernel">Why answers change when the server gets busy, and what fixes it</h2>
+  <p>
+    Every table above reports how many of the concurrent answers came back <em>byte-identical</em> to the answer the
+    same server gives one user at a time. That count is usually perfect at low concurrency and slips at high
+    concurrency: a handful of prompts come back different. The answers are not wrong, they are a second valid
+    continuation. Measurements on four lanes in September 2026 pinned down why, and one configuration removes it
+    entirely.
+  </p>
+  <div class="callout good">
+    <span class="tag">The short version</span>
+    <p>It is the matmul, not the model. When a kernel sums a row differently depending on how many rows are in the
+    batch, any token whose top two candidates are exactly tied can fall the other way. Kernels that keep one summation
+    order regardless of batch size do not have the problem. On these cards that is the INT4 W4A16 path.</p>
+  </div>
+  <p>
+    Two models show it failing in two different ways on the same stack, same launcher, same 12 prompts, and both are
+    clean once the weights are INT4:
+  </p>
+  <div class="scroller">
+  <table class="data">
+    <thead><tr><th scope="col">Model and check</th><th scope="col">FP8 weights</th><th scope="col">INT4 W4A16 weights</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Qwen3.5-4B, two fresh servers, one user</th><td>11/12, 9/12, 11/12 over three tries</td><td>12/12</td></tr>
+      <tr><th scope="row">Qwen3.5-9B, 16 users at once</th><td>15/16</td><td>16/16, both passes</td></tr>
+      <tr><th scope="row">Qwen3.5-9B, 64 users at once</th><td>59/64</td><td>64/64, both passes</td></tr>
+      <tr><th scope="row">Qwen3.5-9B, one user, tokens per second</th><td>98.3</td><td>113.6</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+    The 4B case is the clearest evidence that this is arithmetic and not load: two servers started from the same files,
+    with one request each and nothing concurrent, still disagreed on three of twelve prompts. Each of those prompts had
+    exactly two possible answers and each server picked one, never a third. That is what an exact tie looks like.
+  </p>
+  <p>
+    The obvious knob does not help. Padding the decode batch to fixed row counts, so the matmul always sees the same
+    shapes, is inert below its threshold and costs 13% of throughput at 64 users above it, while changing nothing about
+    how many answers match. So the flips that remain when speculative decoding is switched on come from somewhere other
+    than the matmul's row count, and that thread is still open.
+  </p>
+  <p>
+    <strong>What to do with this.</strong> If you need identical answers no matter how busy the server is, serve the
+    INT4 build and leave speculative decoding off: that combination was byte-exact at every level from one to sixty-four
+    users, twice in a row, at about 1,270 combined tokens per second on a single card. If you want the fastest answer
+    for one person, turn speculation on and accept that a rare tied token may fall either way once many people share the
+    server. The recipes state which of their numbers are identity-qualified and withhold the ones that are not.
+  </p>
+
   <div class="related">
     <h2>Keep going</h2>
     <div class="related-grid">
