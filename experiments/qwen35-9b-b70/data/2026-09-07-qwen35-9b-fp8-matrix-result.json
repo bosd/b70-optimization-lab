@@ -872,5 +872,46 @@
     "first_divergence_token": 403
    }
   ]
+ },
+ "c4_tp1_depth3_graph_off_draft_int4_head": {
+  "config": "as c2 with XPU graph off (piecewise Inductor compile, VLLM_XPU_ENABLE_XPU_GRAPH=0)",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 49.477,
+    "median_tok_s_1_100": 49.984,
+    "p10_tok_s_1_100": 49.964,
+    "median_tok_s_full": 49.423,
+    "ttft_ms_median": 53.76
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 49.454,
+    "median_tok_s_1_100": 49.95,
+    "p10_tok_s_1_100": 49.94,
+    "median_tok_s_full": 49.391,
+    "ttft_ms_median": 54.22
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 96.779,
+    "median_tok_s_1_100": 99.607,
+    "p10_tok_s_1_100": 85.486,
+    "median_tok_s_full": 95.224,
+    "ttft_ms_median": 76.12
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 96.748,
+    "median_tok_s_1_100": 99.506,
+    "p10_tok_s_1_100": 85.058,
+    "median_tok_s_full": 95.198,
+    "ttft_ms_median": 77.32
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "12/12",
+   "G3 b": "12/12"
+  },
+  "verdict": "Graph off: MTP0 49.477/49.454, depth 3 + draft INT4 head 96.779/96.748, all gates 12/12; XPU graph capture is worth ~1.5% on one card (as on the 27B TP1).",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph0-dhint4-20260907-c4"
  }
 }

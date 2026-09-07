@@ -46,13 +46,14 @@ beyond the model manifest and the launcher defaults.
 | 3 | FP8 | on | 76.917 / 76.879 | - | 12/12 | 12/12, 12/12 | c1 |
 | 3 | INT4 draft copy | on | **98.251 / 98.027** | - | 12/12 | 12/12, 12/12 | c2 |
 | 4 | INT4 draft copy | on | 98.418 / 98.550 | - | 12/12 | **8/12, 8/12** (withheld) | c3 |
+| 3 | INT4 draft copy | off | 96.779 / 96.748 | - | 12/12 | 12/12, 12/12 | c4 |
+| 0 | - | off | 49.477 / 49.454 | 12/12 | - | - | c4 |
 
 Depth 4 is repeat-exact but not lossless: four prompts (`benchmark-analysis`
 at token 342, `bug-report-synthesis` at 48, `decision-memo` at 75,
 `risk-register` at 403) take a different valid branch from the oracle when the
-verify batch grows to five rows, and it is no faster on this workload. Rows for
-XPU graph off, two cards and the 2K-32K context ladder are appended as their
-campaigns complete.
+verify batch grows to five rows, and it is no faster on this workload. XPU graph capture is worth about 1.5% on one card (c4). Rows for two cards
+and the 2K-32K context ladder are appended as their campaigns complete.
 
 Workload note: through the chat API this model first streams a long
 "Thinking Process" preamble that the MTP head predicts unusually well; the
