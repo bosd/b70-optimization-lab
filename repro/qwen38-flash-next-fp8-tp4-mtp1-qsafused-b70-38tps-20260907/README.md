@@ -50,7 +50,7 @@ LocalMaxxing approved it as run
 | Full pins | [`identity.json`](identity.json) |
 
 Evidence: [A306 realistic suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-qsafused-realistic-suite-v1-result.json), [promotion attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-promotion-attestation.json),
-[A305 battery summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a305-fresh-repeat-deterministic-summary.json), [A266/A268/A305 exact-2K pair](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a266-a268-a305-exact-2k-pair-summary.json),
+[A305 battery summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a305-fresh-repeat-deterministic-summary.json), [A297/A304/A305 exact-2K pair](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-qsafused-exact-2k-pair-summary.json),
 [A266](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp0-a266-hctriton-screen-quality-current.json) / [A267](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp0-a267-hctriton-screen-fresh-quality-current.json) / [A268](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-tp4-mtp1-a268-hctriton-screen-quality-current.json) quality screens,
 [placement file](../../experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json), [LocalMaxxing response](../../data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-realistic-20260907.json),
 run-directory manifests [`evidence/a305-run.sha256`](evidence/a305-run.sha256) and [`evidence/a306-run.sha256`](evidence/a306-run.sha256).

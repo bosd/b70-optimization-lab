@@ -1,13 +1,5 @@
 {
- "note": "Repository-relative links that are already broken on main and are not this session's to fix. tools/check-doc-links.py reports them but does not fail on them, so the CI check enforces \"no new broken links\" without blocking other lanes. Remove an entry once its target exists.",
- "recorded_utc": "2026-09-07T19:48:54+00:00",
- "known_broken": [
-  {
-   "document": "repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/README.md",
-   "link": "../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a266-a268-a305-exact-2k-pair-summary.json",
-   "owner": "Flash-Next lane",
-   "noticed": "2026-09-07",
-   "note": "The named evidence file is not in the tree. The closest existing file is 20260907-tp4-mtp0-a266-a267-a269-exact-2k-pair-summary.json, which is a different arm (MTP0, a267/a269), so the link was not repointed: that would restate someone else's evidence. The lane owner should either add the file or correct the reference."
-  }
- ]
+  "note": "Repository-relative links that are already broken on main and are not this session's to fix. tools/check-doc-links.py reports them but does not fail on them, so the CI check enforces \"no new broken links\" without blocking other lanes. Remove an entry once its target exists.",
+  "recorded_utc": "2026-09-07T19:48:54+00:00",
+  "known_broken": []
 }
