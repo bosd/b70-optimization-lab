@@ -1726,7 +1726,7 @@
       },
       "profile_id": "flash-next-tp4-mtp1-placement-hctriton-ctx4096-v1",
       "measurement_class": "certified (new Triton-HC authority) frozen-client exact-4K p4096/o128 rows with one speculative token and never-routed experts host-placed",
-      "promotion_status": "certified 2026-09-07 (A271: every pin equal to the Triton-HC MTP0 line, lossless MTP1 within the new authority); LocalMaxxing cmtqspsy00092pa01kli5htlb approved 2026-09-07 on the fixed realistic suite (37.045844 tok/s class-balanced median), the fastest Flash-Next row; outputs not bit-identical to the torch-fallback rows",
+      "promotion_status": "certified 2026-09-07 (A271: every pin equal to the Triton-HC MTP0 line, lossless MTP1 within the new authority); LocalMaxxing cmtqspsy00092pa01kli5htlb approved 2026-09-07 on the fixed realistic suite (37.045844 tok/s class-balanced median), the fastest Flash-Next row; outputs not bit-identical to the torch-fallback rows; record gate replayed end-to-end 2026-09-07 (attempt 273: 12/12 outputs identical, 37.43 tok/s)",
       "quality_scope": "6/7 semantic (sole miss code_execution), byte-identical outputs to the certified placement battery on all seven cases, 16/16 repeat with one hash, exact needle; exact-2K 86b5b6c7 and exact-4K b89822ce authorities reproduced with MTP1 (lossless within the lineage)",
       "workload": "two exact p4096/o128 requests per server on two servers, cache zero; 99-interval rate; PLE and embeddings host-offloaded over UVA (12.22 GiB/rank), every hot routed expert resident, 3.5 GiB/rank of never-routed experts in pinned host memory behind a per-expert offset table; the Triton hyper-connection glue kernels run on XPU (VLLM_XPU_HC_TRITON=1)",
       "metrics": {

@@ -64,7 +64,7 @@ The narrative is in the [result packet](../../results/qwen38-flash-next-fp8-b70/
 | Configuration | the frozen A272 packet (four scripts pinned by [`frozen-a272-packet.sha256`](frozen-a272-packet.sha256)) and the placement file; server line in [`container-serve.sh`](container-serve.sh) |
 | Execution | `verify-identity.sh`, `run-record-gate.sh` (below); container route unbuilt |
 | Verifier pin | the frozen packet pins the exactness verifier by bytes; [`verifier-pin.txt`](verifier-pin.txt) records its SHA-256, git blob and the last lab commit that carries it, and `verify-identity.sh` names that commit when the file has moved on |
-| Last replay | none yet beyond the certification servers themselves (A271 battery, A272 record); a `run-record-gate.sh` replay is the next step and will be listed here |
+| Last replay | 2026-09-07 01:54, attempt 273 through `run-record-gate.sh` on the originating host: 12/12 outputs identical to the record, every gate equal, 37.433042 tok/s class-balanced ([gate log](evidence/a273-record-gate.log), [run manifest](evidence/a273-record-gate-replay.sha256), [suite result](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a273-record-gate-replay-realistic-suite-v1-result.json)) |
 | Validation | frozen client: fixed cold realistic suite once, exactness verifier `verify-moe-m1-w13-n32-selection.py` (`20546ff1…`), fresh-response gates; `check-replay-result.py` compares output pins and gates with the record |
 
 ## Restore source
