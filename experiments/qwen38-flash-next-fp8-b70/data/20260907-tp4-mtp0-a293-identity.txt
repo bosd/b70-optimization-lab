@@ -1,0 +1,21 @@
+campaign=qwen38-flash-next-fp8-tp4-ep4-mkldnndet-mtp0-4352-ple-only-r1
+model=/mnt/usb-models/llm-models/Qwen3.8-Flash-Next-FP8
+vllm_head=93013c522720f8fde144059ded048dc4aaf87e43
+kernels_head=e421889999bc1e5a5f11044d14548b9afdba644d
+runtime_stage_build_head=2f829747503c77d4814834dffd0840fb1dd9f75a
+stage=/mnt/usb-models/qwen38-build/runtime-core-moe-negidguard-b70
+compile_cache=/tmp/qwen38-flash-next-fp8-tp4-ep4-mkldnndet-mtp0-4352-ple-only-r1-attempt293-compile
+offload_backend=uva
+cpu_offload_gb=12.25
+cpu_offload_params=ple_embedding.ngram_embedding.weight,embed_tokens.weight
+ple_cpu_process=absent
+tp=4 ep=4 all2all=allgather_reducescatter
+moe_backend=triton eager=1 graph=none mtp=0 max_model_len=4352 max_num_batched_tokens=64
+mtp_exact_recurrent=0
+kv_cache_memory_bytes=134217728
+kv_cache_layout=BLHNC
+reasoning_parser=absent
+diagnostics=mkldnndet-bundled-oneccl-torch-trace
+tuned_config_folder=moe-m1-w13-n32
+mkldnn_deterministic=1
+tuned_config_map_sha256=a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be
