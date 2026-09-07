@@ -214,9 +214,10 @@ configuration MTP0 arm as its oracle.
 | 32,768 | 45.5 | 86.8 (3/3) | 10.95 s |
 
 Every depth-3 answer at every depth matched the oracle token for token (18/18).
-Decode barely moves with context on this model (the linear-attention layers carry
-most of the context); the speculative rate varies with content class more than
-with depth. Entry `c7_tp1_depth3_real_content_2k_32k` in the result JSON.
+Without speculation decode falls 8% from 2K to 32K (the linear-attention
+layers carry most of the context); with depth 3 it falls 18% (86.8 at 32K, still
+1.9x the no-speculation rate there) as draft acceptance drops with context, and
+it varies with content class more than with depth below 16K. Entry `c7_tp1_depth3_real_content_2k_32k` in the result JSON.
 
 ## Known limits
 
