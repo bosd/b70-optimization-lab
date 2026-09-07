@@ -254,3 +254,9 @@ many-user picture is: depth 1 is the fastest exact setting from ~8 to 32 users, 
 passes ~32 rows, and MTP0 is fastest and exact from 64 users. Recipe README carries the table; package profile added for
 depth 1 (c16/c32).
 
+## R288 - depth 1 at 2-16 users: the crossover is at eight users
+
+Depth 1 (warm): c2 147.3 (2/2), c4 268.6 (4/4), c8 456.0 (7/8 both passes), c16 709.1 (16/16); MTP0 c2 94.6, c4 178.5,
+c8 327.0, c16 537.8 (all exact). Depth 4 (R282 warm) 191.0 / 294.7 / 422.6 (7/8) / 578.9. So: depth 4 at 1-4 users, depth 1
+at 8-32, none from 64. The c8 flip is one near-tie prompt under both depths.
+

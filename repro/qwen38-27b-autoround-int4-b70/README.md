@@ -260,6 +260,9 @@ tok/s with the exact-output count against each request's sequential oracle:
 
 | users | no speculation | depth 1 | depth 2 | depth 4 |
 | --- | --- | --- | --- | --- |
+| 2 | 94.6 (2/2) | 147.3 (2/2) | - | 191.0 (2/2) |
+| 4 | 178.5 (4/4) | 268.6 (4/4) | - | 294.7 (4/4) |
+| 8 | 327.0 (8/8) | 456.0 (7/8) | - | 422.6 (7/8) |
 | 16 | 533.8 (16/16) | 711.0 (16/16) | 591.0 (16/16) | 574.3 (16/16) |
 | 32 | 815.0 (32/32) | 854.4 (32/32) | 723.4 (29/32) | 641.3 (32/32) |
 | 64 | 991.4 (64/64) | 842.0 (61/64) | 815.2 (59/64) | 591.4 (58/64) |
@@ -270,9 +273,11 @@ Every speculative depth plateaus once the verify batch exceeds about 32 rows,
 and the non-exact requests above 32 users are the same prompts diverging at
 the same token positions in every rung (for example `capacity-c006` at token
 11), the signature of near-tie flips in the >32-row W4A16 GEMM tier rather
-than anything in the harness. Guidance: depth 4 for one to a few users
-(112 tok/s single-user), depth 1 from about 8 to 32 users (854 tok/s at 32,
-exact), and no speculation beyond that (992 tok/s exact at 64). Entries
+than anything in the harness. The 2/4/8-user rows for depth 1 and no speculation are R288 on the same
+server shape; the depth-4 rows are R282 (max-num-seqs 64). Guidance: depth 4
+for one to four users (112 tok/s single-user, 295 at four), depth 1 from
+about 8 to 32 users (854 tok/s at 32, exact), and no speculation beyond that
+(992 tok/s exact at 64). Entries
 `R284_ladders_tp2_big_admission_mtp4_vs_mtp0`, `R286_…_mtp2` and
 `R287_…_mtp1` in the graph-capture result JSON carry every rung and the
 per-request divergence positions.
