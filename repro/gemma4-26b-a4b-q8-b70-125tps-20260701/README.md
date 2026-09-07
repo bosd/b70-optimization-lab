@@ -85,10 +85,31 @@ Clean-rebuild replays on the lab host (2026-09-07, one B70, same gate):
 
 Both are valid same-recipe support runs, not new records: they reproduce the
 promoted path and validity gate from source with the reconstructed draft
-(`1f6706e4…` from both quantizers), landing within the known several-percent
-spread under the `124.977` high. The container's first run trailed the host
-build by about 3.5%, and its second run matched it, so the container carries
-no measurable overhead: the difference is ordinary run-to-run variance.
+(`1f6706e4…` from both quantizers). The container's first run trailed the host
+build by about 3.5%, and its second run matched it, so the container carries no
+measurable overhead.
+
+They do **not** land within ordinary run-to-run variance of the `124.977` high,
+and an earlier version of this section said they did. Five further replays at
+the record's own settings put the six-sample mean at `111.819 tok/s` with a
+`2.394%` coefficient of variation - matching this lane's documented `2.324%`,
+so the host is not unusually noisy - which leaves the record about eleven
+standard errors away and the best single run still `6.91%` short. The reason is
+that the comparison is cross-host: the record-era Gemma runs used four GPU
+indices (`420` runs on `gpu2`, `404` on `gpu3`), and this host has two B70s
+addressable only as 0 and 1, so that research ran on the four-B70 measuring
+host. Replaying here is not a way to check the record. See
+[`experiments/gemma4-26b-a4b-q8-b70/notes/2026-09-07-replay-shortfall-is-cross-host-and-threads-are-oversubscribed.md`](../../experiments/gemma4-26b-a4b-q8-b70/notes/2026-09-07-replay-shortfall-is-cross-host-and-threads-are-oversubscribed.md).
+
+Two findings from that work apply to anyone replaying on a two-card host. The
+record's `--spec-draft-threads 32` is oversubscribed on this machine's
+8-core/16-thread CPU: 16 threads measured `3.06%` faster over the six-sample
+32-thread mean, and far more repeatably (`0.303%` CV against `2.394%`). And the
+lane does not reproduce its own answers - four fresh servers with identical
+settings, greedy decoding and identical prompts returned `0/12` matching outputs,
+diverging as early as character 26. The lane's gates never covered output
+identity, so that is a newly measured property rather than a broken claim, and
+it is not yet attributed between the speculative draft path and the target.
 
 ## Runtime Identity
 

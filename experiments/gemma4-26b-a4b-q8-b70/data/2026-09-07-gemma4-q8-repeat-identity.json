@@ -1,0 +1,251 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign": "gemma4-q8-gpu0-distrib32 (2026-09-07, one B70, pinned oneAPI 2026.0 container)",
+ "question": "Whether the Gemma 4 26B Q8 record lane returns the same answers when the same server configuration is started again. The lane's gates cover fresh-response validity, cache-zero and canaries; they have never covered output identity, so this was unmeasured rather than claimed.",
+ "method": "Four fresh servers, identical settings, the frozen 12-prompt realistic suite at a 512-token natural completion cap. The suite requests temperature 0, top_p 1 and seed 1 through the chat API, so decoding is greedy; prompt hashes were compared to confirm the inputs were identical.",
+ "finding": "No output is reproducible. Every pairwise comparison scores 0/12, and divergence begins early - as soon as character 26 on one prompt. This is not sampling and not a different prompt set.",
+ "caveat": "The lane serves with speculative decoding (--spec-type draft-mtp, Q4_0 MTP draft verified by the Q8 target). This measurement cannot separate a nondeterministic speculative path from a nondeterministic target; a draftless arm would be needed to attribute it. What it does establish is that the deployed configuration is not reproducible.",
+ "context": "For comparison on the same host and suite shape: vLLM's INT4 W4A16 route on Qwen3.5 is 12/12 across fresh servers, and llama.cpp's Q8 route on Qwen3.5-9B is 8/12. Gemma 4 26B Q8 on llama.cpp is 0/12.",
+ "pairs": [
+  {
+   "a": "gemma4-q8-gpu0-distrib32-run3-20260907T222332Z",
+   "b": "gemma4-q8-gpu0-distrib32-run4-20260907T222728Z",
+   "prompts_identical": true,
+   "exact_outputs": "0/12",
+   "per_prompt": [
+    {
+     "prompt_id": "incident-retrospective",
+     "chars_a": 2096,
+     "chars_b": 2036,
+     "first_differing_char": 26
+    },
+    {
+     "prompt_id": "code-review",
+     "chars_a": 2224,
+     "chars_b": 2168,
+     "first_differing_char": 185
+    },
+    {
+     "prompt_id": "customer-email",
+     "chars_a": 1498,
+     "chars_b": 1556,
+     "first_differing_char": 677
+    },
+    {
+     "prompt_id": "sql-debugging",
+     "chars_a": 2052,
+     "chars_b": 2059,
+     "first_differing_char": 370
+    },
+    {
+     "prompt_id": "release-plan",
+     "chars_a": 2022,
+     "chars_b": 1938,
+     "first_differing_char": 121
+    },
+    {
+     "prompt_id": "benchmark-analysis",
+     "chars_a": 2241,
+     "chars_b": 2251,
+     "first_differing_char": 588
+    },
+    {
+     "prompt_id": "architecture-tradeoff",
+     "chars_a": 2341,
+     "chars_b": 2365,
+     "first_differing_char": 754
+    },
+    {
+     "prompt_id": "bug-report-synthesis",
+     "chars_a": 2391,
+     "chars_b": 2350,
+     "first_differing_char": 222
+    },
+    {
+     "prompt_id": "technical-guide",
+     "chars_a": 2207,
+     "chars_b": 2257,
+     "first_differing_char": 375
+    },
+    {
+     "prompt_id": "risk-register",
+     "chars_a": 2309,
+     "chars_b": 2235,
+     "first_differing_char": 125
+    },
+    {
+     "prompt_id": "performance-hypotheses",
+     "chars_a": 2320,
+     "chars_b": 2322,
+     "first_differing_char": 50
+    },
+    {
+     "prompt_id": "decision-memo",
+     "chars_a": 2359,
+     "chars_b": 2306,
+     "first_differing_char": 262
+    }
+   ]
+  },
+  {
+   "a": "gemma4-q8-gpu0-distrib32-run3-20260907T222332Z",
+   "b": "gemma4-q8-gpu0-distrib32-run5-20260907T223131Z",
+   "prompts_identical": true,
+   "exact_outputs": "0/12",
+   "per_prompt": [
+    {
+     "prompt_id": "incident-retrospective",
+     "chars_a": 2096,
+     "chars_b": 2092,
+     "first_differing_char": 275
+    },
+    {
+     "prompt_id": "code-review",
+     "chars_a": 2224,
+     "chars_b": 2137,
+     "first_differing_char": 185
+    },
+    {
+     "prompt_id": "customer-email",
+     "chars_a": 1498,
+     "chars_b": 1570,
+     "first_differing_char": 299
+    },
+    {
+     "prompt_id": "sql-debugging",
+     "chars_a": 2052,
+     "chars_b": 2098,
+     "first_differing_char": 167
+    },
+    {
+     "prompt_id": "release-plan",
+     "chars_a": 2022,
+     "chars_b": 2051,
+     "first_differing_char": 121
+    },
+    {
+     "prompt_id": "benchmark-analysis",
+     "chars_a": 2241,
+     "chars_b": 2270,
+     "first_differing_char": 1184
+    },
+    {
+     "prompt_id": "architecture-tradeoff",
+     "chars_a": 2341,
+     "chars_b": 2334,
+     "first_differing_char": 836
+    },
+    {
+     "prompt_id": "bug-report-synthesis",
+     "chars_a": 2391,
+     "chars_b": 2427,
+     "first_differing_char": 917
+    },
+    {
+     "prompt_id": "technical-guide",
+     "chars_a": 2207,
+     "chars_b": 2157,
+     "first_differing_char": 554
+    },
+    {
+     "prompt_id": "risk-register",
+     "chars_a": 2309,
+     "chars_b": 2254,
+     "first_differing_char": 521
+    },
+    {
+     "prompt_id": "performance-hypotheses",
+     "chars_a": 2320,
+     "chars_b": 2194,
+     "first_differing_char": 50
+    },
+    {
+     "prompt_id": "decision-memo",
+     "chars_a": 2359,
+     "chars_b": 2294,
+     "first_differing_char": 55
+    }
+   ]
+  },
+  {
+   "a": "gemma4-q8-gpu0-distrib32-run3-20260907T222332Z",
+   "b": "gemma4-q8-gpu0-distrib32-run6-20260907T223533Z",
+   "prompts_identical": true,
+   "exact_outputs": "0/12",
+   "per_prompt": [
+    {
+     "prompt_id": "incident-retrospective",
+     "chars_a": 2096,
+     "chars_b": 2087,
+     "first_differing_char": 198
+    },
+    {
+     "prompt_id": "code-review",
+     "chars_a": 2224,
+     "chars_b": 2171,
+     "first_differing_char": 185
+    },
+    {
+     "prompt_id": "customer-email",
+     "chars_a": 1498,
+     "chars_b": 1353,
+     "first_differing_char": 269
+    },
+    {
+     "prompt_id": "sql-debugging",
+     "chars_a": 2052,
+     "chars_b": 2102,
+     "first_differing_char": 167
+    },
+    {
+     "prompt_id": "release-plan",
+     "chars_a": 2022,
+     "chars_b": 2074,
+     "first_differing_char": 197
+    },
+    {
+     "prompt_id": "benchmark-analysis",
+     "chars_a": 2241,
+     "chars_b": 2224,
+     "first_differing_char": 588
+    },
+    {
+     "prompt_id": "architecture-tradeoff",
+     "chars_a": 2341,
+     "chars_b": 2359,
+     "first_differing_char": 322
+    },
+    {
+     "prompt_id": "bug-report-synthesis",
+     "chars_a": 2391,
+     "chars_b": 2397,
+     "first_differing_char": 222
+    },
+    {
+     "prompt_id": "technical-guide",
+     "chars_a": 2207,
+     "chars_b": 2185,
+     "first_differing_char": 40
+    },
+    {
+     "prompt_id": "risk-register",
+     "chars_a": 2309,
+     "chars_b": 2306,
+     "first_differing_char": 204
+    },
+    {
+     "prompt_id": "performance-hypotheses",
+     "chars_a": 2320,
+     "chars_b": 2122,
+     "first_differing_char": 155
+    },
+    {
+     "prompt_id": "decision-memo",
+     "chars_a": 2359,
+     "chars_b": 2447,
+     "first_differing_char": 667
+    }
+   ]
+  }
+ ]
+}
