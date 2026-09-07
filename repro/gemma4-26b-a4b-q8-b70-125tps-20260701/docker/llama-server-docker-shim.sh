@@ -4,7 +4,7 @@
 # arguments and a fully-populated environment; this shim forwards the arguments verbatim and only the llama.cpp /
 # SYCL / Level Zero variables (never the host's oneAPI PATH/LD_LIBRARY_PATH: the image sources its own setvars.sh),
 # mounts the model directories read-only at their host paths so the -m / --spec-draft-model paths stay valid,
-# exposes /dev/dri, and runs in the foreground so the harness's kill of this pid stops the container (--init +
+# exposes /dev/dri (GEMMA4_RW_DIRS lists directories to mount writable, needed for llama-quantize output), and runs in the foreground so the harness's kill of this pid stops the container (--init +
 # docker's default signal proxying). Point LLAMA_SERVER at <dir>/bin/llama-server where this file is installed as
 # bin/llama-server and <dir>/b70-gemma4-record-source.json is the receipt copied out of the image (see
 # install-container-build-dir.sh); preflight.sh then validates the receipt exactly as it would for a host build.
@@ -15,6 +15,9 @@ name=${GEMMA4_CONTAINER_NAME:-gemma4-record-$$}
 mounts=()
 for d in ${GEMMA4_MOUNT_DIRS:-/home/steve/llm-models /mnt/fast-ai/llm-models}; do
     [[ -d ${d} ]] && mounts+=(-v "${d}:${d}:ro")
+done
+for d in ${GEMMA4_RW_DIRS:-}; do   # e.g. the MTP output directory when running llama-quantize through the shim
+    [[ -d ${d} ]] && mounts+=(-v "${d}:${d}:rw")
 done
 env_args=()
 while IFS='=' read -r k _; do
