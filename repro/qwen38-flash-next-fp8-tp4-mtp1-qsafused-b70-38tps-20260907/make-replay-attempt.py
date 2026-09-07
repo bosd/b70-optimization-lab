@@ -53,7 +53,7 @@ def successor(text: str, attempt: int, port: str) -> str:
     def rename(seg: str) -> str:
         seg = seg.replace("tp4-mtp1-4352-ple-only-a306", f"tp4-mtp1-4352-ple-only-a{attempt}")
         seg = seg.replace("attempt306", f"attempt{attempt}").replace(SRC_PORT, port)
-        seg = seg.replace("ATTEMPT=272", f"ATTEMPT={attempt}").replace("a306", f"a{attempt}").replace("A306", f"A{attempt}")
+        seg = seg.replace("ATTEMPT=306", f"ATTEMPT={attempt}").replace("a306", f"a{attempt}").replace("A306", f"A{attempt}")
         return seg
     parts, last = [], 0
     for m in HASH_TOKEN.finditer(text):
@@ -63,7 +63,7 @@ def successor(text: str, attempt: int, port: str) -> str:
     parts.append(rename(text[last:]))
     out = "".join(parts)
     assert sorted(HASH_TOKEN.findall(out)) == sorted(HASH_TOKEN.findall(text))
-    assert SRC_PORT not in out and "attempt306" not in out and "ATTEMPT=272" not in out and "a306-" not in out
+    assert SRC_PORT not in out and "attempt306" not in out and "ATTEMPT=306" not in out and "a306-" not in out
     return out
 
 
@@ -76,7 +76,7 @@ def main() -> int:
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     attempt = int(sys.argv[1]); port = sys.argv[2]; check = "--check" in sys.argv[3:]
-    assert attempt > 272 and port.isdigit() and port != SRC_PORT
+    assert attempt > 306 and port.isdigit() and port != SRC_PORT
     pins = pinned()
     launcher = source(SRC["launcher"], pins)
     m = re.search(r"^expected_derived=([0-9a-f]{64})$", launcher, re.M); assert m
