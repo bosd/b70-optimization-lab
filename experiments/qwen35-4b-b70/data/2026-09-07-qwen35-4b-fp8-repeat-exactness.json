@@ -1,0 +1,81 @@
+{
+ "lane": "qwen35-4b-fp8-b70",
+ "date": "2026-09-07",
+ "model": "RedHatAI/Qwen3.5-4B-FP8-dynamic 397b7ba47a99b3221ebfc0cfc5a279118cb733ad",
+ "image": "R276 sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "config": "one B70, no speculation, FULL_DECODE_ONLY capture sizes 1-64, strict launcher env, max-model-len 1024, one slot; three independent campaigns (q1, q2, q3), two fresh servers each",
+ "finding": "not repeat-exact at MTP0",
+ "samples": [
+  "q1a",
+  "q1b",
+  "q2a",
+  "q2b",
+  "q3a",
+  "q3b"
+ ],
+ "class_balanced_median_tok_s": {
+  "q1a": 82.418,
+  "q1b": 82.405,
+  "q2a": 82.408,
+  "q2b": 82.312,
+  "q3a": 82.177,
+  "q3b": 82.3
+ },
+ "pairwise_exact": {
+  "q1a vs q1b": "11/12",
+  "q1a vs q2a": "10/12",
+  "q1a vs q2b": "11/12",
+  "q1a vs q3a": "11/12",
+  "q1a vs q3b": "10/12",
+  "q1b vs q2a": "9/12",
+  "q1b vs q2b": "12/12",
+  "q1b vs q3a": "10/12",
+  "q1b vs q3b": "9/12",
+  "q2a vs q2b": "9/12",
+  "q2a vs q3a": "11/12",
+  "q2a vs q3b": "12/12",
+  "q2b vs q3a": "10/12",
+  "q2b vs q3b": "9/12",
+  "q3a vs q3b": "11/12"
+ },
+ "pairwise_exact_min": "9/12",
+ "pairwise_exact_max": "12/12",
+ "tie_prone_prompts": {
+  "benchmark-analysis": {
+   "variants": 2,
+   "servers": [
+    "q1a+q1b+q2b",
+    "q2a+q3a+q3b"
+   ],
+   "first_divergence_token": 421
+  },
+  "code-review": {
+   "variants": 2,
+   "servers": [
+    "q1a+q2a+q3a+q3b",
+    "q1b+q2b"
+   ],
+   "first_divergence_token": 284
+  },
+  "performance-hypotheses": {
+   "variants": 2,
+   "servers": [
+    "q1a+q1b+q2b+q3a",
+    "q2a+q3b"
+   ],
+   "first_divergence_token": 8
+  }
+ },
+ "stable_prompts": [
+  "architecture-tradeoff",
+  "bug-report-synthesis",
+  "customer-email",
+  "decision-memo",
+  "incident-retrospective",
+  "release-plan",
+  "risk-register",
+  "sql-debugging",
+  "technical-guide"
+ ],
+ "verdict": "Three independent fresh-server pairs scored 11/12, 9/12 and 11/12 on the strict 12-prompt completions suite (15 pairwise comparisons range 9/12 to 12/12, mean 10.3). Exactly three of the twelve prompts are tie-prone and each has exactly two variants; the other nine are identical across all six servers. Servers pick between the two variants independently, so this is a tie in the next-token scores resolved by per-process state, not drift or a broken gate. The base identity gate cannot pass on this route, so no lossless claim and no package is made from it. The 9B showed that this class of flip disappears on the row-invariant W4A16 INT4 kernel; the 4B W4A16 route is measured next."
+}
