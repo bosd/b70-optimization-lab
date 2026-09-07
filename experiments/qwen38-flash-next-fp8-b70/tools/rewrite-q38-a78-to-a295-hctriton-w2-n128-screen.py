@@ -81,8 +81,8 @@ def main():
     launcher = _fm.patch_launcher(launcher)
     launcher = replace_n(launcher, OLD_HEAD, NEW_HEAD, 2)
     assert launcher.count("moe-m1-w13-n32") == 6 and launcher.count("a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be") == 3
-    launcher = launcher.replace("moe-m1-w13-n32", "moe-m1-w13-n32-w2n128").replace("a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be", "")  # W2 phase tile at BLOCK_N 128
-    launcher = replace_once(launcher, '\'."1" | has("W2_CONFIG")\' "$tuned_config_map")" == false', '\'."1" | has("W2_CONFIG")\' "$tuned_config_map")" == true')  # the shape guard pins the absence of a W2 delta
+    launcher = launcher.replace("moe-m1-w13-n32", "moe-m1-w13-n32-w2n128").replace("a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be", "d17469e014d869c9e0f157256017dd8e23dbb19e01e6e8cab33038697cd9c766")  # W2 phase tile at BLOCK_N 128
+    launcher = replace_once(launcher, '\'."1" | has("W2_CONFIG")\' "$tuned_config_map")" == false', '\'."1" | has("W2_CONFIG")\' "$tuned_config_map")" == true')  # the guard pins the absence of a W2 delta
     launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n')  # Triton HC glue live for the decomposition
     launcher = patch_a295(launcher)
     launcher = replace_once(launcher, "export KV_CACHE_MEMORY_BYTES=134217728\n", "export KV_CACHE_MEMORY_BYTES=134217728\nexport Q38_STEP_TIMING_LOG=10\nexport Q38_MEM_NOTE=1\nexport Q38_EXPERT_HOST_PLACEMENT=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json\n")
