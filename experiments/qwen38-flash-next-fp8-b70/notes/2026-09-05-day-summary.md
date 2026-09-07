@@ -515,3 +515,13 @@ Attribution of the 31.4 ms step: MoE 15.1 (GEMMs 11.9, surround 3.2), QSA attent
 - A294 (branch `q38-moe-bn16` = 7929f43d, W13 phase tile at `BLOCK_N=16`, HC glue live): exact-2K **30.15 / 30.15 tok/s** with the lineage hash `86b5b6c7…` held, against the 31.82 / 31.84 control. Exact, and 1.7 ms per step slower. Every tile direction tried in the server now loses to the certified entry: 16 warps (A282, −1.5 ms), the W2 tile at 32 (A287, +4% on the W2 launches), and this one; A295 tests the last, the W2 tile at 128.
 - The sign matters more than the size. Quadrupling the program count made it worse, so the GEMM is not a latency-bound kernel waiting on idle cores, which is what I inferred when the offline replay looked flat. It is limited by how it reads weights: a `[BLOCK_N, BLOCK_K]` tile of a `[E, N, K]` tensor is `BLOCK_N` separate 128-byte segments, one per expert row, and the step moves about 470 MB of expert weights in 7.7 ms of K loop, an effective **61 GB/s** against a card that streams several hundred. Smaller tiles mean more, shorter gathers, hence the loss.
 - That points the remaining MoE work at the weight layout rather than at tiles: repacking each expert's rows into tile-contiguous order at load time is pure data movement, so the values and the accumulation order are untouched and the result stays bit-identical, and the per-expert offset table already proves the kernel can address an arbitrary per-expert base. A pure-bandwidth micro-benchmark of the two access patterns comes first, since the last two speed predictions from isolated harnesses were both wrong in the server. Filed: `data/20260907-tp4-mtp0-a294-bn16-w13-exact-depth-2k-r{1,2}.json`.
+- A295 (W2 phase tile at `BLOCK_N=128`): exact-2K **30.87 / 30.89**, hash held, 1.0 ms per step slower. The tile ladder is now closed in every direction from the certified M=1 entry (`BLOCK_SIZE_M` 16, base `BLOCK_SIZE_N` 64, W13 phase 32, 8 warps, 4 stages), each measured in the server and each exact:
+
+  | screen | change | exact-2K | vs 31.42 ms |
+  |---|---|---|---|
+  | A282 | 16 warps (both phases) | 30.46 / 30.36 | +1.4 ms |
+  | A287 | base tile 32 (W2 launch) | eager events +4% on W2 | slower |
+  | A294 | W13 phase tile 16 | 30.15 / 30.15 | +1.75 ms |
+  | A295 | W2 phase tile 128 | 30.87 / 30.89 | +1.0 ms |
+
+  Both directions lose from the same point, which is the signature of a genuine optimum rather than an untuned default, and it means the MoE GEMM will not move without changing what the kernel reads or how it reads it. Filed: `data/20260907-tp4-mtp0-a295-w2-n128-exact-depth-2k-r{1,2}.json`.
