@@ -1,0 +1,5 @@
+E=96 N=1280 K=2560 BLOCK_N=32 bytes=300 MiB programs=3840 tile=4096 B reps=20
+strided       0.556 ms    566.2 GB/s
+strided2      0.757 ms    415.6 GB/s
+contig        0.756 ms    415.9 GB/s
+bwprobe rc=0 12:07:46
