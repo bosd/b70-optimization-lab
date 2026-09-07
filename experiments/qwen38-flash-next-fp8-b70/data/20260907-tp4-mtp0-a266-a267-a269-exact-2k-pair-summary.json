@@ -1,0 +1,54 @@
+{
+  "reference": "A266 (Triton-HC MTP0 head 8d7d6fd8, quality screen): the exact-2K authority of the Triton-HC lineage, 86b5b6c7\u2026 token ids (differs from the torch-fallback authority afffd211\u2026 at the last bf16 bit of the hyper-connection glue)",
+  "reference_sha256": "86b5b6c71903a79fe915a3fc43765af845080314a58539812db7376b40292b8d",
+  "servers": {
+    "A266": "8d7d6fd8 (certified MTP0 placement head cb59004b + 7751df34; quality screen server)",
+    "A267": "8d7d6fd8 (second fresh server, same identity; quality screen)",
+    "A269": "8d7d6fd8 (third fresh server; frozen-client certification battery)"
+  },
+  "rows": [
+    {
+      "run": "a266-exact-depth-2k-r1",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.638
+    },
+    {
+      "run": "a266-exact-depth-2k-r2",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.589
+    },
+    {
+      "run": "a267-exact-depth-2k-r1",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.611
+    },
+    {
+      "run": "a267-exact-depth-2k-r2",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.563
+    },
+    {
+      "run": "a269-exact-depth-2k-r1",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.579
+    },
+    {
+      "run": "a269-exact-depth-2k-r2",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.56
+    }
+  ],
+  "all_identical": true
+}
