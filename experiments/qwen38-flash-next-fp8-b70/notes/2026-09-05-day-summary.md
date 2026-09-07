@@ -445,3 +445,18 @@ The previous boot's journal ends at 19:51:42, seconds after the A243 launch (swa
 ## 01:55–02:17 09-07 — MTP2 on the Triton-HC head: lossless, still slower than MTP1 (closed)
 
 - A274 (head 62219122, two speculative tokens, HC export in the derived source): exact-2K r1 23.44 / r2 33.03 tok/s with the lineage authority `86b5b6c7…` held on both, against MTP1's 36.43 / 36.47 (A271). As on the placement identity (A228: 22.40 / 30.94 against 33.2), the third-token verify step costs more than the extra accepted token returns; the cheaper HC step does not change the balance. Filed: `data/20260907-tp4-mtp2-a274-hctriton-exact-depth-2k-r{1,2}.json`.
+
+## 02:18–04:07 09-07 — graph-step decomposition with the Triton HC glue live (A275–A280)
+
+Skip switches on the diagnostics head 7751df34 with `VLLM_XPU_HC_TRITON=1` printed into the derived source; exact-2K conventional 99-interval rates, two requests per server (deterministic pairs unless noted); step = 1000 / tok/s.
+
+| run | skipped (`Q38_DIAG_SKIP`) | exact-2K r1 / r2 | step | delta vs the 31.4 ms control |
+|---|---|---|---|---|
+| A275 | control (hooks on, HC glue live) | 31.82 / 31.84 | **31.4 ms** | the torch-fallback control was 37.2 ms (A236): the Triton glue took 5.8 ms out of the step |
+| A277 | `moe_gemm` (the two grouped GEMM launches per MoE layer) | 51.28 / 51.33 | 19.5 ms | **11.9 ms (38%)**, unchanged from 11.4 before: 96 launches at 0.124 ms |
+| A276 | `moe` (whole routed-expert block) | 61.29 / 61.12 | 16.3 ms | **15.1 ms (48%)**: GEMMs 11.9 + surround (routing, alignment, quantization, activation, combine) **3.2 ms** |
+| A279 | `qsa_attn` (whole QSA attention module on full-attention layers) | 37.93 / 37.97 | 26.4 ms | **5.1 ms (16%)** |
+| A280 | `gdn_attn` (whole GDN attention module on linear-attention layers) | 34.44 / 34.45 | 29.0 ms | **2.4 ms (8%)** |
+| A278 | `gdn_core` (the GDN core kernel only) | 31.02 / 31.96 | — | inconclusive: no saving and the two repeats hash differently (`c6f65cbf` / `1d998d61`), so the skip left nondeterministic state; the earlier 4.3 ms (A235) is not reproduced with the glue live |
+
+Attribution of the 31.4 ms step: MoE 15.1 (GEMMs 11.9, surround 3.2), QSA attention 5.1, GDN attention 2.4, the remaining hyper-connection glue about 2.6 (8.4 under torch fallbacks minus the 5.8 the Triton kernels removed; A281 measures it directly), and about 6.2 ms unattributed (norms, residual streams, PLE and embedding gathers over UVA, lm_head and sampling, graph launch floor). Ranking for the next lever: the MoE GEMM launches remain the largest slice and run well below the card's weight bandwidth (≈1.5 GB of FP8 expert rows per rank per step would take ≈3.3 ms at full bandwidth against 11.9 measured), then QSA attention, then MoE surround fusion. Filed: `data/20260907-tp4-mtp0-a27{5,6,7,8,9}-hctriton-*-exact-depth-2k-r{1,2}.json`, `…-a280-hctriton-skip-gdn-attn-…`.
