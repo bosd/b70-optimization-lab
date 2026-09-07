@@ -64,7 +64,7 @@ EXPECTED_VLLM_HEADS = frozenset(
         "622191221475b53cc6f7f4d847860939f4c300ab",
         # the same heads plus the ported reference fused QSA pre-indexer (MoE files untouched)
         "2a372e860e273273357cb7437ac7de1694304f9f",
-        "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5",
+        "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a",
     }
 )
 # fused_moe.py hash per accepted head family (the placement head changes that file only)
@@ -74,7 +74,7 @@ EXPECTED_FUSED_MOE_SHA256_BY_HEAD = {
     "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "622191221475b53cc6f7f4d847860939f4c300ab": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "2a372e860e273273357cb7437ac7de1694304f9f": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
-    "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
 }
 EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
@@ -82,7 +82,7 @@ EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "622191221475b53cc6f7f4d847860939f4c300ab": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "2a372e860e273273357cb7437ac7de1694304f9f": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
-    "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
 }
 EXPECTED_PHASE_CONFIG_PATCH_NAME = "0021-Add-opt-in-per-phase-Triton-MoE-configs.patch"
 EXPECTED_PHASE_CONFIG_PATCH_SHA256 = (
