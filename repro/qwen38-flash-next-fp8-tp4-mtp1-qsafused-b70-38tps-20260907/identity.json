@@ -18,7 +18,16 @@
     "performance_evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-qsafused-realistic-suite-v1-result.json",
     "performance_evidence_sha256": "8fb03a9dc4718bb3b72c74b202e4f8ce6fb0b97f835ad5cb475db56d3a2870ba",
     "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812",
-    "record_gate_replays": []
+    "record_gate_replays": [
+      {
+        "attempt": 307,
+        "date": "2026-09-07",
+        "class_balanced_median_tok_s": 37.972404,
+        "outputs_identical": true,
+        "gates_equal": true,
+        "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a307-record-gate-replay-realistic-suite-v1-result.json"
+      }
+    ]
   },
   "model": {
     "repository": "Qwen/Qwen3.8-Flash-Next-FP8",

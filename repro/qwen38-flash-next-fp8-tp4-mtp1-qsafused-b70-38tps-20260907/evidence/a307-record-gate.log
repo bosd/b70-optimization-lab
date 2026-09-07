@@ -1,0 +1,11 @@
+/home/steve/llm-optimizations/patches/qwen38-flash-next-fp8-b70/vllm-placement-mtp1-005dc578/vllm-q38-placement-mtp1-005dc578-20260906.bundle is okay
+/home/steve/llm-optimizations/patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/vllm-q38-hctriton-mtp1-62219122-20260907.bundle is okay
+/home/steve/llm-optimizations/patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/vllm-q38-qsafused-mtp1-6d872457-20260907.bundle is okay
+fused-QSA MTP1 identity verified: vLLM 6d872457 over 62219122 over 005dc578 over 1b2a17c1 over 76cfe1cd, stage 2f829747, oneCCL 4ceafd1 public, model bcd9f01d
+derived packet a307 (port 19900):
+PASS: A307 host-control static identity; ASPM=performance swap=/swap.img used=0 priority=-1
+launched attempt 307 on port 19900 at 15:33:01; host log /tmp/q38-replay-a307/a307-host.log; driver log /tmp/q38-replay-a307/a307-driver.log
+waiting for /tmp/q38-mtp1-ple-only-a307.rc (load ~10 min, capture ~2 min, suite ~10 min)
+server lifecycle rc=143
+replay class-balanced median: 37.972404 tok/s (record 37.825654)
+PASS: bit-identical outputs and all gates hold
