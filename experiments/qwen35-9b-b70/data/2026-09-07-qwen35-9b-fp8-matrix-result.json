@@ -1442,5 +1442,170 @@
   ],
   "verdict": "WITHHELD: two-card depth 4 is repeat-exact (G2 12/12) but 9/12 vs the MTP0 oracle; 150.694/151.737 vs 147.712/147.890 at depth 3 (+2%). Depth 3 remains the two-card headline.",
   "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp2-mtp4-graph1-dhint4-20260907-c6"
+ },
+ "c7_tp1_depth3_real_content_2k_32k": {
+  "config": "one B70, depth 3 + draft INT4 head, full capture, max-model-len 33024, max-num-batched-tokens 4096; real-content exact-depth ladder (technical prose, Python, structured documents; three requests per depth), MTP0 arm as oracle then the depth-3 arm. NOTE: the depth tool stamps a fixed Qwen3.8-27B FP8 TP2 identity block in its summary.json; the actual server is the one recorded in the campaign root (this lane, TP1).",
+  "arms": {
+   "depth-mtp0": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 49.647,
+      "median_ttft_ms": 596.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 49.257,
+      "median_ttft_ms": 1161.8,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 48.648,
+      "median_ttft_ms": 2331.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 47.527,
+      "median_ttft_ms": 4755.8,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 46.494,
+      "median_ttft_ms": 7298.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 45.538,
+      "median_ttft_ms": 9959.7,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 0,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    },
+    "classification": "Grade B three-class unrepeated real-content exact-depth HTTP evidence",
+    "per_class": {
+     "technical-prose": [
+      49.66,
+      49.28,
+      48.65,
+      47.54,
+      46.49,
+      45.57
+     ],
+     "python-code": [
+      49.64,
+      49.26,
+      48.65,
+      47.53,
+      46.49,
+      45.53
+     ],
+     "structured-docs": [
+      49.65,
+      49.26,
+      48.64,
+      47.52,
+      46.5,
+      45.54
+     ]
+    }
+   },
+   "depth-mtp3": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 105.88,
+      "median_ttft_ms": 669.7,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 126.208,
+      "median_ttft_ms": 1279.1,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 120.092,
+      "median_ttft_ms": 2562.7,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 103.277,
+      "median_ttft_ms": 5221.3,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 100.235,
+      "median_ttft_ms": 8017.4,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 86.789,
+      "median_ttft_ms": 10948.0,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 18,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    },
+    "classification": "Grade B three-class unrepeated real-content exact-depth HTTP evidence",
+    "per_class": {
+     "technical-prose": [
+      95.39,
+      101.87,
+      103.26,
+      103.28,
+      100.23,
+      86.79
+     ],
+     "python-code": [
+      133.81,
+      126.21,
+      120.09,
+      129.95,
+      131.73,
+      97.4
+     ],
+     "structured-docs": [
+      105.88,
+      135.98,
+      120.14,
+      97.67,
+      91.89,
+      82.45
+     ]
+    }
+   }
+  },
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c7",
+  "verdict": "MTP0 decode 49.647 -> 45.538 tok/s from 2K to 32K; depth 3 + draft head 105.88 -> 86.789 tok/s, every one of the 18 depth-3 answers identical to the MTP0 oracle (18/18); canaries before and after passed on both arms."
  }
 }

@@ -58,8 +58,9 @@ at token 342, `bug-report-synthesis` at 48, `decision-memo` at 75,
 verify batch grows to five rows, and it is no faster on this workload. XPU graph capture is worth about 1.5% on one card (c4). Two cards (TP2) give
 `147.7 / 147.9 tok/s` at depth 3, lossless, 1.68x ML Bottleneck's two-card
 target of `88.13`. Two-card depth 4 (c6) is withheld like
-its one-card counterpart (repeat-exact, 9/12 vs the oracle, +2%). Rows for the
-2K-32K context ladder and depths 5-6 are appended as their campaigns complete.
+its one-card counterpart (repeat-exact, 9/12 vs the oracle, +2%). The 2K-32K
+context ladder is below; two-card 32K and depths 5-6 are appended as their
+campaigns complete.
 
 Workload note: through the chat API this model first streams a long
 "Thinking Process" preamble that the MTP head predicts unusually well; the
@@ -195,6 +196,27 @@ the identity gate refuses; the same mechanism as on the Qwen3.8 lanes.
 Same shape as the one-card ladder. Two cards double the exact-range aggregate
 (849 tok/s at 8 users with depth 3, exact in both passes) and reach 2080 tok/s
 at 64 users without speculation (59/64).
+
+## Long context: 2K to 32K real content (campaign c7, one B70)
+
+One slot, real unrepeated content (technical prose, Python, structured documents;
+three requests per depth, median shown), 128 output tokens, `max-model-len 33024`,
+cache zero, canaries before and after. The depth-3 arm ran against a same-
+configuration MTP0 arm as its oracle.
+
+| active context | no speculation tok/s | depth 3 + INT4 draft head tok/s (exact vs oracle) | TTFT (depth 3) |
+| ---: | ---: | ---: | ---: |
+| 2,048 | 49.6 | 105.9 (3/3) | 0.67 s |
+| 4,096 | 49.3 | 126.2 (3/3) | 1.28 s |
+| 8,192 | 48.6 | 120.1 (3/3) | 2.56 s |
+| 16,384 | 47.5 | 103.3 (3/3) | 5.22 s |
+| 24,576 | 46.5 | 100.2 (3/3) | 8.02 s |
+| 32,768 | 45.5 | 86.8 (3/3) | 10.95 s |
+
+Every depth-3 answer at every depth matched the oracle token for token (18/18).
+Decode barely moves with context on this model (the linear-attention layers carry
+most of the context); the speculative rate varies with content class more than
+with depth. Entry `c7_tp1_depth3_real_content_2k_32k` in the result JSON.
 
 ## Known limits
 

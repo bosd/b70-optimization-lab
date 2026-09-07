@@ -215,6 +215,88 @@
           "per_user_value": 70.0625
         }
       ]
+    },
+    {
+      "id": "http-fp8-mtp3-drafthead-decode-vs-active-context",
+      "label": "Qwen3.5-9B FP8 one card, MTP depth 3 with the draft INT4 head: decode over active context (2K-32K)",
+      "metric": "decode",
+      "unit": "tok/s",
+      "x_label": "Actual prompt / active context tokens",
+      "scope": "Campaign c7 (2026-09-07): one B70, R276 image, one-slot vLLM HTTP completions at exactly 2K, 4K, 8K, 16K, 24K and 32K active context of unrepeated real content (technical prose, Python, structured documents; three requests per depth, median shown), 128 output tokens, max-model-len 33024, max-num-batched-tokens 4096, cache zero, canaries before and after; every answer matched the same-configuration MTP0 oracle (18/18). No value is interpolated.",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+      "points": [
+        {
+          "context_tokens": 2048,
+          "value": 105.88,
+          "samples": 3
+        },
+        {
+          "context_tokens": 4096,
+          "value": 126.208,
+          "samples": 3
+        },
+        {
+          "context_tokens": 8192,
+          "value": 120.092,
+          "samples": 3
+        },
+        {
+          "context_tokens": 16384,
+          "value": 103.277,
+          "samples": 3
+        },
+        {
+          "context_tokens": 24576,
+          "value": 100.235,
+          "samples": 3
+        },
+        {
+          "context_tokens": 32768,
+          "value": 86.789,
+          "samples": 3
+        }
+      ]
+    },
+    {
+      "id": "http-fp8-mtp0-decode-vs-active-context",
+      "label": "Qwen3.5-9B FP8 one card, no speculation: decode over active context (2K-32K)",
+      "metric": "decode",
+      "unit": "tok/s",
+      "x_label": "Actual prompt / active context tokens",
+      "scope": "Campaign c7 MTP0 arm (the oracle for the depth-3 profile), same workload and shape.",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+      "points": [
+        {
+          "context_tokens": 2048,
+          "value": 49.647,
+          "samples": 3
+        },
+        {
+          "context_tokens": 4096,
+          "value": 49.257,
+          "samples": 3
+        },
+        {
+          "context_tokens": 8192,
+          "value": 48.648,
+          "samples": 3
+        },
+        {
+          "context_tokens": 16384,
+          "value": 47.527,
+          "samples": 3
+        },
+        {
+          "context_tokens": 24576,
+          "value": 46.494,
+          "samples": 3
+        },
+        {
+          "context_tokens": 32768,
+          "value": 45.538,
+          "samples": 3
+        }
+      ]
     }
   ],
   "hardware": {
