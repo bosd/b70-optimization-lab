@@ -2502,6 +2502,88 @@
               "per_user_value": 73.4125
             }
           ]
+        },
+        {
+          "id": "http-w4a16-mtp3-drafthead-decode-vs-active-context",
+          "label": "Qwen3.5-9B W4A16 one card, MTP depth 3 with the draft INT4 head: decode over active context (2K-32K)",
+          "metric": "decode",
+          "unit": "tok/s",
+          "x_label": "Actual prompt / active context tokens",
+          "scope": "Campaign w4 (2026-09-07): one B70, one-slot vLLM HTTP completions at exactly 2K, 4K, 8K, 16K, 24K and 32K active context of unrepeated real content (technical prose, Python, structured documents; three requests per depth, median shown), 128 output tokens, max-model-len 33024, cache zero, canaries before and after; every answer matched the same-configuration MTP0 oracle (18/18). No value is interpolated.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+          "points": [
+            {
+              "context_tokens": 2048,
+              "value": 116.653,
+              "samples": 3
+            },
+            {
+              "context_tokens": 4096,
+              "value": 145.691,
+              "samples": 3
+            },
+            {
+              "context_tokens": 8192,
+              "value": 118.726,
+              "samples": 3
+            },
+            {
+              "context_tokens": 16384,
+              "value": 153.456,
+              "samples": 3
+            },
+            {
+              "context_tokens": 24576,
+              "value": 134.488,
+              "samples": 3
+            },
+            {
+              "context_tokens": 32768,
+              "value": 89.507,
+              "samples": 3
+            }
+          ]
+        },
+        {
+          "id": "http-w4a16-mtp0-decode-vs-active-context",
+          "label": "Qwen3.5-9B W4A16 one card, no speculation: decode over active context (2K-32K)",
+          "metric": "decode",
+          "unit": "tok/s",
+          "x_label": "Actual prompt / active context tokens",
+          "scope": "Campaign w4 MTP0 arm (the oracle for the depth-3 profile), same workload and shape.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+          "points": [
+            {
+              "context_tokens": 2048,
+              "value": 63.959,
+              "samples": 3
+            },
+            {
+              "context_tokens": 4096,
+              "value": 63.02,
+              "samples": 3
+            },
+            {
+              "context_tokens": 8192,
+              "value": 62.008,
+              "samples": 3
+            },
+            {
+              "context_tokens": 16384,
+              "value": 60.108,
+              "samples": 3
+            },
+            {
+              "context_tokens": 24576,
+              "value": 58.446,
+              "samples": 3
+            },
+            {
+              "context_tokens": 32768,
+              "value": 56.886,
+              "samples": 3
+            }
+          ]
         }
       ],
       "hardware": {
@@ -2583,8 +2665,7 @@
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
       ],
       "missing": [
-        "clean-host replay",
-        "two-card, graph-off and 2K-32K rows (measured on the FP8 route only)"
+        "clean-host replay"
       ]
     },
     {

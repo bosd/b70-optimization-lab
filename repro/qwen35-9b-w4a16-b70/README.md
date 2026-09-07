@@ -121,6 +121,24 @@ comes from the number of decode rows; it cannot remove the variation that comes 
 cards. If byte-identical output at the largest batch matters more than aggregate throughput, one card is the safer
 shape.
 
+## Long context: 2K to 32K real content (campaign w4, one B70)
+
+One slot, unrepeated real content (technical prose, Python, structured documents; three requests per depth, median
+shown), 128 output tokens, cache zero, canaries before and after; the depth-3 arm ran against a same-configuration
+MTP0 arm as its oracle.
+
+| active context | no speculation tok/s | depth 3 + INT4 draft head tok/s (exact vs oracle) |
+| ---: | ---: | ---: |
+| 2,048 | 64.0 | 116.7 (3/3) |
+| 4,096 | 63.0 | 145.7 (3/3) |
+| 8,192 | 62.0 | 118.7 (3/3) |
+| 16,384 | 60.1 | 153.5 (3/3) |
+| 24,576 | 58.4 | 134.5 (3/3) |
+| 32,768 | 56.9 | 89.5 (3/3) |
+
+All 18 depth-3 answers matched the oracle. The FP8 route of the same model runs 49.6 to 45.5 without speculation and
+105.9 to 86.8 with it, so INT4 leads at every depth and by the widest margin at short context.
+
 ## Known limits
 
 - Depth 4 and above were not run on this route; on the FP8 route they were

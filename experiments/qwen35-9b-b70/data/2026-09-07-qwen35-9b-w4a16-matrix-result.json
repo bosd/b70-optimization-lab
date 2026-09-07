@@ -839,5 +839,116 @@
    ]
   },
   "verdict": "Two cards, warm: no speculation c16 1151.8 (16/16), c32 1836.9 (32/32), c64 2092.9 (63/64); depth 3 c16 1174.6 (16/16), c32 1350.9 (32/32 warm, 31/32 cold), c64 1464.6 (60/64). Exact through c32 without speculation and c16 with it."
+ },
+ "w4_tp1_depth3_real_content_2k_32k": {
+  "config": "one B70, depth 3 + draft INT4 head, max-model-len 33024, max-num-batched-tokens 4096; real-content exact-depth ladder, MTP0 arm as oracle then the depth-3 arm",
+  "arms": {
+   "depth-mtp0": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 63.959,
+      "median_ttft_ms": 613.5,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 63.02,
+      "median_ttft_ms": 1180.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 62.008,
+      "median_ttft_ms": 2363.8,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 60.108,
+      "median_ttft_ms": 4815.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 58.446,
+      "median_ttft_ms": 7387.8,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 56.886,
+      "median_ttft_ms": 10077.0,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 0,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   },
+   "depth-mtp3": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 116.653,
+      "median_ttft_ms": 674.0,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 145.691,
+      "median_ttft_ms": 1303.3,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 118.726,
+      "median_ttft_ms": 2599.7,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 153.456,
+      "median_ttft_ms": 5292.6,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 134.488,
+      "median_ttft_ms": 8131.7,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 89.507,
+      "median_ttft_ms": 11095.1,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 18,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   }
+  },
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-w4",
+  "verdict": "Without speculation 63.959 -> 56.886 tok/s from 2K to 32K; with depth 3 116.653 -> 89.507, every one of the 18 depth-3 answers identical to the MTP0 oracle. Against the FP8 route of the same model (49.6 -> 45.5 and 105.9 -> 86.8), INT4 is ahead everywhere and its advantage is largest at short context."
  }
 }
