@@ -214,6 +214,7 @@
       <tr><th scope="row">Qwen3.5-9B, 16 users at once</th><td>15/16</td><td>16/16, both passes</td></tr>
       <tr><th scope="row">Qwen3.5-9B, 64 users at once</th><td>59/64</td><td>64/64, both passes</td></tr>
       <tr><th scope="row">Qwen3.5-9B, one user, tokens per second</th><td>98.3</td><td>113.6</td></tr>
+      <tr><th scope="row">Qwen3.5-9B on llama.cpp (Q8), two fresh servers</th><td colspan="2">8/12 agree, 47.2 tok/s</td></tr>
     </tbody>
   </table>
   </div>
@@ -221,6 +222,12 @@
     The 4B case is the clearest evidence that this is arithmetic and not load: two servers started from the same files,
     with one request each and nothing concurrent, still disagreed on three of twelve prompts. Each of those prompts had
     exactly two possible answers and each server picked one, never a third. That is what an exact tie looks like.
+  </p>
+  <p>
+    It is not a quirk of one engine either. The same 9B model served by llama.cpp from a Q8 file, a different runtime
+    with a different quantization and different kernels, agreed on only 8 of 12 prompts between two fresh servers. So
+    reproducible output is not something a stack has by default. On these cards it is something the INT4 path provides
+    and the alternatives do not.
   </p>
   <p>
     The obvious knob does not help. Padding the decode batch to fixed row counts, so the matmul always sees the same
