@@ -2325,7 +2325,7 @@
       "manifest": "packages/qwen35-9b-w4a16-b70/package.json",
       "format": "b70-model-package-v1",
       "id": "qwen35-9b-w4a16-b70",
-      "name": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70",
+      "name": "Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70",
       "status": "candidate",
       "audience": "intermediate",
       "guide": "repro/qwen35-9b-w4a16-b70/README.md",
@@ -2673,7 +2673,7 @@
         "host_ram_min_bytes": 16106127360,
         "host_ram_plus_swap_min_bytes": 21474836480,
         "model_weight_bytes": 11456765607,
-        "note": "One card is the package shape; two-card (TP2) rows are measured in the same recipe and reported as separate profiles."
+        "note": "One card is the default profile; the packet also ships a measured two-card (TP2) profile at 172.3 tok/s. Both profiles are generated from the same recipe launcher."
       },
       "model": {
         "repository": "RedHatAI/Qwen3.5-9B-quantized.w4a16",
@@ -2725,6 +2725,15 @@
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-strategy-override-dump-r220-20260905.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-c-default-align-r137b-20260902.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-fixed-k-align16-r137a-20260902.patch",
+        "packages/qwen35-9b-w4a16-b70/compose.yaml",
+        "packages/qwen35-9b-w4a16-b70/env/one-gpu.env",
+        "packages/qwen35-9b-w4a16-b70/env/two-gpu.env",
+        "packages/qwen35-9b-w4a16-b70/scripts/download-model.sh",
+        "packages/qwen35-9b-w4a16-b70/scripts/preflight.sh",
+        "packages/qwen35-9b-w4a16-b70/scripts/render-compose.py",
+        "packages/qwen35-9b-w4a16-b70/scripts/render-compose.sh",
+        "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh",
+        "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
         "repro/gemma4-26b-a4b-q8-b70/realistic-suite-v1.json",
         "repro/qwen35-9b-fp8-b70/README.md",
         "repro/qwen35-9b-fp8-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json",
@@ -2740,14 +2749,44 @@
         "scripts/bench-openai-concurrency-oracle.py",
         "scripts/bench-openai-realistic-suite.py",
         "scripts/compare-strict-attempt-outputs.py",
-        "scripts/neural-download-canaries.py"
+        "scripts/neural-download-canaries.py",
+        "tools/check-container-packet.py"
       ],
       "evidence": [
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
       ],
       "missing": [
         "clean-host replay"
-      ]
+      ],
+      "container_packet": {
+        "level": 2,
+        "compose": "packages/qwen35-9b-w4a16-b70/compose.yaml",
+        "generated": true,
+        "generator": "packages/qwen35-9b-w4a16-b70/scripts/render-compose.sh",
+        "generated_from": "repro/qwen35-9b-w4a16-b70/scripts/run-qwen35-9b-w4a16-server.sh",
+        "ci_check": "tools/check-container-packet.py",
+        "profiles": {
+          "one-gpu": {
+            "cards": 1,
+            "tensor_parallel_size": 1
+          },
+          "two-gpu": {
+            "cards": 2,
+            "tensor_parallel_size": 2
+          }
+        },
+        "env_files": [
+          "packages/qwen35-9b-w4a16-b70/env/one-gpu.env",
+          "packages/qwen35-9b-w4a16-b70/env/two-gpu.env"
+        ],
+        "scripts": {
+          "preflight": "packages/qwen35-9b-w4a16-b70/scripts/preflight.sh",
+          "download": "packages/qwen35-9b-w4a16-b70/scripts/download-model.sh",
+          "verify": "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
+          "smoke_test": "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh"
+        },
+        "note": "compose.yaml is rendered from the argv the recipe launcher hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding."
+      }
     },
     {
       "manifest": "packages/qwen38-27b-256k-vision-mtp-b70/package.json",

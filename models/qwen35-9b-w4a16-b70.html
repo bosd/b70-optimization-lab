@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured — neural.download</title>
+<title>Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70 — 113 tok/s measured — neural.download</title>
 <meta name="description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -15,27 +15,27 @@
 <meta property="og:site_name" content="neural.download">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://neural.download/models/qwen35-9b-w4a16-b70.html">
-<meta property="og:title" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured">
+<meta property="og:title" content="Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70 — 113 tok/s measured">
 <meta property="og:description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
 <meta property="og:image" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
 <meta property="og:image:secure_url" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
+<meta property="og:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@xyster">
 <meta name="twitter:creator" content="@xyster">
 <meta name="twitter:url" content="https://neural.download/models/qwen35-9b-w4a16-b70.html">
-<meta name="twitter:title" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70 — 113 tok/s measured">
+<meta name="twitter:title" content="Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70 — 113 tok/s measured">
 <meta name="twitter:description" content="RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft.">
 <meta name="twitter:image" content="https://neural.download/models/cards/qwen35-9b-w4a16-b70.png">
-<meta name="twitter:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
+<meta name="twitter:image:alt" content="Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70: 113 tok/s measured on Intel Arc Pro B70 — neural.download">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70", "description": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it. Measured 113 tok/s MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 113.627 / 112.904) on 1× Intel Arc Pro B70 32 GiB with vLLM XPU (W4A16 (compressed-tensors INT4 weights, FP16 activations)). Exact pins, patches, proof, and a clearly labeled optimization projection.", "url": "https://neural.download/models/qwen35-9b-w4a16-b70.html", "dateModified": "2026-09-07", "inLanguage": "en", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "Unofficial Intel XPU Optimization Lab", "url": "https://neural.download/"}, "publisher": {"@type": "Organization", "name": "neural.download", "url": "https://neural.download/"}, "isPartOf": {"@type": "WebSite", "name": "neural.download", "url": "https://neural.download/"}, "about": ["Qwen3.5", "Intel Arc Pro B70", "local LLM inference"]}
+{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70", "description": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it. Measured 113 tok/s MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 113.627 / 112.904) on 1× Intel Arc Pro B70 32 GiB with vLLM XPU (W4A16 (compressed-tensors INT4 weights, FP16 activations)). Exact pins, patches, proof, and a clearly labeled optimization projection.", "url": "https://neural.download/models/qwen35-9b-w4a16-b70.html", "dateModified": "2026-09-07", "inLanguage": "en", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "Unofficial Intel XPU Optimization Lab", "url": "https://neural.download/"}, "publisher": {"@type": "Organization", "name": "neural.download", "url": "https://neural.download/"}, "isPartOf": {"@type": "WebSite", "name": "neural.download", "url": "https://neural.download/"}, "about": ["Qwen3.5", "Intel Arc Pro B70", "local LLM inference"]}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "neural.download", "item": "https://neural.download/"}, {"@type": "ListItem", "position": 2, "name": "Models", "item": "https://neural.download/models/"}, {"@type": "ListItem", "position": 3, "name": "Qwen3.5 9B", "item": "https://neural.download/models/qwen-9b.html"}, {"@type": "ListItem", "position": 4, "name": "Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70", "item": "https://neural.download/models/qwen35-9b-w4a16-b70.html"}]}
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "neural.download", "item": "https://neural.download/"}, {"@type": "ListItem", "position": 2, "name": "Models", "item": "https://neural.download/models/"}, {"@type": "ListItem", "position": 3, "name": "Qwen3.5 9B", "item": "https://neural.download/models/qwen-9b.html"}, {"@type": "ListItem", "position": 4, "name": "Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70", "item": "https://neural.download/models/qwen35-9b-w4a16-b70.html"}]}
 </script>
 <link rel="stylesheet" href="../learn/learn.css">
 <link rel="preconnect" href="https://mlbottleneck.com">
@@ -107,7 +107,7 @@
 <header class="hero"><div class="wrap">
   <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Models</a> / <a href="qwen-9b.html">Qwen3.5 9B</a> / 9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head</p>
   <p class="eyebrow">Candidate package · vLLM XPU · 1× Intel Arc Pro B70</p>
-  <h1>Qwen3.5 9B W4A16 with its own MTP head on one Intel Arc Pro B70</h1>
+  <h1>Qwen3.5 9B W4A16 with its own MTP head on one or two Intel Arc Pro B70</h1>
   <p>RedHatAI&#x27;s W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab&#x27;s R276 image, with the publisher&#x27;s MTP head as a lossless speculative draft. vLLM&#x27;s compressed-tensors path selects the lab&#x27;s wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it.</p>
 </div></header>
 
@@ -117,7 +117,7 @@
   <div class="actions">
     <a class="button" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/repro/qwen35-9b-w4a16-b70/README.md">Open the full guide</a>
     <button type="button" class="copy-md" data-copy-markdown="../repro/qwen35-9b-w4a16-b70/README.md" aria-label="Copy the guide Markdown" aria-live="polite">Copy Markdown</button>
-    <a class="button secondary" href="https://github.com/steveseguin/b70-optimization-lab/issues/new?template=result.yml&title=Qwen3.5%209B%20W4A16%20with%20its%20own%20MTP%20head%20on%20one%20Intel%20Arc%20Pro%20B70">Submit an improvement</a>
+    <a class="button secondary" href="https://github.com/steveseguin/b70-optimization-lab/issues/new?template=result.yml&title=Qwen3.5%209B%20W4A16%20with%20its%20own%20MTP%20head%20on%20one%20or%20two%20Intel%20Arc%20Pro%20B70">Submit an improvement</a>
   </div>
 
   <dl class="facts"><div><dt>Model</dt><dd>Qwen3.5 9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head</dd></div><div><dt>Publisher</dt><dd>RedHatAI (W4A16 of Alibaba / Qwen)</dd></div><div><dt>Checkpoint</dt><dd>RedHatAI/Qwen3.5-9B-quantized.w4a16</dd></div><div><dt>Compression</dt><dd>W4A16 (compressed-tensors INT4 weights, FP16 activations)</dd></div><div><dt>Software</dt><dd>vLLM XPU</dd></div><div><dt>Cards</dt><dd>1× Intel Arc Pro B70 32 GiB</dd></div><div><dt>Model weight bytes</dt><dd>11.5 GB</dd></div><div><dt>Operating systems</dt><dd>Linux</dd></div><div><dt>Delivery</dt><dd>Docker / container</dd></div><div><dt>Good for</dt><dd><span class="use-chip">general</span> <span class="use-chip">coding</span></dd></div><div><dt>Published</dt><dd>2026-09-07</dd></div><div><dt>Clean-host replay</dt><dd>not yet</dd></div></dl>

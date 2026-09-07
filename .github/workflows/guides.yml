@@ -31,6 +31,8 @@ on:
       - "tools/test_sync_depth_sweep_profiles.py"
       - "tools/sync-public-result-summary.py"
       - "tools/test_sync_public_result_summary.py"
+      - "tools/check-doc-links.py"
+      - "tools/check-container-packet.py"
   push:
     branches: [main]
     paths:
@@ -62,6 +64,8 @@ on:
       - "tools/test_sync_depth_sweep_profiles.py"
       - "tools/sync-public-result-summary.py"
       - "tools/test_sync_public_result_summary.py"
+      - "tools/check-doc-links.py"
+      - "tools/check-container-packet.py"
 
 jobs:
   validate:
@@ -84,3 +88,8 @@ jobs:
       # Offline: resolves repository-relative links in the guides and site pages. Publisher-side manifest checking
       # (tools/verify-model-manifests-remote.py) stays manual, since it needs the Hugging Face API and would flake here.
       - run: python3 tools/check-doc-links.py
+      # Container packets are generated from the recipe launchers. This is the static half of that
+      # guarantee: it needs neither the image nor the weights, so it runs here, while regenerating
+      # (packages/*/scripts/render-compose.sh) needs both and stays on a lab host.
+      - run: pip install --quiet pyyaml
+      - run: python3 tools/check-container-packet.py

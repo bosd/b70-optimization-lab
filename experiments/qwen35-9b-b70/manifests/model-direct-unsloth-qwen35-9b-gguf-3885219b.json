@@ -1,20 +1,31 @@
 {
-  "repository": "unsloth/Qwen3.5-9B-GGUF",
-  "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
-  "revision_url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5",
-  "revision_note": "Sizes and SHA-256 digests read from the publisher repository API on 2026-09-07. The two files were originally copied onto this host from an external drive; both digests match this publisher revision exactly, so the local copies are byte-identical to the published files. The local copy of mmproj-BF16.gguf is named mmproj-Qwen3.5-9B-BF16.gguf.",
-  "total_weight_bytes": 10449207072,
-  "lfs_files": [
-    {
-      "path": "Qwen3.5-9B-Q8_0.gguf",
-      "bytes": 9527502048,
-      "sha256": "809626574d0cb43d4becfa56169980da2bb448f2299270f7be443cb89d0a6ae4"
-    },
-    {
-      "path": "mmproj-BF16.gguf",
-      "bytes": 921705024,
-      "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383"
-    }
-  ],
-  "small_files": []
+ "repository": "unsloth/Qwen3.5-9B-GGUF",
+ "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+ "revision_url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5",
+ "revision_note": "Sizes and SHA-256 digests read from the publisher repository API on 2026-09-07. The two files were originally copied onto this host from an external drive; both digests match this publisher revision exactly, so the local copies are byte-identical to the published files. The local copy of mmproj-BF16.gguf is named mmproj-Qwen3.5-9B-BF16.gguf. This publisher revision also hosts every other quantization of the model; this manifest deliberately pins only the two files the lane loads, so a completeness check against the publisher tree will report the rest as unlisted by design.",
+ "total_weight_bytes": 10449207072,
+ "lfs_files": [
+  {
+   "path": "Qwen3.5-9B-Q8_0.gguf",
+   "bytes": 9527502048,
+   "sha256": "809626574d0cb43d4becfa56169980da2bb448f2299270f7be443cb89d0a6ae4"
+  },
+  {
+   "path": "mmproj-BF16.gguf",
+   "bytes": 921705024,
+   "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383"
+  }
+ ],
+ "small_files": [
+  {
+   "path": ".gitattributes",
+   "bytes": 3060,
+   "git_blob": "51b8133947a4829519fceb38c81356a7f43fb5e0"
+  },
+  {
+   "path": "README.md",
+   "bytes": 78888,
+   "git_blob": "b876513d670a4d8a0b63b2f3016dea1a5659b245"
+  }
+ ]
 }

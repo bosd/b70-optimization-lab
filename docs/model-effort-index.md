@@ -4,11 +4,17 @@ This page is the cross-model work queue and archive. It is meant to help the
 next agent switch models without rereading every historical note.
 
 Hardware planning note: the measuring host has four Intel B70 32 GB cards and
-about 125 GiB system RAM. A second host has two ASRock B70 32 GB cards but only
-about 15 GiB system RAM and is restricted to source/build/op-level work for the
-current Qwen3.8 AutoRound lane. Higher-VRAM Intel hardware would make larger
-future efforts, such as GLM 5.2 and DeepSeek Flash-class models, much more
-realistic to validate under the same quality rules.
+about 125 GiB system RAM. A second host (`steve-TURIND8-2L2T`) has two ASRock
+B70 32 GB cards and about 15 GiB system RAM. That second host is no longer
+restricted to source/build/op-level work: since 2026-09-07 it carries the
+measured Qwen3.5 4B and 9B lanes end to end, including strict pairs, identity
+ladders, 2K-32K depth ladders, and promoted LocalMaxxing submissions. What it
+still cannot do is anything in the four-card band, which is a VRAM and system
+RAM limit rather than a policy: MiniMax M2.7 INT4 alone is about 115 GB of
+weights against 64 GiB of VRAM here. Route four-card lanes to the measuring
+host. Higher-VRAM Intel hardware would make larger future efforts, such as GLM
+5.2 and DeepSeek Flash-class models, much more realistic to validate under the
+same quality rules.
 
 ## How To Add A Model Effort
 

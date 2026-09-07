@@ -23,7 +23,10 @@ health=${repo}/scripts/check-qwen36-xpu-xccl-health.sh; health_timeout=1800
 fault_re='(xe [0-9a-f:.]+|drm\]).*(Fault response|CAT error|engine reset|gt reset|GPU reset|coredump|Timedout job|timed out|\bhung\b|wedged|device lost)|soft lockup'
 if [[ "$TP" == 2 ]]; then mask=${XPU_DEVICE_MASK:-0,1}; else mask=${XPU_DEVICE_MASK:-0}; fi
 if [[ "$GRAPH" == 1 ]]; then
-  comp='{"cudagraph_mode":"FULL_DECODE_ONLY","cudagraph_capture_sizes":[1,2,3,4,5,6,8,10,15,16,20,25,30,32,40,50,60,64],"max_cudagraph_capture_size":64,"splitting_ops":[],"inductor_compile_config":{"combo_kernels":false,"benchmark_combo_kernel":false,"deterministic":true,"split_reductions":false,"triton.autotune_pointwise":false,"benchmark_epilogue_fusion":false}}'
+  # CAPTURE_SIZES/CAPTURE_MAX default to the published c1-c64 capture set; raise both together to take a ladder past 64 users
+  # (an uncaptured decode shape falls back to eager, which is a different execution path and would confound an identity ladder).
+  csizes=${CAPTURE_SIZES:-1,2,3,4,5,6,8,10,15,16,20,25,30,32,40,50,60,64}; cmax=${CAPTURE_MAX:-64}
+  comp='{"cudagraph_mode":"FULL_DECODE_ONLY","cudagraph_capture_sizes":['"${csizes}"'],"max_cudagraph_capture_size":'"${cmax}"',"splitting_ops":[],"inductor_compile_config":{"combo_kernels":false,"benchmark_combo_kernel":false,"deterministic":true,"split_reductions":false,"triton.autotune_pointwise":false,"benchmark_epilogue_fusion":false}}'
   eager=0; xgraph=1
 else
   # "graph off" as the INT4 lane defines it: piecewise Inductor compile with the XPU graph disabled (the strict launcher pins enforce-eager off)

@@ -1,7 +1,7 @@
-# Qwen3.5 9B W4A16 — one-B70 package (candidate)
+# Qwen3.5 9B W4A16 — one- or two-B70 container packet (candidate)
 
-RedHatAI's W4A16 quantization of Qwen3.5-9B (compressed-tensors INT4 weights, FP16 activations) served by vLLM XPU on a
-single Intel Arc Pro B70 32 GiB card, with the publisher's own MTP head as a lossless speculative draft and full
+RedHatAI's W4A16 quantization of Qwen3.5-9B (compressed-tensors INT4 weights, FP16 activations) served by vLLM XPU on
+one or two Intel Arc Pro B70 32 GiB cards, with the publisher's own MTP head as a lossless speculative draft and full
 decode-only XPU graph capture. The container image and the strict launcher chain are the Qwen3.8 lanes', unchanged.
 
 > **Single request (2026-09-07, campaign w1):** MTP depth 3 with the draft-only INT4 lm_head `113.63 / 112.90 tok/s`,
@@ -13,6 +13,12 @@ decode-only XPU graph capture. The container image and the strict launcher chain
 > byte-identical to a single request at **every rung through 64 users, in both passes** (`1268.4 tok/s` at 64 users,
 > 64/64), which is what the FP8 build of the same model cannot do. With depth 3 it is exact through 16 users
 > (`750.8 tok/s`); 32 and 64 users are measured and withheld.
+
+> **Two cards (2026-09-07, campaign w3):** MTP depth 3 `172.27 / 172.32 tok/s`, `+52%` over one card and `17%` above
+> the FP8 route's two-card result. All strict gates pass 12/12 on both card counts. LocalMaxxing
+> `cmtrn9hoy001ops01qzd4axry` at `172.296 tok/s`. One caveat is recorded rather than hidden: on two cards the
+> no-speculation ladder holds 32 users exactly but drops to 63/64 at 64 users in both passes, which points at the
+> cross-card reduction rather than the GEMM, since the same kernel is exact at 64 users on one card.
 
 > **Long context:** not measured on this route yet; the FP8 route's 2K-32K ladder is in
 > `repro/qwen35-9b-fp8-b70/README.md`.
@@ -47,7 +53,35 @@ OUT_DIR=/tmp/strict-a BASE_URL=http://127.0.0.1:18131 MODEL_NAME=qwen35-9b-w4a16
 
 Full procedure, validation commands and the identity tables: [`repro/qwen35-9b-w4a16-b70/README.md`](../../repro/qwen35-9b-w4a16-b70/README.md).
 
+## Container packet
+
+This is a level-2 packet: a digest-pinned image, explicit GPU device mapping, read-only model and persistent cache
+volumes, and one- and two-card profiles.
+
+```bash
+cd packages/qwen35-9b-w4a16-b70
+export MODEL_DIR=/models/Qwen3.5-9B-quantized.w4a16
+
+PROFILE=one-gpu ./scripts/preflight.sh     # GPUs, driver, RAM, storage, image
+./scripts/download-model.sh                # exact bytes, from the publisher at the pinned revision
+./scripts/verify.sh                        # revision, sizes, every SHA-256 and git blob
+PROFILE=one-gpu ./scripts/smoke-test.sh    # start, health, and a repeat-identity gate
+```
+
+`compose.yaml` is **generated, not hand-written**. `scripts/render-compose.sh` runs the real recipe launcher behind a
+docker shim that captures the `docker run` argv instead of starting anything, then renders both profiles from it, so
+the packet reproduces the measured container's 73 environment variables and full serve command exactly rather than
+approximately. `tools/check-container-packet.py` runs in CI and fails the build if the committed file stops matching
+the launcher, if the image is not pinned by digest, if the model mount is not read-only, or if a port leaves loopback.
+
+Regenerate after any launcher change:
+
+```bash
+MODEL_DIR=/models/Qwen3.5-9B-quantized.w4a16 ./scripts/render-compose.sh
+```
+
 ## Still missing
 
 - clean-host replay
-- two-card, graph-off and 2K-32K rows (measured on the FP8 route only)
+- graph-off and 2K-32K rows (measured on the FP8 route only)
+- the two-card 64-user identity gap above; the one-card route has no such gap

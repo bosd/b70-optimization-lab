@@ -1,25 +1,71 @@
 {
-  "repository": "RedHatAI/Qwen3.5-9B-quantized.w4a16",
-  "revision": "a398088c4228b0ae0c8c78df88fd1e4bf445f068",
-  "revision_url": "https://huggingface.co/RedHatAI/Qwen3.5-9B-quantized.w4a16/tree/a398088c4228b0ae0c8c78df88fd1e4bf445f068",
-  "revision_note": "Weight sizes and LFS SHA-256 identities read from the publisher repository API at this immutable revision on 2026-09-07.",
-  "total_weight_bytes": 11456765607,
-  "lfs_files": [
-    {
-      "path": "model.safetensors",
-      "bytes": 10950193416,
-      "sha256": "48e5ff6e04503c79e4e8101fc05ec4d0c4af48300c8902112f43b9d98ea2cd17"
-    },
-    {
-      "path": "model_mtp.safetensors",
-      "bytes": 486582848,
-      "sha256": "e9f83dae0fed4d0633fba652cd7eb942642491a283b11072c3cfc77731e0fae9"
-    },
-    {
-      "path": "tokenizer.json",
-      "bytes": 19989343,
-      "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
-    }
-  ],
-  "small_files": []
+ "repository": "RedHatAI/Qwen3.5-9B-quantized.w4a16",
+ "revision": "a398088c4228b0ae0c8c78df88fd1e4bf445f068",
+ "revision_url": "https://huggingface.co/RedHatAI/Qwen3.5-9B-quantized.w4a16/tree/a398088c4228b0ae0c8c78df88fd1e4bf445f068",
+ "revision_note": "Weight sizes and LFS SHA-256 identities read from the publisher repository API at this immutable revision on 2026-09-07.",
+ "total_weight_bytes": 11456765607,
+ "lfs_files": [
+  {
+   "path": "model.safetensors",
+   "bytes": 10950193416,
+   "sha256": "48e5ff6e04503c79e4e8101fc05ec4d0c4af48300c8902112f43b9d98ea2cd17"
+  },
+  {
+   "path": "model_mtp.safetensors",
+   "bytes": 486582848,
+   "sha256": "e9f83dae0fed4d0633fba652cd7eb942642491a283b11072c3cfc77731e0fae9"
+  },
+  {
+   "path": "tokenizer.json",
+   "bytes": 19989343,
+   "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+  }
+ ],
+ "small_files": [
+  {
+   "path": ".gitattributes",
+   "bytes": 1570,
+   "git_blob": "52373fe24473b1aa44333d318f578ae6bf04b49b"
+  },
+  {
+   "path": "README.md",
+   "bytes": 10108,
+   "git_blob": "71be3e829fe9d9278b170cf8ce3811054196c148"
+  },
+  {
+   "path": "chat_template.jinja",
+   "bytes": 7756,
+   "git_blob": "a585dec894e63da457d9440ec6aa7caa16d20860"
+  },
+  {
+   "path": "config.json",
+   "bytes": 16041,
+   "git_blob": "028c334b6e9153bf759272b40be5d83860f9ead6"
+  },
+  {
+   "path": "generation_config.json",
+   "bytes": 115,
+   "git_blob": "6cd5946d7adc7e41434d4ed023641641ee22cfb3"
+  },
+  {
+   "path": "model.safetensors.index.json",
+   "bytes": 81692,
+   "git_blob": "eacc5731c8afea8e482f9ee0dad4ff7c7f0fe004"
+  },
+  {
+   "path": "processor_config.json",
+   "bytes": 1300,
+   "git_blob": "7ad6acdf4203f22b7b990e36ccc3a1fe38563d5e"
+  },
+  {
+   "path": "recipe.yaml",
+   "bytes": 411,
+   "git_blob": "5deccbaa83f9ba8fcda4445ee811010543adc95f"
+  },
+  {
+   "path": "tokenizer_config.json",
+   "bytes": 1140,
+   "git_blob": "541f6c47f2feadecb8b5e1381446e252f4054e8d"
+  }
+ ]
 }
