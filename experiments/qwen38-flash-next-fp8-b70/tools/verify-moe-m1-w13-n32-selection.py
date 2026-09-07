@@ -58,30 +58,24 @@ EXPECTED_VLLM_HEADS = frozenset(
         "cb59004b5c51e603ba06579382e66139d9a18bb6",
         # 2e04cdbd: the same placement commits on the lossless MTP1 head 1b2a17c1
         "005dc57895896f770157ea94f68e473e7447139e",
-        # split-K certification heads v2: clean placement heads + split-K 38ca78ba + its gate follow-up 07131f02
-        # (the v1 heads 6a79c56d/e9e65888 without 07131f02 were not exact: A248) and their Triton-HC variants
-        "82b9f9cf34f8a04a6338cb256667f13c9f841b31",
-        "893e1ccc7a1e681b861a1f28c6a6f59cade677dc",
-        "2aa369a6c069e64579c62905e0cfee8b456d8cc3",
-        "b0836afbc5eafbe9ab4728c89b43dd10c3efac7a",
+        # Triton hyper-connection glue heads (7751df34 on the certified placement heads; new authority, MoE untouched).
+        # Split-K heads (v1 6a79c56d/e9e65888, v2 82b9f9cf/893e1ccc) are not accepted: split-K changes outputs at 4K (A259).
+        "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230",
+        "622191221475b53cc6f7f4d847860939f4c300ab",
     }
 )
 # fused_moe.py hash per accepted head family (the placement head changes that file only)
 EXPECTED_FUSED_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "005dc57895896f770157ea94f68e473e7447139e": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
-    "82b9f9cf34f8a04a6338cb256667f13c9f841b31": "3ad958861708a9d1c95eb86fd5a47a7ec6ea8c07289ea1e427e232562af72eae",
-    "893e1ccc7a1e681b861a1f28c6a6f59cade677dc": "3ad958861708a9d1c95eb86fd5a47a7ec6ea8c07289ea1e427e232562af72eae",
-    "2aa369a6c069e64579c62905e0cfee8b456d8cc3": "3ad958861708a9d1c95eb86fd5a47a7ec6ea8c07289ea1e427e232562af72eae",
-    "b0836afbc5eafbe9ab4728c89b43dd10c3efac7a": "3ad958861708a9d1c95eb86fd5a47a7ec6ea8c07289ea1e427e232562af72eae",
+    "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "622191221475b53cc6f7f4d847860939f4c300ab": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
 }
 EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "005dc57895896f770157ea94f68e473e7447139e": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
-    "82b9f9cf34f8a04a6338cb256667f13c9f841b31": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
-    "893e1ccc7a1e681b861a1f28c6a6f59cade677dc": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
-    "2aa369a6c069e64579c62905e0cfee8b456d8cc3": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
-    "b0836afbc5eafbe9ab4728c89b43dd10c3efac7a": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "622191221475b53cc6f7f4d847860939f4c300ab": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
 }
 EXPECTED_PHASE_CONFIG_PATCH_NAME = "0021-Add-opt-in-per-phase-Triton-MoE-configs.patch"
 EXPECTED_PHASE_CONFIG_PATCH_SHA256 = (
