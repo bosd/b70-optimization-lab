@@ -34,7 +34,9 @@
     "mtp": [
       0,
       3,
-      4
+      4,
+      5,
+      6
     ],
     "configured_max_context_tokens": [
       1024,
@@ -56,7 +58,7 @@
   ],
   "model_variants": [],
   "transfer_scope": {
-    "status": "one measured FP8-dynamic revision on one and two cards; 32K rows in progress",
+    "status": "one measured FP8-dynamic revision on one and two cards, depths 0-6 strict, 2K-32K ladders on both card counts",
     "transfers": [
       "the Qwen3.5-family vLLM XPU registration, the lab GDN kernels and strict launchers, the draft-only INT4 lm_head"
     ],
@@ -308,6 +310,90 @@
         ]
       },
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
+    },
+    {
+      "id": "q35-9b-fp8-tp1-mtp5-graph-int4head-c9",
+      "state": "lab-measured",
+      "revision": "qwen3.5-9b-fp8-dynamic-790f0576",
+      "variant": "FP8-dynamic",
+      "quantization": "FP8-dynamic",
+      "runtime": "vLLM XPU 0.27.2rc1.dev77 (R276 image 521eb277)",
+      "config": {
+        "tp": 1,
+        "mtp": 5,
+        "graph": "on",
+        "kv": "f16",
+        "configured_max_context_tokens": 1024,
+        "draft_head": "draft INT4"
+      },
+      "profile_id": "qwen35-9b-fp8-strict-completions-v1",
+      "measurement_class": "strict fresh-server pair",
+      "promotion_status": "withheld: repeat-exact but 8/12 vs the MTP0 oracle; slower than depth 3",
+      "quality_scope": "G1 12/12, G2 12/12, G3 8/12",
+      "workload": "strict 12-prompt six-class suite over the completions API, 512-token cap, cache zero, class-balanced median tok/s over tokens 1-100 after TTFT, two fresh servers",
+      "metrics": {
+        "decode_tok_s": [
+          91.301,
+          91.294
+        ]
+      },
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
+    },
+    {
+      "id": "q35-9b-fp8-tp1-mtp6-graph-int4head-c10",
+      "state": "lab-measured",
+      "revision": "qwen3.5-9b-fp8-dynamic-790f0576",
+      "variant": "FP8-dynamic",
+      "quantization": "FP8-dynamic",
+      "runtime": "vLLM XPU 0.27.2rc1.dev77 (R276 image 521eb277)",
+      "config": {
+        "tp": 1,
+        "mtp": 6,
+        "graph": "on",
+        "kv": "f16",
+        "configured_max_context_tokens": 1024,
+        "draft_head": "draft INT4"
+      },
+      "profile_id": "qwen35-9b-fp8-strict-completions-v1",
+      "measurement_class": "strict fresh-server pair",
+      "promotion_status": "withheld: repeat-exact but 8/12 vs the MTP0 oracle; slower than depth 3",
+      "quality_scope": "G1 12/12, G2 12/12, G3 8/12",
+      "workload": "strict 12-prompt six-class suite over the completions API, 512-token cap, cache zero, class-balanced median tok/s over tokens 1-100 after TTFT, two fresh servers",
+      "metrics": {
+        "decode_tok_s": [
+          88.602,
+          88.677
+        ]
+      },
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
+    },
+    {
+      "id": "q35-9b-fp8-tp2-mtp4-graph-int4head-c6",
+      "state": "lab-measured",
+      "revision": "qwen3.5-9b-fp8-dynamic-790f0576",
+      "variant": "FP8-dynamic",
+      "quantization": "FP8-dynamic",
+      "runtime": "vLLM XPU 0.27.2rc1.dev77 (R276 image 521eb277)",
+      "config": {
+        "tp": 2,
+        "mtp": 4,
+        "graph": "on",
+        "kv": "f16",
+        "configured_max_context_tokens": 1024,
+        "draft_head": "draft INT4"
+      },
+      "profile_id": "qwen35-9b-fp8-strict-completions-v1",
+      "measurement_class": "strict fresh-server pair",
+      "promotion_status": "withheld: repeat-exact but 9/12 vs the MTP0 oracle",
+      "quality_scope": "G1 12/12, G2 12/12, G3 9/12",
+      "workload": "strict 12-prompt six-class suite over the completions API, 512-token cap, cache zero, class-balanced median tok/s over tokens 1-100 after TTFT, two fresh servers",
+      "metrics": {
+        "decode_tok_s": [
+          150.694,
+          151.737
+        ]
+      },
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
     }
   ],
   "series_measurements": [],
@@ -383,7 +469,9 @@
           "measurement_ids": [
             "q35-9b-fp8-tp1-mtp0-graph-c1",
             "q35-9b-fp8-tp1-mtp3-graph-int4head-c2",
-            "q35-9b-fp8-tp1-mtp4-graph-int4head-c3"
+            "q35-9b-fp8-tp1-mtp4-graph-int4head-c3",
+            "q35-9b-fp8-tp1-mtp5-graph-int4head-c9",
+            "q35-9b-fp8-tp1-mtp6-graph-int4head-c10"
           ],
           "x_from": "config.mtp"
         }
@@ -441,7 +529,9 @@
       "rows": [
         0,
         3,
-        4
+        4,
+        5,
+        6
       ],
       "columns": [
         1,
@@ -479,8 +569,30 @@
           "packet_id": "qwen35-9b-fp8-b70"
         },
         "4:2": {
+          "state": "lab-measured",
+          "label": "D150.69 withheld (9/12)",
+          "evidence_id": "q35-9b-fp8-tp2-mtp4-graph-int4head-c6",
+          "packet_id": "qwen35-9b-fp8-b70"
+        },
+        "5:1": {
+          "state": "lab-measured",
+          "label": "D91.30 withheld (8/12)",
+          "evidence_id": "q35-9b-fp8-tp1-mtp5-graph-int4head-c9",
+          "packet_id": "qwen35-9b-fp8-b70"
+        },
+        "5:2": {
           "state": "missing",
-          "label": "campaign queued"
+          "label": "not run (depth 4 already withheld on two cards)"
+        },
+        "6:1": {
+          "state": "lab-measured",
+          "label": "D88.60 withheld (8/12)",
+          "evidence_id": "q35-9b-fp8-tp1-mtp6-graph-int4head-c10",
+          "packet_id": "qwen35-9b-fp8-b70"
+        },
+        "6:2": {
+          "state": "missing",
+          "label": "not run (depth 4 already withheld on two cards)"
         }
       }
     }
