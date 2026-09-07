@@ -1,0 +1,126 @@
+From 54f02431a5a8fd3b6fd23a74277a0138b5e46bb5 Mon Sep 17 00:00:00 2001
+From: Codex Agent <codex-agent@users.noreply.github.com>
+Date: Mon, 7 Sep 2026 12:13:20 -0400
+Subject: [PATCH 1/2] [XPU] VLLM_XPU_QSA_FUSED_INDEXER=1: run the reference
+ fused QSA pre-indexer on XPU
+
+The XPU indexer runs the qk projection, the q norm and rope, the group compression, the
+compressed-key norm and rope, and two or three cache-row stores as separate kernels. The
+model's reference path fuses all of it into one Triton kernel (nvidia/ops/qsa_pre_indexer.py),
+which is plain Triton and needs only metadata the shared QSAForwardMetadata already carries.
+A293 attributed 18.0 of the indexer's 23.9 ms per eager step to exactly the phases it covers.
+
+Intermediates stay in registers instead of round-tripping through bf16, so outputs move in
+the last bit: this is gated off by default and is new-authority work, like the HC glue.
+
+Co-authored-by: Claude Opus 5 (1M context) <noreply@anthropic.com>
+---
+ vllm/envs.py                             |  4 ++
+ vllm/models/qwen4_exp/amd/indexer_qsa.py | 55 ++++++++++++++++++++++++
+ 2 files changed, 59 insertions(+)
+
+diff --git a/vllm/envs.py b/vllm/envs.py
+index 20f1bb917..e22f3f35b 100755
+--- a/vllm/envs.py
++++ b/vllm/envs.py
+@@ -300,6 +300,7 @@ if TYPE_CHECKING:
+     VLLM_PLE_CPU_OFFLOAD: bool = False
+     VLLM_XPU_PLE_UVA_PREFETCH: bool = False
+     VLLM_XPU_QWEN4_EXP_HC_GROUPED_UP: bool = False
++    VLLM_XPU_QSA_FUSED_INDEXER: bool = False
+     VLLM_PLE_OFFLOAD_READY_TIMEOUT: float = 600.0
+     VLLM_PLE_OFFLOAD_RUNTIME_TIMEOUT: float = 600.0
+     VLLM_LOG_MODEL_INSPECTION: bool = False
+@@ -2063,6 +2064,9 @@ environment_variables: dict[str, Callable[[], Any]] = {
+     "VLLM_XPU_QWEN4_EXP_HC_GROUPED_UP": lambda: (
+         os.getenv("VLLM_XPU_QWEN4_EXP_HC_GROUPED_UP", "False").lower() in ("true", "1")
+     ),
++    "VLLM_XPU_QSA_FUSED_INDEXER": lambda: (
++        os.getenv("VLLM_XPU_QSA_FUSED_INDEXER", "False").lower() in ("true", "1")
++    ),
+     # Timeout for PLE weight loading and TP worker registration.
+     "VLLM_PLE_OFFLOAD_READY_TIMEOUT": lambda: float(
+         os.getenv("VLLM_PLE_OFFLOAD_READY_TIMEOUT", "600")
+diff --git a/vllm/models/qwen4_exp/amd/indexer_qsa.py b/vllm/models/qwen4_exp/amd/indexer_qsa.py
+index f2349839b..c2dc7471f 100644
+--- a/vllm/models/qwen4_exp/amd/indexer_qsa.py
++++ b/vllm/models/qwen4_exp/amd/indexer_qsa.py
+@@ -17,6 +17,9 @@ from vllm.forward_context import get_forward_context
+ from vllm.model_executor.layers.layernorm import GemmaRMSNorm
+ from vllm.model_executor.layers.linear import ReplicatedLinear
+ from vllm.model_executor.layers.quantization import QuantizationConfig
++
++from ..nvidia.indexer_qsa import _supports_fused_pre_indexer
++from ..nvidia.ops.qsa_pre_indexer import qsa_pre_indexer
+ from vllm.model_executor.layers.rotary_embedding.mrope import triton_mrope
+ from vllm.transformers_utils.configs.qwen4_exp import (
+     Qwen4ExpTextConfig,
+@@ -109,6 +112,19 @@ class QSAIndexer(nn.Module):
+         self.token_topk = int(config.indexer_budget)
+         self.compress_ratio = int(config.indexer_compress_ratio)
+         self.rotary_emb = rotary_emb
++        # Opt-in port of the reference fused pre-indexer. The XPU path runs the
++        # projection, norm, rope, group compression and cache stores as separate
++        # kernels; the reference path fuses them. Values differ in the last bf16
++        # bit because the intermediates stay in registers, so this is gated.
++        self._fused_pre_indexer = (
++            envs.VLLM_XPU_QSA_FUSED_INDEXER
++            and _supports_fused_pre_indexer(
++                rotary_emb,
++                self.index_head_dim,
++                self.index_kv_heads,
++                self.compress_ratio,
++            )
++        )
+         self.prefix = prefix
+         # MTP step 0 selects the target-aligned rows; later steps reuse them
+         # while continuing to update the QSA side cache.
+@@ -364,6 +380,45 @@ class QSAIndexer(nn.Module):
+             return result
+         raw_metadata, compressed_metadata = metadata
+         num_tokens = raw_metadata.num_actual_tokens
++        if self._fused_pre_indexer and not self.skip_topk:
++            projected_qk, _ = self.index_qk_proj(hidden_states[:num_tokens])
++            projected_q, raw_keys = projected_qk.split(
++                (
++                    self.index_n_heads * self.index_head_dim,
++                    self.index_kv_heads * self.index_head_dim,
++                ),
++                dim=-1,
++            )
++            q = projected_q.new_empty(
++                num_tokens, self.index_n_heads, self.index_head_dim
++            )
++            raw_cache = self.raw_key_cache
++            qsa_pre_indexer(
++                projected_q,
++                raw_keys,
++                positions[..., :num_tokens],
++                self.rotary_emb.cos_sin_cache,
++                self.q_layernorm.weight,
++                self.k_layernorm.weight,
++                self.q_layernorm.variance_epsilon,
++                q,
++                raw_cache.kv_cache,
++                raw_metadata.slot_mapping,
++                raw_metadata.block_table,
++                raw_metadata.query_start_loc,
++                raw_metadata.logical_positions,
++                self.compressed_key_cache.kv_cache,
++                compressed_metadata.slot_mapping,
++                compressed_metadata.k_work_metadata,
++                compress_ratio=self.compress_ratio,
++                mrope_section=getattr(self.rotary_emb, "mrope_section", None),
++                rope_pos_offset=(
++                    raw_cache.rope_position_offset
++                    if raw_cache.rope_position_cache is not None
++                    else None
++                ),
++            )
++            return self._select(q, compressed_metadata, out)
+         q, token_k = self.project_qk(
+             hidden_states[:num_tokens], positions[..., :num_tokens]
+         )
+-- 
+2.43.0
+

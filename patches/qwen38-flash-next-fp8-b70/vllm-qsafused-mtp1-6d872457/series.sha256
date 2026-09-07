@@ -1,0 +1,3 @@
+d019579ca5b44336ee56910813c0856ab82658838f6a627d8b87e1c12f73cb64  0001-XPU-VLLM_XPU_QSA_FUSED_INDEXER-1-run-the-reference-f.patch
+92e9d57b5623650d4bc1c11fd64e14d0908f7b91ed569846094f992dc2e33ddf  0002-XPU-the-fused-QSA-pre-indexer-must-not-preempt-the-r.patch
+95e5caee937d128177d34e268f56586879a0dab4cf3f3c6c1bddab1fec7bd3fc  vllm-q38-qsafused-mtp1-6d872457-20260907.bundle
