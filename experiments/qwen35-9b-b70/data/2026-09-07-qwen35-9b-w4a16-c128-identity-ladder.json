@@ -1,0 +1,237 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-x1",
+ "question": "The published one-card identity claim stops at 64 users because that was the top of the ladder, not because a ceiling was found. This extends the same ladder to 96 and 128 users, with graph capture sizes raised to match so no rung falls back to eager, which would have been a different execution path.",
+ "status": "Qwen3.5-9B W4A16, one B70, identity ladder extended to 128 concurrent users. Without speculation the route is exact at every rung through 64 users in both passes and again at 128 in both passes, with a single divergence at 96 users in the second pass (95/96). The ceiling is therefore not clean: 64 remains the highest concurrency qualified in both passes.",
+ "boot_id": "bf8e504b-4d60-4142-8b2b-e60d65fec77e",
+ "repo_head_at_launch": "25dd69fc34925e75d0b95c5011b5c001c53468a6",
+ "campaign_config": "LANE=qwen35-9b-w4a16 RUN=x1 TP=1 DEPTH=3 GRAPH=1 DRAFT_HEAD=1 QUANT=compressed-tensors PAD=0 mask=0 model=/home/steve/llm-models/qwen35-9b-w4a16 image=sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "capture_sizes": "1,2,3,4,5,6,8,10,15,16,20,25,30,32,40,50,60,64,80,96,112,128 (max 128)",
+ "model": {
+  "hf_id": "RedHatAI/Qwen3.5-9B-quantized.w4a16",
+  "revision": "a398088c4228b0ae0c8c78df88fd1e4bf445f068"
+ },
+ "identity_ladders": {
+  "mtp0": [
+   {
+    "concurrency": 1,
+    "pass": 1,
+    "aggregate_tok_s_wall": 63.1,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 1,
+    "aggregate_tok_s_wall": 121.6,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 1,
+    "aggregate_tok_s_wall": 234.5,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 1,
+    "aggregate_tok_s_wall": 433.5,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 1,
+    "aggregate_tok_s_wall": 744.6,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1183.4,
+    "exact_vs_sequential_oracle": "32/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1272.7,
+    "exact_vs_sequential_oracle": "64/64"
+   },
+   {
+    "concurrency": 96,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1308.5,
+    "exact_vs_sequential_oracle": "96/96"
+   },
+   {
+    "concurrency": 128,
+    "pass": 1,
+    "aggregate_tok_s_wall": 1323.7,
+    "exact_vs_sequential_oracle": "128/128"
+   },
+   {
+    "concurrency": 1,
+    "pass": 2,
+    "aggregate_tok_s_wall": 63.9,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 2,
+    "aggregate_tok_s_wall": 123.4,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 2,
+    "aggregate_tok_s_wall": 235.4,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 2,
+    "aggregate_tok_s_wall": 436.5,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 2,
+    "aggregate_tok_s_wall": 743.0,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1180.6,
+    "exact_vs_sequential_oracle": "32/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1272.0,
+    "exact_vs_sequential_oracle": "64/64"
+   },
+   {
+    "concurrency": 96,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1308.3,
+    "exact_vs_sequential_oracle": "95/96"
+   },
+   {
+    "concurrency": 128,
+    "pass": 2,
+    "aggregate_tok_s_wall": 1322.3,
+    "exact_vs_sequential_oracle": "128/128"
+   }
+  ],
+  "mtp3": [
+   {
+    "concurrency": 1,
+    "pass": 1,
+    "aggregate_tok_s_wall": 117.4,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 1,
+    "aggregate_tok_s_wall": 98.3,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 1,
+    "aggregate_tok_s_wall": 362.6,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 1,
+    "aggregate_tok_s_wall": 640.6,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 1,
+    "aggregate_tok_s_wall": 668.2,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 1,
+    "aggregate_tok_s_wall": 826.9,
+    "exact_vs_sequential_oracle": "32/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 1,
+    "aggregate_tok_s_wall": 787.2,
+    "exact_vs_sequential_oracle": "61/64"
+   },
+   {
+    "concurrency": 96,
+    "pass": 1,
+    "aggregate_tok_s_wall": 808.8,
+    "exact_vs_sequential_oracle": "93/96"
+   },
+   {
+    "concurrency": 128,
+    "pass": 1,
+    "aggregate_tok_s_wall": 796.0,
+    "exact_vs_sequential_oracle": "117/128"
+   },
+   {
+    "concurrency": 1,
+    "pass": 2,
+    "aggregate_tok_s_wall": 116.6,
+    "exact_vs_sequential_oracle": "1/1"
+   },
+   {
+    "concurrency": 2,
+    "pass": 2,
+    "aggregate_tok_s_wall": 223.0,
+    "exact_vs_sequential_oracle": "2/2"
+   },
+   {
+    "concurrency": 4,
+    "pass": 2,
+    "aggregate_tok_s_wall": 369.9,
+    "exact_vs_sequential_oracle": "4/4"
+   },
+   {
+    "concurrency": 8,
+    "pass": 2,
+    "aggregate_tok_s_wall": 647.9,
+    "exact_vs_sequential_oracle": "8/8"
+   },
+   {
+    "concurrency": 16,
+    "pass": 2,
+    "aggregate_tok_s_wall": 746.9,
+    "exact_vs_sequential_oracle": "16/16"
+   },
+   {
+    "concurrency": 32,
+    "pass": 2,
+    "aggregate_tok_s_wall": 821.0,
+    "exact_vs_sequential_oracle": "30/32"
+   },
+   {
+    "concurrency": 64,
+    "pass": 2,
+    "aggregate_tok_s_wall": 778.0,
+    "exact_vs_sequential_oracle": "60/64"
+   },
+   {
+    "concurrency": 96,
+    "pass": 2,
+    "aggregate_tok_s_wall": 808.0,
+    "exact_vs_sequential_oracle": "92/96"
+   },
+   {
+    "concurrency": 128,
+    "pass": 2,
+    "aggregate_tok_s_wall": 806.9,
+    "exact_vs_sequential_oracle": "119/128"
+   }
+  ]
+ },
+ "reading": "Aggregate decode saturates well before the identity limit: 1272.7 tok/s at 64 users, 1308.5 at 96 and 1323.7 at 128, so the last doubling of users buys about 4%. With MTP depth 3 the route saturates near 800 tok/s from 32 users up and its identity degrades earlier (61/64 and 60/64 at 64 users, 117/128 and 119/128 at 128), which is the established pattern: speculation trades identity headroom for single-user speed. The one miss out of 448 requests across the two top no-speculation rungs is why this is reported as 'not clean' rather than as an extension of the claim to 128."
+}

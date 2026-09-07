@@ -56,6 +56,25 @@ No speculation, 128-token completions on the small-context suite, warm pass of
 two, `max-model-len 256`, `max-num-seqs 64`. The identity ceiling is a property
 of the kernel, not of the model or the workload.
 
+### Past 64 users (campaign x1)
+
+64 was the top of the ladder, not a measured ceiling, so campaign x1 ran the
+same ladder to 128 users with graph capture sizes raised to match (an
+uncaptured decode shape falls back to eager, which is a different execution
+path and would have confounded the answer).
+
+| users | no speculation tok/s (exact, pass 1 / pass 2) |
+| ---: | --- |
+| 64 | 1272.7 / 1272.0 (64/64, 64/64) |
+| 96 | 1308.5 / 1308.3 (96/96, **95/96**) |
+| 128 | 1323.7 / 1322.3 (128/128, 128/128) |
+
+The ceiling is not clean. One request out of 448 across the two top rungs
+diverged, at 96 users in the second pass, while 128 users matched twice. So
+64 remains the highest concurrency qualified in both passes, and 96 and 128 are
+reported as near-exact rather than folded into the claim. Aggregate decode has
+almost stopped scaling by then: the last doubling of users buys about 4%.
+
 The W4A16 determinism pad (`VLLM_XPU_W4A16_DETERMINISM_PAD`) is off in the
 published configuration and should stay off. Measured on this model (campaign
 w2): without speculation it is inert, because 64 users is 64 decode rows and
