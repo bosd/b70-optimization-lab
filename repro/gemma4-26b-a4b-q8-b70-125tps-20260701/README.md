@@ -75,6 +75,20 @@ Latest reproducibility check while creating this packet:
   reproduces the promoted path and validity gate, while landing within the
   known several-percent run-to-run spread below the `124.977` high.
 
+Clean-rebuild replays on the lab host (2026-09-07, one B70, same gate):
+
+| build | run | median tok/s 1-100 after TTFT | class-balanced median | p10 | median TTFT | gates |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| oneAPI 2026.1.1 host compatibility build (`26fc4868…`) | `data/gemma4-q8-gpu0-125repro-compat2026.1-20260907T040139Z/summary.json` | `115.288` | `115.785` | `104.013` | `192.3 ms` | realistic gate passed, fresh valid, cache zero, canary 512/512 |
+| pinned oneAPI 2026.0 container (`ae45b2f0…`, image `e22b500d…`) | `data/gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z/summary.json` | `111.197` | `112.046` | `102.253` | `192.8 ms` | realistic gate passed, fresh valid, cache zero, canary 512/512 |
+
+Both are valid same-recipe support runs, not new records: they reproduce the
+promoted path and validity gate from source with the reconstructed draft
+(`1f6706e4…` from both quantizers), landing within and just below the known
+several-percent spread under the `124.977` high. The container run trails the
+host build by about 3.5% in the same window; a second container run is
+recorded below when available.
+
 ## Runtime Identity
 
 - Host: one Intel Arc Pro B70 32 GB replica per run; the lab has four B70s and
@@ -262,9 +276,8 @@ entrypoint saves its arguments first. The build took about 10 minutes of
 compile on eight cores after the package fetch. A separately labelled
 compatibility rebuild with the host's oneAPI 2026.1.1 compiler (`llama-server`
 SHA-256 `26fc4868e496ebdb93724b64f0e228c75bb6317129eaf5b942a281673f1b8fb4`)
-also enumerates both cards. The record gate replay for both binaries is queued
-behind the pinned model download (the host WAN was throttled to about
-0.5 MB/s all afternoon) and will be recorded here when it lands.
+also enumerates both cards. The record gate replays for both binaries are in the "Headline Result"
+section above (2026-09-07).
 
 ## Reproduce
 

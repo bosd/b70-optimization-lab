@@ -269,14 +269,14 @@
       ],
       "evidence": [
         "patches/gemma4-26b-a4b-q8-b70/record-source-verification-20260822.json",
-        "data/gemma4-q8-gpu0-finalpostnorm-reproexact-full512-20260701T084728Z/summary.json"
+        "data/gemma4-q8-gpu0-finalpostnorm-reproexact-full512-20260701T084728Z/summary.json",
+        "data/gemma4-q8-gpu0-125repro-compat2026.1-20260907T040139Z/summary.json",
+        "data/gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z/summary.json"
       ],
       "missing": [
         "historical llama-server binary SHA-256",
-        "historical locally quantized Q4_0 MTP draft SHA-256 and byte size",
-        "tested clean-host Intel driver and oneAPI 2026.0 installation",
-        "clean one-B70 rebuild and endpoint replay",
-        "beginner recovery flow"
+        "historical locally quantized Q4_0 MTP draft SHA-256 and byte size (the reconstructed draft is repeat-stable at 1f6706e4… across three builds)",
+        "beginner recovery flow exercised end-to-end on a fresh host (documented; the pinned oneAPI 2026.0 container path and two clean-rebuild gate replays were verified on the lab host on 2026-09-07)"
       ]
     },
     {
