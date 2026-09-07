@@ -56,6 +56,15 @@ No speculation, 128-token completions on the small-context suite, warm pass of
 two, `max-model-len 256`, `max-num-seqs 64`. The identity ceiling is a property
 of the kernel, not of the model or the workload.
 
+The W4A16 determinism pad (`VLLM_XPU_W4A16_DETERMINISM_PAD`) is off in the
+published configuration and should stay off. Measured on this model (campaign
+w2): without speculation it is inert, because 64 users is 64 decode rows and
+the pad only engages above 128, and the route is already exact there. With
+depth 3 the verify step submits up to 256 rows, the pad engages, costs 13% at
+64 users (683.7 against 789.2 tok/s) and changes nothing about identity
+(62/64 against 61/64). The residual speculative flips above 16 users are
+therefore not GEMM row-tier effects.
+
 With MTP depth 3 the same ladder is exact through 16 users in both passes
 (`750.8 tok/s`), 32/32 in the warm pass at `827.3` and 31/32 cold, and 61/64 at
 `789.2`: the speculative verify step still walks through row counts the fixed-K

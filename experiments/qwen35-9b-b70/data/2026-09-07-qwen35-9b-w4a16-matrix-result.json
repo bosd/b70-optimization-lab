@@ -296,5 +296,245 @@
   ],
   "ladder-mtp0_first_divergence_vs_oracle": {},
   "verdict": "No speculation is exact at EVERY rung in BOTH passes through 64 users: c1 64.2, c2 124.0, c4 236.2, c8 437.7, c16 746.7, c32 1184.0, c64 1268.4, all 64/64. Depth 3 exact through c16 in both passes (750.8), c32 32/32 warm (827.3) and 31/32 cold, c64 61/64 (789.2). The FP8 route on the same model withheld everything above c8."
+ },
+ "w2_ladders_pad_on": {
+  "date": "2026-09-07",
+  "boot": "bf8e504b",
+  "image": "R276",
+  "config": "as w1 with VLLM_XPU_W4A16_DETERMINISM_PAD=1 and _PAD_HIGH=1, ladders only, two passes",
+  "ladder": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 115.9,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 118.0,
+    "ttft_s_max": 0.86
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 336.0,
+    "ttft_s_max": 0.24
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 625.4,
+    "ttft_s_max": 0.21
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 669.0,
+    "ttft_s_max": 0.56
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 812.0,
+    "ttft_s_max": 0.54
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "61/64",
+    "aggregate_tok_s_wall": 664.1,
+    "ttft_s_max": 10.39
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 116.5,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 223.7,
+    "ttft_s_max": 0.07
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 370.8,
+    "ttft_s_max": 0.09
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 638.8,
+    "ttft_s_max": 0.17
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 747.6,
+    "ttft_s_max": 0.22
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 807.5,
+    "ttft_s_max": 0.61
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "62/64",
+    "aggregate_tok_s_wall": 683.7,
+    "ttft_s_max": 9.79
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c32_r1": [
+    [
+     "index-c025",
+     107
+    ]
+   ],
+   "c64_r1": [
+    [
+     "capacity-c022",
+     5
+    ],
+    [
+     "index-c041",
+     77
+    ],
+    [
+     "monitoring-c036",
+     90
+    ]
+   ],
+   "c64_r2": [
+    [
+     "capacity-c022",
+     5
+    ],
+    [
+     "monitoring-c036",
+     90
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 64.1,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 122.3,
+    "ttft_s_max": 0.07
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 236.3,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 429.0,
+    "ttft_s_max": 0.17
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 744.2,
+    "ttft_s_max": 0.21
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1167.7,
+    "ttft_s_max": 0.42
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 1263.9,
+    "ttft_s_max": 0.8
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 64.3,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 124.1,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 236.5,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 431.1,
+    "ttft_s_max": 0.15
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 744.6,
+    "ttft_s_max": 0.21
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1176.3,
+    "ttft_s_max": 0.39
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 1263.3,
+    "ttft_s_max": 0.81
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {},
+  "verdict": "The determinism pad buys nothing and costs throughput where it engages. Depth 3 warm: c16 747.6 (16/16), c32 807.5 (32/32), c64 683.7 (62/64) against 750.8 / 827.3 / 789.2 (61/64) with the pad off, i.e. 13% slower at 64 users for no identity gain. No speculation warm: c64 1263.3 (64/64) against 1268.4 (64/64), i.e. inert. The arithmetic explains it: without speculation 64 users is 64 decode rows, below the pad's 128-row threshold, so the pad never engages and the row-invariant kernel is already exact; with depth 3 the verify step submits up to 256 rows, the pad engages and pads them, and the residual flips above 16 users survive. Those flips are therefore not GEMM row-tier effects. The published configuration keeps the pad off."
  }
 }
