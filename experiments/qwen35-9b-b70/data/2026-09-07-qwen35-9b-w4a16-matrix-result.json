@@ -536,5 +536,308 @@
   ],
   "ladder-mtp0_first_divergence_vs_oracle": {},
   "verdict": "The determinism pad buys nothing and costs throughput where it engages. Depth 3 warm: c16 747.6 (16/16), c32 807.5 (32/32), c64 683.7 (62/64) against 750.8 / 827.3 / 789.2 (61/64) with the pad off, i.e. 13% slower at 64 users for no identity gain. No speculation warm: c64 1263.3 (64/64) against 1268.4 (64/64), i.e. inert. The arithmetic explains it: without speculation 64 users is 64 decode rows, below the pad's 128-row threshold, so the pad never engages and the row-invariant kernel is already exact; with depth 3 the verify step submits up to 256 rows, the pad engages and pads them, and the residual flips above 16 users survive. Those flips are therefore not GEMM row-tier effects. The published configuration keeps the pad off."
+ },
+ "w3_tp2_depth3_graph_draft_int4_head": {
+  "config": "two B70s (TENSOR_PARALLEL_SIZE=2), otherwise as w1",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 97.586,
+    "median_tok_s_1_100": 98.561,
+    "p10_tok_s_1_100": 98.506,
+    "median_tok_s_full": 97.056,
+    "ttft_ms_median": 42.1
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 97.535,
+    "median_tok_s_1_100": 98.539,
+    "p10_tok_s_1_100": 98.425,
+    "median_tok_s_full": 97.078,
+    "ttft_ms_median": 36.87
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 172.271,
+    "median_tok_s_1_100": 174.653,
+    "p10_tok_s_1_100": 155.33,
+    "median_tok_s_full": 170.775,
+    "ttft_ms_median": 44.22
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 172.321,
+    "median_tok_s_1_100": 175.056,
+    "p10_tok_s_1_100": 155.402,
+    "median_tok_s_full": 170.925,
+    "ttft_ms_median": 45.06
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "12/12",
+   "G3 b": "12/12"
+  },
+  "localmaxxing": "cmtrn9hoy001ops01qzd4axry at 172.296 tok/s",
+  "verdict": "Two cards: MTP0 97.586/97.535 (G1 12/12), depth 3 + draft INT4 head 172.271/172.321, G2 12/12 and G3 12/12 twice, so lossless and 17% above the FP8 route on two cards (147.712/147.890). Identity ladders: MTP0 exact through 32 users in both passes (1836.9 tok/s) with a single flip at 64 (63/64 twice), depth 3 exact through 16 (1174.6). On one card the same kernel held 64/64 at 64 users, so the residual two-card flip comes from the cross-card reduction rather than the GEMM.",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-w4a16-tp2-mtp3-graph1-dhint4-20260907-w3"
+ },
+ "w3_ladders_tp2_depth3_graph_draft_int4_head": {
+  "date": "2026-09-07",
+  "boot": "bf8e504b",
+  "image": "R276",
+  "config": "TP2 depth 3 + draft INT4 head, full capture, strict env, pad off, two passes",
+  "ladder": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 175.6,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 137.4,
+    "ttft_s_max": 0.23
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 479.7,
+    "ttft_s_max": 0.25
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 676.5,
+    "ttft_s_max": 0.55
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1012.2,
+    "ttft_s_max": 0.41
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 1356.0,
+    "ttft_s_max": 0.32
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "61/64",
+    "aggregate_tok_s_wall": 1463.5,
+    "ttft_s_max": 0.78
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 176.1,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 341.5,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 567.3,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 982.4,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1174.6,
+    "ttft_s_max": 0.14
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1350.9,
+    "ttft_s_max": 0.35
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "60/64",
+    "aggregate_tok_s_wall": 1464.6,
+    "ttft_s_max": 0.78
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c32_r1": [
+    [
+     "monitoring-c020",
+     90
+    ]
+   ],
+   "c64_r1": [
+    [
+     "index-c041",
+     77
+    ],
+    [
+     "monitoring-c020",
+     90
+    ],
+    [
+     "monitoring-c044",
+     90
+    ]
+   ],
+   "c64_r2": [
+    [
+     "index-c041",
+     77
+    ],
+    [
+     "monitoring-c020",
+     90
+    ],
+    [
+     "monitoring-c036",
+     90
+    ],
+    [
+     "monitoring-c044",
+     90
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 97.0,
+    "ttft_s_max": 0.02
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 181.5,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 352.3,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 655.3,
+    "ttft_s_max": 0.1
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1151.9,
+    "ttft_s_max": 0.13
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1844.8,
+    "ttft_s_max": 0.23
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "63/64",
+    "aggregate_tok_s_wall": 2083.7,
+    "ttft_s_max": 0.46
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 97.5,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 186.6,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 356.1,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 660.8,
+    "ttft_s_max": 0.09
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1151.8,
+    "ttft_s_max": 0.13
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1836.9,
+    "ttft_s_max": 0.24
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "63/64",
+    "aggregate_tok_s_wall": 2092.9,
+    "ttft_s_max": 0.46
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {
+   "c64_r1": [
+    [
+     "rollback-c042",
+     38
+    ]
+   ],
+   "c64_r2": [
+    [
+     "monitoring-c044",
+     90
+    ]
+   ]
+  },
+  "verdict": "Two cards, warm: no speculation c16 1151.8 (16/16), c32 1836.9 (32/32), c64 2092.9 (63/64); depth 3 c16 1174.6 (16/16), c32 1350.9 (32/32 warm, 31/32 cold), c64 1464.6 (60/64). Exact through c32 without speculation and c16 with it."
  }
 }

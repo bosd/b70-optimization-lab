@@ -49,7 +49,7 @@
       "scope": "Center of two fresh-server class-balanced medians over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (64.332 / 64.338), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, draft-only INT4 lm_head, full decode-only XPU graph capture.",
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
     },
-    "benchmark_status": "Candidate (2026-09-07, campaign w1, one B70, R276 image): two fresh depth-3 servers 113.627 / 112.904 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite, 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 64.332 / 64.338 matched 12/12; canaries on every server; cache zero. Identity ladders (128 tokens, two passes): without speculation exact at every rung in both passes through 64 users (c16 746.7, c32 1184.0, c64 1268.4, all 64/64); with depth 3 exact through c16 (750.8), c32 32/32 warm (827.3), c64 61/64 (789.2). LocalMaxxing cmtrhoyl1000cps01o43bhl72 at 113.265."
+    "benchmark_status": "Candidate (2026-09-07, campaign w1, one B70, R276 image): two fresh depth-3 servers 113.627 / 112.904 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite, 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 64.332 / 64.338 matched 12/12; canaries on every server; cache zero. Identity ladders (128 tokens, two passes): without speculation exact at every rung in both passes through 64 users (c16 746.7, c32 1184.0, c64 1268.4, all 64/64); with depth 3 exact through c16 (750.8), c32 32/32 warm (827.3), c64 61/64 (789.2). LocalMaxxing cmtrhoyl1000cps01o43bhl72 at 113.265. Two cards (w3): MTP0 97.586/97.535 and depth 3 172.271/172.321 tok/s, all gates 12/12, LocalMaxxing cmtrn9hoy001ops01qzd4axry at 172.296; ladders exact through 32 users without speculation (1836.9 tok/s) and 16 with it (1174.6), one flip at 64 users on two cards where one card held 64/64."
   },
   "contributors": [
     {
@@ -169,6 +169,96 @@
           "per_user_value": 46.925
         }
       ]
+    },
+    {
+      "id": "http-w4a16-mtp0-graph-tp2-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-9B W4A16 two cards (TP2), no speculation, identity-qualified aggregate decode vs concurrent users (c1-c32; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "Campaign w3 (2026-09-07): two B70s, otherwise as the one-card no-speculation profile. c1-c32 output-identity-qualified in both passes. Measured but withheld: c64 2092.9 (63/64 in both passes); the one-card run of the same kernel held 64/64 there, so the residual flip comes from the cross-card reduction.",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 97.5,
+          "samples": 1,
+          "per_user_value": 97.5
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 186.6,
+          "samples": 1,
+          "per_user_value": 93.3
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 356.1,
+          "samples": 1,
+          "per_user_value": 89.025
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 660.8,
+          "samples": 1,
+          "per_user_value": 82.6
+        },
+        {
+          "concurrent_sequences": 16,
+          "value": 1151.8,
+          "samples": 1,
+          "per_user_value": 71.9875
+        },
+        {
+          "concurrent_sequences": 32,
+          "value": 1836.9,
+          "samples": 1,
+          "per_user_value": 57.4031
+        }
+      ]
+    },
+    {
+      "id": "http-w4a16-mtp3-drafthead-graph-tp2-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-9B W4A16 two cards (TP2), MTP depth 3 with the draft INT4 head, identity-qualified aggregate decode vs concurrent users (c1-c16; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "As above with qwen3_5_mtp depth 3 and the draft-only INT4 lm_head. c1-c16 output-identity-qualified in both passes. Measured but withheld: c32 1350.9 (32/32 warm, 31/32 cold) and c64 1464.6 (60/64).",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 176.1,
+          "samples": 1,
+          "per_user_value": 176.1
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 341.5,
+          "samples": 1,
+          "per_user_value": 170.75
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 567.3,
+          "samples": 1,
+          "per_user_value": 141.825
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 982.4,
+          "samples": 1,
+          "per_user_value": 122.8
+        },
+        {
+          "concurrent_sequences": 16,
+          "value": 1174.6,
+          "samples": 1,
+          "per_user_value": 73.4125
+        }
+      ]
     }
   ],
   "hardware": {
@@ -176,7 +266,8 @@
     "cards": 1,
     "host_ram_min_bytes": 16106127360,
     "host_ram_plus_swap_min_bytes": 21474836480,
-    "model_weight_bytes": 11456765607
+    "model_weight_bytes": 11456765607,
+    "note": "One card is the package shape; two-card (TP2) rows are measured in the same recipe and reported as separate profiles."
   },
   "model": {
     "repository": "RedHatAI/Qwen3.5-9B-quantized.w4a16",

@@ -706,6 +706,7 @@ Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/
 | label | run id | c | prompt tok | output tok | headline | notes |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | `qwen35-9b-w4a16-tp1-mtp3-graph-drafthead-strict-113tok-20260907` | `cmtrhoyl1000cps01o43bhl72` | 1 | 56 | 512 | **113.265 median 1-100 after TTFT** | campaign w1 depth-3 strict pair 113.627/112.904, 12/12 vs sibling and vs the MTP0 oracle (64.332/64.338, G1 12/12); 15% faster than the FP8 route on the same model and, without speculation, byte-exact at every concurrency rung through 64 users in both passes (1268.4 tok/s at c64, 64/64) where the FP8 route flips from c16 |
+| `qwen35-9b-w4a16-tp2-mtp3-graph-drafthead-strict-172tok-20260907` | `cmtrn9hoy001ops01qzd4axry` | 1 | 56 | 512 | **172.296 median 1-100 after TTFT** (two B70s, TP2) | campaign w3 depth-3 strict pair 172.271/172.321, 12/12 vs sibling and vs the two-card MTP0 oracle (97.586/97.535, G1 12/12); 17% above the FP8 route on two cards |
 
 ## Qwen3.5 9B FP8-dynamic (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
 

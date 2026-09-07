@@ -43,7 +43,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("paths", nargs="*")
     ap.add_argument("--json", dest="out")
+    ap.add_argument("--baseline", default="data/doc-link-baseline.json",
+                    help="known-broken links to report but not fail on; new breakage still fails")
     a = ap.parse_args()
+    try:
+        known = {(e["document"], e["link"]) for e in json.load(open(a.baseline))["known_broken"]}
+    except (OSError, ValueError, KeyError):
+        known = set()
     root = os.getcwd()
     paths = a.paths or sorted(
         glob.glob("*.md") + glob.glob("*.html")
@@ -57,14 +63,21 @@ def main() -> int:
         bad = check_file(p, root)
         if bad:
             findings[p] = bad
+    baselined = {p: [b for b in bad if (p, b["link"]) in known] for p, bad in findings.items()}
+    findings = {p: [b for b in bad if (p, b["link"]) not in known] for p, bad in findings.items()}
+    findings = {p: v for p, v in findings.items() if v}
     total = sum(len(v) for v in findings.values())
+    known_total = sum(len(v) for v in baselined.values())
+    for p, bad in sorted(baselined.items()):
+        for b in bad:
+            print(f"known-broken   {p}: {b['link']}")
     for p, bad in sorted(findings.items()):
         print(f"{p}: {len(bad)} broken")
         for b in bad[:8]:
             print(f"    - {b['link']}  ->  {b['resolved']}")
         if len(bad) > 8:
             print(f"    ... {len(bad) - 8} more")
-    print(f"\nchecked {len(paths)} documents, {total} broken repository-relative link(s) in {len(findings)} file(s)")
+    print(f"\nchecked {len(paths)} documents, {total} new broken repository-relative link(s) in {len(findings)} file(s), {known_total} known-broken")
     if a.out:
         json.dump({"documents_checked": len(paths), "broken_total": total, "findings": findings}, open(a.out, "w"), indent=1)
     return 0 if total == 0 else 1

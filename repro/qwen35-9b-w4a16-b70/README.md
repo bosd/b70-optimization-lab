@@ -102,6 +102,25 @@ for the oracle, `compare-strict-attempt-outputs.py` for the 12/12 gate, and
 [that section](../qwen35-9b-fp8-b70/README.md#validate) for the exact commands;
 substitute this launcher and `qwen35-9b-w4a16-mtp3` as the served model name.
 
+## Two cards (campaign w3, TP2)
+
+Same launcher with `TENSOR_PARALLEL_SIZE=2`.
+
+| measurement | one card | two cards |
+| --- | ---: | ---: |
+| no speculation, one user | 64.33 / 64.34 | 97.59 / 97.54 |
+| MTP depth 3, one user | 113.63 / 112.90 | **172.27 / 172.32** |
+| no speculation, exact ladder ceiling | 64 users, 1268.4 tok/s | 32 users, 1836.9 tok/s |
+| depth 3, exact ladder ceiling | 16 users, 750.8 tok/s | 16 users, 1174.6 tok/s |
+
+All strict gates pass 12/12 on both card counts. LocalMaxxing `cmtrn9hoy001ops01qzd4axry` at `172.296 tok/s`.
+
+One difference is worth stating plainly: on one card this kernel is byte-exact at every rung through 64 users, and on
+two cards 64 users drops to 63/64 in both passes while 32 users stays perfect. The kernel removes the variation that
+comes from the number of decode rows; it cannot remove the variation that comes from summing partial results across two
+cards. If byte-identical output at the largest batch matters more than aggregate throughput, one card is the safer
+shape.
+
 ## Known limits
 
 - Depth 4 and above were not run on this route; on the FP8 route they were

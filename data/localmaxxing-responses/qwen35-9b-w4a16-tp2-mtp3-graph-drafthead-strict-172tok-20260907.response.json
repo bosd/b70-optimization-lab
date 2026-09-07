@@ -1,0 +1,11 @@
+{
+ "label": "qwen35-9b-w4a16-tp2-mtp3-graph-drafthead-strict-172tok-20260907",
+ "http_status": 201,
+ "response": {
+  "id": "cmtrn9hoy001ops01qzd4axry",
+  "status": "APPROVED"
+ },
+ "submitted_at_utc": "2026-09-07T19:48:00+00:00",
+ "payload_queue": "data/localmaxxing-qwen35-9b-w4a16-tp2-mtp3-graph-drafthead-strict-172tok-20260907.queue.json",
+ "tokSOut": 172.296
+}
