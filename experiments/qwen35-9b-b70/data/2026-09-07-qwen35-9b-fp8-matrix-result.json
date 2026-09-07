@@ -1607,5 +1607,116 @@
   },
   "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c7",
   "verdict": "MTP0 decode 49.647 -> 45.538 tok/s from 2K to 32K; depth 3 + draft head 105.88 -> 86.789 tok/s, every one of the 18 depth-3 answers identical to the MTP0 oracle (18/18); canaries before and after passed on both arms."
+ },
+ "c8_tp2_depth3_real_content_2k_32k": {
+  "config": "as c7 on two B70s (TP2)",
+  "arms": {
+   "depth-mtp0": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 80.238,
+      "median_ttft_ms": 365.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 78.825,
+      "median_ttft_ms": 671.4,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 77.073,
+      "median_ttft_ms": 1312.2,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 75.226,
+      "median_ttft_ms": 2648.6,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 72.981,
+      "median_ttft_ms": 4041.3,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 71.201,
+      "median_ttft_ms": 5491.5,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 0,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   },
+   "depth-mtp3": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 171.271,
+      "median_ttft_ms": 407.4,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 202.015,
+      "median_ttft_ms": 733.2,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 192.086,
+      "median_ttft_ms": 1446.9,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 166.413,
+      "median_ttft_ms": 2916.8,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 161.533,
+      "median_ttft_ms": 4459.3,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 140.559,
+      "median_ttft_ms": 6065.2,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 18,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   }
+  },
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp2-mtp3-graph1-dhint4-20260907-c8",
+  "verdict": "Two cards: MTP0 80.238 -> 71.201 tok/s from 2K to 32K; depth 3 + draft head 171.271 -> 140.559 tok/s, 18/18 depth-3 answers identical to the MTP0 oracle; canaries passed."
  }
 }

@@ -1862,6 +1862,47 @@
               "samples": 3
             }
           ]
+        },
+        {
+          "id": "http-fp8-mtp3-drafthead-tp2-decode-vs-active-context",
+          "label": "Qwen3.5-9B FP8 two cards (TP2), MTP depth 3 with the draft INT4 head: decode over active context (2K-32K)",
+          "metric": "decode",
+          "unit": "tok/s",
+          "x_label": "Actual prompt / active context tokens",
+          "scope": "Campaign c8 (2026-09-07): two B70s (TP2), otherwise as the one-card context profile; 18/18 answers matched the two-card MTP0 oracle.",
+          "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+          "points": [
+            {
+              "context_tokens": 2048,
+              "value": 171.271,
+              "samples": 3
+            },
+            {
+              "context_tokens": 4096,
+              "value": 202.015,
+              "samples": 3
+            },
+            {
+              "context_tokens": 8192,
+              "value": 192.086,
+              "samples": 3
+            },
+            {
+              "context_tokens": 16384,
+              "value": 166.413,
+              "samples": 3
+            },
+            {
+              "context_tokens": 24576,
+              "value": 161.533,
+              "samples": 3
+            },
+            {
+              "context_tokens": 32768,
+              "value": 140.559,
+              "samples": 3
+            }
+          ]
         }
       ],
       "hardware": {

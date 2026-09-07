@@ -59,8 +59,8 @@ verify batch grows to five rows, and it is no faster on this workload. XPU graph
 `147.7 / 147.9 tok/s` at depth 3, lossless, 1.68x ML Bottleneck's two-card
 target of `88.13`. Two-card depth 4 (c6) is withheld like
 its one-card counterpart (repeat-exact, 9/12 vs the oracle, +2%). The 2K-32K
-context ladder is below; two-card 32K and depths 5-6 are appended as their
-campaigns complete.
+context ladder is below; the two-card ladder follows it; depths 5-6 are appended as their campaigns
+complete.
 
 Workload note: through the chat API this model first streams a long
 "Thinking Process" preamble that the MTP head predicts unusually well; the
@@ -218,6 +218,21 @@ Without speculation decode falls 8% from 2K to 32K (the linear-attention
 layers carry most of the context); with depth 3 it falls 18% (86.8 at 32K, still
 1.9x the no-speculation rate there) as draft acceptance drops with context, and
 it varies with content class more than with depth below 16K. Entry `c7_tp1_depth3_real_content_2k_32k` in the result JSON.
+
+## Long context, two cards (campaign c8, TP2)
+
+Same ladder on two B70s.
+
+| active context | no speculation tok/s | depth 3 + INT4 draft head tok/s (exact vs oracle) | TTFT (depth 3) |
+| ---: | ---: | ---: | ---: |
+| 2,048 | 80.2 | 171.3 (3/3) | 0.41 s |
+| 4,096 | 78.8 | 202.0 (3/3) | 0.73 s |
+| 8,192 | 77.1 | 192.1 (3/3) | 1.45 s |
+| 16,384 | 75.2 | 166.4 (3/3) | 2.92 s |
+| 24,576 | 73.0 | 161.5 (3/3) | 4.46 s |
+| 32,768 | 71.2 | 140.6 (3/3) | 6.07 s |
+
+18/18 depth-3 answers identical to the two-card MTP0 oracle. Entry `c8_tp2_depth3_real_content_2k_32k`.
 
 ## Known limits
 
