@@ -260,3 +260,8 @@ Depth 1 (warm): c2 147.3 (2/2), c4 268.6 (4/4), c8 456.0 (7/8 both passes), c16 
 c8 327.0, c16 537.8 (all exact). Depth 4 (R282 warm) 191.0 / 294.7 / 422.6 (7/8) / 578.9. So: depth 4 at 1-4 users, depth 1
 at 8-32, none from 64. The c8 flip is one near-tie prompt under both depths.
 
+## R289 - one card, depth 1
+
+Warm: c4 181.4 (4/4), c8 302.8 (8/8), c16 464.7 (16/16), c32 371.9 (32/32; cold 30/32; ttft_max 7.5 s); MTP0 c4 118.5, c8
+214.4, c16 345.7, c32 513.8. One-card guidance: depth 4 for 1-2 users, depth 1 for 4-16, none from 32. Package profile added.
+

@@ -3833,5 +3833,141 @@
   ],
   "ladder-mtp0_first_divergence_vs_oracle": {},
   "verdict": "Depth 1, warm pass: c2 147.3 (2/2), c4 268.6 (4/4), c8 456.0 (7/8 in both passes), c16 709.1 (16/16); MTP0 on the same server c2 94.6, c4 178.5, c8 327.0, c16 537.8, all exact. Against depth 4 (R282 warm: c2 191.0, c4 294.7, c8 422.6 7/8, c16 578.9): depth 4 is faster at 1-4 users, depth 1 from 8 users; both depths flip the same single near-tie prompt at c8."
+ },
+ "R289_ladders_tp1_big_admission_mtp1": {
+  "date": "2026-09-06",
+  "boot": "bf8e504b",
+  "image": "R276 (sync-free grouped GDN branch)",
+  "config": "as R285 (one B70, large-admission shape, two passes) at MTP depth 1, rungs 4/8/16/32",
+  "ladder": [
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 151.5,
+    "ttft_s_max": 0.76
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 244.3,
+    "ttft_s_max": 0.83
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 454.0,
+    "ttft_s_max": 0.57
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "30/32",
+    "aggregate_tok_s_wall": 373.2,
+    "ttft_s_max": 7.49
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 181.4,
+    "ttft_s_max": 0.18
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 302.8,
+    "ttft_s_max": 0.27
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 464.7,
+    "ttft_s_max": 0.43
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 371.9,
+    "ttft_s_max": 7.54
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c32_r1": [
+    [
+     "monitoring-c028",
+     32
+    ],
+    [
+     "rollback-c018",
+     77
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 118.4,
+    "ttft_s_max": 0.15
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 214.4,
+    "ttft_s_max": 0.24
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 345.8,
+    "ttft_s_max": 0.42
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 514.2,
+    "ttft_s_max": 0.78
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 118.5,
+    "ttft_s_max": 0.16
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 214.4,
+    "ttft_s_max": 0.25
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 345.7,
+    "ttft_s_max": 0.42
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 513.8,
+    "ttft_s_max": 0.78
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {},
+  "verdict": "One card, depth 1, warm pass: c4 181.4 (4/4), c8 302.8 (8/8), c16 464.7 (16/16), c32 371.9 (32/32; first pass 30/32, ttft_max 7.5 s); MTP0 on the same card c4 118.5, c8 214.4, c16 345.7, c32 513.8, all exact. One-card guidance: depth 1 from 4 to 16 users, no speculation from 32 (depth 4 saturates at ~245 from 16, R285)."
  }
 }
