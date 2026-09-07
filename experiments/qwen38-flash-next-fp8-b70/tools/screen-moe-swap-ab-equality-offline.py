@@ -14,6 +14,8 @@ pre-filter that must be run with hundreds of iterations to mean anything.
 
   Q38_ITERS=300 PYTHONPATH=<stage>:<overlay> ... screen-moe-swap-ab-equality-offline.py
 """
+import os
+
 os.environ.setdefault("VLLM_TUNED_CONFIG_FOLDER", "/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n32")
 os.environ["VLLM_XPU_MOE_SWAP_AB"] = ""
 import torch
