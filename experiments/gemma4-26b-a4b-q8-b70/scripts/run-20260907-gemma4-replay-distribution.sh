@@ -30,7 +30,11 @@ idle() {
   sleep 30
 }
 
-record_args="--parallel 1 --cache-ram 0 --spec-type draft-mtp --spec-draft-model $Q4C --spec-draft-n-max 3 --spec-draft-device SYCL0 --spec-draft-ngl all --spec-draft-type-k f16 --spec-draft-type-v f16 --spec-draft-n-min 2 --spec-draft-p-min 0.0475 --no-spec-draft-backend-sampling --spec-draft-threads %s --spec-draft-threads-batch %s --ctx-checkpoints 0"
+# The record's own argument string, with the draft thread count as the only variable. Built by substitution, not
+# printf: the string starts with "--parallel", which printf reads as an option and refuses.
+record_args() {
+  printf -- '--parallel 1 --cache-ram 0 --spec-type draft-mtp --spec-draft-model %s --spec-draft-n-max 3 --spec-draft-device SYCL0 --spec-draft-ngl all --spec-draft-type-k f16 --spec-draft-type-v f16 --spec-draft-n-min 2 --spec-draft-p-min 0.0475 --no-spec-draft-backend-sampling --spec-draft-threads %s --spec-draft-threads-batch %s --ctx-checkpoints 0' "$Q4C" "$1" "$1"
+}
 
 # run_arm <label> <draft_threads>
 run_arm() {
@@ -39,7 +43,7 @@ run_arm() {
   log "start ${label} threads=${threads}"
   LLAMA_SERVER=$C/bin/llama-server MODEL=$MODEL \
   GPU_INDEX=0 PORT=19350 LABEL="gemma4-q8-gpu0-${label}-${stamp}" \
-  EXTRA_LLAMA_ARGS="$(printf "$record_args" "$threads" "$threads")" \
+  EXTRA_LLAMA_ARGS="$(record_args "$threads")" \
   CTX_SIZE=32768 FLASH_ATTN=on GGML_SYCL_ENABLE_VMM=1 \
   CANARY_REPEATS=128 MAX_TOKENS=512 REALISTIC_GATE=1 REALISTIC_METRIC_TOKENS=100 READINESS_TIMEOUT_S=900 \
     bash repro/gemma4-26b-a4b-q8-b70/run-vdr2-selecteddown-record.sh \
