@@ -1,0 +1,70 @@
+{
+ "lane": "qwen35-9b-q8-llamacpp",
+ "date": "2026-09-07",
+ "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-q8-llamacpp-tp1-20260907-g1",
+ "purpose": "A second runtime for a model the lab already serves through vLLM, on the same strict 12-prompt completions suite and the same metric, so the two are directly comparable.",
+ "model": {
+  "repository": "unsloth/Qwen3.5-9B-GGUF",
+  "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+  "file": "Qwen3.5-9B-Q8_0.gguf",
+  "sha256": "809626574d0cb43d4becfa56169980da2bb448f2299270f7be443cb89d0a6ae4",
+  "bytes": 9527502048,
+  "note": "The local copy came from an external drive and its digest matches this publisher revision exactly; the runner refuses to start otherwise."
+ },
+ "runtime": {
+  "engine": "llama.cpp SYCL",
+  "source": "/home/steve/src/llama.cpp-neural-download-20260822",
+  "commit": "9fee29e",
+  "build": "build-sycl-aot-bmg-g31",
+  "flags": "-ngl 99 -c 8192 -np 1 -b 1024 -ub 1024 -t 8 -fa on -ctk f16 -ctv f16 --reasoning off --ctx-checkpoints 0 --jinja, one B70 (SYCL0)",
+  "speculation": "none: this GGUF carries no MTP head, so the comparison is against the vLLM no-speculation numbers"
+ },
+ "attempts": {
+  "attempt-1": {
+   "class_balanced_median_tok_s": 47.235,
+   "median_tok_s_1_100": 47.671,
+   "p10_tok_s_1_100": 47.32,
+   "median_tok_s_full": 47.327,
+   "ttft_ms_median": 247.39,
+   "gate_passed": true,
+   "cached_tokens_all_zero": true
+  },
+  "attempt-2": {
+   "class_balanced_median_tok_s": 48.864,
+   "median_tok_s_1_100": 49.364,
+   "p10_tok_s_1_100": 49.284,
+   "median_tok_s_full": 48.93,
+   "ttft_ms_median": 238.03,
+   "gate_passed": true,
+   "cached_tokens_all_zero": true
+  }
+ },
+ "repeat_identity": {
+  "byte_identical_prompts": "8/12",
+  "divergent_prompts": [
+   "incident-retrospective",
+   "code-review",
+   "customer-email",
+   "sql-debugging"
+  ]
+ },
+ "comparison_same_suite_same_card": {
+  "llama.cpp Q8_0, no speculation": [
+   47.235,
+   48.864
+  ],
+  "vLLM W4A16, no speculation": [
+   64.332,
+   64.338
+  ],
+  "vLLM FP8-dynamic, no speculation": [
+   50.183,
+   50.15
+  ],
+  "vLLM W4A16, MTP depth 3": [
+   113.627,
+   112.904
+  ]
+ },
+ "verdict": "llama.cpp serves this model correctly and passes the workload gate, at 47.23 and 48.86 tok/s across two fresh servers. On the same card, suite and metric, vLLM with the same-size INT4 weights is 1.34x faster without speculation (64.33) and 2.36x faster with the model's own MTP head (113.63). First-token latency is about five times higher (247 ms against ~48 ms). The two fresh llama.cpp servers agreed on only 8 of 12 prompts, so this runtime is not repeat-exact here either: it is a third independent case, on a different runtime and a different quantization, of the tie-breaking variation that the lab's row-invariant INT4 kernel removes."
+}
