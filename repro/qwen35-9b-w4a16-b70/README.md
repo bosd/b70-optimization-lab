@@ -160,7 +160,11 @@ All 18 depth-3 answers matched the oracle. The FP8 route of the same model runs 
 
 ## Known limits
 
-- Depth 4 and above were not run on this route; on the FP8 route they were
-  repeat-exact but not lossless, and no faster.
-- Two-card, graph-off and 2K-32K context rows exist for the FP8 route only.
+- Depth 3 was inherited from the FP8 route's sweep, not chosen on this one.
+  On FP8, depths 4 to 6 were repeat-exact but not lossless against the MTP0
+  oracle and no faster, which is consistent with the row-count dependence this
+  kernel removes, so the answer may differ here. A sweep is running.
+- Graph-off and 2K-32K context rows exist for the FP8 route only.
+- Two-card concurrency identity is weaker than one-card: exact through 32
+  users, 63/64 at 64 in both passes.
 - Not yet clean-host tested.
