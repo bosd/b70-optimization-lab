@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Create the A303 packet from frozen A120 (MTP1) for the A213 identity: PLE + embeddings offloaded at 12.25 (12.22 GiB), hot experts resident, never-hit experts host-placed at load time (/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json) on clean head be43a9083508; realistic suite (LocalMaxxing metric)."""
+"""Create the A308 packet from frozen A120 (MTP1) for the A213 identity: PLE + embeddings offloaded at 12.25 (12.22 GiB), hot experts resident, never-hit experts host-placed at load time (/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json) on clean head be43a9083508; realistic suite (LocalMaxxing metric)."""
 from __future__ import annotations
 import hashlib, os, re, subprocess
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
-VALIDATE_ONLY = os.environ.get("Q38_A303_REWRITE_VALIDATE_ONLY") == "1"
+VALIDATE_ONLY = os.environ.get("Q38_A308_REWRITE_VALIDATE_ONLY") == "1"
 SOURCES = {'launch-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh': 'cc205ce58baf7d1ae9a51df42b2c50b4ee86d4bfabcb957a6a24ef0eea0d2714', 'run-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32-client.sh': '4c25729665b793e5a563cec1594cbaf9693e38c4dfb90fd7c3452b7938034d61', 'supervise-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh': '251331ec735c7e2600dd240959453e646f8d781c88bbafed95da7b0b74eacd90', 'run-q38-a120-host-controlled.sh': 'ca3ad0dc8787db77abdf9c8398646b35d9bd96a9390d43654945d6d3df9321d4'}
 HASH_TOKEN = re.compile(r"[0-9a-f]{64}|[0-9a-f]{40}")
 def digest(data):
@@ -14,9 +14,9 @@ def source(name):
     data = (ROOT / name).read_bytes(); assert digest(data) == SOURCES[name], name; return data.decode()
 def successor(text):
     def rename(seg):
-        seg = seg.replace("tp4-mtp1-4352-ple-only-a120", "tp4-mtp1-4352-ple-only-a303")
-        seg = seg.replace("attempt120", "attempt303").replace("19792", "19972")
-        seg = seg.replace("ATTEMPT=120", "ATTEMPT=303").replace("a120", "a303").replace("A120", "A303")
+        seg = seg.replace("tp4-mtp1-4352-ple-only-a120", "tp4-mtp1-4352-ple-only-a308")
+        seg = seg.replace("attempt120", "attempt308").replace("19792", "19976")
+        seg = seg.replace("ATTEMPT=120", "ATTEMPT=308").replace("a120", "a308").replace("A120", "A308")
         return seg
     parts=[]; last=0
     for m in HASH_TOKEN.finditer(text):
@@ -71,13 +71,13 @@ def patch_client(c):
 
 OLD_HEAD = "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60"
 NEW_HEAD = "be43a9083508b5f8f5c26420bcd6336673ab0f70"  # q38-placement-mtp1-clean: lossless MTP1 head + table kernel + load-time never-hit expert placement
-def patch_a303_launcher(l):
+def patch_a308_launcher(l):
     assert l.count(OLD_HEAD) == 2, l.count(OLD_HEAD)
     l = replace_once(l, "export MODEL_PATH=/mnt/fast-ai/llm-models/Qwen3.8-Flash-Next-FP8\n", "export MODEL_PATH=/mnt/usb-models/llm-models/Qwen3.8-Flash-Next-FP8\n")
     return patch_a177(l)
-def patch_a303_supervisor(sv):
+def patch_a308_supervisor(sv):
     return replace_once(sv, '*"vllm serve /mnt/fast-ai/llm-models/Qwen3.8-Flash-Next-FP8"*', '*"vllm serve /mnt/usb-models/llm-models/Qwen3.8-Flash-Next-FP8"*')
-def patch_a303_client(c):
+def patch_a308_client(c):
     assert c.count(OLD_HEAD) >= 1
     c = replace_once(c, '*"vllm serve /mnt/fast-ai/llm-models/Qwen3.8-Flash-Next-FP8"*', '*"vllm serve /mnt/usb-models/llm-models/Qwen3.8-Flash-Next-FP8"*')
     return patch_client(c)
@@ -87,28 +87,30 @@ def main():
     m = re.search(r"^expected_derived=([0-9a-f]{64})$", launcher, re.M); assert m
     launcher = replace_once(launcher, "expected_derived=" + m.group(1), "expected_derived=" + "0"*64)
     launcher = successor(launcher)
-    launcher = patch_a303_launcher(launcher)
+    launcher = patch_a308_launcher(launcher)
     launcher = replace_n(launcher, OLD_HEAD, NEW_HEAD, 2)
-    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER_MULTIROW=1"\n')  # glue + fused indexer; client keeps the CERTIFIED asserts
+    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER_MULTIROW=1"\n')  # both reference kernels restored
     launcher = replace_once(launcher, "export KV_CACHE_MEMORY_BYTES=376569856\n", "export KV_CACHE_MEMORY_BYTES=376569856\nexport Q38_EXPERT_HOST_PLACEMENT=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json\n")
-    env = os.environ.copy(); env["Q38_A303_DERIVED_SOURCE_ONLY"] = "1"
+    env = os.environ.copy(); env["Q38_A308_DERIVED_SOURCE_ONLY"] = "1"
     derived = subprocess.run(["bash"], input=launcher, text=True, capture_output=True, check=True, env=env).stdout
-    Path("/tmp/q38-ple2k-a303-base.sh").unlink(missing_ok=True)
-    assert "q38-ple2k-a303" in derived
+    Path("/tmp/q38-ple2k-a308-base.sh").unlink(missing_ok=True)
+    assert "q38-ple2k-a308" in derived
     launcher = launcher.replace("expected_derived=" + "0"*64, "expected_derived=" + digest(derived))
     client = successor(source("run-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32-client.sh"))
     client = replace_once(client, '"placement": "ple_only_uva", "ple_host_bytes_per_rank": 12800061440,', '"placement": "ple_embed_budget12p25_uva_cold_expert_host_placement_hctriton_qsafused", "ple_host_bytes_per_rank": 12800061440, "host_offload_bytes_per_rank": 13117911040, "host_offload_params": "ple_embedding.ngram_embedding.weight,embed_tokens.weight", "expert_host_placement": "/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json",')
-    client = patch_a303_client(client)
+    client = patch_a308_client(client)
     client = client.replace(OLD_HEAD, NEW_HEAD)
+    assert client.count("c6193cc6c9a1553f56d7ce78faea9c8bfa628a67fcea229b1c99279a149f6639") == 1
+    client = client.replace("c6193cc6c9a1553f56d7ce78faea9c8bfa628a67fcea229b1c99279a149f6639", "1d833e5f463366223a669aa15495840d1337b173e675a9ea04f00a5ae339d5cc")  # exact-4K moves on this lineage; exact-2K coincides with the certified stream
     client = client.replace("0bd36f13056d79924e7598bf8d844db3a5b8b35639737c0ef0b5af68cad14753", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e").replace("4f4942289f3853f0dec60b9fcd14c644ca300abaaa9d9fa2ea56135f4d9f9c52", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e")
     assert client.count("c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e") >= 1
     supervisor = successor(source("supervise-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh"))
-    supervisor = patch_a303_supervisor(supervisor)
+    supervisor = patch_a308_supervisor(supervisor)
     supervisor = replace_once(supervisor, "expected_wrapper=" + SOURCES["launch-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh"], "expected_wrapper=" + digest(launcher))
     supervisor = replace_once(supervisor, "expected_client=" + SOURCES["run-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32-client.sh"], "expected_client=" + digest(client))
     host = successor(source("run-q38-a120-host-controlled.sh"))
     host = replace_once(host, "expected_supervisor=" + SOURCES["supervise-tp4-mtp1-4352-ple-only-a120-fullgraphdet-w13n32.sh"], "expected_supervisor=" + digest(supervisor))
-    out_names = ("launch-tp4-mtp1-4352-ple-only-a303-fullgraphdet-w13n32.sh", "run-tp4-mtp1-4352-ple-only-a303-fullgraphdet-w13n32-client.sh", "supervise-tp4-mtp1-4352-ple-only-a303-fullgraphdet-w13n32.sh", "run-q38-a303-host-controlled.sh")
+    out_names = ("launch-tp4-mtp1-4352-ple-only-a308-fullgraphdet-w13n32.sh", "run-tp4-mtp1-4352-ple-only-a308-fullgraphdet-w13n32-client.sh", "supervise-tp4-mtp1-4352-ple-only-a308-fullgraphdet-w13n32.sh", "run-q38-a308-host-controlled.sh")
     for name, text in zip(out_names, (launcher, client, supervisor, host)): emit(name, text)
     for name in out_names: print(digest((ROOT / name).read_bytes()), name)
 if __name__ == "__main__":
