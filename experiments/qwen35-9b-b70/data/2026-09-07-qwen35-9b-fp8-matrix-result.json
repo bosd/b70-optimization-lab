@@ -913,5 +913,46 @@
   },
   "verdict": "Graph off: MTP0 49.477/49.454, depth 3 + draft INT4 head 96.779/96.748, all gates 12/12; XPU graph capture is worth ~1.5% on one card (as on the 27B TP1).",
   "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph0-dhint4-20260907-c4"
+ },
+ "c5_tp2_depth3_graph_draft_int4_head": {
+  "config": "as c2 on two B70s (TENSOR_PARALLEL_SIZE=2, XPU_DEVICE_MASK=0,1)",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 79.456,
+    "median_tok_s_1_100": 80.259,
+    "p10_tok_s_1_100": 80.223,
+    "median_tok_s_full": 79.184,
+    "ttft_ms_median": 41.73
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 79.4,
+    "median_tok_s_1_100": 80.204,
+    "p10_tok_s_1_100": 80.158,
+    "median_tok_s_full": 79.133,
+    "ttft_ms_median": 41.29
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 147.712,
+    "median_tok_s_1_100": 153.062,
+    "p10_tok_s_1_100": 131.82,
+    "median_tok_s_full": 149.553,
+    "ttft_ms_median": 49.65
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 147.89,
+    "median_tok_s_1_100": 153.353,
+    "p10_tok_s_1_100": 131.658,
+    "median_tok_s_full": 149.447,
+    "ttft_ms_median": 50.05
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "12/12",
+   "G3 b": "12/12"
+  },
+  "verdict": "Two cards: MTP0 79.456/79.400 (G1 12/12), depth 3 + draft INT4 head 147.712/147.890, G2 12/12, G3 12/12 x2 (lossless); 1.68x the two-card ML Bottleneck target 88.13.",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp2-mtp3-graph1-dhint4-20260907-c5"
  }
 }

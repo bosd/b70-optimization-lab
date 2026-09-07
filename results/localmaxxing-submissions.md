@@ -691,6 +691,7 @@ Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/
 | label | run id | c | prompt tok | output tok | headline | notes |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | `qwen35-9b-fp8-tp1-mtp3-graph-drafthead-strict-98tok-20260907` | `cmtqyanxc00bjpa01nojy87wp` | 1 | 56 | 512 | **98.139 median 1-100 after TTFT** | campaign c2 depth-3 strict pair 98.251/98.027, 12/12 vs sibling and vs the MTP0 oracle (50.165/50.173, G1 12/12); canaries on every server; cache zero; FP8 draft head gives 76.9 (c1); depth 4 withheld (8/12 vs the oracle); chat-mode workload with visible thinking measures 131.5 on the same prompts and is not submitted |
+| `qwen35-9b-fp8-tp2-mtp3-graph-drafthead-strict-148tok-20260907` | `cmtqzhlvn00c0pa0109xxfb2f` | 1 | 56 | 512 | **147.801 median 1-100 after TTFT** (two B70s, TP2) | campaign c5 depth-3 strict pair 147.712/147.890, 12/12 vs sibling and vs the two-card MTP0 oracle (79.456/79.400, G1 12/12); same launcher with TENSOR_PARALLEL_SIZE=2; attestation `experiments/qwen35-9b-b70/data/qwen35-9b-fp8-tp2-mtp3-graph1-dhint4-20260907-c5-strict-result.json` |
 
 ## Qwen3.8 27B AutoRound INT4 (2x B70, vLLM XPU) — fixed-K W4A16 line with XPU graph capture and the draft-only INT4 head (2026-09-06)
 

@@ -48,12 +48,16 @@ beyond the model manifest and the launcher defaults.
 | 4 | INT4 draft copy | on | 98.418 / 98.550 | - | 12/12 | **8/12, 8/12** (withheld) | c3 |
 | 3 | INT4 draft copy | off | 96.779 / 96.748 | - | 12/12 | 12/12, 12/12 | c4 |
 | 0 | - | off | 49.477 / 49.454 | 12/12 | - | - | c4 |
+| 0 (two B70s, TP2) | - | on | 79.456 / 79.400 | 12/12 | - | - | c5 |
+| 3 (two B70s, TP2) | INT4 draft copy | on | **147.712 / 147.890** | - | 12/12 | 12/12, 12/12 | c5 |
 
 Depth 4 is repeat-exact but not lossless: four prompts (`benchmark-analysis`
 at token 342, `bug-report-synthesis` at 48, `decision-memo` at 75,
 `risk-register` at 403) take a different valid branch from the oracle when the
-verify batch grows to five rows, and it is no faster on this workload. XPU graph capture is worth about 1.5% on one card (c4). Rows for two cards
-and the 2K-32K context ladder are appended as their campaigns complete.
+verify batch grows to five rows, and it is no faster on this workload. XPU graph capture is worth about 1.5% on one card (c4). Two cards (TP2) give
+`147.7 / 147.9 tok/s` at depth 3, lossless, 1.68x ML Bottleneck's two-card
+target of `88.13`. Rows for two-card depth 4 and the 2K-32K context ladder
+are appended as their campaigns complete.
 
 Workload note: through the chat API this model first streams a long
 "Thinking Process" preamble that the MTP head predicts unusually well; the
