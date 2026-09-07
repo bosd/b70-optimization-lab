@@ -1,0 +1,69 @@
+{
+  "reference": "A297 (reference-restoration lineage, head 2a372e86: Triton HC glue + the reference fused QSA pre-indexer): the exact-2K pins of this lineage, which coincide with the certified torch-fallback ids while exact-4K does not",
+  "reference_sha256": "afffd2110812762164862b6388f054bb56696ee57b07eadce411a702c40bc714",
+  "servers": {
+    "A297": "2a372e86 (first server)",
+    "A299": "2a372e86 (second fresh server)",
+    "A300": "2a372e86 (third server; battery against the certified asserts, failed only at 4K)",
+    "A304": "2a372e86 (fourth server; certification battery, all gates passed)"
+  },
+  "rows": [
+    {
+      "run": "a297-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.488
+    },
+    {
+      "run": "a297-exact-depth-2k-r2",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.481
+    },
+    {
+      "run": "a299-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.478
+    },
+    {
+      "run": "a299-exact-depth-2k-r2",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.51
+    },
+    {
+      "run": "a300-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.48
+    },
+    {
+      "run": "a300-exact-depth-2k-r2",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.461
+    },
+    {
+      "run": "a304-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.322
+    },
+    {
+      "run": "a304-exact-depth-2k-r2",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.447
+    }
+  ],
+  "all_identical": true
+}
