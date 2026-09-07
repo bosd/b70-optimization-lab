@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Derive the HC-Triton new-authority certification generators (A255 MTP0 battery, A256 MTP0 suite,
-A257 MTP1 battery, A258 MTP1 suite) from the split-K 4 certification generators (A248-A251):
-candidate heads 09279b6a / f57d40d7, VLLM_XPU_HC_TRITON=1 in the derived source, identity literal
+"""Derive the HC-Triton new-authority certification generators (A266 MTP0 battery, A267 MTP0 suite,
+A268 MTP1 battery, A269 MTP1 suite) from the split-K 4 v2 certification generators (A259-A262):
+candidate heads 2aa369a6 / b0836afb, VLLM_XPU_HC_TRITON=1 in the derived source, identity literal
 …_splitk4_hctriton, and the frozen client's exact-depth authority literals repinned to the new
-2K/4K hashes established by the A252/A253 fresh-server pair (MTP1 hashes default to the MTP0 ones:
+2K/4K hashes established by the A263/A264 fresh-server pair (MTP1 hashes default to the MTP0 ones:
 lossless MTP1 must reproduce them).
 
   make-q38-hctriton-cert-generators.py --hash2k <sha256> --hash4k <sha256> [--mtp1-hash2k …] [--mtp1-hash4k …]
@@ -15,10 +15,10 @@ HASH = re.compile(r'[0-9a-f]{12,}')
 OLD2K = 'afffd2110812762164862b6388f054bb56696ee57b07eadce411a702c40bc714'
 OLD4K = 'c6193cc6c9a1553f56d7ce78faea9c8bfa628a67fcea229b1c99279a149f6639'
 PLAN = [  # (src gen, dst gen, old attempt, new attempt, old port, new port, head swap, mtp1?)
-    ('rewrite-q38-a78-to-a248-placement-splitk4-frozen-client.py', 'rewrite-q38-a78-to-a255-placement-splitk4-hctriton-frozen-client.py', 248, 255, '19893', '19921', ('6a79c56d8a980aaa3858e2b3f004761e90d18e45', '09279b6ae612f84b130ef27f04443101ad9d42a8'), False),
-    ('rewrite-q38-a78-to-a249-placement-splitk4-realistic-suite.py', 'rewrite-q38-a78-to-a256-placement-splitk4-hctriton-realistic-suite.py', 249, 256, '19897', '19922', ('6a79c56d8a980aaa3858e2b3f004761e90d18e45', '09279b6ae612f84b130ef27f04443101ad9d42a8'), False),
-    ('rewrite-q38-a120-to-a250-mtp1-placement-splitk4-frozen-client.py', 'rewrite-q38-a120-to-a257-mtp1-placement-splitk4-hctriton-frozen-client.py', 250, 257, '19895', '19923', ('e9e65888981a880b8298143f571f276c8c52e4a9', 'f57d40d759861ed0943316756efd9a7f69aaa7a4'), True),
-    ('rewrite-q38-a120-to-a251-mtp1-placement-splitk4-realistic-suite.py', 'rewrite-q38-a120-to-a258-mtp1-placement-splitk4-hctriton-realistic-suite.py', 251, 258, '19896', '19924', ('e9e65888981a880b8298143f571f276c8c52e4a9', 'f57d40d759861ed0943316756efd9a7f69aaa7a4'), True),
+    ('rewrite-q38-a78-to-a259-placement-splitk4v2-frozen-client.py', 'rewrite-q38-a78-to-a266-placement-splitk4v2-hctriton-frozen-client.py', 259, 266, '19925', '19932', ('82b9f9cf34f8a04a6338cb256667f13c9f841b31', '2aa369a6c069e64579c62905e0cfee8b456d8cc3'), False),
+    ('rewrite-q38-a78-to-a260-placement-splitk4v2-realistic-suite.py', 'rewrite-q38-a78-to-a267-placement-splitk4v2-hctriton-realistic-suite.py', 260, 267, '19926', '19933', ('82b9f9cf34f8a04a6338cb256667f13c9f841b31', '2aa369a6c069e64579c62905e0cfee8b456d8cc3'), False),
+    ('rewrite-q38-a120-to-a261-mtp1-placement-splitk4v2-frozen-client.py', 'rewrite-q38-a120-to-a268-mtp1-placement-splitk4v2-hctriton-frozen-client.py', 261, 268, '19927', '19934', ('893e1ccc7a1e681b861a1f28c6a6f59cade677dc', 'b0836afbc5eafbe9ab4728c89b43dd10c3efac7a'), True),
+    ('rewrite-q38-a120-to-a262-mtp1-placement-splitk4v2-realistic-suite.py', 'rewrite-q38-a120-to-a269-mtp1-placement-splitk4v2-hctriton-realistic-suite.py', 262, 269, '19928', '19935', ('893e1ccc7a1e681b861a1f28c6a6f59cade677dc', 'b0836afbc5eafbe9ab4728c89b43dd10c3efac7a'), True),
 ]
 
 def main():
@@ -42,7 +42,7 @@ def main():
             elif h == oh[:12]: h = nh[:12]
             out.append(h); pos = m.end()
         out.append(sub(s[pos:])); s2 = ''.join(out)
-        key = 'cold_expert_host_placement_splitk4'
+        key = 'cold_expert_host_placement_splitk4v2'
         assert s2.count(key) == 1, (src, key); s2 = s2.replace(key, key + '_hctriton')
         key = '  print "export VLLM_XPU_MOE_SPLIT_K=4"\\n\')'
         assert s2.count(key) == 1, (src, key)
