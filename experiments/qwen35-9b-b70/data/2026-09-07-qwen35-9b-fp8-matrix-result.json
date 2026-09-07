@@ -458,5 +458,354 @@
   },
   "verdict": "The draft-only INT4 lm_head lifts depth 3 from 76.917/76.879 (c1) to 98.251/98.027 tok/s (+27.6%) with every gate exact: the FP8 target still verifies each draft token.",
   "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c2"
+ },
+ "c2_ladders_tp1_depth3_graph_draft_int4_head": {
+  "date": "2026-09-07",
+  "boot": "bf8e504b",
+  "image": "R276",
+  "config": "TP1 depth 3 full capture, draft INT4 head, strict env, mml 256 mns 64 mbt 512, two passes",
+  "ladder": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 112.1,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 98.8,
+    "ttft_s_max": 1.28
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 305.1,
+    "ttft_s_max": 0.14
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 530.0,
+    "ttft_s_max": 0.26
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "15/16",
+    "aggregate_tok_s_wall": 677.1,
+    "ttft_s_max": 0.45
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 876.2,
+    "ttft_s_max": 0.52
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "57/64",
+    "aggregate_tok_s_wall": 805.2,
+    "ttft_s_max": 7.56
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 113.0,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 211.1,
+    "ttft_s_max": 0.1
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 310.7,
+    "ttft_s_max": 0.11
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 564.7,
+    "ttft_s_max": 0.14
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "15/16",
+    "aggregate_tok_s_wall": 738.4,
+    "ttft_s_max": 0.19
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "30/32",
+    "aggregate_tok_s_wall": 883.6,
+    "ttft_s_max": 0.42
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "57/64",
+    "aggregate_tok_s_wall": 831.2,
+    "ttft_s_max": 7.54
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c16_r1": [
+    [
+     "index-c009",
+     12
+    ]
+   ],
+   "c32_r1": [
+    [
+     "index-c009",
+     12
+    ]
+   ],
+   "c64_r1": [
+    [
+     "evidence-c047",
+     1
+    ],
+    [
+     "index-c009",
+     12
+    ],
+    [
+     "cache-c024",
+     12
+    ],
+    [
+     "rollback-c042",
+     45
+    ],
+    [
+     "cache-c032",
+     50
+    ],
+    [
+     "index-c017",
+     62
+    ],
+    [
+     "cache-c048",
+     96
+    ]
+   ],
+   "c16_r2": [
+    [
+     "index-c009",
+     12
+    ]
+   ],
+   "c32_r2": [
+    [
+     "index-c009",
+     12
+    ],
+    [
+     "capacity-c006",
+     26
+    ]
+   ],
+   "c64_r2": [
+    [
+     "index-c009",
+     12
+    ],
+    [
+     "rollback-c010",
+     12
+    ],
+    [
+     "cache-c024",
+     12
+    ],
+    [
+     "rollback-c042",
+     45
+    ],
+    [
+     "cache-c032",
+     50
+    ],
+    [
+     "index-c017",
+     62
+    ],
+    [
+     "benchmark-c027",
+     73
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 50.0,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 96.6,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 186.0,
+    "ttft_s_max": 0.11
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 347.1,
+    "ttft_s_max": 0.18
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "15/16",
+    "aggregate_tok_s_wall": 631.4,
+    "ttft_s_max": 0.19
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1055.8,
+    "ttft_s_max": 0.32
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "62/64",
+    "aggregate_tok_s_wall": 1222.9,
+    "ttft_s_max": 0.84
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 50.1,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 97.2,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 187.5,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 355.0,
+    "ttft_s_max": 0.11
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "15/16",
+    "aggregate_tok_s_wall": 634.7,
+    "ttft_s_max": 0.17
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 1055.2,
+    "ttft_s_max": 0.32
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "59/64",
+    "aggregate_tok_s_wall": 1253.8,
+    "ttft_s_max": 0.66
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {
+   "c16_r1": [
+    [
+     "index-c009",
+     12
+    ]
+   ],
+   "c64_r1": [
+    [
+     "index-c009",
+     12
+    ],
+    [
+     "benchmark-c011",
+     73
+    ]
+   ],
+   "c16_r2": [
+    [
+     "index-c009",
+     12
+    ]
+   ],
+   "c32_r2": [
+    [
+     "monitoring-c004",
+     30
+    ]
+   ],
+   "c64_r2": [
+    [
+     "evidence-c047",
+     1
+    ],
+    [
+     "index-c009",
+     12
+    ],
+    [
+     "rollback-c042",
+     45
+    ],
+    [
+     "benchmark-c027",
+     73
+    ],
+    [
+     "testing-c021",
+     103
+    ]
+   ]
+  },
+  "verdict": "Depth 3 + draft INT4 head, warm: c1 113.0, c2 211.1, c4 310.7, c8 564.7 (8/8), c16 738.4 (15/16), c32 883.6 (30/32), c64 831.2 (57/64); exact through c8 in both passes. MTP0 repeat of c1."
  }
 }
