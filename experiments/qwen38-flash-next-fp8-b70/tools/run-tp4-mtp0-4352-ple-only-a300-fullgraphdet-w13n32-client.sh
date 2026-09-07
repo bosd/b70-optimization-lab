@@ -87,7 +87,7 @@ grep -zFxq 'VLLM_TUNED_CONFIG_FOLDER=/home/steve/llm-optimizations/experiments/q
   printf 'FAIL: A300 tuned M1 map drifted before client work\n' >&2
   exit 1
 }
-[[ "$(sha256sum "${repo}/experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py" | cut -d' ' -f1)" == aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434 ]] || {
+[[ "$(sha256sum "${repo}/experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py" | cut -d' ' -f1)" == c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e ]] || {
   printf 'FAIL: W13-N32 selection verifier drifted\n' >&2
   exit 1
 }

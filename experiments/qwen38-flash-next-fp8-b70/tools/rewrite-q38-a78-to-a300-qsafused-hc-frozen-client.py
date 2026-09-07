@@ -85,7 +85,7 @@ def main():
     launcher = successor(launcher)
     launcher = _fm.patch_launcher(launcher)
     launcher = replace_n(launcher, OLD_HEAD, NEW_HEAD, 2)
-    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n')  # Triton HC glue + reference fused QSA pre-indexer; the client keeps the CERTIFIED afffd211/c6193cc6 asserts
+    launcher = replace_once(launcher, '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n', '  print "export VLLM_XPU_MKLDNN_DETERMINISTIC=1"\n  print "export VLLM_XPU_HC_TRITON=1"\n  print "export VLLM_XPU_QSA_FUSED_INDEXER=1"\n')  # glue + fused indexer; client keeps the CERTIFIED asserts
     launcher = patch_a300(launcher)
     launcher = replace_once(launcher, "export KV_CACHE_MEMORY_BYTES=134217728\n", "export KV_CACHE_MEMORY_BYTES=134217728\nexport Q38_EXPERT_HOST_PLACEMENT=/home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json\n")
     env = os.environ.copy(); env["Q38_A300_DERIVED_SOURCE_ONLY"] = "1"
@@ -99,8 +99,8 @@ def main():
     client = successor(source("run-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32-client.sh"))
     client = patch_client(client)
     client = client.replace(OLD_HEAD, NEW_HEAD)
-    client = client.replace("0bd36f13056d79924e7598bf8d844db3a5b8b35639737c0ef0b5af68cad14753", "aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434").replace("4f4942289f3853f0dec60b9fcd14c644ca300abaaa9d9fa2ea56135f4d9f9c52", "aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434")
-    assert client.count("aba299eb1fc2c07dccb15a8788c342cdcf3819b5246997a2e8d96252daf46434") >= 1
+    client = client.replace("0bd36f13056d79924e7598bf8d844db3a5b8b35639737c0ef0b5af68cad14753", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e").replace("4f4942289f3853f0dec60b9fcd14c644ca300abaaa9d9fa2ea56135f4d9f9c52", "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e")
+    assert client.count("c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e") >= 1
     supervisor = successor(source("supervise-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32.sh"))
     supervisor = _fm.patch_supervisor(supervisor)
     supervisor = replace_once(supervisor, "expected_wrapper=" + SOURCES["launch-tp4-mtp0-4352-ple-only-a78-fullgraphdet-w13n32.sh"], "expected_wrapper=" + digest(launcher))
