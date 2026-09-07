@@ -319,7 +319,6 @@
       "revision": "qwen3.5-9b-fp8-dynamic-790f0576",
       "quantization": "FP8-dynamic",
       "runtime": "vLLM XPU 0.27.2rc1.dev77 (R276 image 521eb277)",
-      "cards": 1,
       "status": "candidate",
       "evidence_level": "B70-measured strict pairs and ladders",
       "coverage": [
@@ -352,7 +351,11 @@
         "prompt_tokens": 128,
         "output_tokens": 100
       },
-      "manifest": "packages/qwen35-9b-fp8-b70/package.json"
+      "manifest": "packages/qwen35-9b-fp8-b70/package.json",
+      "topologies": [
+        1,
+        2
+      ]
     }
   ],
   "views": [
