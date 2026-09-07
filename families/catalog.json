@@ -72,6 +72,10 @@
     {
       "id": "qwen-flash-next",
       "manifest": "families/qwen-flash-next.json"
+    },
+    {
+      "id": "qwen-9b",
+      "manifest": "families/qwen-9b.json"
     }
   ]
 }
