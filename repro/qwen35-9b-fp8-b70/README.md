@@ -178,6 +178,22 @@ faster (1254 tok/s at 64). The non-identical answers above are near-tie
 prompts diverging at one token under the wider batch tiers, valid answers that
 the identity gate refuses; the same mechanism as on the Qwen3.8 lanes.
 
+## Many users, two cards (campaign c5, TP2, warm pass of two)
+
+| users | depth 3 + INT4 draft head tok/s (exact) | no speculation tok/s (exact) |
+| ---: | ---: | ---: |
+| 1 | 177.5 (1/1) | 79.5 (1/1) |
+| 2 | 337.2 (2/2) | 153.3 (2/2) |
+| 4 | 480.1 (4/4) | 296.6 (4/4) |
+| 8 | 848.7 (8/8) | 560.5 (8/8) |
+| 16 | 1156.7 (15/16) | 1013.9 (13/16) |
+| 32 | 1422.2 (29/32) | 1680.7 (27/32) |
+| 64 | 1578.1 (57/64) | 2079.9 (59/64) |
+
+Same shape as the one-card ladder. Two cards double the exact-range aggregate
+(849 tok/s at 8 users with depth 3, exact in both passes) and reach 2080 tok/s
+at 64 users without speculation (59/64).
+
 ## Known limits
 
 - Through the chat API the model emits its reasoning inline ("Thinking

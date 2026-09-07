@@ -143,6 +143,78 @@
           "per_user_value": 44.375
         }
       ]
+    },
+    {
+      "id": "http-fp8-mtp3-drafthead-graph-tp2-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-9B FP8 two cards (TP2), MTP depth 3 with the draft INT4 head and XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c8; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "Campaign c5 (2026-09-07): two B70s (TENSOR_PARALLEL_SIZE=2), otherwise as the one-card depth-3 profile. c1-c8 output-identity-qualified in both passes. Measured but withheld: c16 1156.7 (15/16; first pass 16/16 at 969.3), c32 1422.2 (29/32), c64 1578.1 (57/64).",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 177.5,
+          "samples": 1,
+          "per_user_value": 177.5
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 337.2,
+          "samples": 1,
+          "per_user_value": 168.6
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 480.1,
+          "samples": 1,
+          "per_user_value": 120.025
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 848.7,
+          "samples": 1,
+          "per_user_value": 106.0875
+        }
+      ]
+    },
+    {
+      "id": "http-fp8-mtp0-graph-tp2-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-9B FP8 two cards (TP2), no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c8; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "Campaign c5 MTP0 ladder on two B70s. c1-c8 output-identity-qualified in both passes. Measured but withheld: c16 1013.9 (13/16), c32 1680.7 (27/32), c64 2079.9 (59/64).",
+      "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 79.5,
+          "samples": 1,
+          "per_user_value": 79.5
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 153.3,
+          "samples": 1,
+          "per_user_value": 76.65
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 296.6,
+          "samples": 1,
+          "per_user_value": 74.15
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 560.5,
+          "samples": 1,
+          "per_user_value": 70.0625
+        }
+      ]
     }
   ],
   "hardware": {
@@ -150,7 +222,8 @@
     "cards": 1,
     "host_ram_min_bytes": 16106127360,
     "host_ram_plus_swap_min_bytes": 21474836480,
-    "model_weight_bytes": 14026775199
+    "model_weight_bytes": 14026775199,
+    "note": "One card is the package shape; TP2 rows (two cards) are measured in the same recipe and reported as separate profiles."
   },
   "model": {
     "repository": "RedHatAI/Qwen3.5-9B-FP8-dynamic",
