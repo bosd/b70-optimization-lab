@@ -684,6 +684,14 @@ All three approved on submission (HTTP 201). Attestations: `experiments/qwen38-2
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp4-strict-82tok-20260904` | `cmtmk61qo01x8l601vtqbitg5` | 1 | 56 | 512 | **82.396 median 1-100 after TTFT** | R197 depth-4 strict pair 82.447/82.345, 12/12 vs oracle; identity c1-c16 (two ladders, R197/R201) |
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp5-strict-86tok-20260904` | `cmtn23c500005mm010ierd4g3` | 1 | 56 | 512 | **86.182 median 1-100 after TTFT** | R200 depth-5 strict pair 86.266/86.097, 12/12 vs oracle; identity c1-c16 (two ladders, R204a/b) |
 
+## Qwen3.5 9B FP8-dynamic (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
+
+Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c2-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-9B-FP8-dynamic` 790f0576 served as published (compressed-tensors FP8, publisher MTP head) through the R276 image and the FP8 recipe's strict launchers; recipe `repro/qwen35-9b-fp8-b70/`.
+
+| label | run id | c | prompt tok | output tok | headline | notes |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `qwen35-9b-fp8-tp1-mtp3-graph-drafthead-strict-98tok-20260907` | `cmtqyanxc00bjpa01nojy87wp` | 1 | 56 | 512 | **98.139 median 1-100 after TTFT** | campaign c2 depth-3 strict pair 98.251/98.027, 12/12 vs sibling and vs the MTP0 oracle (50.165/50.173, G1 12/12); canaries on every server; cache zero; FP8 draft head gives 76.9 (c1); depth 4 withheld (8/12 vs the oracle); chat-mode workload with visible thinking measures 131.5 on the same prompts and is not submitted |
+
 ## Qwen3.8 27B AutoRound INT4 (2x B70, vLLM XPU) — fixed-K W4A16 line with XPU graph capture and the draft-only INT4 head (2026-09-06)
 
 Approved on submission (HTTP 201). Attestation: `experiments/qwen38-27b-b70/data/2026-09-06-qwen38-int4-r257-graph-drafthead-depth4-strict-result.json`; response in `data/localmaxxing-responses/`. Model `devan-carlin/Qwen3.8-27B-int4-AutoRound` bce40cac served through the plain gptq kernel path (identical tensors, relabelled); R228 image (`ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:aaf920b0…`), fixed-K row-invariant oneDNN W4A16 extension 271db0d4 (GitHub release `qwen38-int4-fixed-k-r221-20260906`), FP16 32-row linears, grouped GDN speculative rows, `FULL_DECODE_ONLY` capture sizes 1-8, draft-only INT4 lm_head, MTP depth 4, TP2.

@@ -807,5 +807,70 @@
    ]
   },
   "verdict": "Depth 3 + draft INT4 head, warm: c1 113.0, c2 211.1, c4 310.7, c8 564.7 (8/8), c16 738.4 (15/16), c32 883.6 (30/32), c64 831.2 (57/64); exact through c8 in both passes. MTP0 repeat of c1."
+ },
+ "c3_tp1_depth4_graph_draft_int4_head": {
+  "config": "as c2 at MTP depth 4",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 50.177,
+    "median_tok_s_1_100": 50.683,
+    "p10_tok_s_1_100": 50.671,
+    "median_tok_s_full": 50.089,
+    "ttft_ms_median": 56.34
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 50.156,
+    "median_tok_s_1_100": 50.664,
+    "p10_tok_s_1_100": 50.65,
+    "median_tok_s_full": 50.079,
+    "ttft_ms_median": 53.87
+   },
+   "mtp4-a": {
+    "class_balanced_median_tok_s": 98.418,
+    "median_tok_s_1_100": 101.525,
+    "p10_tok_s_1_100": 87.019,
+    "median_tok_s_full": 96.059,
+    "ttft_ms_median": 80.74
+   },
+   "mtp4-b": {
+    "class_balanced_median_tok_s": 98.55,
+    "median_tok_s_1_100": 101.905,
+    "p10_tok_s_1_100": 86.581,
+    "median_tok_s_full": 96.001,
+    "ttft_ms_median": 81.01
+   }
+  },
+  "gates": {
+   "G1 mtp0-a vs mtp0-b": "12/12",
+   "G2 mtp4-a vs mtp4-b": "12/12",
+   "G3 mtp4-a vs mtp0-a": "8/12",
+   "G3 mtp4-b vs mtp0-a": "8/12"
+  },
+  "verdict": "WITHHELD: depth 4 is repeat-exact (G2 12/12) but not lossless (G3 8/12 vs the MTP0 oracle on both servers) and no faster than depth 3 on the completions suite (98.418/98.550 vs 98.251/98.027). Depth 3 remains the headline.",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp1-mtp4-graph1-dhint4-20260907-c3",
+  "comparison_keys": [
+   "complete_token_arrays_exact",
+   "divergent_prompts",
+   "exact_prompts",
+   "total_prompts"
+  ],
+  "divergent_prompts_vs_oracle": [
+   {
+    "prompt_id": "benchmark-analysis",
+    "first_divergence_token": 342
+   },
+   {
+    "prompt_id": "bug-report-synthesis",
+    "first_divergence_token": 48
+   },
+   {
+    "prompt_id": "decision-memo",
+    "first_divergence_token": 75
+   },
+   {
+    "prompt_id": "risk-register",
+    "first_divergence_token": 403
+   }
+  ]
  }
 }

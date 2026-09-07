@@ -36,17 +36,18 @@
       "b70",
       "one card",
       "mtp",
+      "draft int4 head",
       "xpu graph"
     ],
     "published_at": "2026-09-07",
     "featured_metric": {
-      "value": 76.898,
+      "value": 98.139,
       "unit": "tok/s",
-      "label": "MTP depth 3 decode, one card, strict completions suite (center of two fresh servers, 76.917 / 76.879)",
-      "scope": "Center of two fresh-server class-balanced medians (76.917 / 76.879) over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (50.183 / 50.150), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, full decode-only XPU graph capture.",
+      "label": "MTP depth 3 with the draft-only INT4 lm_head, one card, strict completions suite (center of two fresh servers, 98.251 / 98.027)",
+      "scope": "Center of two fresh-server class-balanced medians (98.251 / 98.027) over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (50.165 / 50.173), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, draft-only INT4 lm_head (VLLM_XPU_DRAFT_LM_HEAD_INT4=1), full decode-only XPU graph capture.",
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
     },
-    "benchmark_status": "Candidate (2026-09-07, campaign c1, one B70, R276 image): two fresh depth-3 servers 76.917 / 76.879 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite (512-token cap, cache zero, canaries on every server), 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 50.183 / 50.150 matched 12/12. Identity ladders (128 tokens, two passes): depth 3 exact through c8 (463 tok/s), c16 15/16 (636), c32 28/32 (804), c64 59/64 (745); MTP0 exact through c4, c64 58/64 at 1254 tok/s aggregate. Chat-mode workload with visible thinking measures 105.3 tok/s on the same prompts (workload note, not the headline). Further matrix rows (depth 4, graph off, two cards, 2K-32K) pending."
+    "benchmark_status": "Candidate (2026-09-07, campaigns c1-c3, one B70, R276 image): two fresh depth-3 servers with the draft-only INT4 lm_head 98.251 / 98.027 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite (512-token cap, cache zero, canaries on every server), 12/12 vs each other and 12/12 vs the MTP0 oracle; with the FP8 draft head 76.917 / 76.879 (c1); two MTP0 servers 50.18 / 50.15 matched 12/12. Depth 4 (c3) is withheld: repeat-exact but 8/12 vs the oracle and no faster. Identity ladders (128 tokens, two passes, c2): depth 3 exact through c8 (565 tok/s), c16 15/16 (738), c32 30/32 (884), c64 57/64 (831); MTP0 exact through c8 (355), c64 59/64 at 1254 tok/s aggregate. Chat-mode workload with visible thinking measures 131.5 tok/s on the same prompts (workload note, not the headline). Rows for graph off, two cards and 2K-32K pending."
   },
   "contributors": [
     {
@@ -56,7 +57,7 @@
       "profile": "https://github.com/steveseguin/b70-optimization-lab",
       "contribution": "Lane composition on the existing deterministic vLLM XPU stack (R276 image, lab GDN kernels, strict launchers), speculative depth and capture sweeps, identity gates and ladders, packaging.",
       "status": "integrated",
-      "validated_effect": "MTP depth 3 with XPU graph capture raised one-card decode from 50.2 (no speculation) to 76.9 tok/s on the strict completions suite, 12/12 exact against the MTP0 oracle on two fresh servers (campaign c1, 2026-09-07).",
+      "validated_effect": "MTP depth 3 with XPU graph capture and the draft-only INT4 lm_head raised one-card decode from 50.2 (no speculation) to 98.1 tok/s on the strict completions suite, 12/12 exact against the MTP0 oracle on two fresh servers (campaign c2, 2026-09-07); the FP8 draft head alone gave 76.9 (c1).",
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
     },
     {
@@ -72,49 +73,49 @@
   ],
   "performance_profiles": [
     {
-      "id": "http-fp8-mtp3-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
-      "label": "Qwen3.5-9B FP8 one card, MTP depth 3 with XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c8; warm pass)",
+      "id": "http-fp8-mtp3-drafthead-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-9B FP8 one card, MTP depth 3 with the draft INT4 head and XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c8; warm pass)",
       "metric": "aggregate_decode",
       "unit": "tok/s",
       "x_metric": "concurrent_sequences",
       "x_label": "Concurrent HTTP users",
-      "scope": "Campaign c1 (2026-09-07): one B70, R276 image, strict launcher env, FULL_DECODE_ONLY capture sizes 1-64, qwen3_5_mtp depth 3, max-model-len 256, max-num-seqs 64, max-num-batched-tokens 512, 128 returned raw token IDs per response on the small-context suite, two passes on one server, warm pass shown. c1-c8 output-identity-qualified in both passes. Measured but withheld: c16 636.3 (15/16), c32 804.4 (28/32), c64 744.6 (59/64).",
+      "scope": "Campaign c2 (2026-09-07): one B70, R276 image, strict launcher env, FULL_DECODE_ONLY capture sizes 1-64, qwen3_5_mtp depth 3, VLLM_XPU_DRAFT_LM_HEAD_INT4=1, max-model-len 256, max-num-seqs 64, max-num-batched-tokens 512, 128 returned raw token IDs per response on the small-context suite, two passes on one server, warm pass shown. c1-c8 output-identity-qualified in both passes. Measured but withheld: c16 738.4 (15/16), c32 883.6 (30/32), c64 831.2 (57/64).",
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
       "points": [
         {
           "concurrent_sequences": 1,
-          "value": 88.4,
+          "value": 113.0,
           "samples": 1,
-          "per_user_value": 88.4
+          "per_user_value": 113.0
         },
         {
           "concurrent_sequences": 2,
-          "value": 166.7,
+          "value": 211.1,
           "samples": 1,
-          "per_user_value": 83.35
+          "per_user_value": 105.55
         },
         {
           "concurrent_sequences": 4,
-          "value": 255.9,
+          "value": 310.7,
           "samples": 1,
-          "per_user_value": 63.975
+          "per_user_value": 77.675
         },
         {
           "concurrent_sequences": 8,
-          "value": 463.3,
+          "value": 564.7,
           "samples": 1,
-          "per_user_value": 57.9125
+          "per_user_value": 70.5875
         }
       ]
     },
     {
       "id": "http-fp8-mtp0-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
-      "label": "Qwen3.5-9B FP8 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c4; warm pass)",
+      "label": "Qwen3.5-9B FP8 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c8; warm pass)",
       "metric": "aggregate_decode",
       "unit": "tok/s",
       "x_metric": "concurrent_sequences",
       "x_label": "Concurrent HTTP users",
-      "scope": "As above without speculation. c1-c4 output-identity-qualified in both passes. Measured but withheld: c8 354.8 (7/8 warm, 8/8 first pass), c16 634.1 (15/16), c32 1055.0 (30/32), c64 1254.3 (58/64).",
+      "scope": "Campaign c2 MTP0 ladder (as above without speculation). c1-c8 output-identity-qualified in both passes. Measured but withheld: c16 634.7 (15/16), c32 1055.2 (31/32), c64 1253.8 (59/64).",
       "evidence": "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
       "points": [
         {
@@ -125,15 +126,21 @@
         },
         {
           "concurrent_sequences": 2,
-          "value": 97.3,
+          "value": 97.2,
           "samples": 1,
-          "per_user_value": 48.65
+          "per_user_value": 48.6
         },
         {
           "concurrent_sequences": 4,
-          "value": 187.9,
+          "value": 187.5,
           "samples": 1,
-          "per_user_value": 46.975
+          "per_user_value": 46.875
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 355.0,
+          "samples": 1,
+          "per_user_value": 44.375
         }
       ]
     }

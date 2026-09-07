@@ -16,33 +16,50 @@ decode-only XPU graph capture. The stack is the Qwen3.8 INT4 lane's image and
 the Qwen3.8 FP8 recipe's strict launchers; nothing here is model-specific
 beyond the model manifest and the launcher defaults.
 
-## Headline (campaign c1, 2026-09-07, one B70)
+## Headline (campaign c2, 2026-09-07, one B70)
 
-- **MTP depth 3: `76.917 / 76.879 tok/s`** class-balanced median decode over
-  tokens 1-100 after TTFT on the strict 12-prompt six-class suite over the
-  completions API, 512-token completion cap, cache zero (two fresh servers,
-  empty compile cache each). Median TTFT `88 ms`.
-- **No speculation: `50.183 / 50.150 tok/s`** on the same suite.
+- **MTP depth 3 with the draft-only INT4 lm_head: `98.251 / 98.027 tok/s`**
+  class-balanced median decode over tokens 1-100 after TTFT on the strict
+  12-prompt six-class suite over the completions API, 512-token completion
+  cap, cache zero (two fresh servers, empty compile cache each). Median TTFT
+  `74 ms`.
+- **No speculation: `50.165 / 50.173 tok/s`** on the same suite (`50.183 /
+  50.150` in c1).
 - **Lossless:** the two MTP0 servers matched 12/12 complete token arrays (G1);
   the two depth-3 servers matched 12/12 against each other (G2) and 12/12
   against the MTP0 oracle (G3); the canary set passed on every server.
+- The draft-only INT4 lm_head (`DRAFT_HEAD_INT4=1`, the launcher default)
+  quantizes a draft-pass copy of the 248,320-row output head to INT4; the FP8
+  target verifier is unchanged, so outputs are identical, and the draft step
+  gets 27.6% cheaper: `76.917 / 76.879 tok/s` with the FP8 draft head (c1).
 - Evidence: `experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json`
-  (entry `c1_tp1_depth3_graph_strict_env`), campaign root
-  `qwen35-9b-fp8-tp1-mtp3-graph1-20260907-c1`.
+  (entries `c1_…`, `c2_…`, `c3_…`), attestation
+  `experiments/qwen35-9b-b70/data/qwen35-9b-fp8-tp1-mtp3-graph1-dhint4-20260907-c2-strict-result.json`.
 - ML Bottleneck's tuned-run target for `qwen3.5_9b`, FP8, vLLM on one B70 is
-  `56.56 tok/s` (physical ceiling `80.31`); the depth-3 headline is 1.36x the
-  target, the MTP0 figure 0.89x.
+  `56.56 tok/s` (physical ceiling `80.31`); the headline is 1.74x the target.
+
+### Matrix (one B70, strict completions suite, two fresh servers per row)
+
+| depth | draft head | XPU graph | tok/s (a / b) | G1 | G2 | G3 vs MTP0 | run |
+| ---: | --- | --- | ---: | --- | --- | --- | --- |
+| 0 | - | on | 50.183 / 50.150 | 12/12 | - | - | c1 |
+| 3 | FP8 | on | 76.917 / 76.879 | - | 12/12 | 12/12, 12/12 | c1 |
+| 3 | INT4 draft copy | on | **98.251 / 98.027** | - | 12/12 | 12/12, 12/12 | c2 |
+| 4 | INT4 draft copy | on | 98.418 / 98.550 | - | 12/12 | **8/12, 8/12** (withheld) | c3 |
+
+Depth 4 is repeat-exact but not lossless: four prompts (`benchmark-analysis`
+at token 342, `bug-report-synthesis` at 48, `decision-memo` at 75,
+`risk-register` at 403) take a different valid branch from the oracle when the
+verify batch grows to five rows, and it is no faster on this workload. Rows for
+XPU graph off, two cards and the 2K-32K context ladder are appended as their
+campaigns complete.
 
 Workload note: through the chat API this model first streams a long
-"Thinking Process" preamble that the MTP head predicts unusually well, and
-the same depth-3 server measures `105.3 tok/s` on the same prompts
+"Thinking Process" preamble that the MTP head predicts unusually well; the
+same depth-3 configuration measures `131.5 tok/s` on those prompts (`105.7`
+with the FP8 draft head), and depth 4 `148.0`
 (`experiments/qwen35-9b-b70/notes/2026-09-07-qwen35-9b-fp8-one-card-quick-lane.md`).
-The headline above is the lab's standard completions-suite convention. A
-14-variant bisect found no launcher or harness setting worth more than
-0.2 tok/s between the two; the difference is the workload.
-
-Further matrix rows (depth 4, XPU graph off, two cards, 2K-32K context) are
-appended below as their campaigns complete.
+The headline above is the lab's standard completions-suite convention.
 
 ## Model
 
@@ -136,24 +153,25 @@ python3 scripts/bench-openai-concurrency-oracle.py --base-url http://127.0.0.1:1
   --request-extra-json '{"ignore_eos":true,"temperature":0}' --return-token-ids --require-output-identity --out /tmp/ladder.json
 ```
 
-## Many users (campaign c1, one B70, warm pass of two)
+## Many users (campaign c2, one B70, warm pass of two)
 
-| users | depth 3 tok/s (exact) | no speculation tok/s (exact) |
+| users | depth 3 + INT4 draft head tok/s (exact) | no speculation tok/s (exact) |
 | ---: | ---: | ---: |
-| 1 | 88.4 (1/1) | 50.1 (1/1) |
-| 2 | 166.7 (2/2) | 97.3 (2/2) |
-| 4 | 255.9 (4/4) | 187.9 (4/4) |
-| 8 | 463.3 (8/8) | 354.8 (7/8) |
-| 16 | 636.3 (15/16) | 634.1 (15/16) |
-| 32 | 804.4 (28/32) | 1055.0 (30/32) |
-| 64 | 744.6 (59/64) | 1254.3 (58/64) |
+| 1 | 113.0 (1/1) | 50.1 (1/1) |
+| 2 | 211.1 (2/2) | 97.2 (2/2) |
+| 4 | 310.7 (4/4) | 187.5 (4/4) |
+| 8 | 564.7 (8/8) | 355.0 (8/8) |
+| 16 | 738.4 (15/16) | 634.7 (15/16) |
+| 32 | 883.6 (30/32) | 1055.2 (31/32) |
+| 64 | 831.2 (57/64) | 1253.8 (59/64) |
 
 128-token completions on the small-context suite, `max-model-len 256`,
-`max-num-seqs 64`. Depth 3 is exact through 8 users and fastest through 16;
-from 32 users no speculation is faster (1254 tok/s at 64). The non-identical
-answers above are near-tie prompts diverging at one token under the wider
-batch tiers, valid answers that the identity gate refuses; the same mechanism
-as on the Qwen3.8 lanes.
+`max-num-seqs 64`, two passes on one server (warm pass shown; the first pass
+of a fresh server carries a one-time recompile at two users). Depth 3 is exact
+through 8 users and fastest through 16; from 32 users no speculation is
+faster (1254 tok/s at 64). The non-identical answers above are near-tie
+prompts diverging at one token under the wider batch tiers, valid answers that
+the identity gate refuses; the same mechanism as on the Qwen3.8 lanes.
 
 ## Known limits
 
