@@ -62,6 +62,9 @@ EXPECTED_VLLM_HEADS = frozenset(
         # Split-K heads (v1 6a79c56d/e9e65888, v2 82b9f9cf/893e1ccc) are not accepted: split-K changes outputs at 4K (A259).
         "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230",
         "622191221475b53cc6f7f4d847860939f4c300ab",
+        # the same heads plus the ported reference fused QSA pre-indexer (MoE files untouched)
+        "2a372e860e273273357cb7437ac7de1694304f9f",
+        "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5",
     }
 )
 # fused_moe.py hash per accepted head family (the placement head changes that file only)
@@ -70,12 +73,16 @@ EXPECTED_FUSED_MOE_SHA256_BY_HEAD = {
     "005dc57895896f770157ea94f68e473e7447139e": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "622191221475b53cc6f7f4d847860939f4c300ab": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "2a372e860e273273357cb7437ac7de1694304f9f": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
 }
 EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "005dc57895896f770157ea94f68e473e7447139e": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "8d7d6fd8e392da59e2f516870e5f4fc76d4ca230": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "622191221475b53cc6f7f4d847860939f4c300ab": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "2a372e860e273273357cb7437ac7de1694304f9f": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "54f02431a5a8fd3b6fd23a74277a0138b5e46bb5": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
 }
 EXPECTED_PHASE_CONFIG_PATCH_NAME = "0021-Add-opt-in-per-phase-Triton-MoE-configs.patch"
 EXPECTED_PHASE_CONFIG_PATCH_SHA256 = (
