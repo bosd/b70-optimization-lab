@@ -4,12 +4,14 @@
 # the R276 image. env: RUN (label), TP (1|2), DEPTH (>0), GRAPH (1 full decode-only capture | 0 eager),
 # DRAFT_HEAD (1 default: draft-only INT4 lm_head copy, VLLM_XPU_DRAFT_LM_HEAD_INT4; 0 = FP8 head for drafts too)
 # LANE (default qwen35-9b-fp8), MODEL_DIR, MODEL_MANIFEST, QUANT (default compressed-tensors): select the checkpoint under test.
+# W4A16_PAD (default 0): pad decode row counts to fixed tiers on the INT4 W4A16 kernel, removing the row-count dependence
+#   that flips near-tie tokens at high concurrency. Costs throughput above 128 rows on the 27B lane; measured here.
 # STAGES (space list of: strict ladders depth32k)  [v2 adds depth32k: real-content 2K-32K exact-depth ladder, MTP0 arm as oracle then MTPn arm], LADDER_CONCURRENCY, LADDER_REPEATS, LADDER_MML/MNS/MBT, XPU_DEVICE_MASK.
 set -uo pipefail
 repo=/home/steve/b70-optimization-lab; out=/mnt/fast-ai/bench-results
-LANE=${LANE:-qwen35-9b-fp8}; QUANT=${QUANT:-compressed-tensors}
+LANE=${LANE:-qwen35-9b-fp8}; QUANT=${QUANT:-compressed-tensors}; W4A16_PAD=${W4A16_PAD:-0}
 RUN=${RUN:?set RUN}; TP=${TP:-1}; DEPTH=${DEPTH:-3}; GRAPH=${GRAPH:-1}; DRAFT_HEAD=${DRAFT_HEAD:-1}; STAGES=${STAGES:-strict ladders}; port=${PORT:-18131}
-root=${ROOT:-${out}/${LANE}-tp${TP}-mtp${DEPTH}-graph${GRAPH}$([[ "${DRAFT_HEAD}" == 1 ]] && echo -dhint4)-20260907-${RUN}}
+root=${ROOT:-${out}/${LANE}-tp${TP}-mtp${DEPTH}-graph${GRAPH}$([[ "${DRAFT_HEAD}" == 1 ]] && echo -dhint4)$([[ "${W4A16_PAD}" == 1 ]] && echo -pad)-20260907-${RUN}}
 repro=${repo}/repro/qwen38-27b-fp8-vllm-tp2-asrock-b70
 image=neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276; image_id=sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad
 model_dir=${MODEL_DIR:-/home/steve/llm-models/qwen35-9b-fp8-dynamic}
@@ -33,7 +35,7 @@ abort() { log "ABORT: $*"; printf '%s\n' "$*" >"${root}/ABORTED"; exit 2; }
 mkdir -p "${root}"; [[ -e "${root}/campaign-start.txt" ]] && { echo "campaign root already used: ${root}" >&2; exit 1; }
 date --iso-8601=seconds >"${root}/campaign-start.txt"; campaign_start=$(date '+%Y-%m-%d %H:%M:%S')
 cat /proc/sys/kernel/random/boot_id >"${root}/boot-id.txt"; git -C "${repo}" rev-parse HEAD >"${root}/repo-head.txt"
-printf 'LANE=%s RUN=%s TP=%s DEPTH=%s GRAPH=%s DRAFT_HEAD=%s QUANT=%s mask=%s model=%s image=%s\n' "$LANE" "$RUN" "$TP" "$DEPTH" "$GRAPH" "$DRAFT_HEAD" "$QUANT" "$mask" "$model_dir" "$image_id" >"${root}/config.txt"
+printf 'LANE=%s RUN=%s TP=%s DEPTH=%s GRAPH=%s DRAFT_HEAD=%s QUANT=%s PAD=%s mask=%s model=%s image=%s\n' "$LANE" "$RUN" "$TP" "$DEPTH" "$GRAPH" "$DRAFT_HEAD" "$QUANT" "$W4A16_PAD" "$mask" "$model_dir" "$image_id" >"${root}/config.txt"
 devices_normal() { xpu-smi discovery >"${root}/$1-xpu-smi-discovery.txt" 2>&1 || true; [[ "$(grep -c 'Device State: normal' "${root}/$1-xpu-smi-discovery.txt")" == 2 ]]; }
 journal_check() { journalctl -k -b 0 --no-pager --since "${campaign_start}" >"${root}/$1-kernel-journal.txt" 2>&1 || true; ! grep -qiE "${fault_re}" "${root}/$1-kernel-journal.txt"; }
 lane_containers() { docker ps --format '{{.Names}}' | grep -cE 'qwen3[58]' || true; }
@@ -53,7 +55,7 @@ launch() {
   env IMAGE="${image}" EXPECTED_IMAGE_ID="${image_id}" EXPECTED_XPU_EXTENSION_SHA256=271db0d4882124e21ac6a4d080bfeab303fbb08b9ec10e11f21d10fb0723998f \
     EXPECTED_XPU_OPS_SHA256=6ee6b8db18759873246aca28e85ca6d2ba177eb08bfd3b9b0f0feea168cee9b3 EXPECTED_LAYERNORM_SHA256=50cf5f4f9c72f679e4318cd3e3e021a844f59ac188a891d9a4f9638188f4bce8 \
     VLLM_BATCH_INVARIANT=0 VLLM_XPU_GDN_SPLIT_MIXED=1 VLLM_XPU_GDN_SPEC_GROUP=${GDN_SPEC_GROUP:-16} VLLM_XPU_GEMMA_RMSNORM_TRITON=0 VLLM_XPU_RMSNORM_TRITON=0 \
-    VLLM_XPU_DRAFT_LM_HEAD_INT4="${DRAFT_HEAD}" VLLM_XPU_W4A16_DETERMINISM_PAD=0 GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
+    VLLM_XPU_DRAFT_LM_HEAD_INT4="${DRAFT_HEAD}" VLLM_XPU_W4A16_DETERMINISM_PAD="${W4A16_PAD}" VLLM_XPU_W4A16_DETERMINISM_PAD_HIGH="${W4A16_PAD}" GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
     MODEL_DIR="${model_dir}" MODEL_MANIFEST="${manifest}" VLLM_CACHE_DIR="${cache}" "${specenv[@]}" \
     CONTAINER_NAME="${name}" PORT="${port}" SERVED_MODEL_NAME="${served}" COMPILATION_CONFIG="${comp}" \
     TENSOR_PARALLEL_SIZE="${TP}" XPU_DEVICE_MASK="${mask}" QUANTIZATION="${QUANT}" VLLM_XPU_FP8_BLOCK_W8A16=0 \

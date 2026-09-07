@@ -4,7 +4,7 @@
 # Both use the generalized harness in ../../qwen35-9b-b70/scripts/run-20260907-qwen35-campaign.sh.
 set -uo pipefail
 repo=/home/steve/b70-optimization-lab; H=$repo/experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-campaign.sh; W=/mnt/fast-ai/bench-results
-wait_idle() { while pgrep -f 'run-20260907-qwen35' >/dev/null || docker ps --format '{{.Names}}' | grep -qE 'qwen3[58]'; do sleep 30; done; sleep 10; }
+wait_idle() { while pgrep -f 'run-20260907-qwen35-campaign[.]sh' >/dev/null || docker ps --format '{{.Names}}' | grep -qE 'qwen3[58]'; do sleep 30; done; sleep 10; }
 until [ -f /home/steve/llm-models/qwen35-4b-fp8-dynamic/REVISION ]; do sleep 60; done
 wait_idle
 LANE=qwen35-4b-fp8 MODEL_DIR=/home/steve/llm-models/qwen35-4b-fp8-dynamic \
