@@ -441,3 +441,7 @@ The previous boot's journal ends at 19:51:42, seconds after the A243 launch (swa
 ## 01:30–01:54 09-07 — the Triton-HC guide replays: attempt 273, 12/12 outputs identical, 37.433041 tok/s
 
 - `run-record-gate.sh` (REPRO_ATTEMPT=273) on the originating host: identity chain verified (placement and Triton-HC series, bundles, tags, trees), packet derived from the frozen A272 packet, server launched through the host-controlled launcher, the fixed cold suite sent once: **12/12 output hashes equal to the record, every gate equal, 37.433041 tok/s** class-balanced (record 37.045844). The first derivation had aimed at the record's run directory because the guide's replay maker still carried the launcher's `ATTEMPT=` literal from the placement guide; fixed and committed before the passing replay. Evidence: `evidence/a273-record-gate.log`, `evidence/a273-record-gate-replay.sha256`, `data/20260907-tp4-mtp1-a273-record-gate-replay-realistic-suite-v1-result.json`.
+
+## 01:55–02:17 09-07 — MTP2 on the Triton-HC head: lossless, still slower than MTP1 (closed)
+
+- A274 (head 62219122, two speculative tokens, HC export in the derived source): exact-2K r1 23.44 / r2 33.03 tok/s with the lineage authority `86b5b6c7…` held on both, against MTP1's 36.43 / 36.47 (A271). As on the placement identity (A228: 22.40 / 30.94 against 33.2), the third-token verify step costs more than the extra accepted token returns; the cheaper HC step does not change the balance. Filed: `data/20260907-tp4-mtp2-a274-hctriton-exact-depth-2k-r{1,2}.json`.
