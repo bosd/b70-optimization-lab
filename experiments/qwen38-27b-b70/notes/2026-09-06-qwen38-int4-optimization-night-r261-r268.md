@@ -265,3 +265,11 @@ at 8-32, none from 64. The c8 flip is one near-tie prompt under both depths.
 Warm: c4 181.4 (4/4), c8 302.8 (8/8), c16 464.7 (16/16), c32 371.9 (32/32; cold 30/32; ttft_max 7.5 s); MTP0 c4 118.5, c8
 214.4, c16 345.7, c32 513.8. One-card guidance: depth 4 for 1-2 users, depth 1 for 4-16, none from 32. Package profile added.
 
+## R290 - max-num-seqs 256 / max-num-batched-tokens 4096: withheld
+
+MTP0: c32 812.4 (32/32), c64 1032.8 (57/64), c128 966.8 (120/128), c192 950.8 (170/192), c256 1021.3 (229/256), ttft_max 23 s
+at c192+. Depth 1: c32 852.1 (31/32), c64 869.2 (57/64), c128 876.2, c192 864.7, c256 898.8. The flips are the same prompts at
+the same positions as the speculative flips (capacity-c006 @11 ...), now without speculation: the 4096-token mixed
+prefill/decode batches change the GEMM shapes the decode rows see. No aggregate gain beyond c64, so the published shape
+stays mns 128 / mbt 1024, where MTP0 is exact through c64 in both passes.
+

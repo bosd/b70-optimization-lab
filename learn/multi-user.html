@@ -151,6 +151,43 @@
     this page, and this sweep is part of the measured evidence that keeps it honest.
   </p>
 
+  <h2 id="qwen38-int4">Two cards, many people: Qwen3.8-27B INT4 with speculation</h2>
+  <p>
+    The Qwen3.8-27B AutoRound INT4 lane (two B70s, vLLM XPU, lab kernel stack, XPU graph capture) was
+    swept the same way over HTTP on 2026-09-06, with every response compared token-for-token against
+    its own single-user oracle, at four speculation settings. Warm pass; the count in brackets is how
+    many of the concurrent answers were byte-identical to the oracle.
+    <a class="inline" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/repro/qwen38-27b-autoround-int4-b70/README.md">Recipe</a> ·
+    <a class="inline" href="https://github.com/steveseguin/b70-optimization-lab/blob/main/experiments/qwen38-27b-b70/data/2026-09-05-qwen38-int4-graph-capture-tp2-mtp4-r247-result.json">raw data (R284-R290)</a>.
+  </p>
+  <div class="scroller">
+  <table class="data">
+    <thead>
+      <tr><th scope="col" class="num">Users at once</th><th scope="col" class="num">No speculation</th><th scope="col" class="num">MTP depth 1</th><th scope="col" class="num">MTP depth 2</th><th scope="col" class="num">MTP depth 4</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row" class="num">1</th><td class="num">50.0</td><td class="num">-</td><td class="num">-</td><td class="num">112.4</td></tr>
+      <tr><th scope="row" class="num">2</th><td class="num">94.6 (2/2)</td><td class="num">147.3 (2/2)</td><td class="num">-</td><td class="num">191.0 (2/2)</td></tr>
+      <tr><th scope="row" class="num">4</th><td class="num">178.5 (4/4)</td><td class="num">268.6 (4/4)</td><td class="num">-</td><td class="num">294.7 (4/4)</td></tr>
+      <tr><th scope="row" class="num">8</th><td class="num">327.0 (8/8)</td><td class="num">456.0 (7/8)</td><td class="num">-</td><td class="num">422.6 (7/8)</td></tr>
+      <tr><th scope="row" class="num">16</th><td class="num">533.8 (16/16)</td><td class="num">711.0 (16/16)</td><td class="num">591.0 (16/16)</td><td class="num">574.3 (16/16)</td></tr>
+      <tr><th scope="row" class="num">32</th><td class="num">815.0 (32/32)</td><td class="num">854.4 (32/32)</td><td class="num">723.4 (29/32)</td><td class="num">641.3 (32/32)</td></tr>
+      <tr><th scope="row" class="num">64</th><td class="num">991.4 (64/64)</td><td class="num">842.0 (61/64)</td><td class="num">815.2 (59/64)</td><td class="num">591.4 (58/64)</td></tr>
+      <tr><th scope="row" class="num">128</th><td class="num">1,085.3 (128/128)</td><td class="num">894.8 (121/128)</td><td class="num">815.0 (121/128)</td><td class="num">584.7 (117/128)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+    Speculative decoding wins while the verify batch is small: depth 4 for one to four users, depth 1
+    from about eight to thirty-two. Past that every depth plateaus (the verify batch exceeds the
+    ~32-row tier of the INT4 matmul) and plain decoding keeps climbing to ~1,000 combined tok/s at
+    64 users and ~1,085 at 128, still byte-identical to the single-user answers. The few non-identical
+    answers above 32 users are always the same prompts diverging at the same token, a near-tie in the
+    next-token scores that the wider matmul tier rounds the other way; they are valid answers, but the
+    recipe withholds those points from its identity-qualified profiles. One card alone peaks at 514
+    combined tok/s at 32 users without speculation and 465 at 16 with depth 1.
+  </p>
+
   <div class="related">
     <h2>Keep going</h2>
     <div class="related-grid">

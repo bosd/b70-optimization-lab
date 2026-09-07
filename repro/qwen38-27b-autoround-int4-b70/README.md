@@ -280,7 +280,11 @@ about 8 to 32 users (854 tok/s at 32, exact), and no speculation beyond that
 (992 tok/s exact at 64). Entries
 `R284_ladders_tp2_big_admission_mtp4_vs_mtp0`, `R286_…_mtp2` and
 `R287_…_mtp1` in the graph-capture result JSON carry every rung and the
-per-request divergence positions.
+per-request divergence positions. A larger prefill budget does not help:
+with max-num-batched-tokens 4096 and max-num-seqs 256 (R290) the same
+near-tie prompts flip even without speculation from 64 users (57/64 in both
+passes) and the aggregate is no better (1032.8 at 64, 966.8 at 128, 1021.3 at
+256 users with 23 s first-token waits), so the published shape stays at 1024.
 
 ### One card, many users (R285, 2026-09-06)
 
