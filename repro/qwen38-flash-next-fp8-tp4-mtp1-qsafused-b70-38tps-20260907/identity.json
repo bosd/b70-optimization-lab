@@ -1,0 +1,115 @@
+{
+  "format": "qwen38-flash-next-qsafused-mtp1-record-identity-v1",
+  "record": {
+    "profile_id": "qwen38-flash-next-fp8-tp4-mtp1-fullgraphdet-4352-placement-hctriton-qsafused-realistic-v1",
+    "class_balanced_median_tok_s": 37.82565425736173,
+    "aggregation": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed cold realistic suite run once",
+    "localmaxxing_run": "cmtrmp3mj001fps01thcathd0",
+    "measured_run": "A306 (2026-09-07)",
+    "fresh_server_repeat": "A305 (2026-09-07): frozen-client battery, exact-depth 2K 38.98/38.97 and 4K 39.30/39.30 tok/s, short suite, every gate passed and every pin equal to this lineage's MTP0 line",
+    "mtp0_twin": {
+      "head": "2a372e860e273273357cb7437ac7de1694304f9f",
+      "localmaxxing_run": "cmtrmp37v001bps01a7fi46nf",
+      "class_balanced_median_tok_s": 33.79706657409935,
+      "measured_run": "A301 (2026-09-07)",
+      "battery": "A304 (2026-09-07)"
+    },
+    "attestation": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-promotion-attestation.json",
+    "performance_evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-qsafused-realistic-suite-v1-result.json",
+    "performance_evidence_sha256": "8fb03a9dc4718bb3b72c74b202e4f8ce6fb0b97f835ad5cb475db56d3a2870ba",
+    "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812",
+    "record_gate_replays": []
+  },
+  "model": {
+    "repository": "Qwen/Qwen3.8-Flash-Next-FP8",
+    "revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+    "config_sha256": "99c11efba4012d0f760f4e4831a8d6cafd845044e21d0aa9e6d9e70a15a90a8d",
+    "safetensors_index_sha256": "0419e2c2dfbb925257d7409405433a793cf7ff7d96f3eba882a815ec6d9fe7a6",
+    "shard_count": 131,
+    "root_total_bytes": 185563783127,
+    "contract": "repro/qwen38-flash-next-fp8-tp4-mtp3-b70/model-contract.json"
+  },
+  "runtime": {
+    "vllm_public_base": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+    "vllm_overlay_head": "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a",
+    "vllm_overlay_tree": "3e8dfc5937087d186cd4a99a6bf15213be732462",
+    "vllm_overlay_series": "patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/ (two fused-QSA commits over the Triton-HC MTP1 head 62219122; that head in patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/, the placement head in .../vllm-placement-mtp1-005dc578/, the lossless MTP1 head in .../vllm-lossless-mtp1-1b2a17c1/)",
+    "vllm_package_version": "0.20.2rc1.dev2+gc51df4300.d20260523.xpu",
+    "kernel_stage_build_head": "2f829747503c77d4814834dffd0840fb1dd9f75a",
+    "kernel_stage_manifest": "repro/qwen38-flash-next-fp8-tp4-mtp3-b70/runtime-stage.sha256",
+    "kernel_stage_release": "https://github.com/steveseguin/b70-optimization-lab/releases/tag/qwen38-flash-next-runtime-2f829747-20260827",
+    "kernel_source_head_in_venv": "e421889999bc1e5a5f11044d14548b9afdba644d",
+    "oneccl_public_commit": "4ceafd1",
+    "oneccl_libccl_sha256": "43d94d43506e30096dd099b9d53b54f932be964751e92ff0cbb8d3a37fad6700",
+    "oneccl_kernels_spv_sha256": "0d549c35a558f1b216cb7d1efeaa9f86d7596ffc47b383644e075290d314f0c9",
+    "oneccl_receipt": "patches/qwen38-flash-next-fp8-b70/oneccl-4ceafd1-b70-public/README.md",
+    "torch": "2.11.0+xpu",
+    "triton": "3.7.0",
+    "python": "3.12",
+    "compiler_for_stage": "oneAPI 2025.3 icpx",
+    "vllm_lossless_mtp1_head": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+    "vllm_placement_mtp1_head": "005dc57895896f770157ea94f68e473e7447139e",
+    "vllm_hctriton_mtp1_head": "622191221475b53cc6f7f4d847860939f4c300ab"
+  },
+  "configuration": {
+    "cards": 4,
+    "tensor_parallel": 4,
+    "expert_parallel": 4,
+    "all2all_backend": "allgather_reducescatter",
+    "moe_backend": "triton",
+    "tuned_config_folder": "experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n32",
+    "tuned_config_map_sha256": "a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be",
+    "graph": "FULL_DECODE_ONLY, capture sizes [1, 2], one warmup",
+    "graph_enable_env": "VLLM_XPU_ENABLE_XPU_GRAPH=1",
+    "speculation": "publisher MTP, one speculative token (lossless: every output pin equal to the MTP0 line)",
+    "max_model_len": 4352,
+    "max_num_seqs": 1,
+    "max_num_batched_tokens": 64,
+    "kv_cache_memory_bytes": 376569856,
+    "kv_cache_layout": "BLHNC",
+    "offload_backend": "uva",
+    "cpu_offload_gb": 12.25,
+    "cpu_offload_params": [
+      "ple_embedding.ngram_embedding.weight",
+      "embed_tokens.weight"
+    ],
+    "offloaded_bytes_per_rank_expected": "12.22 GiB (PLE n-gram 11.92 + embeddings 0.30); every hot routed expert resident",
+    "mkldnn_deterministic": 1,
+    "ccl_sycl_allreduce_ll": "twoshots",
+    "dtype": "bfloat16 activations over the publisher FP8 block-128 weights",
+    "prefix_caching": false,
+    "async_scheduling": false,
+    "expert_host_placement": {
+      "file": "experiments/qwen38-flash-next-fp8-b70/data/20260906-q38-expert-host-placement-3p5gib-per-rank.json",
+      "sha256": "f3f4812cfae2f4f704e75cc9b47a4031a476f846b353e3def23141b9d9c05f96",
+      "host_gib_per_rank_budget": 3.5,
+      "experts_per_rank": {
+        "0": 543,
+        "1": 587,
+        "2": 550,
+        "3": 586
+      },
+      "selection": "experts never routed to in the A168 exact-2K trajectory census and the A197 realistic-suite census; placed in pinned host memory at load time behind a per-expert offset table in the Triton MoE kernel (USE_B_TABLE)"
+    },
+    "tuned_config_key": "logical expert count (placed layers are resident-sized; all three lookup sites key on _q38_num_experts)",
+    "hc_triton": "VLLM_XPU_HC_TRITON=1 printed into the packet's derived launch source: the Triton hyper-connection glue kernels (gate-mix, combine, combine-norm, silu) run on XPU instead of the torch fallbacks; MoE kernel, tuned map, offload and placement unchanged",
+    "qsa_fused_indexer": "VLLM_XPU_QSA_FUSED_INDEXER=1 printed into the packet's derived launch source: the model's reference fused QSA pre-indexer replaces the unfused projection, norm, rope, group compression and cache stores; on the MTP1 head it is placed after the row-serial verify path so the multi-row verification step keeps its exactness"
+  },
+  "exactness": {
+    "authority": "new lineage authority; the difference is at depth, not in quality",
+    "exact_2k_output_sha256": "afffd2110812762164862b6388f054bb56696ee57b07eadce411a702c40bc714",
+    "exact_2k_note": "coincides with the certified torch-fallback stream",
+    "exact_4k_output_sha256": "1d833e5f463366223a669aa15495840d1337b173e675a9ea04f00a5ae339d5cc",
+    "exact_4k_note": "differs from the certified c6193cc6…; consumers pinning 4K outputs must re-pin",
+    "reproduced_by": [
+      "A297 (MTP0)",
+      "A299 (MTP0 fresh server)",
+      "A300 (MTP0, battery against the certified asserts)",
+      "A304 (MTP0 certification battery)",
+      "A305 (MTP1 certification battery)"
+    ],
+    "quality_profile": "byte-identical to the certified battery: 7/7 exact cases, 16/16 repeats one hash, exact needle",
+    "verifier": "experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n32-selection.py",
+    "verifier_sha256": "c874852bbae20f4d738e1f3a37f1b16d553e50dc9e8c56c2b0caabc22675dc0e"
+  }
+}

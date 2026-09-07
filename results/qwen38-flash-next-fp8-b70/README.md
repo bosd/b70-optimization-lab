@@ -193,6 +193,49 @@ Data: [A270 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4
 [overlay series](../../patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/README.md), [day summary](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-05-day-summary.md).
 Replay guide: [`repro/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/`](../../repro/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/README.md) (`lab-replay`, candidate package).
 
+## 2026-09-07: the second reference restoration, and the fastest certified line at 37.83 tok/s
+
+The XPU port of this model had replaced two of the model's own Triton kernels. The first,
+the hyper-connection glue, was restored earlier the same day. The second is the QSA
+pre-indexer: the XPU path ran the qk projection, the query norm and rope, the group
+compression, the compressed-key norm and rope and the cache-row stores as separate kernels,
+and a per-phase timing split attributed 18.0 of the indexer's 23.9 ms per eager step to
+exactly those phases. Restoring the reference fused kernel (`VLLM_XPU_QSA_FUSED_INDEXER=1`;
+overlays `2a372e86` at MTP0 and `6d872457` at MTP1) leaves the MoE kernel, its tuned map,
+the offload and the placement untouched.
+
+| screen | Triton HC glue only (2026-09-07) | both reference kernels (2026-09-07) | outputs |
+|---|---|---|---|
+| exact-2K, MTP0 | 32.58 / 32.56 (A269) | **33.32 / 33.45** (A304), 33.49 / 33.48 (A297), 33.48 / 33.51 (A299) | `afffd211…`, which coincides with the certified stream |
+| exact-4K, MTP0 | 32.58 / 32.62 (A269) | **33.47 / 33.41** (A304) | `1d833e5f…`, which does not |
+| fixed cold realistic suite, MTP0 | 32.898806 (A270) | **33.797067 tok/s** (A301), LocalMaxxing run `cmtrmp37v001bps01a7fi46nf` approved | twelve fresh rows, cached_tokens 0 |
+| exact-2K / exact-4K, lossless MTP1 | 36.43 / 36.47, 36.37 / 36.36 (A271) | **38.98 / 38.97**, **39.30 / 39.30** (A305) | the MTP0 pins |
+| fixed cold realistic suite, lossless MTP1 | 37.045844 (A272) | **37.825654 tok/s** (A306), LocalMaxxing run `cmtrmp3mj001fps01thcathd0` approved | twelve fresh rows, cached_tokens 0 |
+
+The honest part of this record is what moved and what did not. The outputs are a new
+authority and **the difference is at depth, not in quality**: exact-2K coincides with the
+certified stream while exact-4K does not, so anyone pinning 4K outputs must re-pin. The
+quality profile is preserved byte for byte against the certified battery, all seven
+exact-case outputs identical, sixteen repeats collapsing to one hash, the long-context
+needle identical, and within the lineage MTP1 remains lossless, reproducing the MTP0 pins
+at both depths. The 2K coincidence is worth naming as a coincidence: each change alone
+moves the stream, the fused indexer alone gives a third one (`2ac12a57…` at 28.04, A298),
+and only the pair lands back on the certified ids, which a battery at 4K then disproved as
+a general property (A300).
+
+Certification: frozen-client batteries on both heads with the client pinned to this
+lineage's authorities (A304 MTP0, A305 MTP1: every gate passed), an eight-row exact-2K pair
+summary across four MTP0 servers, verifier receipt for the tuned-map selection,
+[MTP0 attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a301-promotion-attestation.json),
+[MTP1 attestation](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-promotion-attestation.json).
+Data: [A301 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a301-qsafused-realistic-suite-v1-result.json),
+[A306 suite](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-qsafused-realistic-suite-v1-result.json),
+[A304 summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a304-fresh-repeat-deterministic-summary.json),
+[A305 summary](../../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a305-fresh-repeat-deterministic-summary.json),
+[overlay series](../../patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/README.md),
+[day summary](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-05-day-summary.md).
+Replay guide: [`repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/`](../../repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/README.md) (`lab-replay`, candidate package).
+
 LocalMaxxing: the promoted MTP0 line is submitted and approved
 (`cmtn32b2w000tmm01t7j2wlpn`, 2026-09-04) on the fixed realistic suite run
 once cold: 14.433684 tok/s class-balanced median of prompt-class medians

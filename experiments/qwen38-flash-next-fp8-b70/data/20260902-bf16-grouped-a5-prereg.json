@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_device_execution",
+  "classification": "component_only_four_cell_grouped_w16a16_reliability_gate",
+  "question": "Can the existing Xe2 grouped W16A16 provider make the four A4a-rejected K=10240 down-projection cells exact while returning, for every ordinal input row, an output already observed in that same row's frozen A4a native support?",
+  "identity": {
+    "model": "Qwen/Qwen3.8-Flash-Next-FP8",
+    "model_revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+    "a1_tool_sha256": "e4700fc44a65d71c7b0a7df5ff34924d808ba685c4157b0e2c12fd4b9d4bdf22",
+    "a4a_tool_sha256": "c2caf7427a229f2d0a3158aa41aefacfddf0d3ccb368946feb01bc8bb5147184",
+    "a4a_summary_sha256": "a98b7c7f34df9795027e1e7b956fde8daef485986f9de31d96813b4c98c6d6d2",
+    "a5_tool_sha256": "df1655c7ca35a5e7f225d408e5040aef0c95a381069c0d13fc9f4e8ff7ae14f9",
+    "a5_tests_sha256": "84fe3edf9df1cfea06185a7159332f246c86cf20970ca1913f0cb27e603c4270",
+    "grouped_runtime_stage": "/mnt/usb-models/qwen38-build/hc-grouped-stage-eeee7d6-sycl8/vllm_xpu_kernels",
+    "grouped_runtime_manifest_sha256": "71e263f19ccc1313bbdc21604b4de5171891454fb7e8e35877af083505522951"
+  },
+  "frozen_a4a_native_authority": {
+    "support_definition": "union of all 100 measured sweeps from two native fresh processes, independently for each exact ordinal row",
+    "files": {
+      "cell00_replica1_sha256": "113f350d4b7d93e7a0d716b30be940b3865a535a09f7eb3d72b883736a8ce1eb",
+      "cell00_replica2_sha256": "beeeb78c8e5b44c5a0a48d7be65588c8e38f242b68dbc283e89e8c3d74875f69",
+      "cell01_replica1_sha256": "28edb85f5191d469c3e9bddabbe36b734f668b8385ea765b636c890cc51ab28f",
+      "cell01_replica2_sha256": "f16bc104ab580a222773f3e04213c4ed2651aee20da698929d583a5820561996",
+      "cell02_replica1_sha256": "76d4b7baddeb0b7492e7529628c65b18c4a37c04d806d07d3dbdb2ea0ade9549",
+      "cell02_replica2_sha256": "f3fc788099e871b1c6bcf47f31fa2b13a482c99baeb5934724cb0c4b63592138",
+      "cell03_replica1_sha256": "b52ce1a8766ec331e01f41f5ba1a8ba731d05483efb85a3a2afda85a5571916a",
+      "cell03_replica2_sha256": "43b4ccfe76cd70bf15023a3cf9c4eea2fdbfde27696ee6ef7b2dcea8b8ad5c62"
+    }
+  },
+  "stage1": {
+    "result_root": "/mnt/usb-models/bench-results/qwen38-flash-next-fp8-b70/bf16-grouped-down-20260902-a5",
+    "authority_environment": "Q38_BF16_GROUPED_A5_EXECUTE=YES",
+    "cells": [
+      {
+        "index": 0,
+        "family": "hc_down_inject",
+        "sentinel": "layer00-attn-r0",
+        "m": 1,
+        "k": 10240,
+        "logical_n": 336,
+        "active_n": 324,
+        "grouped_n": 352,
+        "calls_per_target_token": 96
+      },
+      {
+        "index": 1,
+        "family": "hc_down_inject",
+        "sentinel": "layer47-mlp-r3",
+        "m": 1,
+        "k": 10240,
+        "logical_n": 336,
+        "active_n": 324,
+        "grouped_n": 352,
+        "calls_per_target_token": 96
+      },
+      {
+        "index": 2,
+        "family": "final_hc_down",
+        "sentinel": "final-r0",
+        "m": 1,
+        "k": 10240,
+        "logical_n": 320,
+        "active_n": 320,
+        "grouped_n": 320,
+        "calls_per_target_token": 1
+      },
+      {
+        "index": 3,
+        "family": "final_hc_down",
+        "sentinel": "final-r3",
+        "m": 1,
+        "k": 10240,
+        "logical_n": 320,
+        "active_n": 320,
+        "grouped_n": 320,
+        "calls_per_target_token": 1
+      }
+    ],
+    "fresh_candidate_processes_per_cell": 2,
+    "total_candidate_processes": 8,
+    "fixed_input_seed": 2026090201,
+    "fixed_distinct_rows": 256,
+    "warmup_ordinal_sweeps": 4,
+    "measured_ordinal_sweeps": 100,
+    "calls_per_sweep": 256,
+    "provider": "_xpu_C.cutlass_grouped_gemm_interface",
+    "hc_padding": {
+      "checkpoint_active_columns": [0, 324],
+      "discarded_checkpoint_zero_tail_columns": [324, 336],
+      "candidate_synthetic_zero_tail_columns": [324, 352]
+    }
+  },
+  "stage1_promotion_gate": {
+    "exact_cell_schema_status_and_classification": true,
+    "exact_cell_family_sentinel_provider_and_replica_set": [1, 2],
+    "exact_shape_protocol_credit_environment_and_runtime_manifest": true,
+    "candidate_input_aggregate_and_all_row_hashes_equal_frozen_a4a": true,
+    "one_physical_d_hash_within_and_across_both_processes": true,
+    "one_active_output_hash_within_each_process": true,
+    "one_identical_active_output_hash_across_both_processes": true,
+    "each_candidate_row_hash_in_same_row_a4a_native_support": true,
+    "all_synthetic_tail_values_exact_numeric_zero": true,
+    "all_four_cells_must_pass": true,
+    "timing_excluded_from_parity_authority": true
+  },
+  "conditional_stage2": {
+    "status": "frozen_but_not_implemented_or_authorized_until_stage1_passes",
+    "result_root": "/mnt/usb-models/bench-results/qwen38-flash-next-fp8-b70/bf16-grouped-down-timing-20260902-a5b",
+    "fresh_process_order_per_cell": ["native-1", "grouped-1", "grouped-2", "native-2"],
+    "order_abbreviation": "N/G/G/N",
+    "cells": 4,
+    "total_fresh_processes": 16,
+    "parity_gate_reapplied": true,
+    "report_only": true,
+    "weighted_cost": {
+      "hc_down_inject_calls_per_target_token": 96,
+      "final_hc_down_calls_per_target_token": 1,
+      "central_grouped_native_ratio_max": 1.0,
+      "per_family_grouped_native_ratio_max": 1.02,
+      "native_control_drift_ratio_max": 1.03
+    }
+  },
+  "safety": {
+    "one_selected_b70": true,
+    "one_real_checkpoint_weight_per_process": true,
+    "exclusive_component_lock": true,
+    "pre_and_post_health_receipts": true,
+    "final_health_and_aer_pass_before_summary_publication": true,
+    "final_health_exception_or_late_aer_writes_failure_json": true,
+    "failed_plan_cannot_publish_a_passing_summary": true,
+    "no_clobber": true,
+    "stage1_and_stage2_paths_separate": true,
+    "w13_paths_untouched": true,
+    "full_model_load": false,
+    "endpoint_launch": false,
+    "reboot": false,
+    "source_or_runtime_modification": false,
+    "endpoint_change_authorized": false,
+    "speed_or_quality_credit": false
+  }
+}
