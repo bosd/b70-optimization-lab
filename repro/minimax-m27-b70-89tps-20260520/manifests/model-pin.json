@@ -1,9 +1,138 @@
 {
-  "schema": "minimax-m27-autoround-model-pin-v1",
-  "repository": "Lasimeri/MiniMax-M2.7-int4-AutoRound",
-  "revision": "1afac074ecf7c3c4504c68b83d127506f8a7e5a4",
-  "revision_verified_from_publisher_repository_on": "2026-08-22",
-  "recorded_model_size_label": "121 GB",
-  "historical_result_date": "2026-05-19",
-  "provenance_limit": "The historical lab run recorded the repository name and selected configuration-file hashes but did not retain the Hugging Face snapshot revision or a complete payload manifest. This immutable revision pins future package downloads; it must not be described as a proven byte-identical identity for the historical run until a complete manifest comparison is available."
+ "schema": "minimax-m27-autoround-model-pin-v1",
+ "repository": "Lasimeri/MiniMax-M2.7-int4-AutoRound",
+ "revision": "1afac074ecf7c3c4504c68b83d127506f8a7e5a4",
+ "revision_verified_from_publisher_repository_on": "2026-08-22",
+ "recorded_model_size_label": "121 GB",
+ "historical_result_date": "2026-05-19",
+ "provenance_limit": "The historical lab run recorded the repository name and selected configuration-file hashes but did not retain the Hugging Face snapshot revision or a complete payload manifest. This immutable revision pins future package downloads; it must not be described as a proven byte-identical identity for the historical run until a complete manifest comparison is available.",
+ "lfs_files": [
+  {
+   "path": "model-00001-of-00023.safetensors",
+   "bytes": 5369526784,
+   "sha256": "c02f4e92e83582ddec6f9ada149ee32f64d5fee62a36c30709938e0ba70baf25"
+  },
+  {
+   "path": "model-00002-of-00023.safetensors",
+   "bytes": 5369526784,
+   "sha256": "5f35e55add8e2c85131eb5dc446583991ec8bcbb7965b585e26903d49aea2dc3"
+  },
+  {
+   "path": "model-00003-of-00023.safetensors",
+   "bytes": 5369526784,
+   "sha256": "0a8dae598ac466e02e86eb55b72172a21569169ffd49a7ddd894e42da40bd3b0"
+  },
+  {
+   "path": "model-00004-of-00023.safetensors",
+   "bytes": 5369530008,
+   "sha256": "895a32810990fc33a2f43c37d01e8865eb17744a2776f054d61eb8efa28ef5e7"
+  },
+  {
+   "path": "model-00005-of-00023.safetensors",
+   "bytes": 5369533728,
+   "sha256": "bf1bc22aa4dc95875b05240bff1f3416234e6aebe7b557e005ce80e6dec51bb9"
+  },
+  {
+   "path": "model-00006-of-00023.safetensors",
+   "bytes": 5368718552,
+   "sha256": "c2b996c96220cff4360e83b175a8f8bc70a3b2b8bc57c5e97301bccbfba906dd"
+  },
+  {
+   "path": "model-00007-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "1b67964bd1a1cc9e8984d573ed9a2abad1146a91e52a7133930a590af94f4fec"
+  },
+  {
+   "path": "model-00008-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "848bd44bd9e74804410f195ab81a7d450b0ee5c9cb50c84e6ed8514d7a3c43c9"
+  },
+  {
+   "path": "model-00009-of-00023.safetensors",
+   "bytes": 5369533400,
+   "sha256": "e935dbc2332dbc804c9a6669ddde12f5d491bc789270aa90ae263a359e29fcc0"
+  },
+  {
+   "path": "model-00010-of-00023.safetensors",
+   "bytes": 5369533728,
+   "sha256": "e76f83e1dc6690df9bb0a6673a002f8fa2e32a6c41cbed1ddbe5c1ecc3026707"
+  },
+  {
+   "path": "model-00011-of-00023.safetensors",
+   "bytes": 5368718752,
+   "sha256": "26c838dd03fcb5c76fdd5f82cf3542b520e77d5c8c6a952a17ed855e131fdffc"
+  },
+  {
+   "path": "model-00012-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "49218b2471415e05cf3a0f55bf37a965642798e3ad5b4c2767b873441fcfa3c9"
+  },
+  {
+   "path": "model-00013-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "40dca4bd4ff5c7ee91cd073a91fa3101bfff4a542fa78e7e7b1ff52abd6f2cbe"
+  },
+  {
+   "path": "model-00014-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "19bf4fd1d9322c9d152ce84e25369741edd19bfc8da227708d088953a245f0df"
+  },
+  {
+   "path": "model-00015-of-00023.safetensors",
+   "bytes": 5369533624,
+   "sha256": "df59b952ce70d4fa8eef5fcbfb0c573c6b17939f4a6430efa536a35218aa76b4"
+  },
+  {
+   "path": "model-00016-of-00023.safetensors",
+   "bytes": 5369533728,
+   "sha256": "964df6358f0eccaac346dc63c17f14e1b5f1d3fe163898cfe6f1fb0874375b3c"
+  },
+  {
+   "path": "model-00017-of-00023.safetensors",
+   "bytes": 5368718528,
+   "sha256": "072fa66b214cd52b57045ffbf9c6415c17dc448ae4160dac6a8deebc45bd1094"
+  },
+  {
+   "path": "model-00018-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "1e7530f270eafd8c20fd6b6ae75fff37418522ae04722919a912111d6bdc55f3"
+  },
+  {
+   "path": "model-00019-of-00023.safetensors",
+   "bytes": 5369533304,
+   "sha256": "5b019c2aae65e0c95e583d3b46148202d9c9ef291c1583a3422fc0e9195a8ae3"
+  },
+  {
+   "path": "model-00020-of-00023.safetensors",
+   "bytes": 5369533424,
+   "sha256": "cf3440e5b78456bf56dc824d6d14a83751e7f3875b97b95a3f5bd65b4f339680"
+  },
+  {
+   "path": "model-00021-of-00023.safetensors",
+   "bytes": 5369533728,
+   "sha256": "a6039109eaaff3ef37f4f386c236c0dc5c15f771d564f9c29b9b3500abae90e5"
+  },
+  {
+   "path": "model-00022-of-00023.safetensors",
+   "bytes": 5368718728,
+   "sha256": "03b27c244690423d566e086a27b5bcf3e748a2fa69b05f8ad17180695e5160e7"
+  },
+  {
+   "path": "model-00023-of-00023.safetensors",
+   "bytes": 2596866240,
+   "sha256": "1503b0803d5055c75d21ceacaeb7338f53541a9416bc78766d01844c8eb1fd8a"
+  },
+  {
+   "path": "model.safetensors.index.json",
+   "bytes": 14057148,
+   "sha256": "6ff90e975bec219135b35185377f3369c0497cea08d4b4f551743970c5e77ce7"
+  },
+  {
+   "path": "tokenizer.json",
+   "bytes": 15522763,
+   "sha256": "e7b90ed7f55d905175bc26771d6d7d33b40b46742f073675bc816fedaf482ea1"
+  }
+ ],
+ "lfs_files_note": "Per-file sizes and SHA-256 digests read from the publisher repository API at this immutable revision on 2026-09-07, so a future download can be verified file by file. This does not extend the provenance of the 2026-05-19 historical run: see provenance_limit.",
+ "total_weight_bytes": 120752899559
 }
