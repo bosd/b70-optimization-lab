@@ -13,7 +13,11 @@ LANE=${LANE:-qwen35-9b-fp8}; QUANT=${QUANT:-compressed-tensors}; W4A16_PAD=${W4A
 RUN=${RUN:?set RUN}; TP=${TP:-1}; DEPTH=${DEPTH:-3}; GRAPH=${GRAPH:-1}; DRAFT_HEAD=${DRAFT_HEAD:-1}; STAGES=${STAGES:-strict ladders}; port=${PORT:-18131}
 root=${ROOT:-${out}/${LANE}-tp${TP}-mtp${DEPTH}-graph${GRAPH}$([[ "${DRAFT_HEAD}" == 1 ]] && echo -dhint4)$([[ "${W4A16_PAD}" == 1 ]] && echo -pad)-20260907-${RUN}}
 repro=${repo}/repro/qwen38-27b-fp8-vllm-tp2-asrock-b70
-image=neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276; image_id=sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad
+# IMAGE/IMAGE_ID select the runtime. They default to the published R276 image; a diagnostic overlay sets both plus
+# EXPECTED_XPU_COMMUNICATOR_SHA256, which is how verify-image-contract.sh lets a candidate opt into a replaced
+# communicator module while every other pinned digest stays closed.
+image=${IMAGE:-neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276}
+image_id=${IMAGE_ID:-sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad}
 model_dir=${MODEL_DIR:-/home/steve/llm-models/qwen35-9b-fp8-dynamic}
 manifest=${MODEL_MANIFEST:-${repo}/experiments/qwen35-9b-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json}
 strict_suite=${repo}/repro/qwen36-27b-autoround-int4-b70/realistic-suite-v1.json
@@ -59,6 +63,7 @@ launch() {
     EXPECTED_XPU_OPS_SHA256=6ee6b8db18759873246aca28e85ca6d2ba177eb08bfd3b9b0f0feea168cee9b3 EXPECTED_LAYERNORM_SHA256=50cf5f4f9c72f679e4318cd3e3e021a844f59ac188a891d9a4f9638188f4bce8 \
     VLLM_BATCH_INVARIANT=0 VLLM_XPU_GDN_SPLIT_MIXED=1 VLLM_XPU_GDN_SPEC_GROUP=${GDN_SPEC_GROUP:-16} VLLM_XPU_GEMMA_RMSNORM_TRITON=0 VLLM_XPU_RMSNORM_TRITON=0 \
     VLLM_XPU_DRAFT_LM_HEAD_INT4="${DRAFT_HEAD}" VLLM_XPU_W4A16_DETERMINISM_PAD="${W4A16_PAD}" VLLM_XPU_W4A16_DETERMINISM_PAD_HIGH="${W4A16_PAD}" GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
+    EXPECTED_XPU_COMMUNICATOR_SHA256="${EXPECTED_XPU_COMMUNICATOR_SHA256:-}" VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS="${ROWWISE_ALLREDUCE_MAX_ROWS:-0}" \
     MODEL_DIR="${model_dir}" MODEL_MANIFEST="${manifest}" VLLM_CACHE_DIR="${cache}" "${specenv[@]}" \
     CONTAINER_NAME="${name}" PORT="${port}" SERVED_MODEL_NAME="${served}" COMPILATION_CONFIG="${comp}" \
     TENSOR_PARALLEL_SIZE="${TP}" XPU_DEVICE_MASK="${mask}" QUANTIZATION="${QUANT}" VLLM_XPU_FP8_BLOCK_W8A16=0 \

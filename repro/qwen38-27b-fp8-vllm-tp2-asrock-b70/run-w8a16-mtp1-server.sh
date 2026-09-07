@@ -272,6 +272,12 @@ fixed_k_args=()
 for fixed_k_var in QWEN38_W4A16_FIXED_K QWEN38_W4A16_GEMM_MAXN QWEN38_W4A16_GEMM_STRATEGY_SMALL QWEN38_W4A16_GEMM_STRATEGY_LARGE QWEN38_GEMM_DUMP; do
   if [[ -n "${!fixed_k_var:-}" ]]; then fixed_k_args+=(--env "${fixed_k_var}=${!fixed_k_var}"); fi
 done
+# Row-wise TP all-reduce (diagnostic overlay images only): reduce 2..N-row inputs one row at a time so a step's result
+# does not depend on how many rows share it. Forwarded only when set, so the published profiles are unchanged.
+rowwise_allreduce_args=()
+if [[ -n "${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS:-}" && "${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS}" != 0 ]]; then
+  rowwise_allreduce_args=(--env "VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS=${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS}")
+fi
 if [[ -n "${VLLM_USE_V2_MODEL_RUNNER:-}" ]]; then
   v2_runner_args=(--env "VLLM_USE_V2_MODEL_RUNNER=${VLLM_USE_V2_MODEL_RUNNER}")
 fi
@@ -369,6 +375,7 @@ exec docker run --rm --name "${container}" \
   "${v2_runner_args[@]}" \
   "${fixed_k_args[@]}" \
   "${w4a16_pad_args[@]}" \
+  "${rowwise_allreduce_args[@]}" \
   --env PYTORCH_ALLOC_CONF=expandable_segments:True \
   --env CCL_ATL_TRANSPORT=ofi --env FI_PROVIDER=tcp --env FI_TCP_IFACE=lo \
   --env CCL_ZE_IPC_EXCHANGE=pidfd \

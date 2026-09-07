@@ -1,0 +1,32 @@
+--- /dev/fd/63	2026-09-07 18:18:13.439793888 -0400
++++ xpu_communicator.py	2026-09-07 18:11:24.196566176 -0400
+@@ -6,6 +6,7 @@
+ import torch.distributed as dist
+ from torch.distributed import ProcessGroup
+ 
++import vllm.envs as envs
+ from vllm.logger import init_logger
+ 
+ from .base_device_communicator import DeviceCommunicatorBase
+@@ -46,6 +47,21 @@
+                 logger.info("Using AgRs manager on XPU device.")
+ 
+     def all_reduce(self, input_: torch.Tensor) -> torch.Tensor:
++        # XCCL's reduction order depends on message size, so a [M, N] all-reduce does not agree bit
++        # for bit with M separate [1, N] all-reduces. That makes a decode step's result depend on how
++        # many rows share it, which is what breaks output identity at high concurrency on two cards.
++        # Setting this to the largest row count in play reduces row by row with the same call the
++        # M=1 step makes, at the cost of M collectives instead of one. 0 (default) keeps the batched
++        # all-reduce and the ordinary speed.
++        max_rows = envs.VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS
++        if max_rows > 0 and input_.dim() >= 2 and 1 < input_.shape[0] <= max_rows:
++            output = torch.empty_like(input_)
++            for row in range(input_.shape[0]):
++                row_out = input_[row : row + 1].clone()
++                work = dist.all_reduce(row_out, group=self.device_group, async_op=True)
++                work.wait()
++                output[row : row + 1].copy_(row_out)
++            return output
+         output = input_.clone()
+         work = dist.all_reduce(output, group=self.device_group, async_op=True)
+         work.wait()

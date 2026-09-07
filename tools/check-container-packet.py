@@ -38,25 +38,33 @@ NOT_FORWARDED = {
 }
 
 
+IF_RE = re.compile(r"(?:^|;|\s)if(?=\s|$)")
+FI_RE = re.compile(r"(?:^|;|\s)fi(?=\s|;|$)")
+
+
 def launcher_env_names() -> set[str]:
     """Environment variables the launcher forwards unconditionally.
 
     Some variables are forwarded only when the operator sets them (the W4A16 pad-low knob, the
-    fixed-K overrides). Those are legitimately absent from a packet that does not use them, so a
-    line that guards its `--env` behind a conditional does not contribute a requirement.
+    fixed-K overrides, the diagnostic row-wise all-reduce). Those are legitimately absent from a
+    packet that does not use them, so anything inside an `if`/`fi` block contributes no
+    requirement. Depth is tracked by balancing `if` and `fi` tokens per line, which keeps
+    single-line guards (`if ...; then ...; fi`) from leaving the counter stuck open and silently
+    turning the rest of the file into "conditional".
     """
     names: set[str] = set()
     for p in LAUNCHERS:
         if not p.exists():
             continue
+        depth = 0
         for line in p.read_text().splitlines():
+            code = line.split("#", 1)[0]
+            opened, closed = len(IF_RE.findall(code)), len(FI_RE.findall(code))
+            guard = depth > 0 or opened > 0
             found = ENV_RE.findall(line)
-            if not found:
-                continue
-            stripped = line.strip()
-            conditional = stripped.startswith(("if ", "elif ")) or "; then" in stripped
-            if not conditional:
+            if found and not guard:
                 names |= set(found)
+            depth = max(0, depth + opened - closed)
     return names - NOT_FORWARDED
 
 
