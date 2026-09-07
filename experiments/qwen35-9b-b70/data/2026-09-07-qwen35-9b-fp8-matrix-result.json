@@ -1387,5 +1387,60 @@
    ]
   },
   "verdict": "Two cards, depth 3 + draft INT4 head, warm: c1 177.5, c2 337.2, c4 480.1, c8 848.7 (8/8), c16 1156.7 (15/16; first pass 16/16 at 969.3), c32 1422.2 (29/32), c64 1578.1 (57/64); exact through c8 in both passes. MTP0 ladder in the same entry."
+ },
+ "c6_tp2_depth4_graph_draft_int4_head": {
+  "config": "as c5 at MTP depth 4",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 79.391,
+    "median_tok_s_1_100": 80.201,
+    "p10_tok_s_1_100": 80.163,
+    "median_tok_s_full": 79.125,
+    "ttft_ms_median": 41.73
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 79.367,
+    "median_tok_s_1_100": 80.181,
+    "p10_tok_s_1_100": 80.13,
+    "median_tok_s_full": 79.107,
+    "ttft_ms_median": 41.3
+   },
+   "mtp4-a": {
+    "class_balanced_median_tok_s": 150.694,
+    "median_tok_s_1_100": 153.014,
+    "p10_tok_s_1_100": 129.613,
+    "median_tok_s_full": 151.468,
+    "ttft_ms_median": 50.85
+   },
+   "mtp4-b": {
+    "class_balanced_median_tok_s": 151.737,
+    "median_tok_s_1_100": 153.673,
+    "p10_tok_s_1_100": 129.7,
+    "median_tok_s_full": 151.78,
+    "ttft_ms_median": 51.89
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "9/12",
+   "G3 b": "9/12"
+  },
+  "divergent_prompts_vs_oracle": [
+   {
+    "prompt_id": "bug-report-synthesis",
+    "first_divergence_token": 48
+   },
+   {
+    "prompt_id": "code-review",
+    "first_divergence_token": 409
+   },
+   {
+    "prompt_id": "release-plan",
+    "first_divergence_token": 62
+   }
+  ],
+  "verdict": "WITHHELD: two-card depth 4 is repeat-exact (G2 12/12) but 9/12 vs the MTP0 oracle; 150.694/151.737 vs 147.712/147.890 at depth 3 (+2%). Depth 3 remains the two-card headline.",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-9b-fp8-tp2-mtp4-graph1-dhint4-20260907-c6"
  }
 }
