@@ -1,0 +1,6 @@
+E=128 N=1280 K=2560 hits=2 layers=48 trials=50
+GEMV vs dequantized fp32 reference: worst relative error over 50 trials = inf
+GEMV prefetch=1:   4.557 ms per 48-layer step (  94.9 us per launch)
+GEMV prefetch=2:   5.025 ms per 48-layer step ( 104.7 us per launch)
+GEMV prefetch=4:   5.074 ms per 48-layer step ( 105.7 us per launch)
+gemvprobe rc=0 15:57:27

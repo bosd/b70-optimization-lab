@@ -122,6 +122,7 @@ def main() -> None:
     print(f"E={E_LOCAL} N={N} K={K} hits={HITS} layers={LAYERS} trials={TRIALS}")
 
     worst = 0.0
+    nonfinite = 0
     for t in range(TRIALS):
         x = (torch.randn(1, K, generator=g) / K**0.5).to(device)
         xq, xs = aq(x)
@@ -130,24 +131,46 @@ def main() -> None:
         run_gemv(xq, xs, wq, ws, experts, out, prefetch=1)
         torch.xpu.synchronize()
         ref = reference(xq, xs, wq, ws, experts.tolist())
-        rel = ((out.float() - ref).abs() / ref.abs().clamp_min(1e-3)).max().item()
+        o = out.float()
+        bad = int((~torch.isfinite(o)).sum()), int((~torch.isfinite(ref)).sum())
+        if any(bad):
+            print(f"  trial {t}: non-finite values (gemv {bad[0]}, reference {bad[1]}) of {o.numel()}")
+            nonfinite += 1
+            continue
+        scale = ref.abs().amax().clamp_min(1e-6)
+        rel = ((o - ref).abs() / scale).max().item()
         worst = max(worst, rel)
-    print(f"GEMV vs dequantized fp32 reference: worst relative error over {TRIALS} trials = {worst:.2e}")
+    print(f"GEMV vs dequantized fp32 reference over {TRIALS} trials: worst error relative to the row max = {worst:.2e}"
+          f"; trials with non-finite values = {nonfinite}")
 
     x = (torch.randn(1, K, generator=g) / K**0.5).to(device)
     xq, xs = aq(x)
     experts = torch.arange(HITS, dtype=torch.int32, device=device)
     out = torch.empty(HITS, N, dtype=torch.bfloat16, device=device)
+    # Graph replay, so the number is comparable with the tile kernel's 0.16 ms per layer for
+    # both GEMMs' K loops measured the same way. An eager launch loop measures submission,
+    # not the kernel.
     for pf in (1, 2, 4):
         for _ in range(3):
             run_gemv(xq, xs, wq, ws, experts, out, prefetch=pf)
         torch.xpu.synchronize()
-        t0 = time.perf_counter()
-        for _ in range(REPS * LAYERS):
-            run_gemv(xq, xs, wq, ws, experts, out, prefetch=pf)
-        torch.xpu.synchronize()
-        dt = (time.perf_counter() - t0) / REPS
-        print(f"GEMV prefetch={pf}: {dt*1e3:7.3f} ms per {LAYERS}-layer step ({dt*1e6/LAYERS:6.1f} us per launch)")
+        try:
+            graph = torch.xpu.XPUGraph()
+            with torch.xpu.graph(graph):
+                for _ in range(LAYERS):
+                    run_gemv(xq, xs, wq, ws, experts, out, prefetch=pf)
+            torch.xpu.synchronize()
+            graph.replay()
+            torch.xpu.synchronize()
+            t0 = time.perf_counter()
+            for _ in range(REPS):
+                graph.replay()
+            torch.xpu.synchronize()
+            dt = (time.perf_counter() - t0) / REPS
+            print(f"GEMV prefetch={pf}: graph replay {dt*1e3:7.3f} ms per {LAYERS}-layer step "
+                  f"({dt*1e6/LAYERS:6.1f} us per layer for one GEMM)")
+        except Exception as exc:
+            print(f"GEMV prefetch={pf}: graph unavailable ({type(exc).__name__}: {str(exc)[:80]})")
 
 
 if __name__ == "__main__":
