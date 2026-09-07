@@ -1,0 +1,56 @@
+{
+ "schema": "neural.download.promotion-attestation.v1",
+ "created_utc": "2026-09-07T18:59:52Z",
+ "profile_id": "qwen38-flash-next-fp8-tp4-mtp0-fullgraphdet-4352-placement-hctriton-qsafused-realistic-v1",
+ "decision": "promote",
+ "promotion_authorized": true,
+ "headline": {
+  "value": 33.79706657409935,
+  "unit": "tok/s",
+  "aggregation": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed realistic suite run once cold",
+  "metric_events": 100,
+  "metric_intervals": 99,
+  "note": "deterministic full-decode-graph line, no speculation, reference-restoration overlay 2a372e86: the XPU port had replaced two of the model's own reference Triton kernels, the hyper-connection glue with torch fallbacks and the QSA pre-indexer with an unfused sequence of projection, norm, rope, group compression and cache stores; both are restored behind VLLM_XPU_HC_TRITON=1 and VLLM_XPU_QSA_FUSED_INDEXER=1 over the certified placement head cb59004b (PLE and embeddings host-offloaded over UVA at 12.25 GiB, hot experts resident, 3.5 GiB/rank of never-routed experts host-placed behind the per-expert offset table, tuned W13/N32 map, MoE kernel and math unchanged). NEW OUTPUT AUTHORITY, disclosed: exact-2K coincides with the certified stream (afffd211) but exact-4K does not (1d833e5f instead of c6193cc6), so this line does not preserve the certified answers at depth. What it does preserve is the quality profile, byte for byte: all seven exact cases identical to the certified battery, sixteen repeats collapsing to one hash, the long-context needle identical. Pins are deterministic across four servers (A297, A299, A300, A304), both depths, and the twelve suite rows are fresh with cached_tokens 0"
+ },
+ "performance_evidence": {
+  "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a301-qsafused-realistic-suite-v1-result.json",
+  "sha256": "8cf0892617f6971f867fe812fcdc50b65c4313fc2d24b977c63b1ce64150f518"
+ },
+ "identity": {
+  "model_revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+  "runtime_revision": "2a372e860e273273357cb7437ac7de1694304f9f",
+  "optimization_identity": "tp4-ep4-fullgraphdet-mtp0-4352-ple-embed-budget12p25-uva-coldexperts-hostplaced-3p5gib-w13n32-mkldnndet-oneccl-twoshots-hctriton-qsafused",
+  "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812"
+ },
+ "gates": {
+  "varied_task_quality_passed": true,
+  "exact_or_target_oracle_passed": true,
+  "deterministic_repeats_passed": true,
+  "fresh_server_repeat_passed": true,
+  "target_model_unchanged": true,
+  "no_quality_loss": true
+ },
+ "quality_evidence": [
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a304-fresh-repeat-deterministic-summary.json",
+   "sha256": "bc63cdf8d2e497da26e1f8f36a13e13dc28968caa89486bbc2aa0b434d42f271",
+   "supports": [
+    "varied_task_quality_passed",
+    "exact_or_target_oracle_passed",
+    "deterministic_repeats_passed",
+    "fresh_server_repeat_passed",
+    "target_model_unchanged",
+    "no_quality_loss"
+   ]
+  },
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-qsafused-exact-2k-pair-summary.json",
+   "sha256": "338dff6d2557ad41a615f35997f1b849905fec48cbfc454733d17aa32d67bebe",
+   "supports": [
+    "fresh_server_repeat_passed",
+    "deterministic_repeats_passed",
+    "exact_or_target_oracle_passed"
+   ]
+  }
+ ]
+}
