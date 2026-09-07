@@ -30,6 +30,7 @@ PINNED_WORKLOADS = {
     "nemotron-35-lightning-30b-a3b-b70": (128, 100),
     "ornith-15-35b-a3b-q4km-b70": (128, 100),
     "ornith-15-9b-q8-b70": (128, 100),
+    "qwen35-4b-w4a16-b70": (128, 100),
     "qwen35-9b-fp8-b70": (128, 100),
     "qwen35-9b-w4a16-b70": (128, 100),
     "qwen38-27b-q4km-tp1-b70": (128, 128),

@@ -684,6 +684,14 @@ All three approved on submission (HTTP 201). Attestations: `experiments/qwen38-2
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp4-strict-82tok-20260904` | `cmtmk61qo01x8l601vtqbitg5` | 1 | 56 | 512 | **82.396 median 1-100 after TTFT** | R197 depth-4 strict pair 82.447/82.345, 12/12 vs oracle; identity c1-c16 (two ladders, R197/R201) |
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp5-strict-86tok-20260904` | `cmtn23c500005mm010ierd4g3` | 1 | 56 | 512 | **86.182 median 1-100 after TTFT** | R200 depth-5 strict pair 86.266/86.097, 12/12 vs oracle; identity c1-c16 (two ladders, R204a/b) |
 
+## Qwen3.5 4B W4A16 (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
+
+Approved on submission (HTTP 201). Attestation: `experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v1-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-4B-quantized.w4a16` 7a613872 served as published through the R276 image and the shared Qwen3.5 launcher; recipe `repro/qwen35-4b-w4a16-b70/`.
+
+| label | run id | c | prompt tok | output tok | headline | notes |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `qwen35-4b-w4a16-tp1-mtp3-graph-drafthead-strict-177tok-20260907` | `cmtrj2tp3000hps01n3fadg9d` | 1 | 56 | 512 | **177.287 median 1-100 after TTFT** | campaign v1 depth-3 strict pair 177.406/177.168, 12/12 vs sibling and vs the MTP0 oracle (102.625/102.376, G1 12/12). The FP8-dynamic build of the same model is not submitted: it fails the base repeat-exactness gate (11/12, 9/12, 11/12 across three fresh-server pairs) |
+
 ## Qwen3.5 9B W4A16 (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
 
 Approved on submission (HTTP 201). Attestation: `experiments/qwen35-9b-b70/data/qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-w1-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-9B-quantized.w4a16` a398088c served as published (compressed-tensors W4A16, publisher MTP head) through the R276 image and the shared Qwen3.5 launcher; recipe `repro/qwen35-9b-w4a16-b70/`.

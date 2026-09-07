@@ -1,0 +1,49 @@
+{
+ "lane": "qwen35-4b-w4a16-b70",
+ "date": "2026-09-07",
+ "suite": "strict 12-prompt six-class realistic suite over the completions API, 512-token cap, class-balanced median tok/s over tokens 1-100 after TTFT; ladders: 2026-08-25 small-context suite, 128 tokens, two passes",
+ "image": "R276 sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
+ "model": "RedHatAI/Qwen3.5-4B-quantized.w4a16 7a613872f394578b0b52b683ff4ac47516b4bcaf",
+ "kernel_route": "vLLM CompressedTensorsWNA16 -> the lab's XPUwNa16LinearKernel (_xpu_C.int4_gemm_w4a16), row-invariant fixed-K two-tier W4A16",
+ "v1_tp1_depth3_graph_draft_int4_head": {
+  "config": "one B70, depth 3 (qwen3_5_mtp) + draft-only INT4 lm_head, FULL_DECODE_ONLY capture sizes 1-64, strict launcher env, pad off",
+  "strict": {
+   "mtp0-a": {
+    "class_balanced_median_tok_s": 102.625,
+    "median_tok_s_1_100": 103.657,
+    "p10_tok_s_1_100": 103.624,
+    "median_tok_s_full": 102.203,
+    "ttft_ms_median": 30.21
+   },
+   "mtp0-b": {
+    "class_balanced_median_tok_s": 102.376,
+    "median_tok_s_1_100": 103.412,
+    "p10_tok_s_1_100": 103.371,
+    "median_tok_s_full": 101.962,
+    "ttft_ms_median": 30.32
+   },
+   "mtp3-a": {
+    "class_balanced_median_tok_s": 177.406,
+    "median_tok_s_1_100": 178.485,
+    "p10_tok_s_1_100": 152.018,
+    "median_tok_s_full": 169.604,
+    "ttft_ms_median": 44.91
+   },
+   "mtp3-b": {
+    "class_balanced_median_tok_s": 177.168,
+    "median_tok_s_1_100": 178.235,
+    "p10_tok_s_1_100": 152.027,
+    "median_tok_s_full": 169.431,
+    "ttft_ms_median": 45.05
+   }
+  },
+  "gates": {
+   "G1": "12/12",
+   "G2": "12/12",
+   "G3 a": "12/12",
+   "G3 b": "12/12"
+  },
+  "contrast_with_fp8_route": "The FP8 route of the same model failed G1 three times (11/12, 9/12, 11/12) with three tie-prone prompts; on this kernel the same gate passes 12/12 (evidence: ../2026-09-07-qwen35-4b-fp8-repeat-exactness.json).",
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v1"
+ }
+}

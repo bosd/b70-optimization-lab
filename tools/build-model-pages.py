@@ -70,6 +70,7 @@ PACKAGE_ML = {
     # policy. ML Bottleneck has no configuration-exact dynamic-policy preset,
     # so omit its projection rather than binding the measured hero to MTP0 or
     # a fixed speculative depth.
+    "qwen35-4b-w4a16-b70": {"model": "qwen3.5_4b", "quant": "int4", "runtime": "vllm", "spec": "mtp:3", "prompt_tokens": 128, "output_tokens": 100},
     "qwen35-9b-w4a16-b70": {"model": "qwen3.5_9b", "quant": "int4", "runtime": "vllm", "spec": "mtp:3", "prompt_tokens": 128, "output_tokens": 100},
     "qwen35-9b-fp8-b70": {"model": "qwen3.5_9b", "quant": "fp8", "runtime": "vllm", "spec": "mtp:3", "prompt_tokens": 128, "output_tokens": 100},
     "qwen38-27b-q4km-tp1-b70": {"model": "qwen3.8_27b", "quant": "Q4_K_M", "runtime": "llama_cpp", "spec": "none", "prompt_tokens": 128, "output_tokens": 128},

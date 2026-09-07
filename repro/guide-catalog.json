@@ -1033,6 +1033,41 @@
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
         "experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-campaign.sh"
       ]
+    },
+    {
+      "id": "qwen35-4b-w4a16-b70",
+      "guide": "repro/qwen35-4b-w4a16-b70/README.md",
+      "package": "packages/qwen35-4b-w4a16-b70/package.json",
+      "classification": "candidate-portable-repro",
+      "audience": "intermediate",
+      "clean_host_tested": false,
+      "components": {
+        "platform_install": false,
+        "model_download": true,
+        "source_restore": false,
+        "build": false,
+        "launch": true,
+        "validation": true,
+        "patch_links": true,
+        "hashes": true
+      },
+      "missing": [
+        "tested Intel driver and Docker host guide",
+        "clean-host replay",
+        "beginner recovery flow"
+      ],
+      "dependency_links": [
+        "repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh",
+        "repro/qwen35-9b-w4a16-b70/README.md",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/bench-w8a16-mtp1-strict.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/run-w8a16-mtp1-strict-server.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/run-w8a16-mtp0-strict-server.sh",
+        "repro/qwen38-27b-fp8-vllm-tp2-asrock-b70/verify-model-direct.sh",
+        "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+        "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
+        "experiments/qwen35-4b-b70/notes/2026-09-07-qwen35-4b-fp8-not-repeat-exact.md",
+        "experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-campaign.sh"
+      ]
     }
   ]
 }

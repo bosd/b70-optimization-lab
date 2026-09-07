@@ -622,6 +622,21 @@
           "path": "packages/qwen35-9b-w4a16-b70/package.json"
         }
       ]
+    },
+    {
+      "id": "qwen3-5-4b-w4a16-b70",
+      "disposition": "family",
+      "family_id": "qwen-4b",
+      "artifacts": [
+        {
+          "kind": "repro",
+          "path": "repro/qwen35-4b-w4a16-b70/README.md"
+        },
+        {
+          "kind": "package",
+          "path": "packages/qwen35-4b-w4a16-b70/package.json"
+        }
+      ]
     }
   ]
 }
