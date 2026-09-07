@@ -47,10 +47,11 @@
   },
   {
    "manifest": "repro/lfm25-26b-q8-b70/model-manifest.json",
-   "state": "skipped",
+   "state": "ok",
    "repository": "LiquidAI/LFM2.5-2.6B-GGUF",
    "revision": "f4a289c8a200a5ca71005ba7abc2dad33058a450",
-   "detail": "no per-file digests"
+   "files_checked": 1,
+   "derived_skipped": 0
   },
   {
    "manifest": "repro/minimax-m27-b70-89tps-20260520/manifests/model-pin.json",
@@ -81,24 +82,27 @@
   },
   {
    "manifest": "repro/nemotron-35-lightning-30b-a3b-b70/model-manifest.json",
-   "state": "skipped",
+   "state": "ok",
    "repository": "unsloth/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
    "revision": "f2d3fe3694501008786e81e5f20360cbf715496a",
-   "detail": "no per-file digests"
+   "files_checked": 1,
+   "derived_skipped": 0
   },
   {
    "manifest": "repro/ornith-15-35b-a3b-q4km-b70/model-manifest.json",
-   "state": "skipped",
+   "state": "ok",
    "repository": "ornith-ai/Ornith-1.5-35B-A3B-GGUF",
    "revision": "fbbaed45c2f0e200276ffa51701a24d45dc7f57e",
-   "detail": "no per-file digests"
+   "files_checked": 1,
+   "derived_skipped": 0
   },
   {
    "manifest": "repro/ornith-15-9b-q8-b70/model-manifest.json",
-   "state": "skipped",
+   "state": "ok",
    "repository": "ornith-ai/Ornith-1.5-9B-GGUF",
    "revision": "85bf2b98cdcbad4291cb4f46943526cc089f75a0",
-   "detail": "no per-file digests"
+   "files_checked": 1,
+   "derived_skipped": 0
   },
   {
    "manifest": "repro/qwen35-4b-w4a16-b70/manifests/model-direct-redhatai-qwen35-4b-w4a16-7a613872.json",
@@ -144,10 +148,11 @@
   },
   {
    "manifest": "repro/qwen38-27b-256k-vision-mtp-b70/model-manifest.json",
-   "state": "skipped",
+   "state": "ok",
    "repository": "unsloth/Qwen3.8-27B-GGUF",
    "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
-   "detail": "no per-file digests"
+   "files_checked": 4,
+   "derived_skipped": 0
   },
   {
    "manifest": "repro/qwen38-27b-autoround-int4-b70/manifests/model-gptq-relabel-bf16-draft-r244.json",
@@ -175,9 +180,23 @@
   }
  ],
  "counts": {
-  "ok": 12,
-  "skipped": 13
+  "ok": 17,
+  "skipped": 8
  },
- "checked_utc": "2026-09-07T18:59:39+00:00",
- "note": "Metadata-only check of every pinned model manifest against its publisher repository at the pinned revision: does the repository still exist, does the revision still resolve, does every publisher-provided file still carry the recorded size and SHA-256. Produced by tools/verify-model-manifests-remote.py."
+ "checked_utc": "2026-09-07T19:02:19+00:00",
+ "note": "Metadata-only check of every pinned model manifest against its publisher repository at the pinned revision: does the repository still exist, does the revision still resolve, does every publisher-provided file still carry the recorded size and SHA-256. Two manifest schemas are covered (lfs_files[].path and files[].name). Produced by tools/verify-model-manifests-remote.py.",
+ "skipped_breakdown": {
+  "not_a_model_pin": [
+   "repro/laguna-s-2.1-int4-b70-102tps-20260726/manifests/runtime-lock.json",
+   "repro/muse-glimmer-30b-q8-woq-b70-100tps-20260813/manifests/expected-result.json",
+   "repro/muse-glimmer-30b-q8-woq-b70-100tps-20260813/manifests/models.json",
+   "repro/muse-glimmer-30b-q8-woq-b70-100tps-20260813/manifests/source.json",
+   "repro/muse-glimmer-30b-q8-woq-b70-100tps-20260813/manifests/toolchain.json",
+   "repro/qwen36-27b-autoround-int4-b70/manifests/expected-result.json",
+   "repro/qwen36-27b-autoround-int4-b70/manifests/runtime.json"
+  ],
+  "model_pin_without_per_file_digests": [
+   "repro/minimax-m27-b70-89tps-20260520/manifests/model-pin.json"
+  ]
+ }
 }

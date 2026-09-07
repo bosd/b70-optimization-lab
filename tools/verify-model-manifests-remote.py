@@ -33,7 +33,11 @@ def pinned(doc) -> tuple[str | None, str | None, list[dict]]:
         repo, rev = repo.get("id") or repo.get("repository"), rev or repo.get("revision")
     # Entries marked origin=derived-locally are built on the host (a relabel, a requantization) and are
     # deliberately absent upstream, so they are the local verifier's business, not the publisher's.
-    files = [f for f in files if isinstance(f, dict) and f.get("path") and f.get("sha256")
+    # Two manifest schemas are in use: lfs_files[].path and files[].name, both with sha256.
+    # Entries marked origin=derived-locally are built on the host (a relabel, a requantization) and are
+    # deliberately absent upstream, so they are the local verifier's business, not the publisher's.
+    files = [{**f, "path": f.get("path") or f.get("name")} for f in files if isinstance(f, dict)]
+    files = [f for f in files if f.get("path") and f.get("sha256")
              and str(f.get("origin", "publisher")).startswith("publisher")]
     return repo, rev, files
 
@@ -49,7 +53,7 @@ def check(path: str) -> dict:
     if "__error__" in doc:
         return {"manifest": path, "state": "unreadable", "detail": doc["__error__"]}
     repo, rev, files = pinned(doc)
-    derived = sum(1 for f in (doc.get("lfs_files") or []) if isinstance(f, dict) and not str(f.get("origin", "publisher")).startswith("publisher"))
+    derived = sum(1 for f in ((doc.get("lfs_files") or []) + (doc.get("files") or [])) if isinstance(f, dict) and not str(f.get("origin", "publisher")).startswith("publisher"))
     if not repo or not rev:
         return {"manifest": path, "state": "skipped", "detail": "no repository/revision pin"}
     if not files:
