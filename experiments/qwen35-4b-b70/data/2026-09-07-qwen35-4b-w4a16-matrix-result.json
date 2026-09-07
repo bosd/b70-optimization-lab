@@ -362,5 +362,116 @@
    ]
   },
   "verdict": "No speculation, warm: c1 101.9, c2 193.5, c4 362.3, c8 655.5, c16 1059.3, c32 1593.9 (all exact in both passes), c64 1725.1 (63/64 warm, 64/64 cold). Depth 3, warm: c1 159.2, c2 300.8, c4 537.8, c8 898.0, c16 1089.9 (exact through c16 in both passes), c32 1147.4 (30/32), c64 1201.0 (55/64)."
+ },
+ "v2_tp1_depth3_real_content_2k_32k": {
+  "config": "one B70, depth 3 + draft INT4 head, max-model-len 33024, max-num-batched-tokens 4096; real-content exact-depth ladder",
+  "arms": {
+   "depth-mtp0": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 99.603,
+      "median_ttft_ms": 373.9,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 98.131,
+      "median_ttft_ms": 711.6,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 95.73,
+      "median_ttft_ms": 1436.1,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 91.57,
+      "median_ttft_ms": 2972.0,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 87.775,
+      "median_ttft_ms": 4628.6,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 84.438,
+      "median_ttft_ms": 6401.9,
+      "all_target_oracle_exact": null,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 0,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   },
+   "depth-mtp3": {
+    "points": [
+     {
+      "active_context_tokens": 2048,
+      "median_decode_tok_s": 176.989,
+      "median_ttft_ms": 413.8,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 4096,
+      "median_decode_tok_s": 188.258,
+      "median_ttft_ms": 784.2,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 8192,
+      "median_decode_tok_s": 188.765,
+      "median_ttft_ms": 1578.4,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 16384,
+      "median_decode_tok_s": 191.583,
+      "median_ttft_ms": 3268.6,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 24576,
+      "median_decode_tok_s": 161.462,
+      "median_ttft_ms": 5104.1,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     },
+     {
+      "active_context_tokens": 32768,
+      "median_decode_tok_s": 149.914,
+      "median_ttft_ms": 7088.9,
+      "all_target_oracle_exact": true,
+      "samples": 3
+     }
+    ],
+    "cases_exact": 18,
+    "cases": 18,
+    "canaries": {
+     "after": true,
+     "before": true
+    }
+   }
+  },
+  "campaign_root": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v2",
+  "verdict": "Without speculation 99.603 -> 84.438 tok/s from 2K to 32K; with depth 3 176.989 -> 149.914, all 18 depth-3 answers identical to the MTP0 oracle. The 4B keeps far more of its speed at full context than the 9B (149.9 against 89.5 at 32K)."
  }
 }

@@ -158,8 +158,7 @@
     "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json"
   ],
   "missing": [
-    "clean-host replay",
-    "2K-32K context rows"
+    "clean-host replay"
   ],
   "performance_profiles": [
     {
@@ -249,6 +248,88 @@
           "value": 1089.9,
           "samples": 1,
           "per_user_value": 68.1188
+        }
+      ]
+    },
+    {
+      "id": "http-w4a16-mtp3-drafthead-decode-vs-active-context",
+      "label": "Qwen3.5-4B W4A16 one card, MTP depth 3 with the draft INT4 head: decode over active context (2K-32K)",
+      "metric": "decode",
+      "unit": "tok/s",
+      "x_label": "Actual prompt / active context tokens",
+      "scope": "Campaign v2 (2026-09-07): one B70, one-slot vLLM HTTP completions at exactly 2K, 4K, 8K, 16K, 24K and 32K active context of unrepeated real content (three requests per depth, median shown), 128 output tokens, max-model-len 33024, cache zero, canaries before and after; every answer matched the same-configuration MTP0 oracle (18/18). No value is interpolated.",
+      "evidence": "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "context_tokens": 2048,
+          "value": 176.989,
+          "samples": 3
+        },
+        {
+          "context_tokens": 4096,
+          "value": 188.258,
+          "samples": 3
+        },
+        {
+          "context_tokens": 8192,
+          "value": 188.765,
+          "samples": 3
+        },
+        {
+          "context_tokens": 16384,
+          "value": 191.583,
+          "samples": 3
+        },
+        {
+          "context_tokens": 24576,
+          "value": 161.462,
+          "samples": 3
+        },
+        {
+          "context_tokens": 32768,
+          "value": 149.914,
+          "samples": 3
+        }
+      ]
+    },
+    {
+      "id": "http-w4a16-mtp0-decode-vs-active-context",
+      "label": "Qwen3.5-4B W4A16 one card, no speculation: decode over active context (2K-32K)",
+      "metric": "decode",
+      "unit": "tok/s",
+      "x_label": "Actual prompt / active context tokens",
+      "scope": "Campaign v2 (2026-09-07): one B70, one-slot vLLM HTTP completions at exactly 2K, 4K, 8K, 16K, 24K and 32K active context of unrepeated real content (three requests per depth, median shown), 128 output tokens, max-model-len 33024, cache zero, canaries before and after; the oracle arm for the depth-3 profile. No value is interpolated.",
+      "evidence": "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "context_tokens": 2048,
+          "value": 99.603,
+          "samples": 3
+        },
+        {
+          "context_tokens": 4096,
+          "value": 98.131,
+          "samples": 3
+        },
+        {
+          "context_tokens": 8192,
+          "value": 95.73,
+          "samples": 3
+        },
+        {
+          "context_tokens": 16384,
+          "value": 91.57,
+          "samples": 3
+        },
+        {
+          "context_tokens": 24576,
+          "value": 87.775,
+          "samples": 3
+        },
+        {
+          "context_tokens": 32768,
+          "value": 84.438,
+          "samples": 3
         }
       ]
     }

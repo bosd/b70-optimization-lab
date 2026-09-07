@@ -86,8 +86,24 @@ launcher and `qwen35-4b-w4a16-mtp3` as the served model name.
 both passes; depth 3 is exact through 16 and is the faster choice up to that
 point, after which plain decoding wins.
 
+## Long context: 2K to 32K real content (campaign v2)
+
+One slot, unrepeated real content (three requests per depth, median shown), 128 output tokens, cache zero, canaries
+before and after; the depth-3 arm ran against a same-configuration MTP0 arm as its oracle.
+
+| active context | no speculation tok/s | depth 3 + INT4 draft head tok/s (exact vs oracle) |
+| ---: | ---: | ---: |
+| 2,048 | 99.6 | 177.0 (3/3) |
+| 4,096 | 98.1 | 188.3 (3/3) |
+| 8,192 | 95.7 | 188.8 (3/3) |
+| 16,384 | 91.6 | 191.6 (3/3) |
+| 24,576 | 87.8 | 161.5 (3/3) |
+| 32,768 | 84.4 | 149.9 (3/3) |
+
+All 18 depth-3 answers matched the oracle. This model holds its speed at length better than the 9B, which falls to
+89.5 tok/s at 32K against this one's 149.9.
+
 ## Known limits
 
 - One card only; depths other than 0 and 3 were not run.
-- No 2K-32K context ladder on this route yet.
 - Not yet clean-host tested.
