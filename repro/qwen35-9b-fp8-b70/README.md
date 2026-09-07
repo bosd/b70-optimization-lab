@@ -16,6 +16,12 @@ decode-only XPU graph capture. The stack is the Qwen3.8 INT4 lane's image and
 the Qwen3.8 FP8 recipe's strict launchers; nothing here is model-specific
 beyond the model manifest and the launcher defaults.
 
+> **Prefer the W4A16 route on this hardware.** The same model quantized to INT4 by the same publisher runs faster and
+> is more reproducible here: `113.6 tok/s` against `98.3` at MTP depth 3, and byte-exact against a single request at
+> every concurrency rung through 64 users where this FP8 route flips a near-tie token from 16 users up. See
+> [`repro/qwen35-9b-w4a16-b70`](../qwen35-9b-w4a16-b70/README.md). This page stays published because the FP8 numbers
+> are real and because the pair is the evidence that the identity ceiling is a kernel property.
+
 ## Headline (campaign c2, 2026-09-07, one B70)
 
 - **MTP depth 3 with the draft-only INT4 lm_head: `98.251 / 98.027 tok/s`**

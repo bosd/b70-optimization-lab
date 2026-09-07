@@ -684,6 +684,13 @@ All three approved on submission (HTTP 201). Attestations: `experiments/qwen38-2
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp4-strict-82tok-20260904` | `cmtmk61qo01x8l601vtqbitg5` | 1 | 56 | 512 | **82.396 median 1-100 after TTFT** | R197 depth-4 strict pair 82.447/82.345, 12/12 vs oracle; identity c1-c16 (two ladders, R197/R201) |
 | `qwen38-27b-official-fp8-whole-graph-r187-tp2-mtp5-strict-86tok-20260904` | `cmtn23c500005mm010ierd4g3` | 1 | 56 | 512 | **86.182 median 1-100 after TTFT** | R200 depth-5 strict pair 86.266/86.097, 12/12 vs oracle; identity c1-c16 (two ladders, R204a/b) |
 
+> **Correction (2026-09-07):** the command snippets in the four Qwen3.5 entries below name
+> `ghcr.io/steveseguin/vllm-openai-xpu-b70`, a mirror tag pushed the same day that is still **private**, so that
+> reference does not pull for anyone else. The identical image (same digest `sha256:521eb277…`) is public at
+> `ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4`, which is what every recipe and package actually instructs users to
+> pull, and an anonymous pull of it was verified by tag and by digest on 2026-09-07. Later submissions cite the public
+> name; making the mirror public would also resolve it.
+
 ## Qwen3.5 4B W4A16 (1x B70, vLLM XPU) — R276 stack, MTP depth 3 with the draft-only INT4 head (2026-09-07)
 
 Approved on submission (HTTP 201). Attestation: `experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v1-strict-result.json`; response in `data/localmaxxing-responses/`. Model `RedHatAI/Qwen3.5-4B-quantized.w4a16` 7a613872 served as published through the R276 image and the shared Qwen3.5 launcher; recipe `repro/qwen35-4b-w4a16-b70/`.
