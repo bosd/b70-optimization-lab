@@ -58,16 +58,23 @@ EXPECTED_VLLM_HEADS = frozenset(
         "cb59004b5c51e603ba06579382e66139d9a18bb6",
         # 2e04cdbd: the same placement commits on the lossless MTP1 head 1b2a17c1
         "005dc57895896f770157ea94f68e473e7447139e",
+        # split-K certification heads: clean placement heads + deterministic split-K commit 38ca78ba
+        "6a79c56d8a980aaa3858e2b3f004761e90d18e45",
+        "e9e65888981a880b8298143f571f276c8c52e4a9",
     }
 )
 # fused_moe.py hash per accepted head family (the placement head changes that file only)
 EXPECTED_FUSED_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "005dc57895896f770157ea94f68e473e7447139e": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "6a79c56d8a980aaa3858e2b3f004761e90d18e45": "66768875aa4cf30802b3e03c32e650b6d75a3c9a6e62342c555fef76ecacade4",
+    "e9e65888981a880b8298143f571f276c8c52e4a9": "66768875aa4cf30802b3e03c32e650b6d75a3c9a6e62342c555fef76ecacade4",
 }
 EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "005dc57895896f770157ea94f68e473e7447139e": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "6a79c56d8a980aaa3858e2b3f004761e90d18e45": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "e9e65888981a880b8298143f571f276c8c52e4a9": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
 }
 EXPECTED_PHASE_CONFIG_PATCH_NAME = "0021-Add-opt-in-per-phase-Triton-MoE-configs.patch"
 EXPECTED_PHASE_CONFIG_PATCH_SHA256 = (
