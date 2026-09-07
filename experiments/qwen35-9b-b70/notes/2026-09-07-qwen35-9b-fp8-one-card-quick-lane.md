@@ -50,3 +50,14 @@ All 12/12 responses valid and cache-zero in every run. Raw data: `data/qwen35-9b
 
 Two-pass repeats, multi-user ladders, 32K context, a strict oracle pair, LocalMaxxing attestation, a package/recipe with
 a pinned launcher. The wrappers under `scripts/` reproduce every row above from the pinned model and the R276 image.
+
+## Correction (2026-09-07 02:40): chat mode vs the lab's completions suite
+
+The table above was measured through the chat API, where this model first streams a long "Thinking Process" preamble
+that the MTP head predicts unusually well. The lab's published headline convention is the strict 12-prompt suite over the
+completions API (raw prompt, direct answer): on it the same depth-3 server measures **76.9 tok/s** (class-balanced median,
+tokens 1-100; MTP0 50.2), two fresh servers 12/12 vs each other and 12/12 vs the MTP0 oracle (campaign c1,
+`data/2026-09-07-qwen35-9b-fp8-matrix-result.json`). A 14-variant bisect of the strict launcher's environment and the
+campaign harness's settings (`data/qwen35-9b-fp8-smoke-20260907/bisect-*`) found no setting worth more than 0.2 tok/s;
+the 105-vs-77 gap is entirely the workload. Both numbers are real; the recipe reports the completions-suite figure as the
+headline and the chat-mode figure as a workload note.
