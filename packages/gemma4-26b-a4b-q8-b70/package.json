@@ -266,7 +266,8 @@
     "patches/gemma4-26b-a4b-q8-b70/record-source-verification-20260822.json",
     "data/gemma4-q8-gpu0-finalpostnorm-reproexact-full512-20260701T084728Z/summary.json",
     "data/gemma4-q8-gpu0-125repro-compat2026.1-20260907T040139Z/summary.json",
-    "data/gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z/summary.json"
+    "data/gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z/summary.json",
+    "data/gemma4-q8-gpu0-125repro-container2026.0-run2-20260907T041051Z/summary.json"
   ],
   "missing": [
     "historical llama-server binary SHA-256",

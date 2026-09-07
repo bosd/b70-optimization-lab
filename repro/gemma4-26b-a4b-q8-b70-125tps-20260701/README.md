@@ -81,13 +81,14 @@ Clean-rebuild replays on the lab host (2026-09-07, one B70, same gate):
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | oneAPI 2026.1.1 host compatibility build (`26fc4868…`) | `data/gemma4-q8-gpu0-125repro-compat2026.1-20260907T040139Z/summary.json` | `115.288` | `115.785` | `104.013` | `192.3 ms` | realistic gate passed, fresh valid, cache zero, canary 512/512 |
 | pinned oneAPI 2026.0 container (`ae45b2f0…`, image `e22b500d…`) | `data/gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z/summary.json` | `111.197` | `112.046` | `102.253` | `192.8 ms` | realistic gate passed, fresh valid, cache zero, canary 512/512 |
+| pinned oneAPI 2026.0 container, second run | `data/gemma4-q8-gpu0-125repro-container2026.0-run2-20260907T041051Z/summary.json` | `116.346` | `115.526` | `103.405` | `193.1 ms` | realistic gate passed, fresh valid, cache zero, canary 512/512 |
 
 Both are valid same-recipe support runs, not new records: they reproduce the
 promoted path and validity gate from source with the reconstructed draft
-(`1f6706e4…` from both quantizers), landing within and just below the known
-several-percent spread under the `124.977` high. The container run trails the
-host build by about 3.5% in the same window; a second container run is
-recorded below when available.
+(`1f6706e4…` from both quantizers), landing within the known several-percent
+spread under the `124.977` high. The container's first run trailed the host
+build by about 3.5%, and its second run matched it, so the container carries
+no measurable overhead: the difference is ordinary run-to-run variance.
 
 ## Runtime Identity
 

@@ -1,0 +1,4113 @@
+{
+  "rows": [
+    {
+      "case": "json",
+      "elapsed_s": 0.3003705150040332,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 0,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.21146174799650908,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 0,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16800499000237323,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 0,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2779664320041775,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 0,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20730709299823502,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 1,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.18624826699669939,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 1,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15927505400031805,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 1,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25899500800005626,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 1,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20787180199840805,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 2,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17777363999630325,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 2,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16599196899915114,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 2,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24946099599765148,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 2,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20760368300398113,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 3,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.18491030899895122,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 3,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15807261299778474,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 3,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2492865289968904,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 3,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071957480002311,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 4,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17752056100289337,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 4,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16570268900250085,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 4,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24942875399574405,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 4,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20720036800048547,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 5,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17772049800259992,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 5,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1582213670044439,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 5,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24979965599777643,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 5,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2081196290018852,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 6,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1782984379970003,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 6,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1592442530018161,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 6,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2497865350014763,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 6,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20734055199864088,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 7,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17765042500104755,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 7,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16687700900365598,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 7,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24979133500164608,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 7,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20741235400055302,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 8,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17781316099717515,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 8,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15834334100509295,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 8,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2497332130005816,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 8,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20742829499795334,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 9,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17778474999795435,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 9,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1584521449985914,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 9,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24942003099567955,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 9,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20744184499926632,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 10,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17786014200100908,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 10,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1584771549969446,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 10,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24948894300177926,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 10,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20710667299863417,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 11,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17752069000562187,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 11,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15825608799787005,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 11,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2496385190024739,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 11,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2076696029980667,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 12,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17774611800268758,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 12,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583916820018203,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 12,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2497650529985549,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 12,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2070872119948035,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 13,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17768903599790065,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 13,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583688499958953,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 13,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24930664699786576,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 13,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20701020900014555,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 14,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1775620609987527,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 14,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15866694099531742,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 14,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25068278400431154,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 14,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20683890299551422,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 15,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1774482969995006,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 15,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15807533099723514,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 15,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24974546099838335,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 15,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.207063690002542,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 16,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17736374300147872,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 16,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15833650899730856,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 16,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24922266299836338,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 16,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2070170489969314,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 17,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17758301100548124,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 17,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15812486100185197,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 17,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24930196499917656,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 17,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2070350289941416,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 18,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1775726609994308,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 18,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15796819599927403,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 18,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2491149079942261,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 18,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20698010699561564,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 19,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1774973770006909,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 19,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1586683289933717,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 19,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24952671200298937,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 19,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20758180799748516,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 20,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17915086499851895,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 20,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15888399699906586,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 20,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24981870199553668,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 20,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20756732700101566,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 21,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17787592000240693,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 21,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15902601300331298,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 21,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24988774499797728,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 21,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20732988900272176,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 22,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776069909974467,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 22,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1582434550000471,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 22,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494987210011459,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 22,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20752112499758368,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 23,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17801829499512678,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 23,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.158413600998756,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 23,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24946400900080334,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 23,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20754568499978632,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 24,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17772041400166927,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 24,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15818813200166915,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 24,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24944619800226064,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 24,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20716303199878894,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 25,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17774102399562253,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 25,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1584757719974732,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 25,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24947786900156643,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 25,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20721335399866803,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 26,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17764598099893192,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 26,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15818721200048458,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 26,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24949837000167463,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 26,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20749559300020337,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 27,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17771341300249333,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 27,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15818094100541202,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 27,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24973343700548867,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 27,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2072141430035117,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 28,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17774189500050852,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 28,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583620780002093,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 28,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24947512799553806,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 28,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20779378300358076,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 29,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17783590700128116,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 29,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15825698399567045,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 29,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24958099099603714,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 29,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071094489947427,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 30,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776571409936878,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 30,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15822018300241325,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 30,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24976114799937932,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 30,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2072330619994318,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 31,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776496809980017,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 31,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15823031299805734,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 31,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24946480699873064,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 31,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2073079250039882,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 32,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17832021300273482,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 32,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1596692120001535,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 32,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2505196529964451,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 32,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20875275599973975,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 33,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17816815900005167,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 33,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1582906850017025,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 33,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494548059985391,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 33,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20721354200213682,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 34,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17764884999633068,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 34,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15957935900223674,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 34,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2516978339990601,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 34,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2080753120026202,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 35,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17827201200270792,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 35,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1585202619971824,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 35,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25072511899634264,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 35,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20771888900344493,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 36,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17824909999762895,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 36,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15858715400099754,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 36,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24990339100622805,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 36,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20810923200042453,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 37,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17856788099743426,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 37,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1587395290043787,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 37,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25017876999481814,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 37,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2076481759941089,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 38,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17796401000668993,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 38,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15883934200246586,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 38,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2498513179962174,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 38,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20725010200112592,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 39,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776328289997764,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 39,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1587003079985152,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 39,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24945745399600128,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 39,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20770298699790146,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 40,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17779818399867509,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 40,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15916016299888724,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 40,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24992940000083763,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 40,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20791609399748268,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 41,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1782553299999563,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 41,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1588390819961205,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 41,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2503711760000442,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 41,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20788550400175154,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 42,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17848362799850293,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 42,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15903598900331417,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 42,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24971502200060058,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 42,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20842359200469218,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 43,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17840947499644244,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 43,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1585787620060728,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 43,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25004010400152765,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 43,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20743523700366495,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 44,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1785220189995016,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 44,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15886845299974084,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 44,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2500216729968088,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 44,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20775648800190538,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 45,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17820822700014105,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 45,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15888291299779667,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 45,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2497973350036773,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 45,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20780882999679307,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 46,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.18128612399596022,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 46,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15843121700163465,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 46,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24962926800071727,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 46,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20775634799792897,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 47,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17792286699841497,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 47,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15890224299801048,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 47,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24957391700445442,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 47,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20779954900353914,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 48,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17816020500322338,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 48,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15868527600105153,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 48,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24989279700093903,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 48,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20763407299818937,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 49,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17819279600371374,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 49,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15854537099949084,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 49,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25000132100103656,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 49,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20789660200534854,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 50,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17793852600152604,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 50,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15843752700311597,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 50,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.25025484900106676,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 50,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2074972480040742,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 51,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1783601219940465,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 51,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1585513699974399,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 51,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2501201439954457,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 51,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2085606539985747,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 52,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17848015499475878,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 52,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1593328669987386,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 52,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2500530510005774,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 52,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20821658199565718,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 53,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1782087559986394,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 53,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583567729976494,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 53,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24957751499459846,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 53,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20729405999736628,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 54,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17736305599828484,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 54,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15818070699606324,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 54,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24926155299908714,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 54,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20717530499678105,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 55,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17772692799917422,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 55,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1584647460040287,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 55,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24960556499718223,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 55,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20713269400584977,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 56,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17763252500299131,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 56,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15815918600128498,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 56,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2492354019996128,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 56,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2073801119986456,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 57,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17779586999677122,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 57,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15817178699944634,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 57,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2495546829959494,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 57,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20707772199966712,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 58,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1780003680032678,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 58,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15840649400342954,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 58,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24936638600047445,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 58,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20723140700283693,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 59,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776465150032891,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 59,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15816503600217402,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 59,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24930433400004404,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 59,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2069784979976248,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 60,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17753875099879224,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 60,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15815236500202445,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 60,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24970179699448636,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 60,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071584730001632,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 61,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17768310500105144,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 61,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15835124199657002,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 61,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24946554900088813,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 61,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071093220001785,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 62,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17787122300069313,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 62,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15816685499885352,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 62,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24938947599730454,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 62,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20700775799923576,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 63,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17752970000583446,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 63,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1581005219995859,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 63,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2491892789985286,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 63,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.207023458002368,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 64,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1775891219949699,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 64,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15865625199512579,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 64,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24939036500290968,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 64,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20729133800341515,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 65,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17779824899480445,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 65,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15820428599545266,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 65,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.249331112994696,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 65,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20707594999839785,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 66,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17770215599739458,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 66,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15817907499877037,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 66,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2496635450006579,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 66,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20774288299435284,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 67,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177721146006661,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 67,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15810382200288586,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 67,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494153349980479,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 67,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.207027817996277,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 68,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1780813989971648,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 68,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15826069800095866,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 68,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494843669992406,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 68,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20708279900281923,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 69,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17754484900069656,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 69,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15827710799931083,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 69,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24936506399535574,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 69,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2074046800044016,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 70,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17779773799702525,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 70,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15843599299842026,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 70,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24984073899395298,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 70,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20717181199870538,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 71,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1788485249999212,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 71,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15835470000456553,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 71,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24942975500016473,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 71,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20768458900420228,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 72,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17798010400292696,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 72,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15830958899459802,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 72,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494208640055149,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 72,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20713151999370893,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 73,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17773302600107854,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 73,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1590003119999892,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 73,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24963048100471497,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 73,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20733498700428754,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 74,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17782504799833987,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 74,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15828958700149087,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 74,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494816760008689,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 74,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20717903100012336,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 75,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17755565900006332,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 75,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1580844390045968,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 75,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2498115870039328,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 75,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20731962600257248,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 76,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177737635000085,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 76,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15829656799905933,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 76,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24955364799825475,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 76,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20759504600573564,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 77,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17830402399704326,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 77,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15852490499673877,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 77,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2495043659946532,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 77,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20723720300156856,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 78,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17772318400238873,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 78,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15825519600184634,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 78,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24940093199984403,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 78,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20704073600063566,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 79,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17761351999797625,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 79,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15849672300100792,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 79,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24961630899633747,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 79,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20734308600367513,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 80,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17780288599897176,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 80,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15894780999951763,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 80,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2503046229976462,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 80,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20843649400194408,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 81,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17817633900267538,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 81,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15856916600023396,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 81,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24949586399452528,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 81,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2073183140018955,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 82,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17787291800050298,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 82,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15825626399600878,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 82,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24955278600100428,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 82,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20720989999972517,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 83,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17814379700575955,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 83,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15857943599985447,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 83,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2496349189968896,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 83,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20752978100063046,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 84,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17749219400138827,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 84,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15837910900154384,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 84,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24973350199434208,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 84,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20746275900455657,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 85,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17795991999446414,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 85,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15831087599508464,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 85,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24937515900091967,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 85,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20694607100449502,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 86,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776097479960299,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 86,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15824295399943367,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 86,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2494126210003742,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 86,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2075440519984113,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 87,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17787839800439542,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 87,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583866590008256,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 87,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24951882300229045,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 87,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20697459099756088,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 88,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17785621699295007,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 88,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15821563200006494,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 88,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24959512599889422,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 88,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20714727700396907,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 89,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17792665899469284,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 89,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15817452099872753,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 89,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24922559200058458,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 89,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20711570599814877,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 90,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1774815039971145,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 90,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15814973999658832,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 90,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2496480080008041,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 90,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20716220799658913,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 91,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776385190023575,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 91,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15819672199722845,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 91,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24926240400236566,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 91,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071214460011106,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 92,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1777936140060774,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 92,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583256550002261,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 92,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24938534700049786,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 92,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20712378500320483,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 93,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17751844400481787,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 93,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15799445399898104,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 93,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24936299699766096,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 93,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20708844399632653,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 94,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17754868500196608,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 94,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1584906010029954,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 94,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24935674599691993,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 94,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071066940043238,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 95,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17771070999879157,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 95,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15810232699732296,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 95,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24945871999807423,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 95,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071033640022506,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 96,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17768489899754059,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 96,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1581637189956382,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 96,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24946863000513986,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 96,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.207202577003045,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 97,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177528132997395,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 97,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15814583800238324,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 97,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24923716100602178,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 97,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2070365010004025,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 98,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1779809590007062,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 98,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15830736399948364,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 98,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24963193500298075,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 98,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20714865499758162,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 99,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1775027530020452,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 99,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15840406699862797,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 99,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24964423499477562,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 99,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2076164809986949,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 100,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776542680017883,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 100,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15856906300177798,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 100,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24983945099666016,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 100,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2078560789959738,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 101,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17813067400129512,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 101,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15831788400100777,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 101,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24950050899497,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 101,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20756269900448387,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 102,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177727580005012,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 102,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1585454509986448,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 102,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2500105170038296,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 102,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2071874859975651,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 103,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17798457900062203,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 103,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15855692199693294,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 103,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24970381599996472,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 103,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20733545000257436,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 104,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17792115599877434,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 104,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15841814700252144,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 104,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24994586500542937,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 104,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2111118710017763,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 105,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.18309633600438247,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 105,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16223190000164323,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 105,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.254524333999143,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 105,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.21243763700476848,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 106,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.18232592899585143,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 106,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.16202560200326843,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 106,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2513347719941521,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 106,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20765743099764222,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 107,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1782163349998882,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 107,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15837258499959717,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 107,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24976737699762452,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 107,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20716012400225736,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 108,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776896070005023,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 108,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15819143800035818,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 108,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24934761199983768,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 108,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20709438100311672,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 109,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17752547199779656,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 109,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15831692299980205,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 109,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24918146699928911,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 109,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20739104100357508,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 110,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17760882399306865,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 110,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15849737899407046,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 110,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24937746400246397,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 110,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20736935999593697,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 111,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17770193699834635,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 111,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15833058199496008,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 111,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24924583800020628,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 111,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20711628099525115,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 112,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1775508520004223,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 112,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1586828650033567,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 112,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2493421609979123,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 112,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2070581489970209,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 113,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17778923999867402,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 113,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15830374100187328,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 113,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24927955900056986,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 113,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20710931999929016,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 114,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1777318579988787,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 114,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.158216658004676,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 114,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2496587819987326,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 114,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20721366399811814,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 115,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17784542099980172,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 115,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15815396599646192,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 115,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24941106299957028,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 115,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20715622100397013,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 116,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17780653999943752,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 116,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15822223900613608,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 116,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24937034100003075,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 116,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20725367500563152,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 117,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17770609699800843,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 117,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1582524490004289,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 117,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24938665099762147,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 117,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2073534480005037,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 118,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177627424003731,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 118,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15851141799794277,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 118,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24956204699992668,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 118,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20735424799931934,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 119,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1776489340045373,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 119,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15824269800214097,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 119,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24927266799932113,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 119,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2074088900044444,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 120,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17771865599934245,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 120,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15813218499533832,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 120,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24970137199852616,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 120,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20752717399591347,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 121,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.1780482079993817,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 121,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15826932899653912,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 121,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2497232219975558,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 121,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2072144429985201,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 122,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17813910000404576,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 122,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1585979609953938,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 122,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24951743500423618,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 122,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20740624899917748,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 123,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.177791039001022,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 123,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583448520032107,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 123,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24965700999746332,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 123,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2072112020032364,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 124,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17758847100049024,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 124,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15848896699753823,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 124,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24964821900357492,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 124,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.20773190000181785,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 125,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17774106699653203,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 125,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.15881303700007265,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 125,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.2500345220032614,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 125,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2075505540051381,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 126,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17787416099599795,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 126,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583737420005491,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 126,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24947138199786423,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 126,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    },
+    {
+      "case": "json",
+      "elapsed_s": 0.2073267149971798,
+      "normalized": "{\"answer\":42,\"unit\":\"widgets\"}",
+      "ok": true,
+      "repeat": 127,
+      "text": "{\"answer\":42,\"unit\":\"widgets\"}"
+    },
+    {
+      "case": "sort",
+      "elapsed_s": 0.17761891100235516,
+      "normalized": "blue, green, orange, red",
+      "ok": true,
+      "repeat": 127,
+      "text": "blue, green, orange, red"
+    },
+    {
+      "case": "arithmetic",
+      "elapsed_s": 0.1583076489987434,
+      "normalized": "17",
+      "ok": true,
+      "repeat": 127,
+      "text": "17"
+    },
+    {
+      "case": "code",
+      "elapsed_s": 0.24950269300461514,
+      "normalized": "python def add_one(x): return x + 1",
+      "ok": true,
+      "repeat": 127,
+      "text": "```python\ndef add_one(x):\n    return x + 1\n```"
+    }
+  ],
+  "summary": {
+    "failures": [],
+    "pass_all": true,
+    "repeats_requested": 128,
+    "rows_completed": 512,
+    "run_identity": {
+      "api_mode": "chat",
+      "base_url": "http://127.0.0.1:19350",
+      "created_at_utc": "2026-09-07T04:13:43.125030+00:00",
+      "model": "gemma4-26b-a4b-q8",
+      "seed": 1
+    }
+  }
+}
