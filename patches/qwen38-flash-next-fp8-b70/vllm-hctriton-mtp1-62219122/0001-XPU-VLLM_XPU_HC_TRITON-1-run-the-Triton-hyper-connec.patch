@@ -1,0 +1,118 @@
+From 622191221475b53cc6f7f4d847860939f4c300ab Mon Sep 17 00:00:00 2001
+From: Codex Agent <codex-agent@users.noreply.github.com>
+Date: Sun, 6 Sep 2026 19:51:04 -0400
+Subject: [PATCH] [XPU] VLLM_XPU_HC_TRITON=1: run the Triton hyper-connection
+ glue kernels on XPU instead of the torch fallbacks (no PDL); off by default
+
+Co-authored-by: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ vllm/models/qwen4_exp/amd/ops/hc.py | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/vllm/models/qwen4_exp/amd/ops/hc.py b/vllm/models/qwen4_exp/amd/ops/hc.py
+index d641a5ea8..673802c47 100644
+--- a/vllm/models/qwen4_exp/amd/ops/hc.py
++++ b/vllm/models/qwen4_exp/amd/ops/hc.py
+@@ -7,6 +7,9 @@ import torch
+ import vllm.envs as envs
+ from vllm.platforms import current_platform
+ from vllm.triton_utils import tl, triton
++import os as _os
++# Q38 screen: run the Triton HC glue kernels on XPU instead of the torch fallbacks (last-bit different: new authority)
++_Q38_HC_TRITON = _os.getenv("VLLM_XPU_HC_TRITON", "") == "1"
+ from vllm.utils.torch_utils import direct_register_custom_op
+ 
+ 
+@@ -143,7 +146,7 @@ def _grouped_gemma_rmsnorm_kernel(
+ def _grouped_gemma_rmsnorm(
+     x: torch.Tensor, weight: torch.Tensor, eps: float, num_groups: int
+ ) -> torch.Tensor:
+-    if x.device.type == "xpu":
++    if x.device.type == "xpu" and not _Q38_HC_TRITON:
+         return _grouped_gemma_rmsnorm_torch(x, weight, eps, num_groups)
+     N, DIM = x.shape
+     assert x.stride(1) == 1, "grouped Gemma RMSNorm requires unit inner stride"
+@@ -163,7 +166,7 @@ def _grouped_gemma_rmsnorm(
+         num_groups,
+         W_SHARED=weight.numel() == group_dim,
+         EPS=eps,
+-        launch_pdl=current_platform.is_arch_support_pdl(),
++        launch_pdl=current_platform.is_arch_support_pdl() and not current_platform.is_xpu(),
+     )
+     return y
+ 
+@@ -196,7 +199,7 @@ def _hc_silu_kernel(
+ 
+ 
+ def _hc_silu(x: torch.Tensor, hc_count: int) -> torch.Tensor:
+-    if x.device.type == "xpu":
++    if x.device.type == "xpu" and not _Q38_HC_TRITON:
+         return _hc_silu_torch(x, hc_count)
+     num_tokens, DIM = x.shape
+     assert x.stride(1) == 1
+@@ -209,7 +212,7 @@ def _hc_silu(x: torch.Tensor, hc_count: int) -> torch.Tensor:
+         output.stride(0),
+         DIM=DIM,
+         HC=hc_count,
+-        launch_pdl=current_platform.is_arch_support_pdl(),
++        launch_pdl=current_platform.is_arch_support_pdl() and not current_platform.is_xpu(),
+     )
+     return output
+ 
+@@ -253,7 +256,7 @@ def _hc_gate_mix_kernel(
+ 
+ 
+ def _hc_gate_mix(x: torch.Tensor, gate: torch.Tensor, hc_count: int) -> torch.Tensor:
+-    if x.device.type == "xpu":
++    if x.device.type == "xpu" and not _Q38_HC_TRITON:
+         return _hc_gate_mix_torch(x, gate, hc_count)
+     N, DIM = gate.shape
+     assert x.shape == gate.shape
+@@ -274,7 +277,7 @@ def _hc_gate_mix(x: torch.Tensor, gate: torch.Tensor, hc_count: int) -> torch.Te
+         DIM,
+         hc_count,
+         BLOCK_SIZE,
+-        launch_pdl=current_platform.is_arch_support_pdl(),
++        launch_pdl=current_platform.is_arch_support_pdl() and not current_platform.is_xpu(),
+     )
+     return out
+ 
+@@ -329,7 +332,7 @@ def _hc_combine(
+     injection_logits: torch.Tensor,
+     hc_count: int,
+ ) -> torch.Tensor:
+-    if residual.device.type == "xpu":
++    if residual.device.type == "xpu" and not _Q38_HC_TRITON:
+         return _hc_combine_torch(
+             residual,
+             block_output,
+@@ -359,7 +362,7 @@ def _hc_combine(
+         hc_dim,
+         hc_count,
+         BLOCK_SIZE,
+-        launch_pdl=current_platform.is_arch_support_pdl(),
++        launch_pdl=current_platform.is_arch_support_pdl() and not current_platform.is_xpu(),
+     )
+     return out
+ 
+@@ -440,7 +443,7 @@ def _hc_combine_norm(
+     eps: float,
+     hc_count: int,
+ ) -> tuple[torch.Tensor, torch.Tensor]:
+-    if residual.device.type == "xpu":
++    if residual.device.type == "xpu" and not _Q38_HC_TRITON:
+         return _hc_combine_norm_torch(
+             residual,
+             block_output,
+@@ -480,7 +483,7 @@ def _hc_combine_norm(
+         W_SHARED=norm_weight.numel() == hc_dim,
+         EPS=eps,
+         BLOCK_SIZE=BLOCK_SIZE,
+-        launch_pdl=current_platform.is_arch_support_pdl(),
++        launch_pdl=current_platform.is_arch_support_pdl() and not current_platform.is_xpu(),
+     )
+     return out, y
+ 
+-- 
+2.43.0
+
