@@ -1,0 +1,54 @@
+{
+  "reference": "A266 (Triton-HC MTP0 head 8d7d6fd8, quality screen): the exact-2K authority of the Triton-HC lineage, 86b5b6c7\u2026 token ids",
+  "reference_sha256": "86b5b6c71903a79fe915a3fc43765af845080314a58539812db7376b40292b8d",
+  "servers": {
+    "A266": "8d7d6fd8 (Triton-HC MTP0 head; quality screen server)",
+    "A268": "62219122 (Triton-HC lossless MTP1 head; quality screen)",
+    "A271": "62219122 (second MTP1 server; frozen-client certification battery)"
+  },
+  "rows": [
+    {
+      "run": "a266-exact-depth-2k-r1",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.638
+    },
+    {
+      "run": "a266-exact-depth-2k-r2",
+      "overlay_head": "8d7d6fd8",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 32.589
+    },
+    {
+      "run": "a268-exact-depth-2k-r1",
+      "overlay_head": "62219122",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 36.467
+    },
+    {
+      "run": "a268-exact-depth-2k-r2",
+      "overlay_head": "62219122",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 36.49
+    },
+    {
+      "run": "a271-exact-depth-2k-r1",
+      "overlay_head": "62219122",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 36.432
+    },
+    {
+      "run": "a271-exact-depth-2k-r2",
+      "overlay_head": "62219122",
+      "output_sha12": "86b5b6c71903",
+      "ids_equal_to_reference": true,
+      "tok_s": 36.469
+    }
+  ],
+  "all_identical": true
+}
