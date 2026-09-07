@@ -2,11 +2,12 @@
 # Qwen3.5-9B FP8-dynamic campaign harness (2026-09-07), modelled on the Qwen3.8 runner: strict pairs (G1 MTP0 a/b exact,
 # G2 MTPn a/b exact, G3 MTPn vs MTP0 exact) and two-pass c1-c64 identity ladders, on the strict FP8-lane launchers with
 # the R276 image. env: RUN (label), TP (1|2), DEPTH (>0), GRAPH (1 full decode-only capture | 0 eager),
+# DRAFT_HEAD (1 default: draft-only INT4 lm_head copy, VLLM_XPU_DRAFT_LM_HEAD_INT4; 0 = FP8 head for drafts too)
 # STAGES (space list of: strict ladders depth32k)  [v2 adds depth32k: real-content 2K-32K exact-depth ladder, MTP0 arm as oracle then MTPn arm], LADDER_CONCURRENCY, LADDER_REPEATS, LADDER_MML/MNS/MBT, XPU_DEVICE_MASK.
 set -uo pipefail
 repo=/home/steve/b70-optimization-lab; out=/mnt/fast-ai/bench-results
-RUN=${RUN:?set RUN}; TP=${TP:-1}; DEPTH=${DEPTH:-3}; GRAPH=${GRAPH:-1}; STAGES=${STAGES:-strict ladders}; port=${PORT:-18131}
-root=${ROOT:-${out}/qwen35-9b-fp8-tp${TP}-mtp${DEPTH}-graph${GRAPH}-20260907-${RUN}}
+RUN=${RUN:?set RUN}; TP=${TP:-1}; DEPTH=${DEPTH:-3}; GRAPH=${GRAPH:-1}; DRAFT_HEAD=${DRAFT_HEAD:-1}; STAGES=${STAGES:-strict ladders}; port=${PORT:-18131}
+root=${ROOT:-${out}/qwen35-9b-fp8-tp${TP}-mtp${DEPTH}-graph${GRAPH}$([[ "${DRAFT_HEAD}" == 1 ]] && echo -dhint4)-20260907-${RUN}}
 repro=${repo}/repro/qwen38-27b-fp8-vllm-tp2-asrock-b70
 image=neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276; image_id=sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad
 model_dir=/home/steve/llm-models/qwen35-9b-fp8-dynamic; manifest=${repo}/experiments/qwen35-9b-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json
@@ -29,7 +30,7 @@ abort() { log "ABORT: $*"; printf '%s\n' "$*" >"${root}/ABORTED"; exit 2; }
 mkdir -p "${root}"; [[ -e "${root}/campaign-start.txt" ]] && { echo "campaign root already used: ${root}" >&2; exit 1; }
 date --iso-8601=seconds >"${root}/campaign-start.txt"; campaign_start=$(date '+%Y-%m-%d %H:%M:%S')
 cat /proc/sys/kernel/random/boot_id >"${root}/boot-id.txt"; git -C "${repo}" rev-parse HEAD >"${root}/repo-head.txt"
-printf 'RUN=%s TP=%s DEPTH=%s GRAPH=%s mask=%s image=%s\n' "$RUN" "$TP" "$DEPTH" "$GRAPH" "$mask" "$image_id" >"${root}/config.txt"
+printf 'RUN=%s TP=%s DEPTH=%s GRAPH=%s DRAFT_HEAD=%s mask=%s image=%s\n' "$RUN" "$TP" "$DEPTH" "$GRAPH" "$DRAFT_HEAD" "$mask" "$image_id" >"${root}/config.txt"
 devices_normal() { xpu-smi discovery >"${root}/$1-xpu-smi-discovery.txt" 2>&1 || true; [[ "$(grep -c 'Device State: normal' "${root}/$1-xpu-smi-discovery.txt")" == 2 ]]; }
 journal_check() { journalctl -k -b 0 --no-pager --since "${campaign_start}" >"${root}/$1-kernel-journal.txt" 2>&1 || true; ! grep -qiE "${fault_re}" "${root}/$1-kernel-journal.txt"; }
 lane_containers() { docker ps --format '{{.Names}}' | grep -cE 'qwen3[58]' || true; }
@@ -49,7 +50,7 @@ launch() {
   env IMAGE="${image}" EXPECTED_IMAGE_ID="${image_id}" EXPECTED_XPU_EXTENSION_SHA256=271db0d4882124e21ac6a4d080bfeab303fbb08b9ec10e11f21d10fb0723998f \
     EXPECTED_XPU_OPS_SHA256=6ee6b8db18759873246aca28e85ca6d2ba177eb08bfd3b9b0f0feea168cee9b3 EXPECTED_LAYERNORM_SHA256=50cf5f4f9c72f679e4318cd3e3e021a844f59ac188a891d9a4f9638188f4bce8 \
     VLLM_BATCH_INVARIANT=0 VLLM_XPU_GDN_SPLIT_MIXED=1 VLLM_XPU_GDN_SPEC_GROUP=${GDN_SPEC_GROUP:-16} VLLM_XPU_GEMMA_RMSNORM_TRITON=0 VLLM_XPU_RMSNORM_TRITON=0 \
-    VLLM_XPU_DRAFT_LM_HEAD_INT4=0 VLLM_XPU_W4A16_DETERMINISM_PAD=0 GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
+    VLLM_XPU_DRAFT_LM_HEAD_INT4="${DRAFT_HEAD}" VLLM_XPU_W4A16_DETERMINISM_PAD=0 GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
     MODEL_DIR="${model_dir}" MODEL_MANIFEST="${manifest}" VLLM_CACHE_DIR="${cache}" "${specenv[@]}" \
     CONTAINER_NAME="${name}" PORT="${port}" SERVED_MODEL_NAME="${served}" COMPILATION_CONFIG="${comp}" \
     TENSOR_PARALLEL_SIZE="${TP}" XPU_DEVICE_MASK="${mask}" QUANTIZATION=compressed-tensors VLLM_XPU_FP8_BLOCK_W8A16=0 \
