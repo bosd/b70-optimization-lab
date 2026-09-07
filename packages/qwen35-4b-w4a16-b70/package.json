@@ -49,7 +49,7 @@
       "scope": "Center of two fresh-server class-balanced medians over the strict fixed 12-prompt six-class suite through the completions API, 512-token cap, separate empty compile caches, 12/12 complete token arrays exact versus a same-configuration MTP0 oracle (102.625 / 102.376), canaries on every server, cache zero; one B70, R276 image, qwen3_5_mtp depth 3, draft-only INT4 lm_head, full decode-only XPU graph capture.",
       "evidence": "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json"
     },
-    "benchmark_status": "Candidate (2026-09-07, campaign v1, one B70, R276 image): two fresh depth-3 servers 177.406 / 177.168 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite, 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 102.625 / 102.376 matched 12/12; canaries on every server; cache zero. The FP8-dynamic route of the same model fails that base gate (11/12, 9/12, 11/12 across three pairs). LocalMaxxing cmtrj2tp3000hps01n3fadg9d at 177.287. Identity ladders were still running when this was written."
+    "benchmark_status": "Candidate (2026-09-07, campaign v1, one B70, R276 image): two fresh depth-3 servers 177.406 / 177.168 tok/s class-balanced median over tokens 1-100 on the strict 12-prompt completions suite, 12/12 vs each other and 12/12 vs the MTP0 oracle; two MTP0 servers 102.625 / 102.376 matched 12/12; canaries on every server; cache zero. The FP8-dynamic route of the same model fails that base gate (11/12, 9/12, 11/12 across three pairs). LocalMaxxing cmtrj2tp3000hps01n3fadg9d at 177.287. Identity ladders (128 tokens, two passes): without speculation exact through 32 users in both passes (1593.9 tok/s at c32; c64 1725.1 at 63/64 warm), with depth 3 exact through 16 users (1089.9 tok/s)."
   },
   "contributors": [
     {
@@ -159,7 +159,98 @@
   ],
   "missing": [
     "clean-host replay",
-    "identity ladders",
     "2K-32K context rows"
+  ],
+  "performance_profiles": [
+    {
+      "id": "http-w4a16-mtp0-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-4B W4A16 one card, no speculation, XPU graph capture, identity-qualified aggregate decode vs concurrent users (c1-c32; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "Campaign v1 (2026-09-07): one B70, R276 image, strict launcher env, FULL_DECODE_ONLY capture sizes 1-64, no speculation, max-model-len 256, max-num-seqs 64, max-num-batched-tokens 512, 128 returned raw token IDs per response on the small-context suite, two passes on one server, warm pass shown. c1-c32 output-identity-qualified in both passes. Measured but withheld: c64 1725.1 (63/64 warm, 64/64 first pass).",
+      "evidence": "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 101.9,
+          "samples": 1,
+          "per_user_value": 101.9
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 193.5,
+          "samples": 1,
+          "per_user_value": 96.75
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 362.3,
+          "samples": 1,
+          "per_user_value": 90.575
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 655.5,
+          "samples": 1,
+          "per_user_value": 81.9375
+        },
+        {
+          "concurrent_sequences": 16,
+          "value": 1059.3,
+          "samples": 1,
+          "per_user_value": 66.2062
+        },
+        {
+          "concurrent_sequences": 32,
+          "value": 1593.9,
+          "samples": 1,
+          "per_user_value": 49.8094
+        }
+      ]
+    },
+    {
+      "id": "http-w4a16-mtp3-drafthead-graph-tp1-identity-qualified-aggregate-vs-concurrent-users",
+      "label": "Qwen3.5-4B W4A16 one card, MTP depth 3 with the draft INT4 head, identity-qualified aggregate decode vs concurrent users (c1-c16; warm pass)",
+      "metric": "aggregate_decode",
+      "unit": "tok/s",
+      "x_metric": "concurrent_sequences",
+      "x_label": "Concurrent HTTP users",
+      "scope": "As above with qwen3_5_mtp depth 3 and the draft-only INT4 lm_head. c1-c16 output-identity-qualified in both passes. Measured but withheld: c32 1147.4 (30/32) and c64 1201.0 (55/64).",
+      "evidence": "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+      "points": [
+        {
+          "concurrent_sequences": 1,
+          "value": 159.2,
+          "samples": 1,
+          "per_user_value": 159.2
+        },
+        {
+          "concurrent_sequences": 2,
+          "value": 300.8,
+          "samples": 1,
+          "per_user_value": 150.4
+        },
+        {
+          "concurrent_sequences": 4,
+          "value": 537.8,
+          "samples": 1,
+          "per_user_value": 134.45
+        },
+        {
+          "concurrent_sequences": 8,
+          "value": 898.0,
+          "samples": 1,
+          "per_user_value": 112.25
+        },
+        {
+          "concurrent_sequences": 16,
+          "value": 1089.9,
+          "samples": 1,
+          "per_user_value": 68.1188
+        }
+      ]
+    }
   ]
 }

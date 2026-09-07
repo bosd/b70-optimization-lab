@@ -69,6 +69,23 @@ for the oracle, `compare-strict-attempt-outputs.py` for the 12/12 gate, and
 `bench-openai-concurrency-oracle.py` for the identity ladder. Substitute this
 launcher and `qwen35-4b-w4a16-mtp3` as the served model name.
 
+## Many users (campaign v1, one B70, warm pass of two)
+
+| users | no speculation tok/s (exact) | depth 3 + INT4 draft head tok/s (exact) |
+| ---: | ---: | ---: |
+| 1 | 101.9 (1/1) | 159.2 (1/1) |
+| 2 | 193.5 (2/2) | 300.8 (2/2) |
+| 4 | 362.3 (4/4) | 537.8 (4/4) |
+| 8 | 655.5 (8/8) | 898.0 (8/8) |
+| 16 | 1059.3 (16/16) | 1089.9 (16/16) |
+| 32 | 1593.9 (32/32) | 1147.4 (30/32) |
+| 64 | 1725.1 (63/64) | 1201.0 (55/64) |
+
+128-token completions on the small-context suite, `max-model-len 256`,
+`max-num-seqs 64`. Without speculation every rung through 32 users is exact in
+both passes; depth 3 is exact through 16 and is the faster choice up to that
+point, after which plain decoding wins.
+
 ## Known limits
 
 - One card only; depths other than 0 and 3 were not run.

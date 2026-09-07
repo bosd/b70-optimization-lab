@@ -45,5 +45,322 @@
   },
   "contrast_with_fp8_route": "The FP8 route of the same model failed G1 three times (11/12, 9/12, 11/12) with three tie-prone prompts; on this kernel the same gate passes 12/12 (evidence: ../2026-09-07-qwen35-4b-fp8-repeat-exactness.json).",
   "campaign_root": "/mnt/fast-ai/bench-results/qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v1"
+ },
+ "v1_ladders_tp1_depth3_graph_draft_int4_head": {
+  "date": "2026-09-07",
+  "boot": "bf8e504b",
+  "image": "R276",
+  "config": "TP1 depth 3 + draft INT4 head, full capture, strict env, pad off, mml 256 mns 64 mbt 512, two passes",
+  "ladder": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 158.8,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 134.1,
+    "ttft_s_max": 0.85
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 536.0,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 889.5,
+    "ttft_s_max": 0.09
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 937.3,
+    "ttft_s_max": 0.48
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "31/32",
+    "aggregate_tok_s_wall": 1032.4,
+    "ttft_s_max": 0.77
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "53/64",
+    "aggregate_tok_s_wall": 1201.7,
+    "ttft_s_max": 0.91
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 159.2,
+    "ttft_s_max": 0.03
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 300.8,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 537.8,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 898.0,
+    "ttft_s_max": 0.09
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1089.9,
+    "ttft_s_max": 0.17
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "30/32",
+    "aggregate_tok_s_wall": 1147.4,
+    "ttft_s_max": 0.35
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "55/64",
+    "aggregate_tok_s_wall": 1201.0,
+    "ttft_s_max": 0.9
+   }
+  ],
+  "ladder_first_divergence_vs_oracle": {
+   "c32_r1": [
+    [
+     "rollback-c010",
+     112
+    ]
+   ],
+   "c64_r1": [
+    [
+     "rollback-c034",
+     5
+    ],
+    [
+     "rollback-c002",
+     14
+    ],
+    [
+     "capacity-c022",
+     17
+    ],
+    [
+     "cache-c016",
+     26
+    ],
+    [
+     "cache-c000",
+     39
+    ],
+    [
+     "cache-c056",
+     50
+    ],
+    [
+     "index-c041",
+     53
+    ],
+    [
+     "capacity-c062",
+     54
+    ],
+    [
+     "cache-c048",
+     89
+    ],
+    [
+     "cache-c040",
+     108
+    ],
+    [
+     "rollback-c010",
+     112
+    ]
+   ],
+   "c32_r2": [
+    [
+     "cache-c016",
+     26
+    ],
+    [
+     "rollback-c010",
+     112
+    ]
+   ],
+   "c64_r2": [
+    [
+     "cache-c000",
+     39
+    ],
+    [
+     "cache-c016",
+     50
+    ],
+    [
+     "cache-c056",
+     50
+    ],
+    [
+     "index-c041",
+     53
+    ],
+    [
+     "capacity-c062",
+     54
+    ],
+    [
+     "cache-c048",
+     89
+    ],
+    [
+     "capacity-c022",
+     93
+    ],
+    [
+     "rollback-c010",
+     112
+    ],
+    [
+     "benchmark-c019",
+     113
+    ]
+   ]
+  },
+  "ladder-mtp0": [
+   {
+    "concurrency": 1,
+    "repeat": 1,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 101.9,
+    "ttft_s_max": 0.02
+   },
+   {
+    "concurrency": 2,
+    "repeat": 1,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 192.8,
+    "ttft_s_max": 0.05
+   },
+   {
+    "concurrency": 4,
+    "repeat": 1,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 362.3,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 1,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 655.5,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 16,
+    "repeat": 1,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1061.5,
+    "ttft_s_max": 0.13
+   },
+   {
+    "concurrency": 32,
+    "repeat": 1,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1596.0,
+    "ttft_s_max": 0.25
+   },
+   {
+    "concurrency": 64,
+    "repeat": 1,
+    "exact": "64/64",
+    "aggregate_tok_s_wall": 1726.8,
+    "ttft_s_max": 0.51
+   },
+   {
+    "concurrency": 1,
+    "repeat": 2,
+    "exact": "1/1",
+    "aggregate_tok_s_wall": 101.9,
+    "ttft_s_max": 0.02
+   },
+   {
+    "concurrency": 2,
+    "repeat": 2,
+    "exact": "2/2",
+    "aggregate_tok_s_wall": 193.5,
+    "ttft_s_max": 0.04
+   },
+   {
+    "concurrency": 4,
+    "repeat": 2,
+    "exact": "4/4",
+    "aggregate_tok_s_wall": 362.3,
+    "ttft_s_max": 0.06
+   },
+   {
+    "concurrency": 8,
+    "repeat": 2,
+    "exact": "8/8",
+    "aggregate_tok_s_wall": 655.5,
+    "ttft_s_max": 0.08
+   },
+   {
+    "concurrency": 16,
+    "repeat": 2,
+    "exact": "16/16",
+    "aggregate_tok_s_wall": 1059.3,
+    "ttft_s_max": 0.13
+   },
+   {
+    "concurrency": 32,
+    "repeat": 2,
+    "exact": "32/32",
+    "aggregate_tok_s_wall": 1593.9,
+    "ttft_s_max": 0.25
+   },
+   {
+    "concurrency": 64,
+    "repeat": 2,
+    "exact": "63/64",
+    "aggregate_tok_s_wall": 1725.1,
+    "ttft_s_max": 0.51
+   }
+  ],
+  "ladder-mtp0_first_divergence_vs_oracle": {
+   "c64_r2": [
+    [
+     "rollback-c034",
+     5
+    ]
+   ]
+  },
+  "verdict": "No speculation, warm: c1 101.9, c2 193.5, c4 362.3, c8 655.5, c16 1059.3, c32 1593.9 (all exact in both passes), c64 1725.1 (63/64 warm, 64/64 cold). Depth 3, warm: c1 159.2, c2 300.8, c4 537.8, c8 898.0, c16 1089.9 (exact through c16 in both passes), c32 1147.4 (30/32), c64 1201.0 (55/64)."
  }
 }
