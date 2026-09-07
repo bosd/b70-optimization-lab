@@ -1,0 +1,47 @@
+{
+  "reference": "A297 (reference-restoration lineage MTP0, head 2a372e86): the lineage's exact-2K pins",
+  "reference_sha256": "afffd2110812762164862b6388f054bb56696ee57b07eadce411a702c40bc714",
+  "servers": {
+    "A297": "2a372e86 (MTP0, first server)",
+    "A304": "2a372e86 (MTP0, certification battery)",
+    "A305": "6d872457 (MTP1 head; one speculative token must reproduce the MTP0 pins)"
+  },
+  "rows": [
+    {
+      "run": "a297-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.488
+    },
+    {
+      "run": "a304-exact-depth-2k-r1",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.322
+    },
+    {
+      "run": "a304-exact-depth-2k-r2",
+      "overlay_head": "2a372e86",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 33.447
+    },
+    {
+      "run": "a305-exact-depth-2k-r1",
+      "overlay_head": "6d872457",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 38.981
+    },
+    {
+      "run": "a305-exact-depth-2k-r2",
+      "overlay_head": "6d872457",
+      "output_sha12": "afffd2110812",
+      "ids_equal_to_reference": true,
+      "tok_s": 38.972
+    }
+  ],
+  "all_identical": true
+}
