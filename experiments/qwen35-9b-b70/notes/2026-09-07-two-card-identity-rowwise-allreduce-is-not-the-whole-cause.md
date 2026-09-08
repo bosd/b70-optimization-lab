@@ -7,6 +7,14 @@
 > decide anything. The conclusion - that the row-wise all-reduce is not a demonstrated fix - stands,
 > but for a stronger reason than the one given here. See
 > [the intermittency note](2026-09-08-the-two-card-c64-identity-metric-is-intermittent.md).
+>
+> **Second correction, 2026-09-08.** Worse than underpowered: the intervention was never applied on
+> the lane this note measures. The no-speculation ladder runs through `run-server.sh`, which did not
+> forward `VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS` at all - only the speculative ladder received it. The
+> `r1` container's `ladder-mtp0` environment has no such variable. So the c64 table below compares
+> two identical configurations and establishes nothing about the row-wise all-reduce, in either
+> direction. `run-server.sh` now forwards it, the campaign harness aborts if a requested knob is
+> missing from the container, and the real arm is running as `q1`.
 
 ## What was being tested
 

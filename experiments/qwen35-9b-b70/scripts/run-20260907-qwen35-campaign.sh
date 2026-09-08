@@ -89,6 +89,19 @@ launch() {
     "${repro}/${launcher}" >"${dir}/server.log" 2>&1 &
   server_pid=$!; log "${label}: launched ${kind} (${launcher}) pid ${server_pid}"
   wait_health "${server_pid}" || { docker stop -t 60 "${name}" >/dev/null 2>&1 || true; abort "${label}: server did not become healthy"; }
+  # Fail closed if a knob the campaign asked for never reached the container. Two experiments were
+  # run and written up before this existed, both comparing arms that were in fact identical: the
+  # no-speculation path goes through run-server.sh, and neither the row-wise all-reduce nor the
+  # serialised-norm knob was forwarded there. An intervention that silently does not apply produces a
+  # clean null that looks exactly like a real "no effect".
+  docker inspect "${name}" >"${dir}/container-inspect.json" 2>/dev/null || true
+  for knob in VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS:${ROWWISE_ALLREDUCE_MAX_ROWS:-0} \
+              VLLM_XPU_RMSNORM_SERIAL_ROWS:${RMSNORM_SERIAL_ROWS:-0}; do
+    want=${knob#*:}; name_=${knob%%:*}
+    [[ "${want}" == 0 ]] && continue
+    grep -q "\"${name_}=${want}\"" "${dir}/container-inspect.json" 2>/dev/null \
+      || abort "${label}: ${name_}=${want} was requested but is not in the container environment"
+  done
   log "${label}: healthy"; server_name=${name}; server_dir=${dir}; served_model=${served}
 }
 strict_attempt() {

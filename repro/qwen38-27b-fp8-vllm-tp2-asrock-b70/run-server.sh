@@ -109,6 +109,13 @@ hash_seed_env=()
 if [[ -n "${python_hash_seed}" ]]; then
     hash_seed_env=(-e "PYTHONHASHSEED=${python_hash_seed}")
 fi
+# Row-wise TP all-reduce (diagnostic overlay images only). Same omission as the norm knob below had:
+# the no-speculation path comes through this script, so forwarding it only from
+# run-w8a16-mtp1-server.sh left every mtp0 arm unserialised while reporting as if it were not.
+rowwise_allreduce_env=()
+if [[ -n "${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS:-}" && "${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS}" != 0 ]]; then
+    rowwise_allreduce_env=(-e "VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS=${VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS}")
+fi
 # Serialised RMSNorm variance reduction (diagnostic overlay images only). The no-speculation path
 # comes through this script rather than run-w8a16-mtp1-server.sh, so forwarding it only there left
 # every mtp0 arm silently unserialised - a comparison of two identical configurations. Forwarded only
@@ -141,6 +148,7 @@ exec docker run --rm --name "${container}" \
     -e VLLM_ENABLE_INDUCTOR_COORDINATE_DESCENT_TUNING="${inductor_coordinate_descent}" \
     "${hash_seed_env[@]}" \
     "${w8a16_env[@]}" \
+    "${rowwise_allreduce_env[@]}" \
     "${rmsnorm_serial_env[@]}" \
     -e VLLM_BATCH_INVARIANT="${batch_invariant}" \
     -e VLLM_XPU_QWEN_GEMMA_RMSNORM_BATCH_INVARIANT="${qwen_gemma_rmsnorm_batch_invariant}" \
