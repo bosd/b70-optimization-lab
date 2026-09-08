@@ -210,7 +210,17 @@ the offload and the placement untouched.
 | exact-4K, MTP0 | 32.58 / 32.62 (A269) | **34.10 / 34.03** (A321), 34.11 / 34.10 (A322), 34.09 / 34.11 (A323); superseded 33.47 / 33.41 (A304) | `1d833e5f…`, which does not, and is likewise unmoved |
 | fixed cold realistic suite, MTP0 | 33.797067 (A301, LocalMaxxing `cmtrmp37v001bps01a7fi46nf`) | **34.495292 tok/s** (A326 fresh server; A325 measured 34.510128), LocalMaxxing run `cmts8zca50032ps01e0ddqm18` approved | twelve fresh rows each, cached_tokens 0; every row above every A301 row |
 | exact-2K / exact-4K, lossless MTP1 | 36.43 / 36.47, 36.37 / 36.36 (A271) | **38.98 / 38.97**, **39.30 / 39.30** (A305) | the MTP0 pins |
-| fixed cold realistic suite, lossless MTP1 | 37.045844 (A272) | **37.825654 tok/s** (A306), LocalMaxxing run `cmtrmp3mj001fps01thcathd0` approved | twelve fresh rows, cached_tokens 0 |
+| fixed cold realistic suite, lossless MTP1 | 37.045844 (A272); replays 37.426051 (A331), 37.117799 (A332), mean 37.1966 | **37.825654 tok/s** (A306), LocalMaxxing run `cmtrmp3mj001fps01thcathd0` approved; replays 37.622275 (A328), 37.946213 (A329), mean 37.7980 | twelve fresh rows, cached_tokens 0; three suites per overlay, ranges do not overlap |
+
+**On the size of this step.** Comparing the two published medians gives +0.7798 tok/s, but each
+side was one suite, and this lineage's suite-to-suite spread is about 0.32 (measured on three
+replays of a single frozen packet). Three suites per overlay were run on 2026-09-08: Triton-HC
+37.0458 / 37.4261 / 37.1178 (mean 37.1966) against fused-QSA 37.8257 / 37.6223 / 37.9462 (mean
+37.7980). The ranges do not overlap — the slowest fused-QSA run beats the fastest Triton-HC run
+by 0.1962 — so **the improvement is real**, and its size is **about +0.60 tok/s (+1.6%)** on means
+rather than the +0.78 the single-suite pairing suggested. Both published values sit inside their
+own lineage's replay range, so neither record is affected; only the derived gap narrows. See
+[the three-versus-three comparison](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-08-the-fused-qsa-improvement-is-real-and-smaller-than-published.md).
 
 The honest part of this record is what moved and what did not. The outputs are a new
 authority and **the difference is at depth, not in quality**: exact-2K coincides with the
