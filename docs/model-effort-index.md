@@ -82,6 +82,15 @@ What this lane established, and what it costs to re-derive, is the identity acco
   same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
   be the explanation and shape-invariance interventions were never going to help
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
+  **It does not reproduce offline at all.** Five configurations through the in-process API - lockstep,
+  graph capture, induced drift, the twelve fragile prompts, and the ladder's own chunked-prefill
+  scheduling - all match a strictly single-row oracle exactly, while the same prompts diverge at
+  1.7% through `vllm serve`
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-the-divergence-does-not-reproduce-offline.md)).
+  The remaining difference is asynchronous admission: the server's batch grows from one to sixty-four
+  while early requests decode, where the offline batch is assembled once and only shrinks. Instrument
+  the server path rather than rebuilding it offline - the layer hook works in eager mode and the
+  strict launcher can run eager.
   **Newest result, and it reframes the target.** A batch of constant composition is deterministic:
   64 identical prompts in lockstep at TP2 give byte-identical outputs, eager *and* with full
   decode-only graph capture, and the per-layer hook finds no same-position row disagreeing in 8000
