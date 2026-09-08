@@ -100,6 +100,12 @@ the conventional 99-interval field.
 > headline has been removed, the harness and builders now fail closed, and the
 > raw receipt remains preserved for audit. No LocalMaxxing delete/update API is
 > available; human withdrawal is required.
+>
+> **Re-checked 2026-09-08.** The API still exposes no way to do this: `OPTIONS
+> /api/speed-tests` returns `Allow: GET, HEAD, OPTIONS, POST`, and there is no
+> per-record endpoint (`GET /api/speed-tests/<id>` returns 404). So the four flagged
+> rows below, and this one, remain withdrawable only by a human through the site.
+> No withdrawal was attempted from here. Checked read-only; nothing was posted.
 
 > **🛑 WITHDRAWAL REVIEW RECOMMENDED, 2026-08-27 — four 2026-08-26 package
 > submissions no longer meet the repository's closed-evidence standard.**
