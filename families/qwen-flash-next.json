@@ -4,14 +4,14 @@
   "collapse_coverage_contracts": true,
   "primary_packet_id": "qwen38-flash-next-fp8-tp4-research",
   "name": "Qwen Flash-Next",
-  "display_name": "Qwen3.8 Flash-Next · 125B-A6B",
+  "display_name": "Qwen3.8 Flash-Next \u00b7 125B-A6B",
   "publisher": "Qwen",
   "updated_at": "2026-09-07",
   "summary": "Qwen's experimental 125B-A6B hybrid-attention MoE. The official FP8 export serves on four B70s with selective host placement, and all 25 practical TP4 eager-text MTP/context cells through 8K are classified. The retained current runtime now independently qualifies TP4 eager MTP0 at short context and exact active 4K: 5.224 tok/s on the established short screen and 4.758 tok/s conventional at exact 4K, with 6/7 semantic quality, 16/16 repeats, an exact cache-zero 4K needle, and card-clean teardown. At 16K, current-source MTP0 completed one exact generic-depth request, then the semantic program produced one correct fresh response, a corrupted same-server repeat, and a separate fresh-server worker timeout at 1,600 computed prompt tokens. This is Grade-D quarantined capability and nondeterministic runtime-stability evidence; it does not authorize 24K/32K. MTP2's bounded 16K treatment tranche is exhausted. MTP3 remains the preferred exact-4K recipe at 15.502 tok/s decode. The target-only official-thinking MTP0 profile passed 25/25, and graph, vision, other topologies, clean-host replay, and deployment qualification remain open.",
   "featured_results": [
     {
       "role": "hero",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 lossless MTP1, exact-4K, never-routed experts host-placed, both reference Triton kernels restored",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 lossless MTP1, exact-4K, never-routed experts host-placed, both reference Triton kernels restored",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-qsafused-context4k-a305",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -19,7 +19,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP0, exact-4K, never-routed experts host-placed, both reference Triton kernels restored",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP0, exact-4K, never-routed experts host-placed, both reference Triton kernels restored",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-qsafused-context4k-a304",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -27,7 +27,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 lossless MTP1, exact-4K, never-routed experts host-placed, Triton HC glue",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 lossless MTP1, exact-4K, never-routed experts host-placed, Triton HC glue",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-context4k-a271",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -35,7 +35,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP0, exact-4K, never-routed experts host-placed, Triton HC glue",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP0, exact-4K, never-routed experts host-placed, Triton HC glue",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-context4k-a269",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -43,7 +43,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 deterministic full-decode graph, exact-4K, never-routed experts host-placed (no speculation)",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 deterministic full-decode graph, exact-4K, never-routed experts host-placed (no speculation)",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp0-placement-context4k-a223",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -51,7 +51,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 lossless MTP1, exact-4K, never-routed experts host-placed",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 lossless MTP1, exact-4K, never-routed experts host-placed",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-placement-context4k-a225",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -59,7 +59,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 lossless MTP1 short context",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 lossless MTP1 short context",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-fullgraphdet-short-a121",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -67,7 +67,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP3 exact-4K",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP3 exact-4K",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp3-context4k-a1",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -75,7 +75,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP4 short screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP4 short screen",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp4-a1",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -83,7 +83,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP0 short screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP0 short screen",
       "measurement_id": "qwen38-flash-next-fp8-tp4-attempt19",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -91,7 +91,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP1 short screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP1 short screen",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp1-a3",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -99,7 +99,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP2 short screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP2 short screen",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp2-a1",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -107,7 +107,7 @@
     },
     {
       "role": "support",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP3 short screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP3 short screen",
       "measurement_id": "qwen38-flash-next-fp8-tp4-mtp3-a4",
       "metric": "decode_tok_s",
       "sample_index": 0,
@@ -1863,6 +1863,54 @@
         }
       ],
       "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a305-fresh-repeat-deterministic-summary.json"
+    },
+    {
+      "id": "qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-qsafused-w13n64-context4k-a326",
+      "state": "lab-measured",
+      "revision": "qwen38-flash-next",
+      "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
+      "variant": "official FP8 block-128",
+      "quantization": "FP8 block-128",
+      "runtime": "vLLM XPU 2a372e86 (fused-QSA overlay on the Triton-HC MTP0 head) + staged kernels 2f829747",
+      "runtime_family": "vLLM XPU",
+      "config": {
+        "tp": 4,
+        "ep": 4,
+        "parallel_profile": "TP=EP",
+        "mtp": 0,
+        "active_context_tokens": 4096,
+        "configured_max_context_tokens": 4352,
+        "graph_mode": "FULL_DECODE_ONLY",
+        "kv": "auto",
+        "modality": "text"
+      },
+      "profile_id": "flash-next-tp4-mtp0-placement-hctriton-qsafused-w13n64-ctx4096-v1",
+      "measurement_class": "certified fixed cold realistic-suite median (class-balanced, 99 inter-token intervals after TTFT) with never-routed experts host-placed and the W13 phase tile neutralised to the base 64",
+      "promotion_status": "certified 2026-09-08 (A325 34.510128 and A326 34.495292 on two cold servers, every row above every row of the superseded A301 suite; exact-2K and exact-4K hashes unmoved across A321/A322/A323 on three servers). One line of the tuned M1 map: W1_CONFIG.BLOCK_SIZE_N 32 -> 64, making the W13 phase delta equal to the base tile and therefore inert; no source change, certified head 2a372e86 unmodified. Supersedes the 33.797067 measurement, which is retained.",
+      "quality_scope": "6/7 semantic (sole miss code_execution), all seven exact-case outputs byte-identical to the certified battery, 16/16 repeat one hash, exact needle; exact-2K afffd211 (coincides with the certified stream) and exact-4K 1d833e5f (new)",
+      "workload": "two exact p4096/o128 requests per server on two servers, cache zero; 99-interval rate; PLE and embeddings host-offloaded over UVA (12.22 GiB/rank), every hot routed expert resident, 3.5 GiB/rank of never-routed experts in pinned host memory behind a per-expert offset table; the Triton hyper-connection glue kernels run on XPU (VLLM_XPU_HC_TRITON=1); the hyper-connection glue and the QSA pre-indexer both run the model's reference Triton kernels",
+      "metrics": {
+        "decode_tok_s": [
+          33.44
+        ]
+      },
+      "raw_observations": {
+        "decode_tok_s": [
+          33.47,
+          33.41
+        ],
+        "aggregation": "median of two rows on one server (A304 r1/r2)",
+        "output_sha256": "1d833e5f463366223a669aa15495840d1337b173e675a9ea04f00a5ae339d5cc"
+      },
+      "sample_annotations": [
+        {
+          "metric": "decode_tok_s",
+          "index": 0,
+          "value": 33.44,
+          "label": "both reference Triton kernels restored on the MTP0 line: 1.22x the placement row at exact 4K"
+        }
+      ],
+      "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a304-fresh-repeat-deterministic-summary.json"
     }
   ],
   "series_measurements": [
@@ -1999,7 +2047,7 @@
   "packets": [
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-placement-b70-32tps-20260906",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2040,7 +2088,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed + Triton HC glue",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed + Triton HC glue",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2081,7 +2129,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed + both reference Triton kernels",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4+EP4 graph + lossless MTP1 + never-routed experts host-placed + both reference Triton kernels",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2122,7 +2170,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-lossless-b70-27tps-20260905",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4+EP4 graph + lossless MTP1",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2163,7 +2211,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 research server",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 research server",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2219,7 +2267,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp0-current-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP0 current-runtime research screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP0 current-runtime research screen",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2271,7 +2319,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP1 research screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP1 research screen",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2329,7 +2377,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp3-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP3 research screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP3 research screen",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2389,7 +2437,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp2-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP2 research screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP2 research screen",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2448,7 +2496,7 @@
     },
     {
       "id": "qwen38-flash-next-fp8-tp4-mtp4-research",
-      "label": "Qwen3.8 Flash-Next FP8 · TP4 MTP4 research screen",
+      "label": "Qwen3.8 Flash-Next FP8 \u00b7 TP4 MTP4 research screen",
       "revision": "qwen38-flash-next",
       "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
       "quantization": "FP8 block-128",
@@ -2525,35 +2573,35 @@
       ],
       "series": [
         {
-          "label": "official FP8 · eager MTP0",
+          "label": "official FP8 \u00b7 eager MTP0",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-attempt19"
           ],
           "x_from": "config.tp"
         },
         {
-          "label": "official FP8 · eager MTP1",
+          "label": "official FP8 \u00b7 eager MTP1",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp1-a3"
           ],
           "x_from": "config.tp"
         },
         {
-          "label": "official FP8 · eager MTP2 (variable screen)",
+          "label": "official FP8 \u00b7 eager MTP2 (variable screen)",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp2-a1"
           ],
           "x_from": "config.tp"
         },
         {
-          "label": "official FP8 · eager MTP3 (variable screen)",
+          "label": "official FP8 \u00b7 eager MTP3 (variable screen)",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp3-a4"
           ],
           "x_from": "config.tp"
         },
         {
-          "label": "official FP8 · eager MTP4",
+          "label": "official FP8 \u00b7 eager MTP4",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp4-a1"
           ],
@@ -2572,7 +2620,7 @@
       ],
       "series": [
         {
-          "label": "official FP8 · TP4 eager MTP0",
+          "label": "official FP8 \u00b7 TP4 eager MTP0",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-context-screen"
           ],
@@ -2596,28 +2644,28 @@
       ],
       "series": [
         {
-          "label": "official FP8 · TP4 eager MTP0",
+          "label": "official FP8 \u00b7 TP4 eager MTP0",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-context4k-service-a1"
           ],
           "x_from": "config.mtp"
         },
         {
-          "label": "official FP8 · TP4 eager MTP1 · headroom32",
+          "label": "official FP8 \u00b7 TP4 eager MTP1 \u00b7 headroom32",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp1-context4k-headroom32-a1"
           ],
           "x_from": "config.mtp"
         },
         {
-          "label": "official FP8 · TP4 eager MTP2 · headroom32",
+          "label": "official FP8 \u00b7 TP4 eager MTP2 \u00b7 headroom32",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp2-context4k-headroom32-a2"
           ],
           "x_from": "config.mtp"
         },
         {
-          "label": "official FP8 · TP4 eager MTP3",
+          "label": "official FP8 \u00b7 TP4 eager MTP3",
           "measurement_ids": [
             "qwen38-flash-next-fp8-tp4-mtp3-context4k-a1"
           ],
@@ -3317,7 +3365,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "all shards loaded and graph compile began · 30-GiB host-memory guard tripped · no API, quality, or speed",
+          "label": "all shards loaded and graph compile began \u00b7 30-GiB host-memory guard tripped \u00b7 no API, quality, or speed",
           "reason": "Attempt 7 loaded all 131 shards on all four ranks and entered PIECEWISE graph compilation with one compile thread. The phase-aware host-memory guard latched below 30 GiB before the later TTM/global-OOM teardown window. Graph capture did not complete; no healthy API, client, output, quality result, replay result, or speed row exists. This is Grade-D bounded resource evidence only.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp0-current-piecewise-graph-attempt7-result.json",
           "parent": "flash-next-piecewise-host-memory-design",
@@ -3339,7 +3387,7 @@
             "modality": "text"
           },
           "state": "closed",
-          "label": "fit closed on this host · exact 169.41-GiB text target",
+          "label": "fit closed on this host \u00b7 exact 169.41-GiB text target",
           "reason": "Header accounting across all 131 shards leaves 169.413485 GiB for the text-only MTP0 target after excluding 0.836199 GiB of vision weights and 2.512733 GiB of MTP weights. One 31.890625-GiB B70 plus this host's 125.652466 GiB physical RAM is 11.870394 GiB short before runtime, cache, workspace, or operating-system headroom. This is a speedless Grade-D fit boundary, not a boot or performance estimate.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp1-ep1-eager-mtp0-active0-static-fit-boundary.json",
           "parent": "flash-next-tp1-memory-design",
@@ -3680,7 +3728,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "first 1K request stopped at 768 computed tokens · no output",
+          "label": "first 1K request stopped at 768 computed tokens \u00b7 no output",
           "reason": "The exact source/runtime identity booted from the local-NVMe model, passed four-rank preflight, reported all four 12.22-GiB placements, admitted 32 cache blocks and became healthy. Its first 1K request reached the unchanged 300-second worker-response gate during sampling with 768 computed prompt tokens and zero output. Request two and the separate 2K boot were skipped under the preregistered stop rule. Existing MTP1 512 and 4K passes are unchanged.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp1-1536-context-attempt1-bounded-negative.json",
           "parent": "flash-next-mtp1-context1k-a1",
@@ -3702,7 +3750,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "client timeout after 360 s · 448 computed tokens · no output",
+          "label": "client timeout after 360 s \u00b7 448 computed tokens \u00b7 no output",
           "reason": "The exact local-NVMe source/runtime identity passed four-rank, placement, 32-block cache, capacity, identity, and health gates. Request one had a zero-byte completion body and no output token recorded when the fixed client bound expired. The subsequent engine diagnostic reported 448 computed prompt tokens and zero output, after which the engine independently reported its own sampling timeout. Request two was blocked. The post-failure teardown window recorded compute- and copy-class resets on all four cards; all devices were rediscovered, but no post-reset collective was run. Existing MTP1 configured-512 and exact-4K passes are unchanged.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp1-3072-context-attempt2-bounded-negative.json",
           "parent": "flash-next-mtp1-context2k-a2",
@@ -3724,7 +3772,7 @@
             "modality": "text"
           },
           "state": "lab-screened",
-          "label": "8.904 tok/s decode · 232.1 s TTFT · headroom32",
+          "label": "8.904 tok/s decode \u00b7 232.1 s TTFT \u00b7 headroom32",
           "reason": "The 32-block recipe passed all 26 sealed MTP0 comparisons, 16/16 repeats, the exact cache-zero 4096-token needle, a formal p4096/o128 gate, and all three p4096/o256 rows with one accepted-target hash. Median wall output was 0.981 tok/s and cumulative draft acceptance was 528/539. This is a Grade-C support cell, not a minimum-cache claim; MTP3 remains the preferred exact-4K recipe.",
           "evidence_id": "qwen38-flash-next-fp8-tp4-mtp1-context4k-headroom32-a1",
           "packet_id": "qwen38-flash-next-fp8-tp4-mtp1-research",
@@ -3746,7 +3794,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "exact 8K completed · cross-runtime parity mismatch at token 73 · diagnostic only",
+          "label": "exact 8K completed \u00b7 cross-runtime parity mismatch at token 73 \u00b7 diagnostic only",
           "reason": "The exact current-source identity passed fresh four-rank, placement, 32-block cache, capacity, served-model, and health gates and exposed 13,516 cache tokens. Its sole p8192/o128 request completed all 25 generic gates with exact usage, zero cache reuse, and positive MTP1 counters, but diverged from the frozen cross-runtime/cache MTP0 authority at zero-based generated-token index 72. The 4.151 tok/s rate and 953.3-second TTFT receive no speed or quality credit. Owned shutdown passed its cleanup gates with all four cards idle and no B70-addressed event; the intentional stop retained the known shutdown-time output-handler notice and one shared-memory cleanup warning. Seven corrected local-NVMe records separately block clean-host wording.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp1-8448-context-attempt1-parity-quarantine.json",
           "parent": "flash-next-mtp1-context8k-a1",
@@ -3790,7 +3838,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "completed exact-2K request · target-parity mismatch at token 13 · no speed credit",
+          "label": "completed exact-2K request \u00b7 target-parity mismatch at token 13 \u00b7 no speed credit",
           "reason": "The local-NVMe boot passed four-rank, placement, 32-block cache, capacity, identity, and health gates. Request one completed with 2,048 prompt and 128 output tokens, zero cache reuse, and positive MTP2 counters, but diverged from the frozen MTP0 authority at zero-based generated-token index 12. Request two was blocked. This is a scoped cross-lane parity mismatch, not isolated proof that MTP2 caused the divergence.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp2-3072-context-attempt1-parity-quarantine.json",
           "parent": "flash-next-mtp2-context2k-a1",
@@ -3812,7 +3860,7 @@
             "modality": "text"
           },
           "state": "lab-screened",
-          "label": "9.893 tok/s decode · 263.3 s TTFT · headroom32",
+          "label": "9.893 tok/s decode \u00b7 263.3 s TTFT \u00b7 headroom32",
           "reason": "The 32-block recipe passed all 26 sealed MTP0 comparisons, 16/16 repeats, the exact cache-zero 4096-token needle, a formal p4096/o128 gate, and all three p4096/o256 rows with one accepted-target hash. Median wall output was 0.891 tok/s and cumulative draft acceptance was 719/748. The failed 21-block arm remains linked as history; this pass does not prove a speed gain, causal cache mechanism, or minimum cache. MTP3 remains preferred.",
           "evidence_id": "qwen38-flash-next-fp8-tp4-mtp2-context4k-headroom32-a2",
           "packet_id": "qwen38-flash-next-fp8-tp4-mtp2-research",
@@ -3834,7 +3882,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "completed exact-8K request · parity mismatch at token 27 · no speed credit",
+          "label": "completed exact-8K request \u00b7 parity mismatch at token 27 \u00b7 no speed credit",
           "reason": "The exact 32-block current-source identity exposed 11,264 cache tokens and completed one p8192/o128 request with exact 8192/128/8320 usage, zero cache reuse, 128 token IDs, and positive MTP2 counters at positions zero and one. Its token array first diverged from the frozen MTP0 authority at zero-based generated-token index 26. The observed 6.235 tok/s and 649.7-second TTFT are diagnostic only. The authority used a different vLLM commit and cache allocation, so this is a scoped cross-runtime parity quarantine rather than isolated proof that MTP2 caused the difference. Teardown passed with no B70 event; corrected storage/root-port events block clean-host wording.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp2-8448-context-attempt2-parity-quarantine.json",
           "parent": "flash-next-mtp2-context8k-a2",
@@ -3856,7 +3904,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "external SIGTERM during request one · six accepted draft tokens · no completed response or speed",
+          "label": "external SIGTERM during request one \u00b7 six accepted draft tokens \u00b7 no completed response or speed",
           "reason": "The exact 25-block local-NVMe identity passed source, runtime, fresh four-rank, placement, cache, capacity, served-identity, and health gates. Request one began under the frozen protocol, then the server received an external SIGTERM before the response completed. No request JSON, usage, output hash, or performance result exists. Partial server metrics showed six drafted and six accepted tokens with 1.000 acceptance at all three MTP3 positions, but those counters receive no parity, speed, quality, or deployment credit. Request two was not sent.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp3-1536-context-attempt1-external-stop.json",
           "parent": "flash-next-mtp3-context1k-a1",
@@ -3878,7 +3926,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "completed exact-2K request · target-parity mismatch at token five · no speed credit",
+          "label": "completed exact-2K request \u00b7 target-parity mismatch at token five \u00b7 no speed credit",
           "reason": "The exact source/runtime identity booted from local NVMe, passed four-rank preflight, reported all four 12.22-GiB placements, admitted the 25-block cache and became healthy. Request one completed the generic exact-depth gate with 2,048 prompt and 128 output tokens, zero cache reuse, and positive MTP3 counters, but its token array diverged from the frozen MTP0 authority at zero-based generated-token index 4. The preregistered rule blocked request two. This is a scoped cross-lane parity mismatch, not isolated proof that MTP3 caused the divergence or a universal semantic-quality failure.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp3-3072-context-attempt1-parity-quarantine.json",
           "parent": "flash-next-mtp3-context2k-a1",
@@ -3900,7 +3948,7 @@
             "modality": "text"
           },
           "state": "lab-screened",
-          "label": "15.502 tok/s decode · 187.9 s TTFT exact-4K",
+          "label": "15.502 tok/s decode \u00b7 187.9 s TTFT exact-4K",
           "reason": "All 26 sealed MTP0 4K comparisons matched, fixed-set repeats passed 16/16, and the exact cache-zero 4096-token needle plus formal gate passed. The three service rows returned one accepted-target hash. Long-prompt prefill dominates: median wall output was 1.246 tok/s and median TTFT was 187.9 seconds; inherited short quality remains 5/7. The official-thinking transfer completed 19 of 25 required rows; every completed row passed and matched MTP0, but the repeated-session boundary stopped request 20 and left six rows unrun. The outcome is inconclusive and unqualified, not an answer-quality failure.",
           "evidence_id": "qwen38-flash-next-fp8-tp4-mtp3-context4k-a1",
           "packet_id": "qwen38-flash-next-fp8-tp4-mtp3-research",
@@ -3923,7 +3971,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "900-second client timeout · no completed receipt or speed",
+          "label": "900-second client timeout \u00b7 no completed receipt or speed",
           "reason": "The exact current-source identity passed fresh four-rank, placement, 32-block cache, capacity, served-model, and health gates and exposed 9,654 cache tokens. Its sole p8192/o128 request entered inference but reached the fixed 900-second client bound without a completed response receipt or any durably recorded output token. No usage, MTP counter, parity, rate, or TTFT result exists. The owned failed-request shutdown path passed postflight with all four cards idle and no B70-addressed event; corrected local-NVMe records separately block clean-host wording.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp3-8448-context-attempt1-bounded-negative.json",
           "parent": "flash-next-mtp3-context8k-a1",
@@ -3945,7 +3993,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "two exact target-parity requests passed · detached teardown gate failed",
+          "label": "two exact target-parity requests passed \u00b7 detached teardown gate failed",
           "reason": "The exact 29-block local-NVMe identity passed every startup gate. Both authorized requests returned 1,024 prompt and 256 output tokens, the frozen MTP0 text hash, zero cache reuse, identical text, and perfect MTP4 acceptance at positions zero through three. The observed 13.326 and 17.291 tok/s rates are diagnostic only because the exact stop sentinel ended the timeout supervisor without reaching the detached server group. Direct recovery produced an orderly shutdown, but the frozen teardown rule quarantines the cell. Seven corrected-only local-NVMe records independently block clean-host qualification; no B70 event appeared.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp4-1536-context-attempt1-teardown-quarantine.json",
           "parent": "flash-next-mtp4-context1k-a1",
@@ -3967,7 +4015,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "client and engine timeouts · 384 computed tokens · no output · four-card teardown resets",
+          "label": "client and engine timeouts \u00b7 384 computed tokens \u00b7 no output \u00b7 four-card teardown resets",
           "reason": "The exact 29-block configured-3072 identity passed every startup gate. Request one reached the fixed 360-second client bound without a response receipt; about five seconds later the engine independently reported its own sampling timeout at 384 computed prompt tokens and zero output. No HTTP status, usage, parity hash, MTP counter delta, or speed exists, and request two was blocked. The corrected lifecycle controller returned zero and left no listener, recorded process, compile path, or RPC path, but the teardown window recorded compute- and copy-class resets on all four B70s. All cards were rediscovered at low memory use; no post-reset collective or known-good generation canary was run.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp4-3072-context-attempt1-bounded-negative.json",
           "parent": "flash-next-mtp4-context2k-a1",
@@ -3989,7 +4037,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "worker timeout at 3,904 computed tokens · no speed",
+          "label": "worker timeout at 3,904 computed tokens \u00b7 no speed",
           "reason": "The exact 29-block configuration became healthy and admitted 4,352 tokens, but the 4K quality request exceeded the worker-response deadline during token sampling and the engine stopped. Cleanup was followed by card-engine resets on all four B70 addresses. No durable quality JSON or timing result was produced.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260827-tp4-mtp4-4352-attempt1-bounded-negative.json",
           "parent": "flash-next-mtp4-context4k-a1",
@@ -4011,7 +4059,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "exact 8K completed · MTP4 mechanism passed · parity mismatch at token 27 · diagnostic only",
+          "label": "exact 8K completed \u00b7 MTP4 mechanism passed \u00b7 parity mismatch at token 27 \u00b7 diagnostic only",
           "reason": "The exact 36-block current-source identity completed one p8192/o128 request with exact 8192/128/8320 usage, zero cache reuse, all 25 generic depth gates, and positive MTP4 accepted-token deltas [30,24,18,14] whose sum equals 86. Its output first differs from the frozen cross-runtime/cache MTP0 authority at zero-based generated-token index 26. The 4.026 tok/s rate and 918.4-second TTFT are diagnostic only and do not isolate MTP4 as the cause. The owned completed-classification path passed postflight and returned all four cards idle; shutdown warnings and six corrected local-NVMe endpoint records remain disclosed, with no B70-addressed event.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp4-8448-context-attempt2-parity-quarantine.json",
           "parent": "flash-next-mtp4-context8k-a2",
@@ -4033,7 +4081,7 @@
             "modality": "text"
           },
           "state": "lab-screened",
-          "label": "5.224 tok/s · current-runtime short Grade-C screen",
+          "label": "5.224 tok/s \u00b7 current-runtime short Grade-C screen",
           "reason": "The exact current-runtime TP4/EP4 MTP0 identity passed fresh four-rank preflight, an exact cache-zero recovery canary, 6/7 semantic quality with only the known code-expression miss, 16/16 repeats, and card-clean teardown. Three established p146/o256/c1 after-first-text rows measured 5.316, 5.224, and 5.219 tok/s. The short harness does not retain per-row cache or finish fields, and this is not the fixed realistic final suite, a clean-host replay, or deployment qualification.",
           "evidence_id": "qwen38-flash-next-fp8-tp4-mtp0-current-a4",
           "packet_id": "qwen38-flash-next-fp8-tp4-mtp0-current-research",
@@ -4055,7 +4103,7 @@
             "modality": "text"
           },
           "state": "lab-screened",
-          "label": "4.758 tok/s decode · 147.5 s TTFT · current runtime exact-4K",
+          "label": "4.758 tok/s decode \u00b7 147.5 s TTFT \u00b7 current runtime exact-4K",
           "reason": "After the current-runtime 6/7 semantic, 16/16 repeat, and exact cache-zero 4K needle gates, two exact p4096/o128 requests both returned 4096/128/4224 usage, zero cache reuse, length stops, 128 token IDs, and one output-token hash. Their conventional 99-interval rates were 4.720 and 4.795 tok/s; the same-boot median is 4.758 tok/s with 147.5-second median TTFT. The output hash matches the retained legacy target authority, but fresh-server and clean-host replay remain open.",
           "evidence_id": "qwen38-flash-next-fp8-tp4-mtp0-current-context4k-a4",
           "packet_id": "qwen38-flash-next-fp8-tp4-mtp0-current-research",
@@ -4077,7 +4125,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "16K generic request completed once · semantic repeat corrupted · separate fresh server timed out · diagnostic only",
+          "label": "16K generic request completed once \u00b7 semantic repeat corrupted \u00b7 separate fresh server timed out \u00b7 diagnostic only",
           "reason": "The current-source 33-block identity completed one generic p16384/o128 request at a diagnostic-only 5.219 tok/s. A semantic successor then completed its first 16,213-token request correctly, returned corrupted repeated text on the identical same-server request despite zero reported cache use, and a separately started fresh server stopped at 1,600 computed prompt tokens before first output with an RPC sampling timeout. Cleanup of the fresh-server failure recorded eight B70 engine resets and 61 unsuccessful responses before all four cards re-enumerated idle. This is nondeterministic long-context runtime-stability evidence, not a speed or quality result.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp0-16k-a3-a4-runtime-instability.json",
           "parent": "flash-next-mtp0-context16k-current-source-a2",
@@ -4098,7 +4146,7 @@
             "modality": "text"
           },
           "state": "quarantined",
-          "label": "MTP2 scheduler treatment stopped at 5,440/16,384 computed prompt tokens · no output · card-event postflight failed",
+          "label": "MTP2 scheduler treatment stopped at 5,440/16,384 computed prompt tokens \u00b7 no output \u00b7 card-event postflight failed",
           "reason": "The current-source MTP2 identity admitted exactly 40 blocks / 20,014 cache tokens in both bounded arms. Scheduler-64 stopped at 3,200 computed prompt tokens; the scheduler-32 arm was observed 2,240 tokens / 70% farther at 5,440, but the sole p16384/o128 treatment request still returned no output before the unchanged 300-second runtime response deadline. This is treatment evidence, not repeat-confirmed causality. Its shutdown was followed by eight card reset records and 58 unsuccessful card responses, so the frozen postflight rule fails and the treatment tranche is exhausted. No capability, speed, quality, parity, deployment, or headline credit is granted; current checks found no listener or owned residue and all cards are below 43 MiB.",
           "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260828-tp4-mtp2-16512-scheduler32-attempt2-runtime-timeout-quarantine.json",
           "parent": "flash-next-mtp2-context16k-current-source-a2-scheduler32",

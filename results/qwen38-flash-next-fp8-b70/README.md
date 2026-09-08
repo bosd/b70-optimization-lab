@@ -206,9 +206,9 @@ the offload and the placement untouched.
 
 | screen | Triton HC glue only (2026-09-07) | both reference kernels (2026-09-07) | outputs |
 |---|---|---|---|
-| exact-2K, MTP0 | 32.58 / 32.56 (A269) | **33.32 / 33.45** (A304), 33.49 / 33.48 (A297), 33.48 / 33.51 (A299) | `afffd211…`, which coincides with the certified stream |
-| exact-4K, MTP0 | 32.58 / 32.62 (A269) | **33.47 / 33.41** (A304) | `1d833e5f…`, which does not |
-| fixed cold realistic suite, MTP0 | 32.898806 (A270) | **33.797067 tok/s** (A301), LocalMaxxing run `cmtrmp37v001bps01a7fi46nf` approved | twelve fresh rows, cached_tokens 0 |
+| exact-2K, MTP0 | 32.58 / 32.56 (A269) | **34.13 / 34.17** (A321), 34.19 / 34.17 (A322), 34.17 / 34.15 (A323); superseded 33.32 / 33.45 (A304) | `afffd211…`, which coincides with the certified stream, unmoved by the W13-N64 map |
+| exact-4K, MTP0 | 32.58 / 32.62 (A269) | **34.10 / 34.03** (A321), 34.11 / 34.10 (A322), 34.09 / 34.11 (A323); superseded 33.47 / 33.41 (A304) | `1d833e5f…`, which does not, and is likewise unmoved |
+| fixed cold realistic suite, MTP0 | 33.797067 (A301, LocalMaxxing `cmtrmp37v001bps01a7fi46nf`) | **34.495292 tok/s** (A326 fresh server; A325 measured 34.510128) | twelve fresh rows each, cached_tokens 0; every row above every A301 row |
 | exact-2K / exact-4K, lossless MTP1 | 36.43 / 36.47, 36.37 / 36.36 (A271) | **38.98 / 38.97**, **39.30 / 39.30** (A305) | the MTP0 pins |
 | fixed cold realistic suite, lossless MTP1 | 37.045844 (A272) | **37.825654 tok/s** (A306), LocalMaxxing run `cmtrmp3mj001fps01thcathd0` approved | twelve fresh rows, cached_tokens 0 |
 

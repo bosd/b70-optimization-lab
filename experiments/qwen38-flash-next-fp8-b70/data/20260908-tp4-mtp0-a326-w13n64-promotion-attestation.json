@@ -1,0 +1,68 @@
+{
+ "schema": "neural.download.promotion-attestation.v1",
+ "created_utc": "2026-09-08T05:33:00Z",
+ "profile_id": "qwen38-flash-next-fp8-tp4-mtp0-fullgraphdet-4352-placement-hctriton-qsafused-w13n64-realistic-v1",
+ "decision": "promote",
+ "promotion_authorized": true,
+ "headline": {
+  "value": 34.495291913070886,
+  "unit": "tok/s",
+  "aggregation": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed realistic suite run once cold",
+  "metric_events": 100,
+  "metric_intervals": 99,
+  "note": "Same deterministic full-decode-graph MTP0 line and the same reference-restoration overlay 2a372e86 as the 33.797067 result, with one line of the tuned M1 map changed: W1_CONFIG.BLOCK_SIZE_N 32 -> 64, which makes the W13 phase delta equal to the base tile and therefore inert. No source change; 64 was already an allowed tile, so the certified head runs unmodified and the configuration is strictly simpler than the one it supersedes. The delta had been adopted in A56 bundled with the eight-warp M1 change and never isolated. Headline is the fresh-server repeat A326 (34.495292), the lower of the pair; the first suite A325 measured 34.510128. Both are above every row of the superseded A301 suite."
+ },
+ "performance_evidence": {
+  "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-fresh-realistic-suite-v1-result.json",
+  "sha256": "fdcf3d13c5c7b46c003feb080539cea196b9ed7c9d486bb5c467bbf29c086c29"
+ },
+ "supporting_performance_evidence": [
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a325-w13n64-realistic-suite-v1-result.json",
+   "sha256": "80956690cc6058cc6ff2b2cc99a953918eeb30a9721138c19962e75d0661da65",
+   "note": "first suite, 34.510128"
+  }
+ ],
+ "identity": {
+  "model_revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+  "runtime_revision": "2a372e860e273273357cb7437ac7de1694304f9f",
+  "optimization_identity": "tp4-ep4-fullgraphdet-mtp0-4352-ple-embed-budget12p25-uva-coldexperts-hostplaced-3p5gib-w13n64-mkldnndet-oneccl-twoshots-hctriton-qsafused",
+  "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812",
+  "tuned_config_map": "experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n64/E=128,N=640,device_name=Intel(R)_Arc(TM)_Pro_B70_Graphics,dtype=fp8_w8a8,block_shape=[128,128].json",
+  "tuned_config_map_sha256": "4fcb5d13ef0c859d12a4fe6b5aac09b04fccf4db24e47a6f004d3f9878e4e38f"
+ },
+ "gates": {
+  "varied_task_quality_passed": true,
+  "exact_or_target_oracle_passed": true,
+  "deterministic_repeats_passed": true,
+  "fresh_server_repeat_passed": true,
+  "target_model_unchanged": true,
+  "no_quality_loss": true
+ },
+ "quality_evidence": [
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-2k-three-server-summary.json",
+   "sha256": "f7520b41578621d68b08707379b374d7f20fc775e54987864e43f62e3c2dfb25",
+   "supports": [
+    "exact_or_target_oracle_passed",
+    "deterministic_repeats_passed",
+    "fresh_server_repeat_passed",
+    "target_model_unchanged",
+    "no_quality_loss"
+   ],
+   "note": "six exact-2K rows across A321/A322/A323 on three servers, all identical to the certified A304 reference"
+  },
+  {
+   "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-4k-three-server-summary.json",
+   "sha256": "1b4a026d11bb23d71808994260db3c64a235962616da56a37165cb99e941e4b4",
+   "supports": [
+    "exact_or_target_oracle_passed",
+    "deterministic_repeats_passed",
+    "fresh_server_repeat_passed",
+    "target_model_unchanged",
+    "no_quality_loss"
+   ],
+   "note": "six exact-4K rows across A321/A322/A323 on three servers, all identical to the certified A304 reference"
+  }
+ ]
+}
