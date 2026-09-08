@@ -1,5 +1,10 @@
 # The Gemma replay shortfall is not run-to-run variance
 
+> **Update, 2026-09-08.** The draft-thread result below did not survive confirmation. Four more
+> runs at 16 threads took that arm to six samples, and the advantage fell from `3.06%` to `1.72%`
+> with heavily overlapping ranges (Welch `t = 1.40`, about `p = 0.19`). It is not established. The
+> cross-host finding, which is the substance of this note, is unaffected. See the section at the end.
+
 The 2026-09-07 rebuild replays of the Gemma 4 26B A4B Q8 record landed at `111.197`, `116.346` and
 `115.288 tok/s` against the promoted `124.977`. The recipe reads that as landing "within the known
 several-percent spread". Three runs cannot separate a wide tail from a level shift, and the lane's
@@ -35,20 +40,31 @@ differ in CPU, RAM and driver stack.
 Nothing here says the record is wrong. It says a replay on this host is not the way to check it, and
 that the recipe should not describe the difference as ordinary variance.
 
-## An easy 3%: the draft threads are oversubscribed here
+## The draft threads: a promising 3% that was not real
 
 The record passes `--spec-draft-threads 32 --spec-draft-threads-batch 32`. This host's CPU is an
-8-core/16-thread EPYC 9015, so that asks for twice the hardware threads available. Dropping to 16
-gains `3.06%` over the six-sample 32-thread mean; 8 gains `2.04%`. Both beat 32.
+8-core/16-thread EPYC 9015, so that asks for twice the hardware threads available, and at two
+samples per arm 16 threads looked `3.06%` faster with an eightfold tighter spread. That was worth
+confirming before changing anything, so four more runs took the 16-thread arm to six samples.
 
-The more useful part is the spread. At 32 threads the six runs span `109.109`-`116.346` with a
-`2.394%` CV; at 16 threads the two runs differ by `0.43%`. Oversubscription does not cap the peak -
-the single best 32-thread run beat both 16-thread runs - it makes the typical run worse and the
-lane harder to measure. With only two samples per thread setting the variance claim is suggestive
-rather than settled, but the direction is consistent and the mechanism is not exotic.
+It did not hold:
 
-This is a host-local tuning result. The four-card host has the cores to supply 32 draft threads, so
-the record's setting is likely right there and wrong here.
+| arm | n | mean | range | CV |
+| --- | ---: | ---: | --- | ---: |
+| 32 draft threads | 6 | `111.819` | `109.109`-`116.346` | `2.394%` |
+| 16 draft threads | 6 | `113.739` | `110.760`-`115.705` | `1.802%` |
+| 8 draft threads | 2 | `114.098` | `113.289`-`114.908` | `1.003%` |
+
+The advantage fell from `3.06%` to `1.72%`, the ranges overlap heavily, and a Welch t-test gives
+`t = 1.40` on about `9.4` degrees of freedom, roughly `p = 0.19`. The tight `0.303%` spread that
+made the two-sample result look decisive was itself the artifact: with six samples the 16-thread CV
+is `1.802%`, not far below 32's `2.394%`.
+
+So: **not established, and not a recipe change.** The direction is consistent across every
+comparison and the oversubscription argument is physically reasonable, so it may well be a real
+1-2% effect that six samples cannot resolve against this lane's noise. It is recorded here as a
+lead, not a setting. Anyone wanting to settle it needs considerably more runs than this, and should
+weigh that against a best case of about 2%.
 
 ## Separately: this lane does not reproduce its own answers
 

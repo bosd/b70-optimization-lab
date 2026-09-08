@@ -101,11 +101,14 @@ addressable only as 0 and 1, so that research ran on the four-B70 measuring
 host. Replaying here is not a way to check the record. See
 [`experiments/gemma4-26b-a4b-q8-b70/notes/2026-09-07-replay-shortfall-is-cross-host-and-threads-are-oversubscribed.md`](../../experiments/gemma4-26b-a4b-q8-b70/notes/2026-09-07-replay-shortfall-is-cross-host-and-threads-are-oversubscribed.md).
 
-Two findings from that work apply to anyone replaying on a two-card host. The
+One further finding from that work applies to anyone replaying on a two-card
+host, and one candidate did not survive checking. The candidate first: the
 record's `--spec-draft-threads 32` is oversubscribed on this machine's
-8-core/16-thread CPU: 16 threads measured `3.06%` faster over the six-sample
-32-thread mean, and far more repeatably (`0.303%` CV against `2.394%`). And the
-lane does not reproduce its own answers - four fresh servers with identical
+8-core/16-thread CPU, and at two samples 16 threads looked `3.06%` faster with a
+much tighter spread. Six samples per arm put it at `+1.72%` with heavily
+overlapping ranges (Welch `t = 1.40`, about `p = 0.19`), so it is **not
+established** and the recipe's setting is unchanged. The finding that does hold
+is that the lane does not reproduce its own answers - four fresh servers with identical
 settings, greedy decoding and identical prompts returned `0/12` matching outputs,
 diverging as early as character 26. The lane's gates never covered output
 identity, so that is a newly measured property rather than a broken claim. It is

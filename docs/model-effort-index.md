@@ -89,6 +89,10 @@ Open, in the order worth doing:
 Do not re-run the W4A16 determinism pad: measured inert below its threshold and `-13%` at 64 users
 above it, buying no identity.
 
+On the Gemma lane, do not re-run the draft-thread sweep expecting a win: 16 threads against the
+record's 32 looked `+3.06%` at two samples and `+1.72%` at six, with overlapping ranges and roughly
+`p = 0.19`. Not established, and a best case of about 2%.
+
 ### Muse-Glimmer-30B Q8/WOQ On Four B70s
 
 Main entries:

@@ -1,0 +1,149 @@
+{
+ "record_tok_s": 124.97714084813418,
+ "metric": "tok_s_1_100_after_ttft",
+ "groups": {
+  "record settings (32 draft threads)": {
+   "n": 6,
+   "median": 110.765,
+   "mean": 111.819,
+   "min": 109.109,
+   "max": 116.346,
+   "stdev": 2.677,
+   "cv_pct": 2.394,
+   "pct_of_record": 89.47,
+   "all_gates_passed": true,
+   "runs": [
+    {
+     "run": "gemma4-q8-gpu0-125repro-container2026.0-20260907T040615Z",
+     "median_tok_s": 111.197,
+     "class_balanced": 112.046,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-125repro-container2026.0-run2-20260907T041051Z",
+     "median_tok_s": 116.346,
+     "class_balanced": 115.526,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-distrib32-run3-20260907T222332Z",
+     "median_tok_s": 110.329,
+     "class_balanced": 111.593,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-distrib32-run4-20260907T222728Z",
+     "median_tok_s": 110.332,
+     "class_balanced": 108.855,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-distrib32-run5-20260907T223131Z",
+     "median_tok_s": 113.6,
+     "class_balanced": 115.415,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-distrib32-run6-20260907T223533Z",
+     "median_tok_s": 109.109,
+     "class_balanced": 111.421,
+     "gate": true
+    }
+   ]
+  },
+  "16 draft threads": {
+   "n": 6,
+   "median": 114.321,
+   "mean": 113.739,
+   "min": 110.76,
+   "max": 115.705,
+   "stdev": 2.049,
+   "cv_pct": 1.802,
+   "pct_of_record": 91.01,
+   "all_gates_passed": true,
+   "runs": [
+    {
+     "run": "gemma4-q8-gpu0-threads16-run1-20260907T223935Z",
+     "median_tok_s": 115.487,
+     "class_balanced": 114.398,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads16-run2-20260907T224337Z",
+     "median_tok_s": 114.994,
+     "class_balanced": 114.892,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads16-run3-20260908T013604Z",
+     "median_tok_s": 113.648,
+     "class_balanced": 114.547,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads16-run4-20260908T014008Z",
+     "median_tok_s": 111.838,
+     "class_balanced": 110.943,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads16-run5-20260908T014411Z",
+     "median_tok_s": 110.76,
+     "class_balanced": 111.211,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads16-run6-20260908T014815Z",
+     "median_tok_s": 115.705,
+     "class_balanced": 114.893,
+     "gate": true
+    }
+   ]
+  },
+  "8 draft threads": {
+   "n": 2,
+   "median": 114.098,
+   "mean": 114.098,
+   "min": 113.289,
+   "max": 114.908,
+   "stdev": 1.145,
+   "cv_pct": 1.003,
+   "pct_of_record": 91.3,
+   "all_gates_passed": true,
+   "runs": [
+    {
+     "run": "gemma4-q8-gpu0-threads08-run1-20260907T224739Z",
+     "median_tok_s": 114.908,
+     "class_balanced": 112.797,
+     "gate": true
+    },
+    {
+     "run": "gemma4-q8-gpu0-threads08-run2-20260907T225141Z",
+     "median_tok_s": 113.289,
+     "class_balanced": 112.156,
+     "gate": true
+    }
+   ]
+  },
+  "host compatibility build (32 threads)": {
+   "n": 1,
+   "median": 115.288,
+   "mean": 115.288,
+   "min": 115.288,
+   "max": 115.288,
+   "stdev": null,
+   "cv_pct": null,
+   "pct_of_record": 92.25,
+   "all_gates_passed": true,
+   "runs": [
+    {
+     "run": "gemma4-q8-gpu0-125repro-compat2026.1-20260907T040139Z",
+     "median_tok_s": 115.288,
+     "class_balanced": 115.785,
+     "gate": true
+    }
+   ]
+  }
+ },
+ "thread_sweep_verdict": "Not established. At two samples per arm the 16-thread setting looked 3.06% faster with an eightfold tighter spread. At six samples per arm it is +1.72% (113.739 against 111.819) with a 1.802% coefficient of variation against 2.394%, the ranges overlap heavily (16t 110.76-115.70, 32t 109.11-116.35), and a Welch t-test gives t = 1.40 on about 9.4 degrees of freedom - roughly p = 0.19. The direction is consistent across every comparison and the oversubscription argument is physically reasonable (32 draft threads on a 16-thread CPU), but this measurement does not support a speed claim or a recipe change. The earlier +3.06% figure was a two-sample artifact."
+}
