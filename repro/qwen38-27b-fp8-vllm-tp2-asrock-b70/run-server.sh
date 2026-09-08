@@ -109,6 +109,13 @@ hash_seed_env=()
 if [[ -n "${python_hash_seed}" ]]; then
     hash_seed_env=(-e "PYTHONHASHSEED=${python_hash_seed}")
 fi
+# Batch-invariant target lm_head (R65). Forwarded only when set. This is the third knob found missing
+# from this script after being present in run-w8a16-mtp1-server.sh; the no-speculation path had none
+# of them, so every mtp0 arm testing one was silently the control.
+lm_head_invariant_env=()
+if [[ -n "${VLLM_XPU_LM_HEAD_BATCH_INVARIANT:-}" && "${VLLM_XPU_LM_HEAD_BATCH_INVARIANT}" != 0 ]]; then
+    lm_head_invariant_env=(-e "VLLM_XPU_LM_HEAD_BATCH_INVARIANT=${VLLM_XPU_LM_HEAD_BATCH_INVARIANT}")
+fi
 # Row-wise TP all-reduce (diagnostic overlay images only). Same omission as the norm knob below had:
 # the no-speculation path comes through this script, so forwarding it only from
 # run-w8a16-mtp1-server.sh left every mtp0 arm unserialised while reporting as if it were not.
@@ -148,6 +155,7 @@ exec docker run --rm --name "${container}" \
     -e VLLM_ENABLE_INDUCTOR_COORDINATE_DESCENT_TUNING="${inductor_coordinate_descent}" \
     "${hash_seed_env[@]}" \
     "${w8a16_env[@]}" \
+    "${lm_head_invariant_env[@]}" \
     "${rowwise_allreduce_env[@]}" \
     "${rmsnorm_serial_env[@]}" \
     -e VLLM_BATCH_INVARIANT="${batch_invariant}" \

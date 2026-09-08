@@ -83,6 +83,7 @@ launch() {
     VLLM_XPU_DRAFT_LM_HEAD_INT4="${DRAFT_HEAD}" VLLM_XPU_W4A16_DETERMINISM_PAD="${W4A16_PAD}" VLLM_XPU_W4A16_DETERMINISM_PAD_HIGH="${W4A16_PAD}" GPU_MEMORY_UTILIZATION=${GPU_MEMORY_UTILIZATION:-0.95} \
     EXPECTED_XPU_COMMUNICATOR_SHA256="${EXPECTED_XPU_COMMUNICATOR_SHA256:-}" VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS="${ROWWISE_ALLREDUCE_MAX_ROWS:-0}" \
     EXPECTED_IR_LAYERNORM_SHA256="${EXPECTED_IR_LAYERNORM_SHA256:-}" VLLM_XPU_RMSNORM_SERIAL_ROWS="${RMSNORM_SERIAL_ROWS:-0}" \
+    VLLM_XPU_LM_HEAD_BATCH_INVARIANT="${LM_HEAD_BATCH_INVARIANT:-0}" \
     MODEL_DIR="${model_dir}" MODEL_MANIFEST="${manifest}" VLLM_CACHE_DIR="${cache}" "${specenv[@]}" \
     CONTAINER_NAME="${name}" PORT="${port}" SERVED_MODEL_NAME="${served}" COMPILATION_CONFIG="${comp}" \
     TENSOR_PARALLEL_SIZE="${TP}" XPU_DEVICE_MASK="${mask}" QUANTIZATION="${QUANT}" VLLM_XPU_FP8_BLOCK_W8A16=0 \
@@ -98,7 +99,8 @@ launch() {
   # clean null that looks exactly like a real "no effect".
   docker inspect "${name}" >"${dir}/container-inspect.json" 2>/dev/null || true
   for knob in VLLM_XPU_ROWWISE_ALLREDUCE_MAX_ROWS:${ROWWISE_ALLREDUCE_MAX_ROWS:-0} \
-              VLLM_XPU_RMSNORM_SERIAL_ROWS:${RMSNORM_SERIAL_ROWS:-0}; do
+              VLLM_XPU_RMSNORM_SERIAL_ROWS:${RMSNORM_SERIAL_ROWS:-0} \
+              VLLM_XPU_LM_HEAD_BATCH_INVARIANT:${LM_HEAD_BATCH_INVARIANT:-0}; do
     want=${knob#*:}; name_=${knob%%:*}
     [[ "${want}" == 0 ]] && continue
     grep -q "\"${name_}=${want}\"" "${dir}/container-inspect.json" 2>/dev/null \

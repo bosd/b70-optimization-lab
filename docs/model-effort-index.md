@@ -82,6 +82,13 @@ What this lane established, and what it costs to re-derive, is the identity acco
   same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
   be the explanation and shape-invariance interventions were never going to help
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
+  **Best current lead:** the FP16 vocabulary projection is bitwise invariant at 32 decode rows and
+  below, and every row differs from 33 up, by up to `3.9e-3` in logit space
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-the-fp16-vocabulary-projection-switches-strategy-above-32-rows.md)).
+  That is the last matmul before the argmax, it sits outside the fixed-K predicate because it is
+  f16 x f16, and its threshold is the only one that matches where the ladders break - exact at 32
+  users on both topologies, lossy above. Every intervention arm so far left it untouched. Extending
+  fixed-K to the FP16 head, or padding its decode rows to tiers of 32, is the next thing to try.
   Neither slot index nor step drift explains it, and the GEMM's fixed-K covers the two-card shapes,
   so all three are eliminated
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-three-candidates-eliminated-for-the-two-card-divergence.md)).
