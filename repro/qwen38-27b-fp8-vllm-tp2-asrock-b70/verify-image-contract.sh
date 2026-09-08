@@ -25,6 +25,7 @@ paths=(
   /opt/venv/lib/python3.12/site-packages/vllm/distributed/device_communicators/xpu_communicator.py
   /opt/venv/lib/python3.12/site-packages/vllm_xpu_kernels/_xpu_C.abi3.so
   /opt/venv/lib/python3.12/site-packages/vllm_xpu_kernels/libgdn_attn_kernels_xe_2.so
+  /opt/venv/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py
 )
 expected=(
   7c36e4a8dab4bfc06b1d5be2d8466e8cdc94099dd5409424fecc6dd8ffc2c208
@@ -34,6 +35,7 @@ expected=(
   5ab2ea5d9e049e6b53e2d56d1e3419ce01d1988e8be5295bab1f912a7fdbf74d
   ba911f7e7d0bae668f0039a3e443e1768c2010d239d2970d281a7dd01fcb5289
   05488952d1d98ca68915cabd7e7fe4ce62632662b175c560ae49bb2444187c79
+  65d33dcb96404ddde273acf84ef901151a8155a2cffc144bdd0c49fe1d576a22
 )
 
 # A source-qualified oneDNN selector rebuild intentionally changes the
@@ -48,6 +50,10 @@ expected_layernorm_sha256=${EXPECTED_LAYERNORM_SHA256:-}
 expected_xpu_ops_sha256=${EXPECTED_XPU_OPS_SHA256:-}
 # R207 candidates replace the XPU communicator module; opt in with its exact digest.
 expected_xpu_communicator_sha256=${EXPECTED_XPU_COMMUNICATOR_SHA256:-}
+# vllm/ir/ops/layernorm.py holds the RMSNorm arithmetic itself; layers/layernorm.py only dispatches to
+# it, so pinning the wrapper alone left the model's normalisation unverified. Appended to the arrays
+# above rather than inserted: indices 4, 5 and 6 are referenced literally further down this script.
+expected_ir_layernorm_sha256=${EXPECTED_IR_LAYERNORM_SHA256:-}
 
 # Experimental overlays may intentionally replace only the XPU communicator.
 # Keep the ordinary package hash immutable and require candidates to provide
@@ -118,6 +124,11 @@ fi
 if [[ -n "${expected_xpu_communicator_sha256}" ]]; then
   for index in "${!paths[@]}"; do
     [[ "${paths[index]}" == */device_communicators/xpu_communicator.py ]] && expected[index]=${expected_xpu_communicator_sha256}
+  done
+fi
+if [[ -n "${expected_ir_layernorm_sha256}" ]]; then
+  for index in "${!paths[@]}"; do
+    [[ "${paths[index]}" == */vllm/ir/ops/layernorm.py ]] && expected[index]=${expected_ir_layernorm_sha256}
   done
 fi
 if [[ -n "${expected_layernorm_sha256}" ]]; then

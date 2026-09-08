@@ -1,0 +1,44 @@
+--- /dev/fd/63	2026-09-08 01:02:26.997487723 -0400
++++ /tmp/claude-1000/-home-steve/7518784b-cce2-41b4-97bc-eba4393ef4f1/scratchpad/serialnorm/layernorm.py	2026-09-08 01:00:45.556891989 -0400
+@@ -6,6 +6,32 @@
+ from ..op import register_op
+ 
+ 
++def _rms_variance(x_var):
++    """Mean of squares over the hidden dimension, optionally one row at a time.
++
++    torch.mean(dim=-1) over a float32 tensor does not reduce in a shape-independent order on this
++    stack: a row's variance can differ depending on how many rows share the batch, on about 2-3% of
++    rows once the batch reaches 16. That makes a decode step's result depend on how many requests
++    share it, which is what the identity ladders lose at high concurrency.
++
++    VLLM_XPU_RMSNORM_SERIAL_ROWS=N reduces batches of 2..N rows one row at a time, which is the only
++    formulation measured to reproduce the single-row result exactly - rewriting the reduction as a
++    sum, a matmul or an unsqueeze folding does not, and chunking preserves it only at chunk size 1.
++    It costs a launch per row. 0, the default, keeps the batched reduction and the ordinary speed.
++    """
++    import os
++
++    try:
++        max_rows = int(os.environ.get("VLLM_XPU_RMSNORM_SERIAL_ROWS", "0"))
++    except ValueError:
++        max_rows = 0
++    if max_rows > 0 and x_var.dim() >= 2 and 1 < x_var.shape[0] <= max_rows:
++        return torch.cat(
++            [x_var[i : i + 1].pow(2).mean(dim=-1, keepdim=True) for i in range(x_var.shape[0])], 0
++        )
++    return x_var.pow(2).mean(dim=-1, keepdim=True)
++
++
+ @register_op
+ def rms_norm(
+     x: Tensor, weight: Tensor | None, epsilon: float, variance_size: int | None = None
+@@ -14,7 +40,7 @@
+     orig_dtype = x.dtype
+     x = x.to(torch.float32)
+     x_var = x if variance_size is None else x[..., :variance_size]
+-    variance = x_var.pow(2).mean(dim=-1, keepdim=True)
++    variance = _rms_variance(x_var)
+     x = x * torch.rsqrt(variance + epsilon)
+     if weight is not None:
+         x = x.to(weight.dtype) * weight

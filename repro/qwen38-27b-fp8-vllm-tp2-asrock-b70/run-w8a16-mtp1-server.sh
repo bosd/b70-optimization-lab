@@ -272,6 +272,13 @@ fixed_k_args=()
 for fixed_k_var in QWEN38_W4A16_FIXED_K QWEN38_W4A16_GEMM_MAXN QWEN38_W4A16_GEMM_STRATEGY_SMALL QWEN38_W4A16_GEMM_STRATEGY_LARGE QWEN38_GEMM_DUMP; do
   if [[ -n "${!fixed_k_var:-}" ]]; then fixed_k_args+=(--env "${fixed_k_var}=${!fixed_k_var}"); fi
 done
+# Serialised RMSNorm variance reduction (diagnostic overlay images only): reduce 2..N-row batches one
+# row at a time so a row's variance does not depend on how many rows share the batch. Forwarded only
+# when set, so the published profiles are unchanged.
+rmsnorm_serial_args=()
+if [[ -n "${VLLM_XPU_RMSNORM_SERIAL_ROWS:-}" && "${VLLM_XPU_RMSNORM_SERIAL_ROWS}" != 0 ]]; then
+  rmsnorm_serial_args=(--env "VLLM_XPU_RMSNORM_SERIAL_ROWS=${VLLM_XPU_RMSNORM_SERIAL_ROWS}")
+fi
 # Row-wise TP all-reduce (diagnostic overlay images only): reduce 2..N-row inputs one row at a time so a step's result
 # does not depend on how many rows share it. Forwarded only when set, so the published profiles are unchanged.
 rowwise_allreduce_args=()
@@ -376,6 +383,7 @@ exec docker run --rm --name "${container}" \
   "${fixed_k_args[@]}" \
   "${w4a16_pad_args[@]}" \
   "${rowwise_allreduce_args[@]}" \
+  "${rmsnorm_serial_args[@]}" \
   --env PYTORCH_ALLOC_CONF=expandable_segments:True \
   --env CCL_ATL_TRANSPORT=ofi --env FI_PROVIDER=tcp --env FI_TCP_IFACE=lo \
   --env CCL_ZE_IPC_EXCHANGE=pidfd \
