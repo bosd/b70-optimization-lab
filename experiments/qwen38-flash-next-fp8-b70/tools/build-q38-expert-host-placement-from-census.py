@@ -46,6 +46,28 @@ def load_census(paths: list[str]) -> tuple[dict, dict]:
     return counts, parked
 
 
+def load_dump_hits(paths: list[str], experts_per_rank: int) -> set[tuple[int, int, int]]:
+    """{(rank, layer, local expert)} selected in an earlier decode-sized top-k dump."""
+    if not paths:
+        return set()
+    import re as _re
+
+    import torch
+
+    hit: set[tuple[int, int, int]] = set()
+    for path in paths:
+        for name, ids in torch.load(path, weights_only=False, map_location="cpu"):
+            m = _re.search(r"layers\.(\d+)\.", str(getattr(name, "value", name)))
+            if not m:
+                continue
+            layer = int(m.group(1))
+            for row in ids.tolist():
+                for e in row:
+                    e = int(e)
+                    hit.add((e // experts_per_rank, layer, e % experts_per_rank))
+    return hit
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--census", action="append", required=True)
@@ -57,6 +79,10 @@ def main() -> None:
                     help="park only pairs selected at most this many times on this lineage "
                          "(0 = the original never-hit policy; a parked pair that is selected "
                          "costs a PCIe read of a whole expert row)")
+    ap.add_argument("--exclude-hits-from", action="append", default=[],
+                    help="a moe-topk-ids .pt dump whose hits also disqualify a pair. Use it to "
+                         "park only pairs that neither this lineage nor an earlier one ever "
+                         "selected, which is safer for workloads unlike the census request")
     ap.add_argument("--compare", help="the placement the census run used, for the before/after count")
     ap.add_argument("--match-compare-shape", action="store_true",
                     help="park exactly as many experts per (rank, layer) as --compare does, "
@@ -70,6 +96,10 @@ def main() -> None:
     budget = int(a.host_gib_per_rank * 2**30) // a.bytes_per_expert
     per_layer = budget // a.layers + 1
     old = json.load(open(a.compare)) if a.compare else None
+    excluded = load_dump_hits(a.exclude_hits_from, a.experts_per_rank)
+    if excluded:
+        print(f"excluding {len(excluded)} (rank, layer, expert) pairs hit in "
+              f"{len(a.exclude_hits_from)} earlier dump(s)")
 
     out: dict[str, dict[str, list[int]]] = {}
     for rank in sorted(counts):
@@ -80,7 +110,8 @@ def main() -> None:
             layer_counts = counts[rank].get(L, {})
             if not layer_counts and L not in parked.get(rank, {}):
                 continue
-            cand = sorted((layer_counts.get(e, 0), e) for e in range(a.experts_per_rank))
+            cand = sorted((layer_counts.get(e, 0), e) for e in range(a.experts_per_rank)
+                          if (rank, L, e) not in excluded)
             room = max(0, budget - total)
             if a.match_compare_shape:
                 if old is None:

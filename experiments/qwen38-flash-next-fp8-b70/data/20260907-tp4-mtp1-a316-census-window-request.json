@@ -1,0 +1,6 @@
+{
+ "prompt_tokens": 128,
+ "completion_tokens": 4096,
+ "seconds": 109.88751767499889,
+ "decode_share_of_routed_blocks": 0.9696969696969697
+}

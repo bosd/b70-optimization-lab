@@ -1,0 +1,5 @@
+rank 0: placed 543 of a 764-expert budget (2.49 GiB) across 48 layers; never selected on this lineage: 309 pairs; host selections during the census 289848 -> 1124 of 2335560 routed (12.410% -> 0.048%)
+rank 1: placed 587 of a 764-expert budget (2.69 GiB) across 48 layers; never selected on this lineage: 340 pairs; host selections during the census 29938 -> 1306 of 1025344 routed (2.920% -> 0.127%)
+rank 2: placed 550 of a 764-expert budget (2.52 GiB) across 48 layers; never selected on this lineage: 316 pairs; host selections during the census 25980 -> 1008 of 980002 routed (2.651% -> 0.103%)
+rank 3: placed 586 of a 764-expert budget (2.68 GiB) across 48 layers; never selected on this lineage: 330 pairs; host selections during the census 41344 -> 1310 of 998614 routed (4.140% -> 0.131%)
+wrote /home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/data/20260907-q38-expert-host-placement-fusedqsa-census-3p5gib-per-rank.json
