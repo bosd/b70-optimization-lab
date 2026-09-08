@@ -88,10 +88,13 @@ Open, in the order worth doing:
    is both invariant and value-preserving: sum, matmul and unsqueeze formulations all track the
    native mean exactly, float32 accumulation is three times worse than float16, and chunking
    preserves the M=1 oracle only at chunk size 1. The three real options are serialising the variance
-   reduction (preserves every hash, about 33x on the norm), switching to the float16 reduction
-   (invariant and cheap, but re-qualifies the lane), or writing an invariant kernel. **The cheapest
-   useful next measurement is what option 1 costs end to end**, since it is the only one that can be
-   tried without regenerating the lane's evidence.
+   reduction (preserves every hash), switching to the float16 reduction (invariant and cheap, but
+   re-qualifies the lane), or writing an invariant kernel. **Option 1 is now measured end to end and
+   costs nothing**: +0.06% at single-request shape and -0.2% to +0.6% across every ladder rung up to
+   the 64-row threshold, on both the speculative and no-speculation paths, against an isolated ratio
+   of about 33x. So the value-preserving fix is viable and the isolated ratio was not predictive.
+   What is still unknown is whether it closes the identity gap, which needs the many-pass
+   methodology, not two passes. Above 64 rows the knob does not engage and the cost is unmeasured.
 2. Per-channel FP8 row-invariance. Specified in
    [this note](../experiments/qwen35-9b-b70/notes/2026-09-07-per-channel-fp8-row-invariance-specification.md)
    with guard conditions and the eight projection shapes; needs a oneDNN rebuild and a bitwise

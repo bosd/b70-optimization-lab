@@ -52,8 +52,24 @@
    "what_happened": "The no-speculation ladder was tabulated first and showed 0.0% at every rung, which was not a result: that path runs through run-server.sh, which did not forward the knob, so both arms were unserialised and the comparison was of two identical configurations. Caught by checking the container's recorded environment rather than trusting the launch.",
    "fix": "run-server.sh now forwards the knob conditionally, as run-w8a16-mtp1-server.sh already did.",
    "rerunning_as": "qwen35-9b-w4a16-tp2-serialnorm-s3"
+  },
+  "valid_comparison_no_speculation_ladder": {
+   "campaigns": "qwen35-9b-w4a16-tp2-serialnorm-s0 (off) vs -s3 (on)",
+   "knob_verified_in_container": "VLLM_XPU_RMSNORM_SERIAL_ROWS=64 present in the s3 ladder-mtp0 container inspect",
+   "note": "Without speculation the step is one row per user, so users == rows and 64 users is the largest engaged row count this threshold allows - the shape the 33x microbenchmark was measured at.",
+   "pct_delta_by_users": {
+    "1 (inert)": 0.0,
+    "2": 0.6,
+    "4": -0.0,
+    "8": -0.3,
+    "16": -0.1,
+    "32": -0.1,
+    "64": -0.2
+   },
+   "finding": "Free at every rung, including 64 rows where the isolated reduction costs about 33x. In the model the norm is a small fraction of a step dominated by GEMMs and the cross-card collective, and the extra launches disappear into it."
   }
  },
  "infrastructure_note": "s1 aborted at its fourth server with 'server did not become healthy'. The worker died after page-size setup with no Python traceback, the signature of a cgroup OOM inside the container's 12g cap: the 9B checkpoint is 10.65 GiB, the host has 15.5 GiB, and the previous server's page cache had not been released. Three servers of the same campaign on the same code loaded fine, so this is a marginal-RAM race, not the patch. The harness now waits for MemAvailable to reach a threshold before each server rather than aborting the campaign.",
- "identity_not_claimed": "This is a cost measurement. The two-card c64 identity metric is intermittent and two passes cannot resolve an intervention, so no identity claim is made from these arms."
+ "identity_not_claimed": "s3 was exact at every rung in both passes and its ladder gate passed, where the s0 control scored 32/31 at one rung. That is not evidence the serialisation fixed anything: the control distribution spans these outcomes and two passes cannot resolve an intervention.",
+ "verdict": "The only value-preserving candidate fix - serialising the variance reduction so every batch reproduces the single-row oracle - costs nothing measurable end to end, at single-request shape and at every concurrency up to the 64-row threshold. The 33x isolated ratio is not predictive of the deployed cost. What remains unanswered is whether it actually closes the two-card identity gap: that needs the many-pass methodology from the intermittency note, not these two passes. Above 64 rows the knob does not engage and the cost is unmeasured; a production setting would need the threshold raised and re-measured."
 }
