@@ -194,5 +194,9 @@ All 18 depth-3 answers matched the oracle. The FP8 route of the same model runs 
   is faster. See the depth table below.
 - Graph-off and 2K-32K context rows exist for the FP8 route only.
 - Two-card concurrency identity is weaker than one-card: exact through 32
-  users, 63/64 at 64 in both passes.
+  users, and about one request lost at 64. That last figure is intermittent -
+  six control passes across three campaigns read four at 63/64 and two at
+  64/64 - so treat it as a rate, not a fixed score, and do not compare
+  interventions against it with two passes
+  (`experiments/qwen35-9b-b70/notes/2026-09-08-the-two-card-c64-identity-metric-is-intermittent.md`).
 - Not yet clean-host tested.

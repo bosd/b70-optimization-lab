@@ -66,10 +66,13 @@ What this lane established, and what it costs to re-derive, is the identity acco
   confirmations, most usefully the depth sweeps: depth `d` makes the verify step process `d+1` rows,
   so it varies row count without varying users, and FP8 loses a third of the suite from depth 4 up
   while W4A16 is lossless at 3, 4, 5 and 6 on both models.
-- The guarantee is one-card. On two cards the 9B drops to 63/64 at 64 users and the 4B holds only to
-  32. Forcing every cross-card reduction onto the single-row path did not reliably fix it
-  ([r0/r1](../experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-tp2-rowwise-allreduce.json)),
-  so the collective is not the whole cause.
+- The guarantee is one-card. On two cards the 9B loses about one request at 64 users and the 4B holds
+  only to 32. Note before designing any experiment here: that metric is **intermittent** - six
+  control passes read four at 63/64 and two at 64/64 - so two passes per arm cannot decide whether an
+  intervention worked
+  ([why, and what to measure instead](../experiments/qwen35-9b-b70/notes/2026-09-08-the-two-card-c64-identity-metric-is-intermittent.md)).
+  The row-wise all-reduce arms were run before this was known and decide nothing
+  ([r0/r1](../experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-tp2-rowwise-allreduce.json)).
 - The GEMM is not the only shape-dependent reduction on the path. The RMSNorm this route runs gives
   about 2-3% of rows a last-bit difference once the batch reaches 16
   ([probe](../experiments/qwen35-9b-b70/notes/2026-09-08-the-rmsnorm-is-also-row-count-dependent.md)),

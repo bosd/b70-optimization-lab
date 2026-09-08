@@ -1,5 +1,13 @@
 # The cross-card all-reduce is not by itself the two-card identity loss
 
+> **Correction, 2026-09-08.** The reasoning below treats the control's `63/64` as a stable baseline.
+> It is not: a third control arm, on a different overlay with its intervention switched off, later
+> scored `64/64` in both passes. Six control passes now read four at `63/64` and two at `64/64`, so
+> `r1`'s result sits inside the control distribution and this comparison never had the resolution to
+> decide anything. The conclusion - that the row-wise all-reduce is not a demonstrated fix - stands,
+> but for a stronger reason than the one given here. See
+> [the intermittency note](2026-09-08-the-two-card-c64-identity-metric-is-intermittent.md).
+
 ## What was being tested
 
 On one card the Qwen3.5-9B W4A16 route matches its sequential oracle at every ladder rung through 64
@@ -40,8 +48,9 @@ own, which is what makes the second arm interpretable.
 | r1, row-wise on | **64/64** at `2086.7` | 63/64 at `2088.2` |
 
 One pass reached 64/64 and the other did not. That is a single request out of 64 in one pass of two,
-against a control that scored 63/64 four times across two images. It is not evidence that the
-row-wise path fixes anything, and it should not be reported as a partial fix.
+against a control that scored 63/64 four times across two images - and, as the correction above
+records, 64/64 twice on a third. It is not evidence that the row-wise path fixes anything, and it
+should not be reported as a partial fix.
 
 What it does establish is the negative: forcing every 2-to-64-row reduction onto exactly the path the
 single-row step uses did **not** reliably restore identity. So the cross-card all-reduce is not by
