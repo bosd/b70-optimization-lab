@@ -78,12 +78,17 @@ What this lane established, and what it costs to re-derive, is the identity acco
 
 Open, in the order worth doing:
 
-1. A row-invariant variant of that norm. An invariant implementation is now known to exist here and
-   not to be obviously expensive, but the one that works is a different rounding of the same
-   function, so adopting it would invalidate every published hash
-   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-a-row-invariant-norm-exists-and-is-not-a-drop-in.md)).
-   The version worth having pins whatever the native op varies instead, preserving values. Float32
-   accumulation is not it - measured three times worse than float16, not better.
+1. The norm. The option space is now closed and costed
+   ([existence](../experiments/qwen35-9b-b70/notes/2026-09-08-a-row-invariant-norm-exists-and-is-not-a-drop-in.md),
+   [what is ruled out](../experiments/qwen35-9b-b70/notes/2026-09-08-no-cheap-value-preserving-norm-fix-exists-at-the-torch-level.md)).
+   The native op is pure PyTorch, so no oneDNN rebuild is involved, but no rewrite of its reduction
+   is both invariant and value-preserving: sum, matmul and unsqueeze formulations all track the
+   native mean exactly, float32 accumulation is three times worse than float16, and chunking
+   preserves the M=1 oracle only at chunk size 1. The three real options are serialising the variance
+   reduction (preserves every hash, about 33x on the norm), switching to the float16 reduction
+   (invariant and cheap, but re-qualifies the lane), or writing an invariant kernel. **The cheapest
+   useful next measurement is what option 1 costs end to end**, since it is the only one that can be
+   tried without regenerating the lane's evidence.
 2. Per-channel FP8 row-invariance. Specified in
    [this note](../experiments/qwen35-9b-b70/notes/2026-09-07-per-channel-fp8-row-invariance-specification.md)
    with guard conditions and the eight projection shapes; needs a oneDNN rebuild and a bitwise

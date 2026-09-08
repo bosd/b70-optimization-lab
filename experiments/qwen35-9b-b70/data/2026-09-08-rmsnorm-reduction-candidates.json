@@ -1,0 +1,71 @@
+{
+ "hidden": 4096,
+ "seeds": 5,
+ "candidates": {
+  "native_mean": {
+   "matches_native_at_m1": true,
+   "m1_exact": 5,
+   "m1_total": 5,
+   "differing_rows": 27,
+   "rows_compared": 1250,
+   "per_row_count": {
+    "2": 0,
+    "8": 0,
+    "16": 2,
+    "32": 2,
+    "64": 7,
+    "128": 16
+   },
+   "invariant": false
+  },
+  "sum_div": {
+   "matches_native_at_m1": true,
+   "m1_exact": 5,
+   "m1_total": 5,
+   "differing_rows": 27,
+   "rows_compared": 1250,
+   "per_row_count": {
+    "2": 0,
+    "8": 0,
+    "16": 2,
+    "32": 2,
+    "64": 7,
+    "128": 16
+   },
+   "invariant": false
+  },
+  "matmul_ones": {
+   "matches_native_at_m1": true,
+   "m1_exact": 5,
+   "m1_total": 5,
+   "differing_rows": 52,
+   "rows_compared": 1250,
+   "per_row_count": {
+    "2": 0,
+    "8": 0,
+    "16": 4,
+    "32": 8,
+    "64": 11,
+    "128": 29
+   },
+   "invariant": false
+  },
+  "unsqueeze_sum": {
+   "matches_native_at_m1": true,
+   "m1_exact": 5,
+   "m1_total": 5,
+   "differing_rows": 27,
+   "rows_compared": 1250,
+   "per_row_count": {
+    "2": 0,
+    "8": 0,
+    "16": 2,
+    "32": 2,
+    "64": 7,
+    "128": 16
+   },
+   "invariant": false
+  }
+ },
+ "winners": []
+}
