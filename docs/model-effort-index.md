@@ -39,6 +39,56 @@ path.
 
 ## Active / Recent Efforts
 
+### Qwen3.5 4B And 9B On One Or Two B70s
+
+Main entries:
+
+- [9B W4A16 recipe](../repro/qwen35-9b-w4a16-b70/README.md) and
+  [container packet](../packages/qwen35-9b-w4a16-b70/README.md)
+- [9B FP8 recipe](../repro/qwen35-9b-fp8-b70/README.md) and
+  [container packet](../packages/qwen35-9b-fp8-b70/README.md)
+- [4B W4A16 recipe](../repro/qwen35-4b-w4a16-b70/README.md) and
+  [container packet](../packages/qwen35-4b-w4a16-b70/README.md)
+- [experiment archive](../experiments/qwen35-9b-b70/) and
+  [4B archive](../experiments/qwen35-4b-b70/)
+
+Status: active, and the lane where the lab's output-identity work now lives. Seven LocalMaxxing
+submissions between 2026-09-07 and 2026-09-08. Best measured single-user figures, all lossless
+against a same-configuration MTP0 oracle: 4B W4A16 `236.916` on two cards and `177.287` on one; 9B
+W4A16 `172.296` on two and `113.265` on one; 9B FP8 `147.8` on two and `98.251` on one. Depth 3 with
+the draft-only INT4 lm_head and full decode-only graph capture is the operating point on every route,
+confirmed by sweeps on both models rather than inherited.
+
+What this lane established, and what it costs to re-derive, is the identity account:
+
+- The INT4 W4A16 route is byte-exact against a sequential oracle where the FP8 route is not, on both
+  models, because its GEMM does not vary its reduction with the decode row count. Five independent
+  confirmations, most usefully the depth sweeps: depth `d` makes the verify step process `d+1` rows,
+  so it varies row count without varying users, and FP8 loses a third of the suite from depth 4 up
+  while W4A16 is lossless at 3, 4, 5 and 6 on both models.
+- The guarantee is one-card. On two cards the 9B drops to 63/64 at 64 users and the 4B holds only to
+  32. Forcing every cross-card reduction onto the single-row path did not reliably fix it
+  ([r0/r1](../experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-tp2-rowwise-allreduce.json)),
+  so the collective is not the whole cause.
+- The GEMM is not the only shape-dependent reduction on the path. The RMSNorm this route runs gives
+  about 2-3% of rows a last-bit difference once the batch reaches 16
+  ([probe](../experiments/qwen35-9b-b70/notes/2026-09-08-the-rmsnorm-is-also-row-count-dependent.md)),
+  which is the residue the collective experiment could not remove. Treat "the INT4 route is exact"
+  as scoped to the regimes measured, not as a property of the kernel alone.
+
+Open, in the order worth doing:
+
+1. A row-invariant variant of that norm. It reproduces on one card with no server, so it is much
+   cheaper to iterate than another collective variant, and it is the live lead for the two-card gap.
+2. Per-channel FP8 row-invariance. Specified in
+   [this note](../experiments/qwen35-9b-b70/notes/2026-09-07-per-channel-fp8-row-invariance-specification.md)
+   with guard conditions and the eight projection shapes; needs a oneDNN rebuild and a bitwise
+   screening pass. Would close the 4B FP8 repeat-exactness failure and the 9B FP8 c16 flip at once.
+3. Clean-host replay for all three packets.
+
+Do not re-run the W4A16 determinism pad: measured inert below its threshold and `-13%` at 64 users
+above it, buying no identity.
+
 ### Muse-Glimmer-30B Q8/WOQ On Four B70s
 
 Main entries:

@@ -1,6 +1,6 @@
 # Current Workspace State
 
-Last reviewed: **2026-09-07**
+Last reviewed: **2026-09-08**
 
 ## Authority And Update Rule
 
@@ -20,20 +20,25 @@ result packets, handoffs, notes, patches, and reproduction recipes below.
 
 ## Live Service
 
-**GPUs free (2026-09-03 02:05 EDT, boot `2c230b44`, no fault this boot):** R156
-promotion complete; no lane container running; both B70s normal.
+**Verified 2026-09-08 01:40 EDT, boot `bf8e504b`, uptime 1 day 7 h, no fault this boot.**
 
-Verified on 2026-09-02 after the second host reboot of the day at `18:23 EDT` (the first was `08:16 EDT`; the second followed the Flash-Next A61 kernel soft lockup):
+This is the two-B70 host (`steve-TURIND8-2L2T`). Current state:
 
-- `muse-glimmer-bf16-fleet.service`: inactive;
-- `muse-glimmer-frontdoor.service`: inactive;
-- no listeners on `8000`, `18080`-`18089`, `19470`, or `19471`;
-- no Qwen benchmark listeners on `18110`-`18129`;
-- no `llama-server`, vLLM, or frontdoor process or container is running;
-- both B70s enumerate in `normal` state. Per-card Level Zero compute and the
-  two-card XCCL barrier/all-reduce passed before R119 and after each of its two
-  server attempts. The new-boot kernel journal contains no Xe fault, timeout,
-  hang, coredump, or engine-reset signature.
+- one lane container running, `gemma4-record-*`, from the Gemma 4 26B Q8 draft-thread confirmation
+  chain (`experiments/gemma4-26b-a4b-q8-b70/scripts/run-20260908-thread-confirmation.sh`);
+- one listener, `19350`, that chain's llama.cpp server;
+- no vLLM lane container, no listener on `8000`, `18080`-`18089`, `18110`-`18131`, `19470` or
+  `19471`;
+- both B70s report `normal`; the kernel journal for this boot contains no Xe fault, engine reset,
+  coredump, timeout or soft-lockup signature.
+
+The active lane on this host is Qwen3.5 4B/9B; see
+[`docs/model-effort-index.md`](docs/model-effort-index.md#qwen35-4b-and-9b-on-one-or-two-b70s) for
+its status, findings and the ordered open list. Four-card work does not belong here: it is a VRAM
+limit, not a policy, and MiniMax M2.7 INT4 alone is about 115 GB of weights against 64 GiB.
+
+The prior 2026-09-02/03 service verification, which described the Muse-Glimmer fleet units and the
+`2c230b44` boot, is superseded by the above and remains in Git history.
 
 ## Active Qwen3.8 Official FP8 Two-B70 Reproduction Audit
 
