@@ -1,0 +1,71 @@
+{
+ "qwen35-9b-w4a16-tp2-fragile-f0": {
+  "disagreeing_groups": 23,
+  "median_spread_ms_at_divergence": 81.3,
+  "max_spread_ms_at_divergence": 138.19,
+  "median_spread_ms_when_agreeing": 81.5,
+  "divergence_indices": [
+   7,
+   12,
+   38,
+   77,
+   90,
+   94,
+   107
+  ],
+  "minority_slot_counts": {
+   "050": 3,
+   "054": 2,
+   "024": 2,
+   "026": 2,
+   "001": 2,
+   "038": 1,
+   "040": 1,
+   "017": 1,
+   "049": 1,
+   "019": 1,
+   "018": 1,
+   "013": 1,
+   "048": 1,
+   "052": 1,
+   "010": 1,
+   "006": 1,
+   "056": 1
+  }
+ },
+ "qwen35-9b-w4a16-tp2-fragile-f1": {
+  "disagreeing_groups": 23,
+  "median_spread_ms_at_divergence": 255.44,
+  "max_spread_ms_at_divergence": 427.68,
+  "median_spread_ms_when_agreeing": 254.92,
+  "divergence_indices": [
+   12,
+   38,
+   75,
+   77,
+   90,
+   94
+  ],
+  "minority_slot_counts": {
+   "016": 2,
+   "022": 2,
+   "060": 2,
+   "049": 2,
+   "052": 2,
+   "061": 1,
+   "012": 1,
+   "026": 1,
+   "000": 1,
+   "024": 1,
+   "004": 1,
+   "030": 1,
+   "017": 1,
+   "046": 1,
+   "058": 1,
+   "023": 1,
+   "013": 1,
+   "048": 1,
+   "037": 1
+  }
+ }
+}

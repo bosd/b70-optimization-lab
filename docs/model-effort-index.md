@@ -82,8 +82,12 @@ What this lane established, and what it costs to re-derive, is the identity acco
   same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
   be the explanation and shape-invariance interventions were never going to help
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
-  The next question is whether that tracks slot index or decode-step membership; the suspects for the
-  former are KV-cache placement, attention tiling over the batch dimension and the GDN state layout.
+  Neither slot index nor step drift explains it, and the GEMM's fixed-K covers the two-card shapes,
+  so all three are eliminated
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-three-candidates-eliminated-for-the-two-card-divergence.md)).
+  Copies of one prompt are spread over about three decode steps whether or not they disagree. The
+  untouched ground is attention and the GDN recurrent path, neither probed for composition dependence
+  the way the norm was; that probe needs no server and no second card.
   What follows is how that was reached.
   Note the cost: the row-wise path costs `-65%` at 64 users, not the `-0.25%` published earlier from
   an arm where the knob never reached the container, so it could not ship even if it worked. Before
