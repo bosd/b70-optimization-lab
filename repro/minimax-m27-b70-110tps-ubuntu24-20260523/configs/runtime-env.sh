@@ -6,6 +6,9 @@ export HF_HOME="${HF_HOME:-$FAST_AI_ROOT/llm-cache/hf}"
 export VLLM_CACHE_ROOT="${VLLM_CACHE_ROOT:-$FAST_AI_ROOT/vllm-cache-exp/minimax-b70-20260523}"
 export BENCH_ROOT="${BENCH_ROOT:-$FAST_AI_ROOT/bench-results/minimax-m27-b70-110tps-20260523}"
 export VENV="${VENV:-$HOME/.venvs/vllm-xpu}"
+# The source trees moved off $FAST_AI_ROOT; prefer the current location and fall back to
+# the historical one so the 2026-05 record's own paths still resolve where they exist.
+if [ -z "${SRC_ROOT:-}" ] && [ -d "$HOME/src/llm-scaler" ]; then SRC_ROOT="$HOME/src"; fi
 export SRC_ROOT="${SRC_ROOT:-$FAST_AI_ROOT/src}"
 export VLLM_SRC="${VLLM_SRC:-$SRC_ROOT/vllm}"
 export LLM_SCALER_ROOT="${LLM_SCALER_ROOT:-$SRC_ROOT/llm-scaler}"
@@ -32,4 +35,8 @@ export VLLM_MINIMAX_QK_RMS_DIRECT_INPLACE_SCALE="${VLLM_MINIMAX_QK_RMS_DIRECT_IN
 export VLLM_MINIMAX_QK_RMS_XPU_HELPER="${VLLM_MINIMAX_QK_RMS_XPU_HELPER:-1}"
 
 export PYTHONPATH="$LLM_SCALER_KERNELS:$VLLM_SRC:${PYTHONPATH:-}"
-export LD_LIBRARY_PATH="$VENV/lib/python3.12/site-packages/torch/lib:/opt/intel/oneapi/compiler/2025.3/lib:${LD_LIBRARY_PATH:-}"
+# $VENV/lib must come before the oneAPI compiler libs: it carries the runtime this venv
+# was built against, and with only torch/lib ahead of oneAPI 2025.3 the loader resolves
+# a mismatched library and torch.xpu.device_count() returns 0 on a machine with four
+# working cards. The Qwen lanes on this host order it the same way.
+export LD_LIBRARY_PATH="$VENV/lib:$VENV/lib/python3.12/site-packages/torch/lib:/opt/intel/oneapi/compiler/2025.3/lib:${LD_LIBRARY_PATH:-}"
