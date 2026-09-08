@@ -1,0 +1,8 @@
+(Worker_TP1_EP1 pid=227723) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 44: 16 of 0 experts host-resident (45 placed layers so far, 2.47 GiB host)
+(Worker_TP3_EP3 pid=228066) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 45: 16 of 0 experts host-resident (46 placed layers so far, 2.54 GiB host)
+(Worker_TP2_EP2 pid=227905) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 47: 16 of 0 experts host-resident (48 placed layers so far, 2.52 GiB host)
+(Worker_TP1_EP1 pid=227723) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 45: 16 of 0 experts host-resident (46 placed layers so far, 2.54 GiB host)
+(Worker_TP3_EP3 pid=228066) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 46: 16 of 0 experts host-resident (47 placed layers so far, 2.61 GiB host)
+(Worker_TP1_EP1 pid=227723) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 46: 16 of 0 experts host-resident (47 placed layers so far, 2.61 GiB host)
+(Worker_TP3_EP3 pid=228066) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 47: 16 of 0 experts host-resident (48 placed layers so far, 2.68 GiB host)
+(Worker_TP1_EP1 pid=227723) INFO 09-07 21:58:22 [q38_expert_placement.py:129] Q38_EXPERT_HOST_PLACEMENT (load time) layer 47: 16 of 0 experts host-resident (48 placed layers so far, 2.69 GiB host)
