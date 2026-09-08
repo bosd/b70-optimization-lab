@@ -18,9 +18,15 @@ of 2026-09-08, with direct evidence where I have it and an honest "not checked" 
 Every published value falls inside its own replay range on Flash-Next. The Gemma4 entry is
 the guide's own clean-rebuild table, not something I ran; it reports 111–116 against a 125
 record and calls those "same-recipe support runs, not new records", with the shortfall
-attributed to the oneAPI 2026.1.1 compatibility build rather than to the recipe. **That gap
-is larger than anything the Flash-Next audit found and is worth a closer look by whoever owns
-that lane** — I have not investigated it and am not asserting the record is wrong.
+attributed to the oneAPI 2026.1.1 compatibility build rather than to the recipe.
+
+> **Corrected 2026-09-08 07:30.** I originally flagged this as "the largest unexplained gap
+> in the repo" and suggested its owner look. That look had already happened, six hours before
+> I wrote it. Commit `80e76ccfb` (Codex, 00:25 today) establishes the replays were a
+> **cross-host comparison** — run on a two-card host against a record set on a four-card
+> machine — and adds hostname, CPU, RAM and GPU state to all three benchmark harnesses so the
+> question cannot recur. The gap is explained and is not evidence against the Gemma4 record.
+> I should have checked recent history on the shared harnesses before calling it unexplained.
 
 ## Re-measurement attempted and blocked
 
