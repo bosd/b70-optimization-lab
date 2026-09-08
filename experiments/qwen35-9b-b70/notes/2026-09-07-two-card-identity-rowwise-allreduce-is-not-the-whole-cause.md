@@ -66,9 +66,11 @@ itself the cause. Something else on the two-card path is also shape-dependent.
 
 ## What it costs, for whoever tries the next variant
 
-Without speculation the row-wise path is nearly free at the rung that matters: `2086.7`/`2088.2` tok/s
-against `2091.9`/`2093.0`, about `-0.25%`. The collectives are small (`[1, 4096]` FP16) and at 64
-users the step has enough other work to hide them.
+~~Without speculation the row-wise path is nearly free at the rung that matters: `2086.7`/`2088.2`
+tok/s against `2091.9`/`2093.0`, about `-0.25%`.~~ **Wrong, and wrong because the knob never reached
+that container.** Applied and re-measured over 20 passes at 64 users, the row-wise path costs
+`726.8` against `2088.1 tok/s` - **`-65.2%`**. A 65% loss is not a fix that could ship even if it
+worked, which makes this a diagnostic rather than a candidate repair.
 
 With MTP depth 3 it is severe, because the row count there is `users x (depth + 1)`, so the low rungs
 sit under the threshold and pay `M` collectives on every step:

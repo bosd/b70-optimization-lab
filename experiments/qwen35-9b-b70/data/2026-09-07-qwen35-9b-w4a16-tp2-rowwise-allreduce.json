@@ -361,5 +361,6 @@
     }
    ]
   }
- }
+ },
+ "cost_CORRECTED_20260908": "The cost stated below is wrong. It was measured on an arm where the knob never reached the container - run-server.sh did not forward it on the no-speculation path - so it is the control measured twice. Applied and re-measured over 20 passes at 64 users: 726.8 against 2088.1 tok/s, -65.2%, not -0.25%. See notes/2026-09-08-powered-arms-neither-mechanism-nor-the-pair-is-established.md."
 }

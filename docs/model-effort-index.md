@@ -71,10 +71,14 @@ What this lane established, and what it costs to re-derive, is the identity acco
   control passes read four at 63/64 and two at 64/64 - so two passes per arm cannot decide whether an
   intervention worked
   ([why, and what to measure instead](../experiments/qwen35-9b-b70/notes/2026-09-08-the-two-card-c64-identity-metric-is-intermittent.md)).
-  The row-wise all-reduce arms decide nothing for a second reason as well: `run-server.sh` never
-  forwarded that knob, so the no-speculation ladder they were read from never had the intervention
-  applied. Fixed, and the harness now aborts when a requested knob is absent from the container
-  rather than producing a clean null.
+  Four powered arms now exist, 1280 requests each with knob presence verified: control 9 divergent,
+  serialised norm 7, row-wise all-reduce 6, both 3. The trend is monotone and in the predicted
+  direction, and **none of it is significant** - the pair reaches only `p = 0.15`
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-powered-arms-neither-mechanism-nor-the-pair-is-established.md)).
+  Note the cost: the row-wise path costs `-65%` at 64 users, not the `-0.25%` published earlier from
+  an arm where the knob never reached the container, so it could not ship even if it worked. Settling
+  the pair needs 60-80 passes per arm; instrumenting the divergent requests' logits is the cheaper
+  route to the same question.
 - The GEMM is not the only shape-dependent reduction on the path. The RMSNorm this route runs gives
   about 2-3% of rows a last-bit difference once the batch reaches 16
   ([probe](../experiments/qwen35-9b-b70/notes/2026-09-08-the-rmsnorm-is-also-row-count-dependent.md)),
