@@ -21,7 +21,9 @@ image_id=${IMAGE_ID:-sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d3
 model_dir=${MODEL_DIR:-/home/steve/llm-models/qwen35-9b-fp8-dynamic}
 manifest=${MODEL_MANIFEST:-${repo}/experiments/qwen35-9b-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json}
 strict_suite=${repo}/repro/qwen36-27b-autoround-int4-b70/realistic-suite-v1.json
-ladder_suite=${repo}/experiments/qwen38-27b-b70/data/2026-08-25-qwen38-q4km-tp2-http-smallctx-suite.json
+# LADDER_SUITE/LADDER_EXTRA_ARGS let a targeted run swap the prompt set and pass extra harness flags
+# (--verbatim-prompts, for suites whose exact prompt text is the thing under study). Defaults unchanged.
+ladder_suite=${LADDER_SUITE:-${repo}/experiments/qwen38-27b-b70/data/2026-08-25-qwen38-q4km-tp2-http-smallctx-suite.json}
 ladder=${repo}/scripts/bench-openai-concurrency-oracle.py; compare=${repo}/scripts/compare-strict-attempt-outputs.py
 health=${repo}/scripts/check-qwen36-xpu-xccl-health.sh; health_timeout=1800
 fault_re='(xe [0-9a-f:.]+|drm\]).*(Fault response|CAT error|engine reset|gt reset|GPU reset|coredump|Timedout job|timed out|\bhung\b|wedged|device lost)|soft lockup'
@@ -110,7 +112,7 @@ strict_attempt() {
   log "$1: $(grep -E 'class_balanced_median_tok_s|median_tok_s' "${server_dir}/strict.stdout" | head -2 | tr '\n' ' ')"
 }
 compare_pair() { python3 "${compare}" "$1" "$2" --output "$3" >/dev/null 2>&1 || true; python3 -c "import json,sys;c=json.load(open(sys.argv[1]))['comparison'];print(f\"{c['exact_prompts']}/{c['total_prompts']}\")" "$3" 2>/dev/null || echo "compare-failed"; }
-run_ladder() { python3 "${ladder}" --base-url "http://127.0.0.1:${port}" --model "${served_model}" --api-mode completions --suite "${ladder_suite}" --concurrency "${LADDER_CONCURRENCY:-1,2,4,8,16,32,64}" --repeats "${LADDER_REPEATS:-2}" --max-tokens 128 --seed 42 --timeout 900 --request-extra-json '{"ignore_eos":true,"temperature":0}' --return-token-ids --require-output-identity --out "${server_dir}/ladder.json" >"${server_dir}/ladder.stdout" 2>&1; log "$1 ladder harness exit $?"; }
+run_ladder() { python3 "${ladder}" --base-url "http://127.0.0.1:${port}" --model "${served_model}" --api-mode completions --suite "${ladder_suite}" --concurrency "${LADDER_CONCURRENCY:-1,2,4,8,16,32,64}" --repeats "${LADDER_REPEATS:-2}" --max-tokens 128 --seed 42 --timeout 900 --request-extra-json '{"ignore_eos":true,"temperature":0}' --return-token-ids --require-output-identity ${LADDER_EXTRA_ARGS:-} --out "${server_dir}/ladder.json" >"${server_dir}/ladder.stdout" 2>&1; log "$1 ladder harness exit $?"; }
 # ---------------- preflight ----------------
 [[ "$(lane_containers)" == 0 ]] || abort "preflight: lane container running"
 [[ "$(docker image inspect "${image}" --format '{{.Id}}')" == "${image_id}" ]] || abort "preflight: image id mismatch"

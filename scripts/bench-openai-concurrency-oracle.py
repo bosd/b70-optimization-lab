@@ -80,13 +80,25 @@ def parse_counts(value: str) -> list[int]:
 
 
 def expand_prompts(
-    base_prompts: list[dict[str, str]], count: int
+    base_prompts: list[dict[str, str]], count: int, verbatim: bool = False
 ) -> list[dict[str, str]]:
+    """Fill `count` request slots from the suite's prompts.
+
+    Normally each slot gets a unique case suffix, so a suite of 8 prompts yields 64 distinct texts.
+    `verbatim` cycles the suite's prompts unchanged instead, giving each slot a unique id but leaving
+    the text byte-identical. That exists for targeted reruns: when a specific prompt is known to sit
+    on a tie, appending a suffix produces a different prompt and the tie is no longer there to
+    observe. Slots then repeat texts, which the cross-base collision check tolerates because repeats
+    share a base id.
+    """
     if not base_prompts:
         raise ValueError("suite has no prompts")
     expanded = []
     for index in range(count):
         base = base_prompts[index % len(base_prompts)]
+        if verbatim:
+            expanded.append({"id": f"{base['id']}-s{index:03d}", "prompt": base["prompt"]})
+            continue
         variant = index // len(base_prompts)
         suffix = f"\n\n[Independent validation case {index:03d}; variant {variant:02d}]"
         expanded.append(
@@ -280,6 +292,15 @@ def main() -> int:
         "--api-mode", choices=("chat", "completions", "native"), default="completions"
     )
     parser.add_argument("--suite", type=Path, required=True)
+    parser.add_argument(
+        "--verbatim-prompts",
+        action="store_true",
+        help=(
+            "cycle the suite's prompts unchanged instead of appending a per-slot case suffix. "
+            "For targeted reruns of prompts known to sit on a tie, where a suffix would change "
+            "the prompt and remove the tie being studied."
+        ),
+    )
     parser.add_argument("--concurrency", type=parse_counts, default=parse_counts("1,2,4,8"))
     parser.add_argument("--repeats", type=int, default=2)
     parser.add_argument("--max-tokens", type=int, default=256)
@@ -324,7 +345,7 @@ def main() -> int:
         raise SystemExit("--request-id-prefix must contain a safe request-ID character")
 
     suite_meta, base_prompts = _BASE.load_suite(args.suite)
-    prompts = expand_prompts(base_prompts, max(args.concurrency))
+    prompts = expand_prompts(base_prompts, max(args.concurrency), args.verbatim_prompts)
     system_prompt = suite_meta.get("system_prompt")
 
     def request(item: dict[str, str], request_id: str, slot_id: int = -1) -> dict[str, Any]:

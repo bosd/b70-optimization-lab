@@ -1,0 +1,56 @@
+{
+ "suite_id": "qwen35-9b-w4a16-tp2-fragile-tie-sites-v1",
+ "version": 1,
+ "description": "The twelve prompts that carried all 25 observed two-card divergences across the powered arms, reconstructed exactly as the concurrency harness expands them so each is byte-identical to the prompt that flipped. Filling a batch with these instead of the full suite concentrates the events: the whole-suite divergence rate is about 0.7% of requests while these sites run near 6%, so the same statistics arrive roughly an order of magnitude sooner. The harness re-expands whatever it is given, so these are the base prompts of the targeted suite and it will append its own case suffix on top - the sites are preserved as a family, not byte-for-byte.",
+ "metric": "Measured aggregate completion tokens divided by synchronized HTTP batch wall time; output identity is checked against a sequential oracle for every expanded prompt.",
+ "prompts": [
+  {
+   "id": "monitoring-c044",
+   "prompt": "List three useful signals for monitoring a local model-serving endpoint.\n\n[Independent validation case 044; variant 05]"
+  },
+  {
+   "id": "index-c041",
+   "prompt": "Name two checks to perform before adding a database index to production.\n\n[Independent validation case 041; variant 05]"
+  },
+  {
+   "id": "monitoring-c020",
+   "prompt": "List three useful signals for monitoring a local model-serving endpoint.\n\n[Independent validation case 020; variant 02]"
+  },
+  {
+   "id": "monitoring-c004",
+   "prompt": "List three useful signals for monitoring a local model-serving endpoint.\n\n[Independent validation case 004; variant 00]"
+  },
+  {
+   "id": "benchmark-c011",
+   "prompt": "Explain why an inference benchmark should record uncached and cached results separately.\n\n[Independent validation case 011; variant 01]"
+  },
+  {
+   "id": "monitoring-c036",
+   "prompt": "List three useful signals for monitoring a local model-serving endpoint.\n\n[Independent validation case 036; variant 04]"
+  },
+  {
+   "id": "rollback-c042",
+   "prompt": "Describe a safe rollback trigger for a staged software deployment.\n\n[Independent validation case 042; variant 05]"
+  },
+  {
+   "id": "rollback-c050",
+   "prompt": "Describe a safe rollback trigger for a staged software deployment.\n\n[Independent validation case 050; variant 06]"
+  },
+  {
+   "id": "benchmark-c035",
+   "prompt": "Explain why an inference benchmark should record uncached and cached results separately.\n\n[Independent validation case 035; variant 04]"
+  },
+  {
+   "id": "evidence-c031",
+   "prompt": "State what evidence is needed before publishing a claimed inference speedup.\n\n[Independent validation case 031; variant 03]"
+  },
+  {
+   "id": "monitoring-c052",
+   "prompt": "List three useful signals for monitoring a local model-serving endpoint.\n\n[Independent validation case 052; variant 06]"
+  },
+  {
+   "id": "testing-c021",
+   "prompt": "Give one deterministic test for detecting cross-request response contamination.\n\n[Independent validation case 021; variant 02]"
+  }
+ ]
+}
