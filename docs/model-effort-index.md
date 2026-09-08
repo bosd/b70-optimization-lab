@@ -82,7 +82,16 @@ What this lane established, and what it costs to re-derive, is the identity acco
   same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
   be the explanation and shape-invariance interventions were never going to help
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
-  **Newest result:** with a per-layer capture hook comparing only rows at the same generation
+  **Newest result, and it reframes the target.** A batch of constant composition is deterministic:
+  64 identical prompts in lockstep at TP2 give byte-identical outputs, eager *and* with full
+  decode-only graph capture, and the per-layer hook finds no same-position row disagreeing in 8000
+  observations. The ladder differs by having its requests drift - about three decode steps of spread -
+  so step composition varies
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-a-lockstep-batch-is-deterministic-the-ladder-is-not.md)).
+  That explains all four failed interventions at once: if the mechanism is a request meeting a
+  differently-composed step than the oracle did, every row-count-dependent op contributes and fixing
+  them singly cannot help. **Next: reproduce the divergence offline by inducing drift** - staggered
+  arrival or unequal generation caps - rather than probing another op.
   position, the body is bitwise deterministic - 8000 decode observations at TP2, none disagreeing
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-a-per-layer-capture-hook-and-what-it-shows-so-far.md)).
   But that run did not reproduce the divergence: it was eager and unspeculated, where the ladder uses
