@@ -1,6 +1,6 @@
 # Current Workspace State
 
-Last reviewed: **2026-09-08**
+Last reviewed: **2026-09-08** (Flash-Next lane state refreshed 03:15 EDT)
 
 ## Authority And Update Rule
 
@@ -1476,6 +1476,40 @@ already-measured blanks before burning GPUs. Never replace a captured high
 score with a projection or a different accounting convention.
 
 ## Active Optimization Lane
+
+**State as of 2026-09-08.** The lane is past bring-up and has five published
+records. Current promoted lines:
+
+| line | class-balanced median | LocalMaxxing | guide |
+| --- | --- | --- | --- |
+| lossless MTP1, both reference Triton kernels | `37.825654 tok/s` | `cmtrmp3mj001fps01thcathd0` | [guide](repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/README.md) |
+| MTP0 (no speculation), W13-N64 map | `34.495292 tok/s` | `cmts8zca50032ps01e0ddqm18` | [guide](repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/README.md) |
+
+The 2026-09-08 MTP0 record supersedes `33.797067` (`cmtrmp37v001bps01a7fi46nf`,
+retained) and came from *removing* a tuning: a per-phase MoE tile adopted in A56
+bundled with an unrelated eight-warp change and never isolated, which cost 2.1%
+once measured alone. One line of a tuned map, no source change, outputs
+bit-identical across three servers.
+
+Closed with data, so no further runs are warranted on them: the expert host
+placement's identity (removing 99.6% of host-placed selections changed nothing,
+so PCIe reads are not the MoE bandwidth gap), the MoE tile ladder on both
+lineages (server optimum at 64 for M=1, and the per-phase delta is inert at
+MTP1's M=2), the offline tile probe's reliability (unreliable in both
+directions — rank tiles in the server only), and the QSA selection sort
+(launch-bound, so no algorithmic lever). What remains are two kernel projects:
+fusing the QSA selection (~1.3 tok/s ceiling, exact) and the MoE dependency
+chain (larger, but inexact and needing its own lineage and quality proof).
+
+Ledger: [results packet](results/qwen38-flash-next-fp8-b70/README.md) ·
+[submissions](results/localmaxxing-submissions.md) ·
+`experiments/qwen38-flash-next-fp8-b70/notes/`.
+
+### Bring-up history (2026-08-26 onward)
+
+The rest of this section is the lane's bring-up and screening chronology, kept
+for its durable findings. It predates the records above and should not be read
+as current state.
 
 Qwen3.8 Flash-Next FP8 is active as of 2026-08-26. Its pinned 185.56-GB download
 passed complete Git/LFS, tokenless dry-run, safetensors-header, payload-range,
