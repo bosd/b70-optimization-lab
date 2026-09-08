@@ -1,0 +1,4 @@
+(Worker_TP3_EP3 pid=79347) INFO 09-07 20:37:43 [q38_expert_placement.py:51] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2322 host-placed selections of 209130 routed blocks (1.1103%)
+(Worker_TP0_EP0 pid=78827) INFO 09-07 20:37:43 [q38_expert_placement.py:51] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 314174 host-placed selections of 1794890 routed blocks (17.5038%)
+(Worker_TP2_EP2 pid=79178) INFO 09-07 20:37:43 [q38_expert_placement.py:51] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2308 host-placed selections of 217244 routed blocks (1.0624%)
+(Worker_TP1_EP1 pid=78990) INFO 09-07 20:37:43 [q38_expert_placement.py:51] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2188 host-placed selections of 217136 routed blocks (1.0077%)
