@@ -39,4 +39,12 @@ export PYTHONPATH="$LLM_SCALER_KERNELS:$VLLM_SRC:${PYTHONPATH:-}"
 # was built against, and with only torch/lib ahead of oneAPI 2025.3 the loader resolves
 # a mismatched library and torch.xpu.device_count() returns 0 on a machine with four
 # working cards. The Qwen lanes on this host order it the same way.
-export LD_LIBRARY_PATH="$VENV/lib:$VENV/lib/python3.12/site-packages/torch/lib:/opt/intel/oneapi/compiler/2025.3/lib:${LD_LIBRARY_PATH:-}"
+# The XPU platform plugin dlopens the kernel libraries; without their directory here vLLM
+# silently resolves UnspecifiedPlatform ("libgdn_attn_kernels_xe_2.so: cannot open shared
+# object file") even though torch sees all four cards, and every launch then fails a
+# platform assertion. The package is importable through its editable install, which does
+# not put its .so files on the loader path. The Qwen lanes list their stage the same way.
+# This file is sourced before the venv is activated, so ask the venv's interpreter directly
+# rather than whichever python3 is on PATH.
+XPU_KERNELS_DIR="${XPU_KERNELS_DIR:-$("$VENV/bin/python" -c 'import importlib.util,os; s=importlib.util.find_spec("vllm_xpu_kernels"); print(os.path.dirname(s.origin) if s and s.origin else "")' 2>/dev/null || true)}"
+export LD_LIBRARY_PATH="${XPU_KERNELS_DIR:+$XPU_KERNELS_DIR:}$VENV/lib:$VENV/lib/python3.12/site-packages/torch/lib:/opt/intel/oneapi/compiler/2025.3/lib:${LD_LIBRARY_PATH:-}"
