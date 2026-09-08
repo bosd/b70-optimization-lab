@@ -33,6 +33,7 @@ on:
       - "tools/test_sync_public_result_summary.py"
       - "tools/check-doc-links.py"
       - "tools/check-container-packet.py"
+      - "tools/test_check_container_packet.py"
   push:
     branches: [main]
     paths:
@@ -66,6 +67,7 @@ on:
       - "tools/test_sync_public_result_summary.py"
       - "tools/check-doc-links.py"
       - "tools/check-container-packet.py"
+      - "tools/test_check_container_packet.py"
 
 jobs:
   validate:
@@ -93,3 +95,4 @@ jobs:
       # (packages/*/scripts/render-compose.sh) needs both and stays on a lab host.
       - run: pip install --quiet pyyaml
       - run: python3 tools/check-container-packet.py
+      - run: python3 -m unittest tools/test_check_container_packet.py
