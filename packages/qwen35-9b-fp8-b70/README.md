@@ -41,3 +41,35 @@ Full procedure, matrix and validation: [`repro/qwen35-9b-fp8-b70/README.md`](../
 ## Still missing
 
 - clean-host replay
+
+## Container packet
+
+A level-2 packet: a digest-pinned image, explicit GPU device mapping, read-only model and persistent
+cache volumes, and one- and two-card profiles.
+
+```bash
+cd packages/qwen35-9b-fp8-b70
+export MODEL_DIR=/models/Qwen3.5-9B-FP8-dynamic
+
+PROFILE=one-gpu ./scripts/preflight.sh     # GPUs, driver, RAM, storage, image
+./scripts/download-model.sh                # exact bytes, from the publisher at the pinned revision
+./scripts/verify.sh                        # revision, sizes, every SHA-256 and git blob
+PROFILE=one-gpu ./scripts/smoke-test.sh    # start, health, and a repeat-identity gate
+```
+
+`compose.yaml` is **generated, not hand-written**. `scripts/render-compose.sh` runs the real recipe
+launcher behind a docker shim that captures the `docker run` argv instead of starting anything, then
+renders both profiles from it, so the packet reproduces the measured container's 73 environment
+variables and full serve command exactly rather than approximately. The operator scripts are thin
+wrappers over `tools/container-packet/`, shared with the other packets so they cannot drift apart.
+`tools/check-container-packet.py` runs in CI and fails the build if the committed file stops matching
+the launcher, if the image is not pinned by digest, if the model mount is not read-only, or if a port
+leaves loopback.
+
+Regenerate after any launcher change:
+
+```bash
+MODEL_DIR=/models/Qwen3.5-9B-FP8-dynamic ./scripts/render-compose.sh
+```
+
+Source of truth: [`repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh`](../../repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh).

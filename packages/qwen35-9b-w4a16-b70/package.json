@@ -408,7 +408,6 @@
   "packages/qwen35-9b-w4a16-b70/env/two-gpu.env",
   "packages/qwen35-9b-w4a16-b70/scripts/download-model.sh",
   "packages/qwen35-9b-w4a16-b70/scripts/preflight.sh",
-  "packages/qwen35-9b-w4a16-b70/scripts/render-compose.py",
   "packages/qwen35-9b-w4a16-b70/scripts/render-compose.sh",
   "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh",
   "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
@@ -428,7 +427,13 @@
   "scripts/bench-openai-realistic-suite.py",
   "scripts/compare-strict-attempt-outputs.py",
   "scripts/neural-download-canaries.py",
-  "tools/check-container-packet.py"
+  "tools/check-container-packet.py",
+  "tools/container-packet/download-model.sh",
+  "tools/container-packet/preflight.sh",
+  "tools/container-packet/smoke-test.sh",
+  "tools/container-packet/verify.sh",
+  "tools/render-container-compose.py",
+  "tools/render-container-packet.sh"
  ],
  "evidence": [
   "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-c128-identity-ladder.json",
@@ -465,6 +470,7 @@
    "verify": "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
    "smoke_test": "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh"
   },
-  "note": "compose.yaml is rendered from the argv the recipe launcher hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding."
+  "note": "compose.yaml is rendered from the argv the recipe launcher hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding.",
+  "shared_implementation": "tools/container-packet/"
  }
 }

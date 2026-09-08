@@ -8,7 +8,7 @@ docker shim that captures argv instead of starting anything, and this script tur
 compose services. Regenerate after any launcher change; tools/check-container-packet.py fails the
 build when the committed file no longer matches what the launcher produces.
 
-usage: render-compose.py ONE_GPU_ARGV TWO_GPU_ARGV OUT_YAML IMAGE_DIGEST_REF
+usage: render-container-compose.py ONE_GPU_ARGV TWO_GPU_ARGV OUT_YAML IMAGE_DIGEST_REF MODEL_DESC LAUNCHER GENERATOR
 """
 from __future__ import annotations
 
@@ -54,6 +54,12 @@ def main() -> int:
     two_argv = read_argv(Path(sys.argv[2]))
     out = Path(sys.argv[3])
     image = sys.argv[4]
+    model_desc = sys.argv[5] if len(sys.argv) > 5 else "the verified model"
+    launcher = sys.argv[6] if len(sys.argv) > 6 else "the recipe launcher"
+    generator = sys.argv[7] if len(sys.argv) > 7 else "the packet's render-compose.sh"
+    # Container names are operator-facing defaults, not part of the measured identity; keying them to
+    # the served model name keeps already-published packets byte-identical when this is regenerated.
+    served_prefix = sys.argv[8] if len(sys.argv) > 8 else out.parent.name
 
     one_env, one_serve = split(one_argv)
     two_env, two_serve = split(two_argv)
@@ -69,8 +75,8 @@ def main() -> int:
 
     lines = []
     lines.append("# GENERATED FILE - do not edit by hand.")
-    lines.append("# Regenerate with: packages/qwen35-9b-w4a16-b70/scripts/render-compose.sh")
-    lines.append("# Source of truth: repro/qwen35-9b-w4a16-b70/scripts/run-qwen35-9b-w4a16-server.sh")
+    lines.append(f"# Regenerate with: {generator}")
+    lines.append(f"# Source of truth: {launcher}")
     lines.append("# CI check:        tools/check-container-packet.py")
     lines.append("")
     lines.append("x-b70-common: &b70-common")
@@ -90,7 +96,7 @@ def main() -> int:
     lines.append("  ipc: host")
     lines.append("  shm_size: 8gb")
     lines.append("  volumes:")
-    lines.append('    - "${MODEL_DIR:?set MODEL_DIR to the verified RedHatAI/Qwen3.5-9B-quantized.w4a16 directory}:/model:ro"')
+    lines.append(f'    - "${{MODEL_DIR:?set MODEL_DIR to the verified {model_desc} directory}}:/model:ro"')
     lines.append('    - "${VLLM_CACHE_DIR:-./cache}:/root/.cache/vllm"')
     lines.append("  healthcheck:")
     lines.append('    test: ["CMD", "python3", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen(\'http://127.0.0.1:8000/health\', timeout=5).status==200 else 1)"]')
@@ -109,7 +115,7 @@ def main() -> int:
         lines.append(f"  {name}:")
         lines.append("    <<: *b70-common")
         lines.append(f"    # {cards}; measured profile, MTP depth 3 with the draft INT4 head and full decode-only graph capture.")
-        lines.append(f"    container_name: ${{CONTAINER_NAME:-qwen35-9b-w4a16-{name}}}")
+        lines.append(f"    container_name: ${{CONTAINER_NAME:-{served_prefix}-{name}}}")
         lines.append("    ports:")
         lines.append(f'      - "127.0.0.1:${{PORT:-18131}}:8000"')
         lines.append("    environment:")

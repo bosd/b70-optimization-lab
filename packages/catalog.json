@@ -1700,6 +1700,14 @@
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-strategy-override-dump-r220-20260905.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-c-default-align-r137b-20260902.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-fixed-k-align16-r137a-20260902.patch",
+        "packages/qwen35-4b-w4a16-b70/compose.yaml",
+        "packages/qwen35-4b-w4a16-b70/env/one-gpu.env",
+        "packages/qwen35-4b-w4a16-b70/env/two-gpu.env",
+        "packages/qwen35-4b-w4a16-b70/scripts/download-model.sh",
+        "packages/qwen35-4b-w4a16-b70/scripts/preflight.sh",
+        "packages/qwen35-4b-w4a16-b70/scripts/render-compose.sh",
+        "packages/qwen35-4b-w4a16-b70/scripts/smoke-test.sh",
+        "packages/qwen35-4b-w4a16-b70/scripts/verify.sh",
         "repro/gemma4-26b-a4b-q8-b70/realistic-suite-v1.json",
         "repro/qwen35-4b-w4a16-b70/README.md",
         "repro/qwen35-4b-w4a16-b70/manifests/model-direct-redhatai-qwen35-4b-w4a16-7a613872.json",
@@ -1718,7 +1726,14 @@
         "scripts/bench-openai-concurrency-oracle.py",
         "scripts/bench-openai-realistic-suite.py",
         "scripts/compare-strict-attempt-outputs.py",
-        "scripts/neural-download-canaries.py"
+        "scripts/neural-download-canaries.py",
+        "tools/check-container-packet.py",
+        "tools/container-packet/download-model.sh",
+        "tools/container-packet/preflight.sh",
+        "tools/container-packet/smoke-test.sh",
+        "tools/container-packet/verify.sh",
+        "tools/render-container-compose.py",
+        "tools/render-container-packet.sh"
       ],
       "evidence": [
         "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
@@ -1901,7 +1916,37 @@
             }
           ]
         }
-      ]
+      ],
+      "container_packet": {
+        "level": 2,
+        "compose": "packages/qwen35-4b-w4a16-b70/compose.yaml",
+        "generated": true,
+        "generator": "packages/qwen35-4b-w4a16-b70/scripts/render-compose.sh",
+        "generated_from": "repro/qwen35-4b-w4a16-b70/scripts/run-qwen35-4b-w4a16-server.sh",
+        "ci_check": "tools/check-container-packet.py",
+        "profiles": {
+          "one-gpu": {
+            "cards": 1,
+            "tensor_parallel_size": 1
+          },
+          "two-gpu": {
+            "cards": 2,
+            "tensor_parallel_size": 2
+          }
+        },
+        "env_files": [
+          "packages/qwen35-4b-w4a16-b70/env/one-gpu.env",
+          "packages/qwen35-4b-w4a16-b70/env/two-gpu.env"
+        ],
+        "scripts": {
+          "preflight": "packages/qwen35-4b-w4a16-b70/scripts/preflight.sh",
+          "download": "packages/qwen35-4b-w4a16-b70/scripts/download-model.sh",
+          "verify": "packages/qwen35-4b-w4a16-b70/scripts/verify.sh",
+          "smoke_test": "packages/qwen35-4b-w4a16-b70/scripts/smoke-test.sh"
+        },
+        "shared_implementation": "tools/container-packet/",
+        "note": "compose.yaml is rendered from the argv repro/qwen35-4b-w4a16-b70/scripts/run-qwen35-4b-w4a16-server.sh hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding."
+      }
     },
     {
       "manifest": "packages/qwen35-9b-fp8-b70/package.json",
@@ -2302,6 +2347,14 @@
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w4a16-strategy-override-dump-r220-20260905.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-c-default-align-r137b-20260902.patch",
         "experiments/qwen38-27b-b70/patches/onednn-qwen38-w8a16-fixed-k-align16-r137a-20260902.patch",
+        "packages/qwen35-9b-fp8-b70/compose.yaml",
+        "packages/qwen35-9b-fp8-b70/env/one-gpu.env",
+        "packages/qwen35-9b-fp8-b70/env/two-gpu.env",
+        "packages/qwen35-9b-fp8-b70/scripts/download-model.sh",
+        "packages/qwen35-9b-fp8-b70/scripts/preflight.sh",
+        "packages/qwen35-9b-fp8-b70/scripts/render-compose.sh",
+        "packages/qwen35-9b-fp8-b70/scripts/smoke-test.sh",
+        "packages/qwen35-9b-fp8-b70/scripts/verify.sh",
         "repro/gemma4-26b-a4b-q8-b70/realistic-suite-v1.json",
         "repro/qwen35-9b-fp8-b70/README.md",
         "repro/qwen35-9b-fp8-b70/manifests/model-direct-redhatai-qwen35-9b-fp8-dynamic-790f0576.json",
@@ -2315,14 +2368,51 @@
         "scripts/bench-openai-concurrency-oracle.py",
         "scripts/bench-openai-realistic-suite.py",
         "scripts/compare-strict-attempt-outputs.py",
-        "scripts/neural-download-canaries.py"
+        "scripts/neural-download-canaries.py",
+        "tools/check-container-packet.py",
+        "tools/container-packet/download-model.sh",
+        "tools/container-packet/preflight.sh",
+        "tools/container-packet/smoke-test.sh",
+        "tools/container-packet/verify.sh",
+        "tools/render-container-compose.py",
+        "tools/render-container-packet.sh"
       ],
       "evidence": [
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json"
       ],
       "missing": [
         "clean-host replay"
-      ]
+      ],
+      "container_packet": {
+        "level": 2,
+        "compose": "packages/qwen35-9b-fp8-b70/compose.yaml",
+        "generated": true,
+        "generator": "packages/qwen35-9b-fp8-b70/scripts/render-compose.sh",
+        "generated_from": "repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh",
+        "ci_check": "tools/check-container-packet.py",
+        "profiles": {
+          "one-gpu": {
+            "cards": 1,
+            "tensor_parallel_size": 1
+          },
+          "two-gpu": {
+            "cards": 2,
+            "tensor_parallel_size": 2
+          }
+        },
+        "env_files": [
+          "packages/qwen35-9b-fp8-b70/env/one-gpu.env",
+          "packages/qwen35-9b-fp8-b70/env/two-gpu.env"
+        ],
+        "scripts": {
+          "preflight": "packages/qwen35-9b-fp8-b70/scripts/preflight.sh",
+          "download": "packages/qwen35-9b-fp8-b70/scripts/download-model.sh",
+          "verify": "packages/qwen35-9b-fp8-b70/scripts/verify.sh",
+          "smoke_test": "packages/qwen35-9b-fp8-b70/scripts/smoke-test.sh"
+        },
+        "shared_implementation": "tools/container-packet/",
+        "note": "compose.yaml is rendered from the argv repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding."
+      }
     },
     {
       "manifest": "packages/qwen35-9b-w4a16-b70/package.json",
@@ -2735,7 +2825,6 @@
         "packages/qwen35-9b-w4a16-b70/env/two-gpu.env",
         "packages/qwen35-9b-w4a16-b70/scripts/download-model.sh",
         "packages/qwen35-9b-w4a16-b70/scripts/preflight.sh",
-        "packages/qwen35-9b-w4a16-b70/scripts/render-compose.py",
         "packages/qwen35-9b-w4a16-b70/scripts/render-compose.sh",
         "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh",
         "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
@@ -2755,7 +2844,13 @@
         "scripts/bench-openai-realistic-suite.py",
         "scripts/compare-strict-attempt-outputs.py",
         "scripts/neural-download-canaries.py",
-        "tools/check-container-packet.py"
+        "tools/check-container-packet.py",
+        "tools/container-packet/download-model.sh",
+        "tools/container-packet/preflight.sh",
+        "tools/container-packet/smoke-test.sh",
+        "tools/container-packet/verify.sh",
+        "tools/render-container-compose.py",
+        "tools/render-container-packet.sh"
       ],
       "evidence": [
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-c128-identity-ladder.json",
@@ -2792,7 +2887,8 @@
           "verify": "packages/qwen35-9b-w4a16-b70/scripts/verify.sh",
           "smoke_test": "packages/qwen35-9b-w4a16-b70/scripts/smoke-test.sh"
         },
-        "note": "compose.yaml is rendered from the argv the recipe launcher hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding."
+        "note": "compose.yaml is rendered from the argv the recipe launcher hands to docker run, so it carries the measured container's 73 environment variables and full serve command verbatim rather than a hand-copied approximation. The model is mounted read-only, the image is pinned by digest, and the port is bound to loopback; CI fails the build if any of that stops holding.",
+        "shared_implementation": "tools/container-packet/"
       }
     },
     {
