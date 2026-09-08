@@ -4,7 +4,7 @@
  "status": "Qwen3.5-9B FP8-dynamic, two B70s (TP2), MTP depth 3 via qwen3_5_mtp with full decode-only XPU graph capture: strict pair 147.712022/147.890098 tok/s class-balanced median (tokens 1-100 after TTFT), G1/G2/G3 exact",
  "image_id": "sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad",
  "image_tag": "neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276",
- "image_ghcr": "ghcr.io/steveseguin/vllm-openai-xpu-b70@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad (also ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277…)",
+ "image_ghcr": "ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad (public, anonymously pullable; the identical image also sits in the private mirror ghcr.io/steveseguin/vllm-openai-xpu-b70)",
  "compilation_config": null,
  "speculative_config": {
   "method": "qwen3_5_mtp",

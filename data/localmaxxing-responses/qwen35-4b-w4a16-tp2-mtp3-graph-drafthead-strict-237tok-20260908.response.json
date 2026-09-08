@@ -1,0 +1,12 @@
+{
+ "label": "qwen35-4b-w4a16-tp2-mtp3-graph-drafthead-strict-237tok-20260908",
+ "http_status": 201,
+ "response": {
+  "id": "cmtrycz0y002pps011142ifrk",
+  "status": "APPROVED"
+ },
+ "submitted_at_utc": "2026-09-08T01:05:00+00:00",
+ "payload_queue": "data/localmaxxing-qwen35-4b-w4a16-tp2-mtp3-graph-drafthead-strict-237tok-20260908.queue.json",
+ "tokSOut": 236.916147,
+ "note": "Submitted figure is the mean of all four two-card depth-3 servers across campaigns t1 and t2 (240.615, 227.533, 240.158, 239.359), not campaign t2's own pair at 239.758: t2 was run because t1's pair was too widely spread to submit, so quoting t2 alone would be selecting the better campaign."
+}
