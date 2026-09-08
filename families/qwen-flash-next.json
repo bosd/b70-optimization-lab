@@ -2169,6 +2169,45 @@
       }
     },
     {
+      "id": "qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908",
+      "label": "Qwen3.8 Flash-Next FP8 ? TP4+EP4 graph, no speculation, W13-N64",
+      "revision": "qwen38-flash-next",
+      "artifact_id": "qwen38-flash-next-fp8-bcd9f01",
+      "quantization": "FP8 block-128",
+      "runtime": "vLLM XPU 2a372e860e273273357cb7437ac7de1694304f9f + W13-N64 tuned map",
+      "cards": 4,
+      "status": "candidate",
+      "evidence_level": "B70-verified originating-host replay; clean-host replay pending",
+      "coverage": [
+        "decode",
+        "exactness",
+        "runtime provenance",
+        "recipe"
+      ],
+      "manifest": "packages/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/package.json",
+      "grades": {
+        "capability": {
+          "grade": "B",
+          "scope": "Originating-host TP4/EP4 no-speculation W13-N64 text serving on the fixed cold realistic suite",
+          "basis": "The existing promotion attestation binds the A326 fresh-server repeat to unchanged MTP0 output identity at exact 2K and 4K across three servers. Clean-host installation, container delivery, and a context sweep remain pending.",
+          "reviewed_at": "2026-09-08",
+          "evidence": [
+            "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json"
+          ]
+        },
+        "evidence": {
+          "grade": "B",
+          "scope": "A325 and A326 W13-N64 MTP0 cold-suite runs, with A326 retained as the lower repeat",
+          "basis": "The package identity pins the performance evidence and three-server exact-depth output comparisons by hash. The recorded medians are 34.510128 and 34.495292 tok/s; this is originating-host evidence only.",
+          "reviewed_at": "2026-09-08",
+          "evidence": [
+            "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json",
+            "repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/identity.json"
+          ]
+        }
+      }
+    },
+    {
       "id": "qwen38-flash-next-fp8-tp4-mtp1-lossless-b70-27tps-20260905",
       "label": "Qwen3.8 Flash-Next FP8 · TP4+EP4 graph + lossless MTP1",
       "revision": "qwen38-flash-next",

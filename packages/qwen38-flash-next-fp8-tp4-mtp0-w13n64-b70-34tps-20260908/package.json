@@ -31,25 +31,26 @@
    "four cards",
    "TP4",
    "EP4",
-   "MTP1",
    "XPU graph",
    "UVA offload",
    "expert host placement",
    "lab replay",
    "originating host",
-   "lossless speculation",
    "Triton HC glue",
    "new output authority",
    "fused QSA pre-indexer",
-   "reference kernels restored"
+   "reference kernels restored",
+   "MTP0",
+   "no speculation",
+   "W13-N64"
   ],
-  "published_at": "2026-09-07",
+  "published_at": "2026-09-08",
   "featured_metric": {
-   "value": 37.82565425736173,
+   "value": 34.495291913070886,
    "unit": "tok/s",
    "label": "class-balanced decode median",
-   "scope": "Median of prompt-class medians over 99 inter-token intervals after TTFT on the fixed cold 12-prompt realistic suite, sent once (A306, 2026-09-07).",
-   "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-qsafused-realistic-suite-v1-result.json"
+   "scope": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed realistic suite run once cold; A326 fresh-server repeat, 2026-09-08.",
+   "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-fresh-realistic-suite-v1-result.json"
   }
  },
  "contributors": [
@@ -60,8 +61,8 @@
    "profile": "https://github.com/steveseguin/b70-optimization-lab",
    "contribution": "Flash-Next XPU bring-up, deterministic full-decode graph, lossless MTP1 verification, the VRAM-headroom root cause, the per-expert host placement (offset-table Triton MoE kernel, load-time placement, tuned-map key on the logical expert count), the Triton hyper-connection glue and the fused QSA pre-indexer on XPU (the torch-fallback root cause of the 8.4 ms hyper-connection mixes), new-authority certification across five servers, frozen-packet certification, and record packaging.",
    "status": "integrated",
-   "validated_effect": "37.825654 tok/s class-balanced (A306) against 37.045844 for the Triton-HC line and 31.929484 for the placement line, with MTP1 lossless within the lineage; exact-2K 38.98 and exact-4K 39.30 tok/s on the certification battery (A305); the outputs are a new authority whose difference is at depth, with the quality profile preserved byte for byte.",
-   "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp1-a306-promotion-attestation.json"
+   "validated_effect": "34.495292 tok/s class-balanced on the fresh-server A326 repeat; A325 measured 34.510128 tok/s. No speculation; W13-N64 preserves the superseded MTP0 output stream across three servers at exact 2K and 4K.",
+   "evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json"
   }
  ],
  "hardware": {
@@ -76,8 +77,8 @@
  "runtime": {
   "kind": "native",
   "repository": "vllm-project/vllm",
-  "revision": "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a",
-  "build": "repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/README.md"
+  "revision": "2a372e860e273273357cb7437ac7de1694304f9f",
+  "build": "repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/README.md"
  },
  "project_patches": {
   "required": true,
@@ -96,11 +97,11 @@
   "reason": "The record loads the lab's nine placement commits over its 55-commit lossless-MTP1 overlay on public vLLM 76cfe1cd, the hosted 2f829747 kernel stage, and the hosted public oneCCL 4ceafd1 build; all are pinned by bytes, and the never-routed expert placement file is pinned by hash."
  },
  "commands": {
-  "preflight": "repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/verify-identity.sh",
-  "launch": "REPRO_ATTEMPT=<unused number above 272> repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/run-record-gate.sh",
+  "preflight": "Follow the Run it section of repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/README.md and verify identity.json, frozen-a325-a326-packets.sha256, and verifier-and-map-pin.txt before replay.",
+  "launch": "Follow the native sibling restore-source procedure linked from the guide, with overlay 2a372e860e273273357cb7437ac7de1694304f9f, MTP=0, and configs/moe-m1-w13-n64. A standalone clean-host launcher is not certified.",
   "health": "curl -fsS http://127.0.0.1:19900/health",
-  "benchmark": "The record gate sends the fixed cold 12-prompt realistic suite exactly once through the frozen client and compares every output SHA-256 and gate with the record (check-replay-result.py).",
-  "stop": "The packet supervisor tears the server down after the client run and writes /tmp/q38-mtp1-ple-only-a<N>.rc; verify no Worker_TP process or listener on the packet port remains."
+  "benchmark": "Replay the frozen A325/A326 cold 12-prompt realistic suite once; compare against the package identity and A326 promotion attestation. Do not run the sibling MTP1 record gate for this package.",
+  "stop": "Use the frozen MTP0 packet supervisor teardown and verify that its workers and listener are gone before another attempt."
  },
  "dependencies": [
   "data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp0-qsafused-realistic-20260907.json",
@@ -161,7 +162,10 @@
   "results/qwen38-flash-next-fp8-b70/README.md",
   "scripts/bench-openai-concurrency.py",
   "scripts/bench-openai-realistic-suite.py",
-  "scripts/bench-openai-token-depth-suite.py"
+  "scripts/bench-openai-token-depth-suite.py",
+  "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json",
+  "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-fresh-realistic-suite-v1-result.json",
+  "experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n64"
  ],
  "missing": [
   "built and replayed container image",
