@@ -1,0 +1,54 @@
+{
+  "reference": "A304 certified MTP0 W13-N32 exact-4k (head 2a372e86)",
+  "reference_sha256": "1d833e5f463366223a669aa15495840d1337b173e675a9ea04f00a5ae339d5cc",
+  "servers": {
+    "A321": "W13-N64 map, head 2a372e86, first server",
+    "A322": "W13-N64 map, head 2a372e86, fresh server",
+    "A323": "W13-N64 map, head 2a372e86, third server"
+  },
+  "rows": [
+    {
+      "run": "a321-exact-4k-r1",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.096
+    },
+    {
+      "run": "a321-exact-4k-r2",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.034
+    },
+    {
+      "run": "a322-exact-4k-r1",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.105
+    },
+    {
+      "run": "a322-exact-4k-r2",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.098
+    },
+    {
+      "run": "a323-exact-4k-r1",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.089
+    },
+    {
+      "run": "a323-exact-4k-r2",
+      "overlay_head": "W13-N64",
+      "output_sha12": "1d833e5f4633",
+      "ids_equal_to_reference": true,
+      "tok_s": 34.11
+    }
+  ],
+  "all_identical": true
+}
