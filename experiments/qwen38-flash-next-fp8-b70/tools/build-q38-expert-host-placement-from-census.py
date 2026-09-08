@@ -58,6 +58,11 @@ def main() -> None:
                          "(0 = the original never-hit policy; a parked pair that is selected "
                          "costs a PCIe read of a whole expert row)")
     ap.add_argument("--compare", help="the placement the census run used, for the before/after count")
+    ap.add_argument("--match-compare-shape", action="store_true",
+                    help="park exactly as many experts per (rank, layer) as --compare does, "
+                         "choosing the coldest by this census. Host bytes and therefore VRAM "
+                         "are then identical to the compared placement, so the only variable "
+                         "is which experts are parked")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
 
@@ -77,7 +82,13 @@ def main() -> None:
                 continue
             cand = sorted((layer_counts.get(e, 0), e) for e in range(a.experts_per_rank))
             room = max(0, budget - total)
-            chosen = [e for c, e in cand[:per_layer] if c <= a.max_count][:room]
+            if a.match_compare_shape:
+                if old is None:
+                    raise SystemExit("--match-compare-shape needs --compare")
+                want = len(old.get(str(rank), {}).get(str(L), []))
+                chosen = [e for _, e in cand[:want]]
+            else:
+                chosen = [e for c, e in cand[:per_layer] if c <= a.max_count][:room]
             if chosen:
                 placement[str(L)] = sorted(chosen)
                 total += len(chosen)

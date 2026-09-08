@@ -1,0 +1,12 @@
+(Worker_TP3_EP3 pid=143314) INFO 09-07 21:26:44 [q38_expert_placement.py:59] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2322 host-placed selections of 209130 routed blocks (1.1103%)
+(Worker_TP0_EP0 pid=142745) INFO 09-07 21:26:44 [q38_expert_placement.py:59] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 314174 host-placed selections of 1794890 routed blocks (17.5038%)
+(Worker_TP2_EP2 pid=143117) INFO 09-07 21:26:44 [q38_expert_placement.py:59] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2308 host-placed selections of 217244 routed blocks (1.0624%)
+(Worker_TP1_EP1 pid=142936) INFO 09-07 21:26:44 [q38_expert_placement.py:59] Q38_PLACEMENT_HIT_CENSUS after 4800 launches: 2188 host-placed selections of 217136 routed blocks (1.0077%)
+(Worker_TP2_EP2 pid=143117) INFO 09-07 21:26:44 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank2.json: routing census for 48 layers
+(Worker_TP1_EP1 pid=142936) INFO 09-07 21:26:44 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank1.json: routing census for 48 layers
+(Worker_TP0_EP0 pid=142745) INFO 09-07 21:26:44 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank0.json: routing census for 48 layers
+(Worker_TP3_EP3 pid=143314) INFO 09-07 21:26:44 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank3.json: routing census for 48 layers
+(Worker_TP1_EP1 pid=142936) INFO 09-07 21:32:09 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank1.json: routing census for 48 layers
+(Worker_TP2_EP2 pid=143117) INFO 09-07 21:32:09 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank2.json: routing census for 48 layers
+(Worker_TP0_EP0 pid=142745) INFO 09-07 21:32:09 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank0.json: routing census for 48 layers
+(Worker_TP3_EP3 pid=143314) INFO 09-07 21:32:09 [q38_expert_placement.py:232] Q38_PLACEMENT_HIT_CENSUS wrote /tmp/q38-a315-census-rank3.json: routing census for 48 layers
