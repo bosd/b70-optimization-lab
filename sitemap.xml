@@ -69,4 +69,18 @@
   <url><loc>https://neural.download/models/qwen38-27b-q4km-tp1-b70.html</loc><lastmod>2026-08-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://neural.download/models/qwen38-27b-q4km-tp2-asrock-b70.html</loc><lastmod>2026-08-23</lastmod><priority>0.8</priority></url>
   <url><loc>https://neural.download/models/qwen38-27b-q8-tp2-asrock-b70.html</loc><lastmod>2026-08-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen-4b.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen-9b.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen-flash-next.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen35-4b-w4a16-b70.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen35-9b-fp8-b70.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen35-9b-w4a16-b70.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-27b-autoround-int4-b70.html</loc><lastmod>2026-09-06</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-27b-q8-q4mtp-mtp2-tp1-b70.html</loc><lastmod>2026-09-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-27b-q8-tp1-b70.html</loc><lastmod>2026-09-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908.html</loc><lastmod>2026-09-08</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-flash-next-fp8-tp4-mtp1-lossless-b70-27tps-20260905.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-flash-next-fp8-tp4-mtp1-placement-b70-32tps-20260906.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://neural.download/models/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907.html</loc><lastmod>2026-09-07</lastmod><priority>0.8</priority></url>
 </urlset>
