@@ -213,14 +213,17 @@ the offload and the placement untouched.
 | fixed cold realistic suite, lossless MTP1 | 37.045844 (A272); replays 37.426051 (A331), 37.117799 (A332), mean 37.1966 | **37.825654 tok/s** (A306), LocalMaxxing run `cmtrmp3mj001fps01thcathd0` approved; replays 37.622275 (A328), 37.946213 (A329), mean 37.7980 | twelve fresh rows, cached_tokens 0; three suites per overlay, ranges do not overlap |
 
 **On the size of this step.** Comparing the two published medians gives +0.7798 tok/s, but each
-side was one suite, and this lineage's suite-to-suite spread is about 0.32 (measured on three
-replays of a single frozen packet). Three suites per overlay were run on 2026-09-08: Triton-HC
-37.0458 / 37.4261 / 37.1178 (mean 37.1966) against fused-QSA 37.8257 / 37.6223 / 37.9462 (mean
-37.7980). The ranges do not overlap — the slowest fused-QSA run beats the fastest Triton-HC run
-by 0.1962 — so **the improvement is real**, and its size is **about +0.60 tok/s (+1.6%)** on means
-rather than the +0.78 the single-suite pairing suggested. Both published values sit inside their
-own lineage's replay range, so neither record is affected; only the derived gap narrows. See
-[the three-versus-three comparison](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-08-the-fused-qsa-improvement-is-real-and-smaller-than-published.md).
+side was one suite, and this lineage's suite-to-suite spread is large. Replays on 2026-09-08:
+Triton-HC 37.0458 / 37.4261 / 37.1178 (mean 37.1966, sd 0.165) against fused-QSA 37.8257 /
+37.6223 / 37.9462 / 37.0745 (mean 37.6172, sd **0.334**). Three of the four fused-QSA runs
+exceed every Triton-HC run and the means differ by +0.42 in the expected direction, so the
+improvement is real — but the fused-QSA spread is comparable to the effect, the ranges do
+overlap once a fourth sample is taken, and the gap of means has read +0.78, +0.60 and +0.42
+as samples were added. **This lineage does not support a point estimate of the step at that
+precision.** Read it as *of order half a tok/s, with noise of the same order*; a sharper
+number needs a paired alternating design rather than more suites on one side. Both published
+records replay and are unaffected. See
+[the four-sample correction](../../experiments/qwen38-flash-next-fp8-b70/notes/2026-09-08-a338-the-mtp1-cross-lineage-gap-does-not-hold-a-point-estimate.md).
 
 The honest part of this record is what moved and what did not. The outputs are a new
 authority and **the difference is at depth, not in quality**: exact-2K coincides with the
