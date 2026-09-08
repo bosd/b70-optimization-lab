@@ -27,7 +27,7 @@ EXPECTED_BASE_CONFIG_SHA256 = (
     "91e5d8b692da3febbba7cb07ee4fdab319909da0c82c1fda95b92dc42d680464"
 )
 EXPECTED_CANDIDATE_CONFIG_SHA256 = (
-    "a8f1f8982e3e1af80ff31b9e0a00afaacf1af1b3c401585109b4d60d3c8267be"
+    "89c130d70a34432124b9cee1621080ea75f4b303c20bce784d13af82e4219894"
 )
 EXPECTED_FUSED_MOE_SHA256 = (
     "4b376eb5e22e7972a1d70e4012999650ab961719d6309cbec27a6104fa64d0a0"
@@ -45,10 +45,9 @@ EXPECTED_MODULAR_KERNEL_SHA256 = (
 EXPECTED_VLLM_HEADS = frozenset(
     {
         "cbc3cb588a7cae8dcc489fb4dfc1a800d19980d9",
-        # a9115342: the per-phase validator admits BLOCK_SIZE_N=16 (the tile this verifier
-        # qualifies). It widens an allowlist and changes nothing else; the three hashed MoE
-        # files are still proven independently by validate_source().
-        "a911534224263a2ed8a243d266eb5e2b562a3b87",
+        # c876369f: the same widening on the fused-QSA MTP0 overlay 2a372e86. MTP0 is the
+        # lineage a phase delta reaches, because it resolves only at M=1.
+        "c876369fb2d0f4ed5056786096005da74d1400c2",
         "805cde592dfe198a82deaba52894ebfc0e4a4352",
         # + V2 runner CUDAGraphStat receipt (no MoE change)
         "2169dbfe38c2954edc5ae50e94f68d45be071b79",
@@ -79,6 +78,7 @@ EXPECTED_FUSED_MOE_SHA256_BY_HEAD = {
     "622191221475b53cc6f7f4d847860939f4c300ab": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "2a372e860e273273357cb7437ac7de1694304f9f": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
     "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a": "c6903b8aa621e7cfd26f2572e384e1f65caa7d47d633b58d2c0cbf8713aee654",
+    "c876369fb2d0f4ed5056786096005da74d1400c2": "b8929fcfe977521ab9a5f5d9bfacb2c8076f4036adcfe3e439745b5b5929419c",
 }
 EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "cb59004b5c51e603ba06579382e66139d9a18bb6": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
@@ -87,6 +87,7 @@ EXPECTED_TRITON_MOE_SHA256_BY_HEAD = {
     "622191221475b53cc6f7f4d847860939f4c300ab": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "2a372e860e273273357cb7437ac7de1694304f9f": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
     "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
+    "c876369fb2d0f4ed5056786096005da74d1400c2": "c0ef7d8b64cb18621a43a78c99e9726a244d2b6dc1db6d9d4c9fb4eb0440cfa6",
 }
 EXPECTED_PHASE_CONFIG_PATCH_NAME = "0021-Add-opt-in-per-phase-Triton-MoE-configs.patch"
 EXPECTED_PHASE_CONFIG_PATCH_SHA256 = (
