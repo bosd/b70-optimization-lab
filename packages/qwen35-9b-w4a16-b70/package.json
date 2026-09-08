@@ -10,7 +10,7 @@
   "model_family": "Qwen3.5",
   "publisher": "RedHatAI (W4A16 of Alibaba / Qwen)",
   "variant": "9B W4A16 (compressed-tensors INT4 weights, FP16 activations) with the publisher MTP head",
-  "summary": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it.",
+  "summary": "RedHatAI's W4A16 Qwen3.5-9B served by vLLM XPU on one B70 through the lab's R276 image, with the publisher's MTP head as a lossless speculative draft. vLLM's compressed-tensors path selects the lab's wNa16 INT4 kernel, whose fixed-K two-tier strategy is row-count invariant: without speculation this route is byte-exact against a single request at every concurrency through 64 users, where the FP8 route on the same model flips a near-tie token from 16 users up. It is also 28% faster without speculation and 15% faster with it. The kernel is not the only reduction on that path: the RMSNorm this route runs is itself row-count dependent (measured 2026-09-08), so the route is exact in the regimes measured rather than exact by construction.",
   "quantization": "W4A16 (compressed-tensors INT4 weights, FP16 activations)",
   "runtime_label": "vLLM XPU",
   "operating_systems": [

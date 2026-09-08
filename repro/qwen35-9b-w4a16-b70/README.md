@@ -53,8 +53,19 @@ same launcher flips a near-tie token from 16 users up.
 | 64 | **1268.4 (64/64)** | 1253.8 (59/64) |
 
 No speculation, 128-token completions on the small-context suite, warm pass of
-two, `max-model-len 256`, `max-num-seqs 64`. The identity ceiling is a property
-of the kernel, not of the model or the workload.
+two, `max-model-len 256`, `max-num-seqs 64`. What separates the two columns is
+the kernel, not the model or the workload: same model, same publisher, same
+launcher, different matmul.
+
+One qualification, measured on 2026-09-08. The GEMM is row-count invariant by
+construction, but it is not the only reduction on this path: the RMSNorm this
+route runs is *not* row-count invariant, and gives about 2-3% of rows a
+last-bit difference once the batch reaches 16
+(`experiments/qwen35-9b-b70/notes/2026-09-08-the-rmsnorm-is-also-row-count-dependent.md`).
+So the right reading of the left-hand column is that this route is exact in the
+regimes measured, not that its kernel makes it exact everywhere. A last-bit
+perturbation only changes a token when it lands on a near-tie, which is why the
+ladder loses the occasional request at high concurrency rather than diverging.
 
 ### Speculative depth (campaigns d4, d5, d6)
 

@@ -20,7 +20,7 @@ concurrent, agreed on only 11/12, 9/12 and 11/12 of the twelve prompts. Three pr
 exactly two valid continuations, with servers picking independently: an exact tie in the next-token scores resolved by
 per-process state. On the INT4 kernel the same gate passes 12/12. The evidence is kept in
 [`experiments/qwen35-4b-b70/notes/2026-09-07-qwen35-4b-fp8-not-repeat-exact.md`](../../experiments/qwen35-4b-b70/notes/2026-09-07-qwen35-4b-fp8-not-repeat-exact.md)
-rather than discarded, because it is half of the evidence that the identity ceiling is a property of the kernel.
+rather than discarded, because it is half of the evidence that what separates the two routes is the matmul. The kernel is not the whole story though: the RMSNorm on the same path is also row-count dependent (measured 2026-09-08), so this route is exact in the regimes measured rather than exact by construction.
 
 ## Commands
 
