@@ -272,6 +272,12 @@ fixed_k_args=()
 for fixed_k_var in QWEN38_W4A16_FIXED_K QWEN38_W4A16_GEMM_MAXN QWEN38_W4A16_GEMM_STRATEGY_SMALL QWEN38_W4A16_GEMM_STRATEGY_LARGE QWEN38_GEMM_DUMP; do
   if [[ -n "${!fixed_k_var:-}" ]]; then fixed_k_args+=(--env "${fixed_k_var}=${!fixed_k_var}"); fi
 done
+# Row-chunked FP16 vocabulary projection (diagnostic overlay images only): split the lm_head into chunks of
+# at most N rows so each row's logits equal its single-row value. Forwarded only when set.
+lm_head_chunk_args=()
+if [[ -n "${VLLM_XPU_LM_HEAD_ROW_CHUNK:-}" && "${VLLM_XPU_LM_HEAD_ROW_CHUNK}" != 0 ]]; then
+    lm_head_chunk_args=(--env "VLLM_XPU_LM_HEAD_ROW_CHUNK=${VLLM_XPU_LM_HEAD_ROW_CHUNK}")
+fi
 # Serialised RMSNorm variance reduction (diagnostic overlay images only): reduce 2..N-row batches one
 # row at a time so a row's variance does not depend on how many rows share the batch. Forwarded only
 # when set, so the published profiles are unchanged.
@@ -384,6 +390,7 @@ exec docker run --rm --name "${container}" \
   "${w4a16_pad_args[@]}" \
   "${rowwise_allreduce_args[@]}" \
   "${rmsnorm_serial_args[@]}" \
+  "${lm_head_chunk_args[@]}" \
   --env PYTORCH_ALLOC_CONF=expandable_segments:True \
   --env CCL_ATL_TRANSPORT=ofi --env FI_PROVIDER=tcp --env FI_TCP_IFACE=lo \
   --env CCL_ZE_IPC_EXCHANGE=pidfd \

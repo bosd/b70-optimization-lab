@@ -109,6 +109,12 @@ hash_seed_env=()
 if [[ -n "${python_hash_seed}" ]]; then
     hash_seed_env=(-e "PYTHONHASHSEED=${python_hash_seed}")
 fi
+# Row-chunked FP16 vocabulary projection (diagnostic overlay images only): split the lm_head into chunks of
+# at most N rows so each row's logits equal its single-row value. Forwarded only when set.
+lm_head_chunk_env=()
+if [[ -n "${VLLM_XPU_LM_HEAD_ROW_CHUNK:-}" && "${VLLM_XPU_LM_HEAD_ROW_CHUNK}" != 0 ]]; then
+    lm_head_chunk_env=(-e "VLLM_XPU_LM_HEAD_ROW_CHUNK=${VLLM_XPU_LM_HEAD_ROW_CHUNK}")
+fi
 # Batch-invariant target lm_head (R65). Forwarded only when set. This is the third knob found missing
 # from this script after being present in run-w8a16-mtp1-server.sh; the no-speculation path had none
 # of them, so every mtp0 arm testing one was silently the control.
@@ -156,6 +162,7 @@ exec docker run --rm --name "${container}" \
     "${hash_seed_env[@]}" \
     "${w8a16_env[@]}" \
     "${lm_head_invariant_env[@]}" \
+    "${lm_head_chunk_env[@]}" \
     "${rowwise_allreduce_env[@]}" \
     "${rmsnorm_serial_env[@]}" \
     -e VLLM_BATCH_INVARIANT="${batch_invariant}" \
