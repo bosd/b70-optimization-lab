@@ -76,9 +76,15 @@ What this lane established, and what it costs to re-derive, is the identity acco
   direction, and **none of it is significant** - the pair reaches only `p = 0.15`
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-powered-arms-neither-mechanism-nor-the-pair-is-established.md)).
   Note the cost: the row-wise path costs `-65%` at 64 users, not the `-0.25%` published earlier from
-  an arm where the knob never reached the container, so it could not ship even if it worked. Settling
-  the pair needs 60-80 passes per arm; instrumenting the divergent requests' logits is the cheaper
-  route to the same question.
+  an arm where the knob never reached the container, so it could not ship even if it worked. Before
+  spending cards on another full-suite ladder, read
+  [the tie-site note](../experiments/qwen35-9b-b70/notes/2026-09-08-the-divergences-are-a-dozen-fixed-tie-sites.md):
+  the 25 divergences across those arms resolve to **12 fixed sites**, each flipping the same token at
+  the same position every time, and the rate is near zero on most prompts and about 6% on a handful.
+  Filling the batch with the fragile prompts instead of the whole suite gathers events roughly an
+  order of magnitude faster, turning a 60-80 pass experiment into one under ten. Enable logprobs when
+  doing it: the ladder requests them but the field came back empty, and the margin at the flipped
+  token is what would say which mechanism moved it.
 - The GEMM is not the only shape-dependent reduction on the path. The RMSNorm this route runs gives
   about 2-3% of rows a last-bit difference once the batch reaches 16
   ([probe](../experiments/qwen35-9b-b70/notes/2026-09-08-the-rmsnorm-is-also-row-count-dependent.md)),
