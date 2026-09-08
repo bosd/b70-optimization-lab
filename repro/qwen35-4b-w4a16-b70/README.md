@@ -38,8 +38,11 @@ does not: the second card is worth more to this model than to the 9B.
 | 32 users, no speculation | 1593.9 (32/32) | **2342.9 / 2353.9 (32/32)** |
 | 64 users, no speculation | 1725.1 (63/64) | **2752.6 / 2777.7 (62/64, 64/64)** |
 
-All strict gates pass 12/12 on both card counts, and the two two-card depth-3 servers returned byte-identical answers
-on all 12 prompts.
+All strict gates pass 12/12 on both card counts, and the two-card depth-3 servers returned byte-identical answers on
+all 12 prompts. LocalMaxxing `cmtrycz0y002pps011142ifrk` at `236.916 tok/s`, which is the mean of all four two-card
+depth-3 servers measured (`240.615`, `227.533`, `240.158`, `239.359`) rather than the better campaign's own pair
+(`239.758`): campaign t2 was run because t1's pair was too widely spread to submit, so quoting t2 alone would be
+selecting between campaigns.
 
 Two caveats belong with those numbers. The two-card depth-3 pair measured `240.615` and `227.533 tok/s`, a `5.8%`
 spread, where the one-card pair of the same lane differed by `0.13%`; two-card speculative decode is markedly noisier

@@ -3,7 +3,7 @@
 usage: build-localmaxxing-payload.py <campaign-root> <depth> <label> [--tp N] [--out-attestation P] [--out-queue P]"""
 import argparse, hashlib, json, os, statistics, subprocess
 ap = argparse.ArgumentParser(); ap.add_argument('root'); ap.add_argument('depth', type=int); ap.add_argument('label')
-ap.add_argument('--tp', type=int, default=1); ap.add_argument('--lane', default='fp8'); ap.add_argument('--hf'); ap.add_argument('--rev'); ap.add_argument('--quant', default='fp8'); ap.add_argument('--quant-detail'); ap.add_argument('--packet', default='qwen35-9b-fp8-b70'); ap.add_argument('--launcher', default='repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh'); ap.add_argument('--model-path', default='/path/to/Qwen3.5-9B-FP8-dynamic'); ap.add_argument('--out-attestation'); ap.add_argument('--out-queue'); a = ap.parse_args()
+ap.add_argument('--tp', type=int, default=1); ap.add_argument('--lane', default='fp8'); ap.add_argument('--hf'); ap.add_argument('--rev'); ap.add_argument('--quant', default='fp8'); ap.add_argument('--quant-detail'); ap.add_argument('--packet', default='qwen35-9b-fp8-b70'); ap.add_argument('--launcher', default='repro/qwen35-9b-fp8-b70/scripts/run-qwen35-9b-fp8-server.sh'); ap.add_argument('--model-path', default='/path/to/Qwen3.5-9B-FP8-dynamic'); ap.add_argument('--model-name', default='Qwen3.5-9B FP8-dynamic', help='model and quantization as it should read in the status line'); ap.add_argument('--out-attestation'); ap.add_argument('--out-queue'); a = ap.parse_args()
 repo = '/home/steve/b70-optimization-lab'; d = a.depth; A, B = f'mtp{d}-a', f'mtp{d}-b'
 def load(p): return json.load(open(p))
 def perf(lbl): return load(f'{a.root}/{lbl}/strict/performance.json')
@@ -18,7 +18,9 @@ inspect = load(f'{a.root}/{A}/container-inspect.json')[0]; env = {e.split('=',1)
 keep = ['VLLM_XPU_ENABLE_XPU_GRAPH','VLLM_XPU_DRAFT_LM_HEAD_INT4','VLLM_XPU_GDN_SPEC_GROUP','VLLM_XPU_GDN_SPLIT_MIXED','VLLM_BATCH_INVARIANT','TORCHINDUCTOR_DETERMINISTIC','PYTHONHASHSEED','QUANTIZATION','VLLM_XPU_FP8_BLOCK_W8A16']
 att = {
  'schema': 'b70-lab.result.v1', 'campaign_id': os.path.basename(a.root),
- 'status': f'Qwen3.5-9B FP8-dynamic, one B70 (TP{a.tp}), MTP depth {d} via qwen3_5_mtp with full decode-only XPU graph capture: strict pair {cb(sa):.6f}/{cb(sb):.6f} tok/s class-balanced median (tokens 1-100 after TTFT), G1/G2/G3 exact',
+ # The model and card count come from the arguments, not a template. Hardcoding them here is what put
+ # "Qwen3.5-9B FP8-dynamic, one B70 (TP2)" on 4B W4A16 two-card results in four published files.
+ 'status': f'{a.model_name}, {"one B70" if a.tp == 1 else f"{a.tp} B70s"} (TP{a.tp}), MTP depth {d} via qwen3_5_mtp with full decode-only XPU graph capture: strict pair {cb(sa):.6f}/{cb(sb):.6f} tok/s class-balanced median (tokens 1-100 after TTFT), G1/G2/G3 exact',
  'image_id': 'sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad', 'image_tag': 'neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276',
  'image_ghcr': 'ghcr.io/steveseguin/vllm-openai-xpu-qwen38-int4@sha256:521eb277c0733f8c2ce47aea1bb98ed576c6f1ad63bf5baf22d38fc07abf54ad (public; the identical image also sits in the private ghcr.io/steveseguin/vllm-openai-xpu-b70)',
  'compilation_config': json.loads(env.get('COMPILATION_CONFIG','{}')) if env.get('COMPILATION_CONFIG','').startswith('{') else env.get('COMPILATION_CONFIG'),
