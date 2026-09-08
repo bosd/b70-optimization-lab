@@ -75,6 +75,16 @@ What this lane established, and what it costs to re-derive, is the identity acco
   serialised norm 7, row-wise all-reduce 6, both 3. The trend is monotone and in the predicted
   direction, and **none of it is significant** - the pair reaches only `p = 0.15`
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-powered-arms-neither-mechanism-nor-the-pair-is-established.md)).
+  **Settled, and it closes this line:** with the batch filled by the twelve flip-prone prompts the
+  control yields 23 events instead of 9, and at that power the pair of interventions scores 24
+  against 23 - two-sided `p = 1.00`. Neither the cross-card all-reduce nor the serialised norm, alone
+  or together, affects the divergence. The same data shows why: byte-identical prompts issued in the
+  same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
+  be the explanation and shape-invariance interventions were never going to help
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
+  The next question is whether that tracks slot index or decode-step membership; the suspects for the
+  former are KV-cache placement, attention tiling over the batch dimension and the GDN state layout.
+  What follows is how that was reached.
   Note the cost: the row-wise path costs `-65%` at 64 users, not the `-0.25%` published earlier from
   an arm where the knob never reached the container, so it could not ship even if it worked. Before
   spending cards on another full-suite ladder, read

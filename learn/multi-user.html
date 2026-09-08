@@ -245,12 +245,14 @@
     <strong>One card, though.</strong> Everything above was measured on a single GPU. Add a second card and the
     guarantee weakens: the same INT4 build on two cards matched 63 of 64 answers at sixty-four users, in both passes,
     and the 4B model held only to thirty-two users. The kernel has not changed and is still the same row-count
-    invariant matmul, so whatever varies is something the second card adds. The obvious candidate is the step that
-    combines the two cards' partial results, whose summation order also depends on how much data it is given. We
-    tested that directly, by forcing every one of those combining steps to run the same way it does for a single
-    request: it did not reliably restore the missing answer, so the combining step is not the whole story and we do
-    not yet know what else contributes. What is settled is the practical part. If you need the byte-exact guarantee,
-    one card gives it and two do not.
+    invariant matmul, so whatever varies is something the second card adds. We tested the obvious candidate - the step
+    that combines the two cards' partial results - by forcing it to run the same way it does for a single request, and
+    then tested it together with the one other batch-size-dependent step we found. Neither helped at all. The reason
+    turned up in the same measurement: send the <em>identical</em> question sixty-four times at once, and the copies do
+    not all come back the same. They share a batch, a size, and every input, so how many requests are present cannot be
+    what separates them - which is why making the arithmetic independent of that number changed nothing. Something
+    about <em>where</em> a request sits in the batch matters, and we do not yet know what. What is settled is the
+    practical part. If you need the byte-exact guarantee, one card gives it and two do not.
   </p>
   <p>
     The obvious knob does not help. Padding the decode batch to fixed row counts, so the matmul always sees the same
