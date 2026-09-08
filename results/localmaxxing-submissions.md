@@ -131,6 +131,9 @@ the conventional 99-interval field.
 | Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, MTP0 | 4x Arc Pro B70 | **14.433684 conventional interval median (class-balanced; 14.757123 all-prompt median)**, fixed cold realistic gate, no speculation, outputs bit-identical across five servers | [`cmtn32b2w000tmm01t7j2wlpn`](https://www.localmaxxing.com/runs/cmtn32b2w000tmm01t7j2wlpn) | [packet](qwen38-flash-next-fp8-b70/README.md); [suite result](../experiments/qwen38-flash-next-fp8-b70/data/20260904-tp4-mtp0-a134-realistic-suite-v1-result.json); [attestation](../experiments/qwen38-flash-next-fp8-b70/data/20260904-tp4-mtp0-a134-promotion-attestation.json) |
 | Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, MTP0, VRAM headroom | 4x Arc Pro B70 | **25.617613 conventional interval median (class-balanced; 25.880608 all-prompt median)**, fixed cold realistic gate, no speculation, outputs identical to the approved 14.43 line on every row (1.6 GiB of expert weights host-offloaded ends the xe driver's whole-buffer VRAM paging) | [`cmtp3g14502cun701y5ey93rh`](https://www.localmaxxing.com/runs/cmtp3g14502cun701y5ey93rh) | [packet](qwen38-flash-next-fp8-b70/README.md); [suite result](../experiments/qwen38-flash-next-fp8-b70/data/20260905-tp4-mtp0-a188-realistic-suite-v1-result.json); [attestation](../experiments/qwen38-flash-next-fp8-b70/data/20260905-tp4-mtp0-a188-promotion-attestation.json) |
 | Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, lossless MTP1, VRAM headroom | 4x Arc Pro B70 | **27.048435 conventional interval median (class-balanced; 27.526174 all-prompt median)**, fixed cold realistic gate, one speculative token with every output pin equal to the MTP0 rows (twelve suite rows, exact-2K and exact-4K authorities) | [`cmtp5u0ip02eln701lntsl2ns`](https://www.localmaxxing.com/runs/cmtp5u0ip02eln701lntsl2ns) | [packet](qwen38-flash-next-fp8-b70/README.md); [suite result](../experiments/qwen38-flash-next-fp8-b70/data/20260905-tp4-mtp1-a189-realistic-suite-v1-result.json); [battery](../experiments/qwen38-flash-next-fp8-b70/data/20260905-tp4-mtp1-a190-fresh-repeat-deterministic-summary.json) |
+| Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, MTP0, both reference Triton kernels + W13-N64 map | 4x Arc Pro B70 | **34.495292 conventional interval median (class-balanced)**, fixed cold realistic gate, no speculation; two cold suites (34.510128, 34.495292), every row above every row of the record it supersedes; outputs bit-identical across three servers | [`cmts8zca50032ps01e0ddqm18`](https://www.localmaxxing.com/runs/cmts8zca50032ps01e0ddqm18) | [guide](../repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/), [attestation](../experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json) |
+| Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, lossless MTP1, both reference Triton kernels | 4x Arc Pro B70 | **37.825654 conventional interval median (class-balanced)**, fixed cold realistic gate, one speculative token with every output pin equal to the MTP0 rows | [`cmtrmp3mj001fps01thcathd0`](https://www.localmaxxing.com/runs/cmtrmp3mj001fps01thcathd0) | [guide](../repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/) |
+| Qwen3.8 Flash-Next 125B-A6B official FP8, TP4+EP4 deterministic full-decode graph, MTP0, both reference Triton kernels | 4x Arc Pro B70 | **33.797067 conventional interval median (class-balanced)**, fixed cold realistic gate, no speculation. Superseded 2026-09-08 by `cmts8zca50032ps01e0ddqm18`; retained | [`cmtrmp37v001bps01a7fi46nf`](https://www.localmaxxing.com/runs/cmtrmp37v001bps01a7fi46nf) | [attestation](../experiments/qwen38-flash-next-fp8-b70/data/20260907-tp4-mtp0-a301-promotion-attestation.json) |
 | Qwen3.6 35B Quark INT8, TP4 | 4x Arc Pro B70 | 93.551 output tok/s, strict deep gate | `cmqq4mw4c00yfqo01gb2ucgxj` | [packet](qwen36-35b-quark-int8-b70/README.md) |
 | Qwen3.6 27B GGUF Q4_0, native DFlash5 + Xe2 M6 | 1x Arc Pro B70 | 47.819 median tok/s, fixed cold realistic gate | `cmrjbx8bc02g8mj01yzz2v701` | [evidence](../data/qwen36-27b-mtp-gguf-q4-b70-baselines/q6top1-aot-realistic128-r2-20260713.json) |
 | MiniMax M2.7 AutoRound INT4 | 4x Arc Pro B70 | 65.752 output tok/s, quality-gated public row | `cmp6a5c1o00mpo3011hg8ncyp` | [packet](minimax-m27-int4-autoround-b70/README.md) |
@@ -743,6 +746,61 @@ events. Payload queue:
 | label | run id | c | headline | notes |
 | --- | --- | ---: | ---: | --- |
 | `qwen38-flash-next-official-fp8-tp4-fullgraphdet-mtp0-realistic-20260904` | `cmtn32b2w000tmm01t7j2wlpn` | 1 | **14.433684 class-balanced median of prompt-class medians, 99 intervals after TTFT** (all-prompt median 14.757123, p10 14.015291, full after-TTFT 16.058, wall 15.046, TTFT median 1.86 s) | attestation `20260904-tp4-mtp0-a134-promotion-attestation.json` binds the suite JSON to the A73/A78 quality and determinism evidence |
+### Qwen3.8 Flash-Next official FP8, TP4+EP4 deterministic full-decode graph, MTP0, W13-N64 MoE map (2026-09-08)
+
+Approved on submission (HTTP 201, run `cmts8zca50032ps01e0ddqm18`), validated against the
+server dry-run endpoint first. Identity: the MTP0 record's own overlay `2a372e86` with both
+reference Triton kernels restored (`VLLM_XPU_HC_TRITON=1`, `VLLM_XPU_QSA_FUSED_INDEXER=1`),
+never-routed experts host-placed at 3.5 GiB/rank, `FULL_DECODE_ONLY` capture size 1,
+`VLLM_XPU_MKLDNN_DETERMINISTIC=1`, public oneCCL twoshots, TP4/EP4, 4352 served tokens, no
+speculation — and **one line of the tuned M1 MoE map changed**: `W1_CONFIG.BLOCK_SIZE_N`
+32 -> 64, which makes the W13 phase tile equal to the base tile so the phase delta is inert.
+No source change: 64 was already an allowed tile, so the certified head runs unmodified and
+the configuration is simpler than the 33.797067 one it supersedes.
+
+Two cold suites, A325 (34.510128) and A326 (34.495292, fresh server); this submission reports
+the lower. Every row of both is above every row of the superseded A301 suite, cache zero on
+all twelve prompts. Lossless: six exact-2K and six exact-4K rows across A321/A322/A323 on
+three servers all carry the certified stream's hashes `afffd2110812…` and `1d833e5f4633…`.
+The server tile ladder measured around it: 31.39 at 16 (A320), 33.38 at 32 (A304, superseded),
+34.15 at 64, 26.29 at 128 (A327) — an optimum, and this record sits on it.
+
+Guide: `repro/qwen38-flash-next-fp8-tp4-mtp0-w13n64-b70-34tps-20260908/`. Payload queue:
+`experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-localmaxxing-payload-queue.json`;
+receipt `data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp0-qsafused-w13n64-realistic-20260908.json`.
+
+| label | run id | c | headline | notes |
+| --- | --- | ---: | ---: | --- |
+| `qwen38-flash-next-official-fp8-tp4-fullgraphdet-mtp0-placement-hctriton-qsafused-w13n64-realistic-20260908` | `cmts8zca50032ps01e0ddqm18` | 1 | **34.495292 class-balanced median of prompt-class medians, 99 intervals after TTFT** | supersedes `cmtrmp37v001bps01a7fi46nf` (33.797067), which is retained |
+
+### Qwen3.8 Flash-Next official FP8, TP4+EP4 deterministic full-decode graph, lossless MTP1, both reference Triton kernels (2026-09-07)
+
+Approved on submission (HTTP 201, run `cmtrmp3mj001fps01thcathd0`). Identity: the fused-QSA
+MTP1 overlay `6d872457` — the QSA pre-indexer restored to the model's own fused reference
+kernel on top of the Triton-HC glue restoration — with the lossless MTP1 selectors, never-routed
+experts host-placed at 3.5 GiB/rank, `FULL_DECODE_ONLY` capture sizes 1 and 2,
+`VLLM_XPU_MKLDNN_DETERMINISTIC=1`, public oneCCL twoshots, W13-N32 MoE map, TP4/EP4, 4352
+served tokens, one speculative token. Frozen packets A305 (frozen-client battery) and A306
+(suite). Guide: `repro/qwen38-flash-next-fp8-tp4-mtp1-qsafused-b70-38tps-20260907/`. Receipt
+`data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp1-qsafused-realistic-20260907.json`.
+
+| label | run id | c | headline | notes |
+| --- | --- | ---: | ---: | --- |
+| `qwen38-flash-next-official-fp8-tp4-fullgraphdet-mtp1-placement-hctriton-qsafused-realistic-20260907` | `cmtrmp3mj001fps01thcathd0` | 1 | **37.825654 class-balanced median of prompt-class medians, 99 intervals after TTFT** | fastest lossless-MTP1 line |
+
+### Qwen3.8 Flash-Next official FP8, TP4+EP4 deterministic full-decode graph, MTP0, both reference Triton kernels (2026-09-07)
+
+Approved on submission (HTTP 201, run `cmtrmp37v001bps01a7fi46nf`). The MTP0 twin of the row
+above: overlay `2a372e86`, both reference Triton kernels restored, never-routed experts
+host-placed, W13-N32 MoE map, no speculation. Frozen packets A304 (frozen-client battery) and
+A301 (suite). **Superseded on 2026-09-08** by `cmts8zca50032ps01e0ddqm18` (34.495292) and
+retained. Receipt
+`data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp0-qsafused-realistic-20260907.json`.
+
+| label | run id | c | headline | notes |
+| --- | --- | ---: | ---: | --- |
+| `qwen38-flash-next-official-fp8-tp4-fullgraphdet-mtp0-placement-hctriton-qsafused-realistic-20260907` | `cmtrmp37v001bps01a7fi46nf` | 1 | **33.797067 class-balanced median of prompt-class medians, 99 intervals after TTFT** | superseded, retained |
+
 ### Qwen3.8 Flash-Next official FP8, TP4+EP4 deterministic full-decode graph, lossless MTP1, never-routed experts host-placed (2026-09-06)
 
 Approved on submission (HTTP 201, run `cmtq59cy503jvn701kgvg62zt`). Identity: the lossless
