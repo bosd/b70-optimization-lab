@@ -7252,8 +7252,8 @@
         "scripts/bench-openai-token-depth-suite.py"
       ],
       "missing": [
-        "beginner recovery flow",
         "built and replayed container image",
+        "clean-host beginner install path (the recovery flow now in the guide covers failures during a run, not a first install)",
         "container recipe (not published for this line; see CONTAINER-STATUS.md for the shared torch-ABI blocker)",
         "decode, prefill, and TTFT context sweep",
         "installable dependency hash lock",
