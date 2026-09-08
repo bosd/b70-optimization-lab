@@ -1,0 +1,93 @@
+{
+  "format": "qwen38-flash-next-w13n64-mtp0-record-identity-v1",
+  "record": {
+    "profile_id": "qwen38-flash-next-fp8-tp4-mtp0-fullgraphdet-4352-placement-hctriton-qsafused-w13n64-realistic-v1",
+    "class_balanced_median_tok_s": 34.495291913070886,
+    "aggregation": "median of prompt-class medians, 99 inter-token intervals after TTFT, fixed cold realistic suite run once",
+    "localmaxxing_run": "cmts8zca50032ps01e0ddqm18",
+    "measured_run": "A326 (2026-09-08), fresh cold server",
+    "first_suite": "A325 (2026-09-08): 34.510128 class-balanced; every row of both suites above every row of the superseded A301 suite",
+    "supersedes": {
+      "class_balanced_median_tok_s": 33.79706657409935,
+      "measured_run": "A301 (2026-09-07)",
+      "localmaxxing_run": "cmtrmp37v001bps01a7fi46nf",
+      "retained": true
+    },
+    "attestation": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json",
+    "attestation_sha256": "30401bfa87575979a28eb29d1f3067e7c21de2b495e0ad8382aac5e0e93d838a",
+    "performance_evidence": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-fresh-realistic-suite-v1-result.json",
+    "performance_evidence_sha256": "fdcf3d13c5c7b46c003feb080539cea196b9ed7c9d486bb5c467bbf29c086c29",
+    "suite_sha256": "0ad543d1c1f379a0b6cee88e06236e495c45eee7ba12cfcef062b6e03303e812",
+    "lossless_evidence": {
+      "exact_2k": {
+        "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-2k-three-server-summary.json",
+        "sha256": "f7520b41578621d68b08707379b374d7f20fc775e54987864e43f62e3c2dfb25",
+        "all_identical": true,
+        "servers": [
+          "A321",
+          "A322",
+          "A323"
+        ],
+        "output_sha12": "afffd2110812"
+      },
+      "exact_4k": {
+        "path": "experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-4k-three-server-summary.json",
+        "sha256": "1b4a026d11bb23d71808994260db3c64a235962616da56a37165cb99e941e4b4",
+        "all_identical": true,
+        "servers": [
+          "A321",
+          "A322",
+          "A323"
+        ],
+        "output_sha12": "1d833e5f4633"
+      }
+    }
+  },
+  "model": {
+    "repository": "Qwen/Qwen3.8-Flash-Next-FP8",
+    "revision": "bcd9f01ddc9cff2316eb84281bebcd5b058bddce",
+    "config_sha256": "99c11efba4012d0f760f4e4831a8d6cafd845044e21d0aa9e6d9e70a15a90a8d",
+    "safetensors_index_sha256": "0419e2c2dfbb925257d7409405433a793cf7ff7d96f3eba882a815ec6d9fe7a6",
+    "shard_count": 131,
+    "root_total_bytes": 185563783127,
+    "contract": "repro/qwen38-flash-next-fp8-tp4-mtp3-b70/model-contract.json"
+  },
+  "runtime": {
+    "vllm_public_base": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+    "vllm_overlay_head": "2a372e860e273273357cb7437ac7de1694304f9f",
+    "vllm_overlay_tree": "3e8dfc5937087d186cd4a99a6bf15213be732462",
+    "vllm_overlay_series": "patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/ (the same two reference-kernel restorations; this line is their MTP0 twin at overlay head 2a372e86)",
+    "vllm_package_version": "0.20.2rc1.dev2+gc51df4300.d20260523.xpu",
+    "kernel_stage_build_head": "2f829747503c77d4814834dffd0840fb1dd9f75a",
+    "kernel_stage_manifest": "repro/qwen38-flash-next-fp8-tp4-mtp3-b70/runtime-stage.sha256",
+    "kernel_stage_release": "https://github.com/steveseguin/b70-optimization-lab/releases/tag/qwen38-flash-next-runtime-2f829747-20260827",
+    "kernel_source_head_in_venv": "e421889999bc1e5a5f11044d14548b9afdba644d",
+    "oneccl_public_commit": "4ceafd1",
+    "oneccl_libccl_sha256": "43d94d43506e30096dd099b9d53b54f932be964751e92ff0cbb8d3a37fad6700",
+    "oneccl_kernels_spv_sha256": "0d549c35a558f1b216cb7d1efeaa9f86d7596ffc47b383644e075290d314f0c9",
+    "oneccl_receipt": "patches/qwen38-flash-next-fp8-b70/oneccl-4ceafd1-b70-public/README.md",
+    "torch": "2.11.0+xpu",
+    "triton": "3.7.0",
+    "python": "3.12",
+    "compiler_for_stage": "oneAPI 2025.3 icpx",
+    "vllm_lossless_mtp1_head": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+    "vllm_placement_mtp1_head": "005dc57895896f770157ea94f68e473e7447139e",
+    "vllm_hctriton_mtp1_head": "622191221475b53cc6f7f4d847860939f4c300ab"
+  },
+  "change_from_the_superseded_record": {
+    "what": "one line of the tuned M1 MoE map: W1_CONFIG.BLOCK_SIZE_N 32 -> 64",
+    "effect": "the W13 phase tile becomes the base tile, so the phase delta is inert and the map is simpler",
+    "source_change": "none; 64 was already an allowed tile, so the certified head runs unmodified",
+    "tuned_config_folder": "experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n64",
+    "tuned_config_map_sha256": "4fcb5d13ef0c859d12a4fe6b5aac09b04fccf4db24e47a6f004d3f9878e4e38f",
+    "selection_verifier": "experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n64-selection.py",
+    "selection_verifier_sha256": "f7b3e9340e26026ac7998256384ddf7c40ad43a06c1717dc52fba02e284045c9",
+    "ladder_measured_in_server": {
+      "16": "31.39 (A320)",
+      "32": "33.38 (A304, superseded)",
+      "64": "34.15 (A321/A322/A323, this record)",
+      "128": "26.29 (A327)"
+    }
+  },
+  "delivery": "native only; see CONTAINER-STATUS.md"
+}

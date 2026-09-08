@@ -1,0 +1,14 @@
+e06b17ed223035ef7dcd5b69ba0d09c502acd14dc11f65a066dcc2f1537c987b  experiments/qwen38-flash-next-fp8-b70/tools/launch-tp4-mtp0-4352-ple-only-a325-fullgraphdet-w13n64.sh
+d3d3727e8613f6678baaee73d609177805289a0e988e7fff435584f90c5f65c0  experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a325-fullgraphdet-w13n64-client.sh
+3c8a8e2b1d490fd599c92fdf611e502707b4a32d4d731b3a3d49030648c005a3  experiments/qwen38-flash-next-fp8-b70/tools/supervise-tp4-mtp0-4352-ple-only-a325-fullgraphdet-w13n64.sh
+d935ba3c20199dbed2e5593686f98d30a70b713534d3a0cd15fb0afb79f2fd96  experiments/qwen38-flash-next-fp8-b70/tools/run-q38-a325-host-controlled.sh
+3af78bd2af2e5a7039173021194ee79b140661aca27fb6d289859c63070a00fe  experiments/qwen38-flash-next-fp8-b70/tools/launch-tp4-mtp0-4352-ple-only-a326-fullgraphdet-w13n64.sh
+94a324db27983ad41026f77183780ad90ff67923ab762858b3f9f36416a0b3ad  experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a326-fullgraphdet-w13n64-client.sh
+bc92714ba1026236632c6c4a2662182ece59fc46b6b11bd37716dd227eca6710  experiments/qwen38-flash-next-fp8-b70/tools/supervise-tp4-mtp0-4352-ple-only-a326-fullgraphdet-w13n64.sh
+25dbc86b98d315e7f9966c382815777c5087d1229f3ee6adcc2deee501f7271a  experiments/qwen38-flash-next-fp8-b70/tools/run-q38-a326-host-controlled.sh
+c1017c84dbe44d055c3efb91914992c2e2f4c8c5eaaa0b0d7ec8959e97d4cc97  experiments/qwen38-flash-next-fp8-b70/tools/launch-tp4-mtp0-4352-ple-only-a321-fullgraphdet-w13n64.sh
+19ec2b397891f3946b4c048694fbeab090733d4e45618bf9c0204a8692de8c80  experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a321-fullgraphdet-w13n64-client.sh
+a5e9a843b72692ac39a375169712d05ae5bfff45153bdb77aa823e2f34801098  experiments/qwen38-flash-next-fp8-b70/tools/launch-tp4-mtp0-4352-ple-only-a322-fullgraphdet-w13n64.sh
+b90ed4faa032c966535917e5934cd2e8d008b37fcebc7747231c8137f4c3d685  experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a322-fullgraphdet-w13n64-client.sh
+7c4cf495b315475c04681354303437c8c13c4e251bc4727befa54927a4fa6bc5  experiments/qwen38-flash-next-fp8-b70/tools/launch-tp4-mtp0-4352-ple-only-a323-fullgraphdet-w13n64.sh
+16eb2f15a974ca5c655bb6e8f3491d460ff9c09c9692a2a0b0042666aa3ba332  experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a323-fullgraphdet-w13n64-client.sh

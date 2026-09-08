@@ -1,0 +1,2 @@
+f7b3e9340e26026ac7998256384ddf7c40ad43a06c1717dc52fba02e284045c9  experiments/qwen38-flash-next-fp8-b70/tools/verify-moe-m1-w13-n64-selection.py
+4fcb5d13ef0c859d12a4fe6b5aac09b04fccf4db24e47a6f004d3f9878e4e38f  experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n64/E=128,N=640,device_name=Intel(R)_Arc(TM)_Pro_B70_Graphics,dtype=fp8_w8a8,block_shape=[128,128].json

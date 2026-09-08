@@ -1,0 +1,6 @@
+80956690cc6058cc6ff2b2cc99a953918eeb30a9721138c19962e75d0661da65  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a325-w13n64-realistic-suite-v1-result.json
+fdcf3d13c5c7b46c003feb080539cea196b9ed7c9d486bb5c467bbf29c086c29  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-fresh-realistic-suite-v1-result.json
+30401bfa87575979a28eb29d1f3067e7c21de2b495e0ad8382aac5e0e93d838a  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-promotion-attestation.json
+f7520b41578621d68b08707379b374d7f20fc775e54987864e43f62e3c2dfb25  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-2k-three-server-summary.json
+1b4a026d11bb23d71808994260db3c64a235962616da56a37165cb99e941e4b4  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-w13n64-exact-4k-three-server-summary.json
+479e80c25eac915353dbd71a5b98af29be050ce376cd8e05ab4767a4e8fcd40a  experiments/qwen38-flash-next-fp8-b70/data/20260908-tp4-mtp0-a326-w13n64-localmaxxing-payload-queue.json
