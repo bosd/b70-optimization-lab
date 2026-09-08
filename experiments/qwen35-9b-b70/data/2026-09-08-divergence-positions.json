@@ -1,0 +1,291 @@
+{
+ "qwen35-9b-w4a16-tp2-identitypower-p0": [
+  {
+   "pass": 9,
+   "prompt_id": "monitoring-c004",
+   "first_diff_index": 116,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 16484,
+   "got_token": 67205,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 10,
+   "prompt_id": "monitoring-c044",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 10,
+   "prompt_id": "rollback-c050",
+   "first_diff_index": 7,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 1965,
+   "got_token": 1928,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 12,
+   "prompt_id": "benchmark-c011",
+   "first_diff_index": 12,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 3820,
+   "got_token": 3050,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 13,
+   "prompt_id": "monitoring-c020",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 15,
+   "prompt_id": "benchmark-c035",
+   "first_diff_index": 107,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 13,
+   "got_token": 198,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 17,
+   "prompt_id": "monitoring-c004",
+   "first_diff_index": 116,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 16484,
+   "got_token": 67205,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 17,
+   "prompt_id": "evidence-c031",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 2961,
+   "got_token": 25045,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 20,
+   "prompt_id": "monitoring-c052",
+   "first_diff_index": 94,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 357,
+   "got_token": 1061,
+   "tail_identical_after_diff": false
+  }
+ ],
+ "qwen35-9b-w4a16-tp2-identitypower-p1": [
+  {
+   "pass": 2,
+   "prompt_id": "index-c041",
+   "first_diff_index": 77,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 10993,
+   "got_token": 24816,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 10,
+   "prompt_id": "index-c041",
+   "first_diff_index": 77,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 10993,
+   "got_token": 24816,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 11,
+   "prompt_id": "monitoring-c036",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 12,
+   "prompt_id": "index-c041",
+   "first_diff_index": 77,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 10993,
+   "got_token": 24816,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 13,
+   "prompt_id": "benchmark-c011",
+   "first_diff_index": 12,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 3820,
+   "got_token": 3050,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 17,
+   "prompt_id": "monitoring-c044",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 18,
+   "prompt_id": "rollback-c042",
+   "first_diff_index": 38,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 16070,
+   "got_token": 24141,
+   "tail_identical_after_diff": false
+  }
+ ],
+ "qwen35-9b-w4a16-tp2-identitypower-q1": [
+  {
+   "pass": 1,
+   "prompt_id": "monitoring-c044",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 3,
+   "prompt_id": "monitoring-c020",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 13,
+   "prompt_id": "monitoring-c036",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 19,
+   "prompt_id": "testing-c021",
+   "first_diff_index": 75,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 381,
+   "got_token": 4833,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 19,
+   "prompt_id": "index-c041",
+   "first_diff_index": 77,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 10993,
+   "got_token": 24816,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 19,
+   "prompt_id": "monitoring-c044",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  }
+ ],
+ "qwen35-9b-w4a16-tp2-identitypower-q2": [
+  {
+   "pass": 10,
+   "prompt_id": "rollback-c042",
+   "first_diff_index": 38,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 16070,
+   "got_token": 24141,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 19,
+   "prompt_id": "monitoring-c020",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  },
+  {
+   "pass": 19,
+   "prompt_id": "monitoring-c044",
+   "first_diff_index": 90,
+   "oracle_len": 128,
+   "got_len": 128,
+   "oracle_token": 466,
+   "got_token": 5787,
+   "tail_identical_after_diff": false
+  }
+ ],
+ "_summary": {
+  "divergences": 25,
+  "single_token_substitutions": 0,
+  "distinct_token_pairs": 10,
+  "token_pair_counts": {
+   "466->5787": 10,
+   "10993->24816": 4,
+   "16484->67205": 2,
+   "3820->3050": 2,
+   "16070->24141": 2,
+   "1965->1928": 1,
+   "13->198": 1,
+   "2961->25045": 1,
+   "357->1061": 1,
+   "381->4833": 1
+  },
+  "prompt_counts": {
+   "monitoring-c044": 5,
+   "index-c041": 4,
+   "monitoring-c020": 3,
+   "monitoring-c004": 2,
+   "benchmark-c011": 2,
+   "monitoring-c036": 2,
+   "rollback-c042": 2,
+   "rollback-c050": 1,
+   "benchmark-c035": 1,
+   "evidence-c031": 1,
+   "monitoring-c052": 1,
+   "testing-c021": 1
+  }
+ }
+}
