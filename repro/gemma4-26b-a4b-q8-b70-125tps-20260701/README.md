@@ -108,8 +108,11 @@ record's `--spec-draft-threads 32` is oversubscribed on this machine's
 lane does not reproduce its own answers - four fresh servers with identical
 settings, greedy decoding and identical prompts returned `0/12` matching outputs,
 diverging as early as character 26. The lane's gates never covered output
-identity, so that is a newly measured property rather than a broken claim, and
-it is not yet attributed between the speculative draft path and the target.
+identity, so that is a newly measured property rather than a broken claim. It is
+attributed: two further servers with every `--spec-draft` argument removed score
+`0/12` against each other as well, so the nondeterminism is in the target's own
+decode path, not in the draft. Speculation is worth about `1.47x` on this lane
+and is not what costs it reproducibility.
 
 ## Runtime Identity
 

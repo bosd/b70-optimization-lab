@@ -61,10 +61,13 @@ The lane never claimed otherwise: its gates cover fresh-response validity, cache
 not output identity. So this is a previously unmeasured property, now measured, in
 `data/2026-09-07-gemma4-q8-repeat-identity.json`.
 
-One attribution caveat matters. The lane serves with speculative decoding, a Q4_0 MTP draft verified
-by the Q8 target, and this measurement cannot separate a nondeterministic speculative path from a
-nondeterministic target. A draftless arm would settle that and has not been run. What is established
-is that the deployed configuration is not reproducible.
+The attribution is now settled. Two further servers ran the same gate with every `--spec-draft`
+argument removed, so no drafting occurs at all: they score **0/12 against each other too**, diverging
+as early as character 26. Removing speculation does not make the lane reproducible, so the
+nondeterminism is in the target model's own decode path rather than in the draft or in draft
+acceptance. Speculation is worth about `1.47x` here - `111.819` with the Q4_0 MTP draft against
+`76.019` without - and it is not what costs the lane its reproducibility. Evidence:
+`data/2026-09-08-gemma4-q8-draftless-repeat-identity.json`.
 
 For scale, on the same host: the vLLM INT4 W4A16 route on Qwen3.5 is 12/12 across fresh servers, the
 llama.cpp Q8 route on Qwen3.5-9B is 8/12, and this lane is 0/12. That is a third point on the same
@@ -75,5 +78,4 @@ output is a property a stack has to be built for.
 
 - Record the hostname and CPU in `run_identity`. Establishing which machine set the record required
   counting GPU-index directory names, which is not a durable way to know.
-- A draftless arm to attribute the 0/12 to the speculative path or the target.
 - If this host is used for Gemma work again, run it at 16 draft threads.

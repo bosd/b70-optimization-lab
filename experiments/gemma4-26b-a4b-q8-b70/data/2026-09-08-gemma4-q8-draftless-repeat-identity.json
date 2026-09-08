@@ -1,0 +1,84 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign": "gemma4-q8-gpu0-draftless run1/run2 (2026-09-08, one B70, pinned oneAPI 2026.0 container)",
+ "question": "Whether the Gemma 4 26B Q8 lane's 0/12 repeat identity comes from its speculative draft path or from the target. The record configuration serves with a Q4_0 MTP draft verified by the Q8 target, so the earlier measurement could not separate the two.",
+ "method": "The same realistic gate and settings as the record replays, with every --spec-draft argument removed so no drafting occurs. Two fresh servers, greedy decoding, identical prompt hashes.",
+ "finding": "Also 0/12. Removing speculation entirely does not make the lane reproducible, so the nondeterminism is in the target model's own decode path, not in the draft or in draft acceptance. Divergence again starts early, as soon as character 26 on two prompts.",
+ "speed": "Draftless measured 76.543 and 75.495 tok/s (mean 76.019) against 111.819 (n=6) with the Q4_0 MTP draft, so speculation is worth about 1.47x on this lane - and buys that without being the source of the irreproducibility.",
+ "prompts_identical": true,
+ "exact_outputs": "0/12",
+ "per_prompt": [
+  {
+   "prompt_id": "incident-retrospective",
+   "chars_a": 2154,
+   "chars_b": 2069,
+   "first_differing_char": 26
+  },
+  {
+   "prompt_id": "code-review",
+   "chars_a": 2145,
+   "chars_b": 2193,
+   "first_differing_char": 312
+  },
+  {
+   "prompt_id": "customer-email",
+   "chars_a": 1582,
+   "chars_b": 1372,
+   "first_differing_char": 26
+  },
+  {
+   "prompt_id": "sql-debugging",
+   "chars_a": 2075,
+   "chars_b": 2102,
+   "first_differing_char": 194
+  },
+  {
+   "prompt_id": "release-plan",
+   "chars_a": 1928,
+   "chars_b": 2096,
+   "first_differing_char": 121
+  },
+  {
+   "prompt_id": "benchmark-analysis",
+   "chars_a": 2263,
+   "chars_b": 2313,
+   "first_differing_char": 369
+  },
+  {
+   "prompt_id": "architecture-tradeoff",
+   "chars_a": 2346,
+   "chars_b": 2384,
+   "first_differing_char": 322
+  },
+  {
+   "prompt_id": "bug-report-synthesis",
+   "chars_a": 2420,
+   "chars_b": 2370,
+   "first_differing_char": 496
+  },
+  {
+   "prompt_id": "technical-guide",
+   "chars_a": 2122,
+   "chars_b": 2136,
+   "first_differing_char": 40
+  },
+  {
+   "prompt_id": "risk-register",
+   "chars_a": 2271,
+   "chars_b": 2290,
+   "first_differing_char": 125
+  },
+  {
+   "prompt_id": "performance-hypotheses",
+   "chars_a": 2425,
+   "chars_b": 2208,
+   "first_differing_char": 154
+  },
+  {
+   "prompt_id": "decision-memo",
+   "chars_a": 2388,
+   "chars_b": 2396,
+   "first_differing_char": 522
+  }
+ ]
+}
