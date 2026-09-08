@@ -1,0 +1,2 @@
+(Worker_TP0_EP0 pid=272482) INFO 09-07 22:49:40 [fused_moe.py:1165] Using configuration from /home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n16/E=128,N=640,device_name=Intel(R)_Arc
+0

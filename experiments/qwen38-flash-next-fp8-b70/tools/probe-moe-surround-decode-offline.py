@@ -54,7 +54,8 @@ K = int(os.getenv("Q38_PROBE_K", "2560"))
 N = int(os.getenv("Q38_PROBE_N", "640"))
 TOPK = int(os.getenv("Q38_PROBE_TOPK", "10"))
 BLK = 128
-M = 1
+# MTP1 verifies two positions per step, so its decode graph is M=2, not M=1.
+M = int(os.getenv("Q38_PROBE_M", "1"))
 LAYERS = int(os.getenv("Q38_PROBE_LAYERS", "48"))
 REPS = int(os.getenv("Q38_PROBE_REPS", "20"))
 
