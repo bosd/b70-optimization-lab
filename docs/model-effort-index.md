@@ -82,6 +82,13 @@ What this lane established, and what it costs to re-derive, is the identity acco
   same batch disagree with each other, 23 of 240 prompt-groups per campaign, so batch *size* cannot
   be the explanation and shape-invariance interventions were never going to help
   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-identical-prompts-in-one-batch-diverge-from-each-other.md)).
+  **Newest result:** with a per-layer capture hook comparing only rows at the same generation
+  position, the body is bitwise deterministic - 8000 decode observations at TP2, none disagreeing
+  ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-a-per-layer-capture-hook-and-what-it-shows-so-far.md)).
+  But that run did not reproduce the divergence: it was eager and unspeculated, where the ladder uses
+  full decode-only graph capture. **Re-run the probe with graph capture on before looking anywhere
+  else** - a replayed graph is shape-specialised and can differ from eager without any op being
+  individually non-deterministic.
   Before designing any knob-based arm here, run `tools/audit-launcher-env-implemented.py` against the
   image: **47 of the 78 variables the launchers forward have no reader in R276**, including the
   four GDN trace hooks that a body bisection would otherwise reach for, the R65 batch-invariant

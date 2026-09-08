@@ -40,12 +40,33 @@ timings, where copies of one prompt span about three decode steps.
 Worth noting alongside it: all 64 outputs in this run were byte-identical, so nothing diverged here
 even though the hidden states differ - consistent with perturbations that are usually sub-threshold.
 
-## What the hook needs before it can bisect
+## Fixed, and the decode answer is clean
 
-Record each row's request id and generation position beside its digest, then compare only rows at the
-same position. That is a small change to the hook and it turns a confounded comparison into the
-bisection this was built for. Until then the prefill result stands on its own and the decode numbers
-should not be read as evidence of anything.
+The hook now reads each row's context length from the forward context and compares only rows sharing
+a generation position. Getting that required one more correction worth recording: Qwen3.5 is a
+hybrid, and the first attention metadata in the context is `GDNAttentionMetadata`, which has no
+`seq_lens` at all - the hook has to pick the entry that has one rather than the first. Until it did,
+it recorded the absence on all 8064 observations rather than inventing a number, which is what let
+the mistake be seen.
+
+With that fixed, over 128 generated tokens at TP2: **8000 of 8064 decode observations carried
+position metadata, every one of them contained a position group with more than one row, and not one
+showed rows at the same position disagreeing.** For requests in the same state, in the same step, the
+body is bitwise deterministic at every layer.
+
+So the dramatic first reading was entirely drift, as suspected, and the body is exonerated under
+these conditions.
+
+## The condition that matters
+
+This run did not reproduce the phenomenon: all 64 outputs were byte-identical. It differs from the
+ladder in two ways that are now the obvious suspects. It ran `enforce_eager`, where the ladder uses
+full decode-only XPU graph capture, and it ran without speculative decoding.
+
+A captured graph is specialised to a shape and replayed; that is exactly the kind of thing that can
+behave differently from eager execution without any op being individually non-deterministic. Re-run
+this same probe with graph capture enabled before looking anywhere else - if same-position rows start
+disagreeing, the search is over.
 
 Evidence: `data/2026-09-08-layer-hash-prefill-tp2.tsv`; overlay
 `docker/r276-layerhash-diag.Dockerfile`; probe `probes/layer-hash-offline-prefill.py`.
