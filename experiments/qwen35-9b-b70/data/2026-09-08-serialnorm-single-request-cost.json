@@ -32,7 +32,28 @@
   },
   "finding": "At the strict suite's shape the 33x microbenchmark ratio does not reach the end-to-end number at all. Four sub-reductions instead of one is free against everything else a decode step does."
  },
- "concurrency_cost": "not yet measured; the s1 arm aborted before its ladder stage (see infrastructure note below), rerunning as s2",
+ "concurrency_cost": {
+  "valid_comparison_speculative_ladder": {
+   "note": "Depth 3, so the verify step is 4 rows per user and the knob engages up to 16 users; 32 and 64 users exceed the 64-row threshold and are inert, which makes them controls confirming the arms are otherwise identical.",
+   "users_1_to_16_engaged_pct_delta": [
+    -0.2,
+    -0.6,
+    0.0,
+    4.1,
+    -1.0
+   ],
+   "users_32_64_inert_pct_delta": [
+    -0.4,
+    -0.5
+   ],
+   "finding": "Free wherever it engages. The deltas scatter around zero and the +4.1% at 8 users is this ladder's known mid-rung variance, not a speedup."
+  },
+  "invalid_first_attempt": {
+   "what_happened": "The no-speculation ladder was tabulated first and showed 0.0% at every rung, which was not a result: that path runs through run-server.sh, which did not forward the knob, so both arms were unserialised and the comparison was of two identical configurations. Caught by checking the container's recorded environment rather than trusting the launch.",
+   "fix": "run-server.sh now forwards the knob conditionally, as run-w8a16-mtp1-server.sh already did.",
+   "rerunning_as": "qwen35-9b-w4a16-tp2-serialnorm-s3"
+  }
+ },
  "infrastructure_note": "s1 aborted at its fourth server with 'server did not become healthy'. The worker died after page-size setup with no Python traceback, the signature of a cgroup OOM inside the container's 12g cap: the 9B checkpoint is 10.65 GiB, the host has 15.5 GiB, and the previous server's page cache had not been released. Three servers of the same campaign on the same code loaded fine, so this is a marginal-RAM race, not the patch. The harness now waits for MemAvailable to reach a threshold before each server rather than aborting the campaign.",
  "identity_not_claimed": "This is a cost measurement. The two-card c64 identity metric is intermittent and two passes cannot resolve an intervention, so no identity claim is made from these arms."
 }
