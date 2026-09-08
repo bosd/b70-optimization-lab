@@ -1,0 +1,86 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-4b-w4a16 depth sweep e4/e5/e6 vs published v1 (2026-09-08, one B70)",
+ "question": "The 4B inherited MTP depth 3 from the FP8 sweep exactly as the 9B did. On the 9B every depth from 3 to 6 was lossless while FP8 held only at 3, because depth changes the verify step's row count and this kernel is row-count invariant. This asks the same of the 4B, and whether a smaller target makes deeper drafts pay.",
+ "arms": [
+  {
+   "depth": 3,
+   "campaign": "qwen35-4b-w4a16-tp1-mtp3-graph1-dhint4-20260907-v1",
+   "candidate_class_balanced_tok_s": [
+    177.406,
+    177.168
+   ],
+   "oracle_class_balanced_tok_s": [
+    102.625,
+    102.376
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp3-a vs mtp3-b": "12/12",
+    "G3 mtp3-a vs mtp0-a": "12/12",
+    "G3 mtp3-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 4,
+   "campaign": "qwen35-4b-w4a16-tp1-mtp4-graph1-dhint4-20260907-e4",
+   "candidate_class_balanced_tok_s": [
+    177.69,
+    177.453
+   ],
+   "oracle_class_balanced_tok_s": [
+    102.348,
+    102.502
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp4-a vs mtp4-b": "12/12",
+    "G3 mtp4-a vs mtp0-a": "12/12",
+    "G3 mtp4-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 5,
+   "campaign": "qwen35-4b-w4a16-tp1-mtp5-graph1-dhint4-20260907-e5",
+   "candidate_class_balanced_tok_s": [
+    167.124,
+    167.004
+   ],
+   "oracle_class_balanced_tok_s": [
+    102.37,
+    102.617
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp5-a vs mtp5-b": "12/12",
+    "G3 mtp5-a vs mtp0-a": "12/12",
+    "G3 mtp5-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 6,
+   "campaign": "qwen35-4b-w4a16-tp1-mtp6-graph1-dhint4-20260907-e6",
+   "candidate_class_balanced_tok_s": [
+    160.737,
+    160.476
+   ],
+   "oracle_class_balanced_tok_s": [
+    102.541,
+    102.442
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp6-a vs mtp6-b": "12/12",
+    "G3 mtp6-a vs mtp0-a": "12/12",
+    "G3 mtp6-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  }
+ ],
+ "finding": "Every depth from 3 to 6 is lossless on the 4B as well: G1, G2 and both G3 comparisons matched 12/12 at all four depths. That is the same result as the 9B, on a second model, and it is a fifth independent confirmation that what FP8 loses above depth 3 is the row-count dependence rather than anything about speculative decoding.",
+ "speed": "Depth 4 measures 177.69/177.45 against depth 3's 177.41/177.17 - a 0.16% difference, inside this lane's own noise, so the two are tied rather than depth 4 being an improvement. Depth 5 falls to 167.12/167.00 and depth 6 to 160.74/160.48. The hoped-for effect, that a cheaper target would make deeper drafts pay, does not appear: the 4B curve is flat to depth 4 and then falls, where the 9B fell immediately. Depth 3 stays the operating point on both models, now on each route's own evidence.",
+ "reading": "Worth stating plainly because it is a negative for the optimization and a positive for the mechanism: no speed was found, and the identity prediction held on a second model."
+}

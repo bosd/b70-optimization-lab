@@ -119,6 +119,7 @@
  "dependencies": [
   "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
   "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+  "experiments/qwen35-4b-b70/data/2026-09-08-qwen35-4b-w4a16-depth-sweep.json",
   "experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1-strict-result.json",
   "experiments/qwen35-4b-b70/notes/2026-09-07-qwen35-4b-fp8-not-repeat-exact.md",
   "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
@@ -173,6 +174,7 @@
  "evidence": [
   "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-fp8-repeat-exactness.json",
   "experiments/qwen35-4b-b70/data/2026-09-07-qwen35-4b-w4a16-matrix-result.json",
+  "experiments/qwen35-4b-b70/data/2026-09-08-qwen35-4b-w4a16-depth-sweep.json",
   "experiments/qwen35-4b-b70/data/qwen35-4b-w4a16-tp2-mtp3-graph1-dhint4-20260907-t1-strict-result.json"
  ],
  "missing": [

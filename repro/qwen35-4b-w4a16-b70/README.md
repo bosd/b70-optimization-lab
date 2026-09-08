@@ -52,6 +52,28 @@ users, and with depth 3 it is exact only through 16. The 9B on this same kernel 
 users on one card and drops to 63/64 on two, so on both models the loss appears when the second card joins. That
 points at the cross-card reduction rather than the GEMM.
 
+## Speculative depth (campaigns e4, e5, e6)
+
+Depth 3 was taken from the FP8 route's sweep, not chosen here. Swept on this route it holds, and the
+identity column is again the interesting one:
+
+| depth | tok/s | vs MTP0 oracle |
+| ---: | ---: | --- |
+| 3 | **177.41 / 177.17** | 12/12 |
+| 4 | 177.69 / 177.45 | 12/12 |
+| 5 | 167.12 / 167.00 | 12/12 |
+| 6 | 160.74 / 160.48 | 12/12 |
+
+Depth 4 is within `0.16%` of depth 3, which is inside this lane's noise, so the two are tied rather
+than depth 4 being an improvement; 5 and 6 fall away. A cheaper target does not make deeper drafts
+pay here - the 4B curve is flat to depth 4 and then drops, where the 9B fell immediately - so no
+speed was found and depth 3 stays the operating point, now on this route's own evidence.
+
+Every depth is lossless, matching the 9B. Since depth `d` makes the verify step process `d+1` rows,
+this varies the GEMM's row count without varying the number of concurrent users, and on FP8 the same
+sweep lost a third of the suite from depth 4 up. That is a fifth independent confirmation that what
+FP8 loses is the row-count dependence, not something about speculative decoding.
+
 ## Why this route and not the FP8 one
 
 The FP8-dynamic build of the same model **cannot pass the base identity gate on
