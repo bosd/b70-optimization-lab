@@ -1,0 +1,38 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-9b-w4a16-tp2-serialnorm-s0 (off) vs -s1 (on), 2026-09-08, two B70s",
+ "question": "What serialising the RMSNorm variance reduction costs end to end. It is the only formulation measured that reproduces the single-row result, which is what the identity ladders compare against, so it is the one candidate fix that would need no re-qualification. In isolation it costs about 33x on the reduction; the reduction is a small part of a decode step, so the end-to-end figure is the one that matters.",
+ "image": {
+  "tag": "neural-download/vllm-openai-xpu:qwen38-int4-r276-serialnorm-diag",
+  "id": "sha256:f9faea7ed47d76fb22ec0e0122691a7eb2e06dac879a7d152b5b73331fb34bb2",
+  "ir_layernorm_sha256": "5cfe3e54b6d19b371ce5379ad0ba7309881b10fc4aedfaec54096d0a34488a54",
+  "knob_verified_in_container": "VLLM_XPU_RMSNORM_SERIAL_ROWS=64"
+ },
+ "single_request_cost": {
+  "mtp0_serialisation_inert_by_design": {
+   "off": [
+    97.571,
+    97.526
+   ],
+   "on": [
+    97.46,
+    97.4
+   ],
+   "note": "One row per step, and the knob only engages above one row, so this pair is a control on the overlay itself: -0.12%, noise."
+  },
+  "mtp3_serialisation_active": {
+   "off": [
+    172.241,
+    172.422
+   ],
+   "on": [
+    172.438
+   ],
+   "note": "Depth 3 makes the verify step 4 rows, so the reduction is split into 4 instead of 1. 172.438 against a 172.33 mean is +0.06% - no measurable cost."
+  },
+  "finding": "At the strict suite's shape the 33x microbenchmark ratio does not reach the end-to-end number at all. Four sub-reductions instead of one is free against everything else a decode step does."
+ },
+ "concurrency_cost": "not yet measured; the s1 arm aborted before its ladder stage (see infrastructure note below), rerunning as s2",
+ "infrastructure_note": "s1 aborted at its fourth server with 'server did not become healthy'. The worker died after page-size setup with no Python traceback, the signature of a cgroup OOM inside the container's 12g cap: the 9B checkpoint is 10.65 GiB, the host has 15.5 GiB, and the previous server's page cache had not been released. Three servers of the same campaign on the same code loaded fine, so this is a marginal-RAM race, not the patch. The harness now waits for MemAvailable to reach a threshold before each server rather than aborting the campaign.",
+ "identity_not_claimed": "This is a cost measurement. The two-card c64 identity metric is intermittent and two passes cannot resolve an intervention, so no identity claim is made from these arms."
+}

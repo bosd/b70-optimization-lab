@@ -49,10 +49,26 @@ lane_containers() { docker ps --format '{{.Names}}' | grep -cE 'qwen3[58]' || tr
 postflight() { devices_normal "$1" || abort "$1: a B70 is not in normal state"; journal_check "$1" || abort "$1: fault signature in the kernel journal"; ROOT="${repo}" "${health}" >"${root}/$1-compute-xccl.txt" 2>&1 || abort "$1: compute/XCCL health failed"; [[ "$(lane_containers)" == 0 ]] || abort "$1: a lane container is still running"; log "$1: postflight clean"; }
 wait_health() { local pid=$1 deadline=$(( $(date +%s) + health_timeout )); while (( $(date +%s) < deadline )); do curl -fsS "http://127.0.0.1:${port}/health" >/dev/null 2>&1 && return 0; kill -0 "${pid}" 2>/dev/null || return 1; sleep 15; done; return 1; }
 stop_server() { docker inspect "$1" >"$3/container-inspect.json" 2>/dev/null || true; docker stop -t 180 "$1" >/dev/null 2>&1 || true; wait "$2" 2>/dev/null || true; for _ in $(seq 1 24); do docker ps -a --format '{{.Names}}' | grep -q "^$1$" || break; sleep 5; done; grep -iE "${fault_re}" "$3/server.log" >"$3/server-fault-lines.txt" || true; [[ ! -s "$3/server-fault-lines.txt" ]] || abort "$(basename "$3"): fault signature in server.log"; }
+# Weight loading needs about 10.7 GiB for the 9B on a 15.5 GiB host, and the previous server's page
+# cache is not always released by the time the next one starts. When it is not, the container hits its
+# memory cap and the worker dies with no Python traceback, which the harness can only report as "server
+# did not become healthy" - as happened to the serial-norm s1 arm on 2026-09-08 after three servers of
+# the same campaign had loaded fine. Waiting for the memory back is cheaper than losing the campaign.
+wait_for_memory() {
+  local need_mib=${LOAD_MEMORY_MIB:-11500} deadline=$(( $(date +%s) + ${LOAD_MEMORY_TIMEOUT:-300} )) avail
+  while :; do
+    avail=$(awk '/^MemAvailable:/{print int($2/1024)}' /proc/meminfo)
+    (( avail >= need_mib )) && { [[ -n "${1:-}" ]] && log "$1: ${avail} MiB available, loading"; return 0; }
+    (( $(date +%s) >= deadline )) && { log "${1:-launch}: only ${avail} MiB available after waiting, proceeding anyway"; return 0; }
+    sleep 10
+  done
+}
+
 # launch <label> <mtp0|mtpn> <mml> <mns> <mbt>
 launch() {
   local label=$1 kind=$2 mml=$3 mns=$4 mbt=$5 dir=${root}/$1 cache=${root}/$1-cache
   mkdir -p "${dir}"; [[ ! -e "${cache}" ]] || abort "${label}: cache exists"; mkdir -p "${cache}"
+  wait_for_memory "${label}"
   local name=${LANE}-${RUN}-${label} served=${LANE}-${label} launcher=run-w8a16-mtp0-strict-server.sh spec='{}'
   if [[ "${kind}" != mtp0 ]]; then launcher=run-w8a16-mtp1-strict-server.sh; spec="{\"method\":\"qwen3_5_mtp\",\"num_speculative_tokens\":${DEPTH}}"; fi
   date --iso-8601=seconds >"${dir}/started-at.txt"
