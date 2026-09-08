@@ -1,0 +1,22 @@
+670:(Worker_TP2_EP2 pid=115698) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+954:(Worker_TP3_EP3 pid=115859) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+(Worker_TP2_EP2 pid=115698) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]   File "/home/steve/src/vllm-current-main/vllm/q38_expert_placement.py", line 52, in note_routing
+(Worker_TP2_EP2 pid=115698) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]     sel = sel[sel >= 0]
+(Worker_TP2_EP2 pid=115698) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]           ~~~^^^^^^^^^^
+(Worker_TP2_EP2 pid=115698) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+--
+(Worker_TP3_EP3 pid=115859) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]   File "/home/steve/src/vllm-current-main/vllm/q38_expert_placement.py", line 52, in note_routing
+(Worker_TP3_EP3 pid=115859) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]     sel = sel[sel >= 0]
+(Worker_TP3_EP3 pid=115859) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]           ~~~^^^^^^^^^^
+(Worker_TP3_EP3 pid=115859) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+--
+(Worker_TP0_EP0 pid=115336) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]   File "/home/steve/src/vllm-current-main/vllm/q38_expert_placement.py", line 52, in note_routing
+(Worker_TP0_EP0 pid=115336) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]     sel = sel[sel >= 0]
+(Worker_TP0_EP0 pid=115336) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]           ~~~^^^^^^^^^^
+(Worker_TP0_EP0 pid=115336) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+--
+(Worker_TP1_EP1 pid=115491) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]   File "/home/steve/src/vllm-current-main/vllm/q38_expert_placement.py", line 52, in note_routing
+(Worker_TP1_EP1 pid=115491) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]     sel = sel[sel >= 0]
+(Worker_TP1_EP1 pid=115491) ERROR 09-07 21:06:22 [multiproc_executor.py:1059]           ~~~^^^^^^^^^^
+(Worker_TP1_EP1 pid=115491) ERROR 09-07 21:06:22 [multiproc_executor.py:1059] RuntimeError: wait method cannot be used for an event associated with a command graph.
+--
