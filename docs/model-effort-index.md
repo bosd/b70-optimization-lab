@@ -78,8 +78,12 @@ What this lane established, and what it costs to re-derive, is the identity acco
 
 Open, in the order worth doing:
 
-1. A row-invariant variant of that norm. It reproduces on one card with no server, so it is much
-   cheaper to iterate than another collective variant, and it is the live lead for the two-card gap.
+1. A row-invariant variant of that norm. An invariant implementation is now known to exist here and
+   not to be obviously expensive, but the one that works is a different rounding of the same
+   function, so adopting it would invalidate every published hash
+   ([note](../experiments/qwen35-9b-b70/notes/2026-09-08-a-row-invariant-norm-exists-and-is-not-a-drop-in.md)).
+   The version worth having pins whatever the native op varies instead, preserving values. Float32
+   accumulation is not it - measured three times worse than float16, not better.
 2. Per-channel FP8 row-invariance. Specified in
    [this note](../experiments/qwen35-9b-b70/notes/2026-09-07-per-channel-fp8-row-invariance-specification.md)
    with guard conditions and the eight projection shapes; needs a oneDNN rebuild and a bitwise

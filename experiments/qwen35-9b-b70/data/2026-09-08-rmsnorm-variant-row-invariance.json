@@ -1,0 +1,133 @@
+{
+ "schema": "b70-lab.result.v1",
+ "probe": "experiments/qwen35-9b-b70/probes/rmsnorm-variant-row-invariance.py",
+ "question": "The norm on Qwen3.5's serving path is row-count dependent, which is the residue the row-wise all-reduce experiment could not remove. Before that can be fixed end to end, a row-invariant implementation of the same maths has to exist on this hardware. Does one?",
+ "finding": "Yes. The textbook expression evaluated in the serving dtype - x * rsqrt(mean(x^2) + eps) * weight, all float16 - is row-count invariant across every row count and seed tested (0 of 640 rows differ at 128 rows), where the op the server runs today differs on 2-3% of rows.",
+ "counterintuitive": "Accumulating the reduction in float32 makes it worse, not better: 7.66% of rows differ at 128 rows against the float16 expression's 0%. More precision in the accumulator does not buy shape independence, and on this stack it costs it. Worth knowing before anyone reaches for float32 as the obvious fix.",
+ "not_a_drop_in": "The invariant expression does not reproduce the current op's values. It differs by up to 3 ULP and most rows differ even at a single row, so it is a different rounding of the same function rather than a patch. Adopting it would change model outputs, invalidate every published output hash for these lanes, and require re-running the full identity chain. It is an existence proof that the property is achievable here, not a change that can be dropped in.",
+ "timing_caveat": "The per-forward times below are dominated by launch and dispatch overhead, not arithmetic: 128x4096 float16 is about 1 MB, which at this card's bandwidth is a few microseconds against the 29-50 us measured. Read the 29 us against 50 us as 'not obviously more expensive', not as a 42% kernel win.",
+ "row_at_a_time_bound": "Normalising each row alone is invariant by construction and costs 5446 us at 128 rows against 29-50 us, about 108x. That is the price of the naive fix and the reason a genuinely invariant kernel is worth having.",
+ "environment": {
+  "hidden": 4096,
+  "dtype": "torch.float16",
+  "seeds": 5
+ },
+ "variants": {
+  "native": {
+   "rows": {
+    "16": {
+     "differing": 2,
+     "compared": 80,
+     "rate_pct": 2.5,
+     "us_per_forward": 54.2
+    },
+    "32": {
+     "differing": 2,
+     "compared": 160,
+     "rate_pct": 1.25,
+     "us_per_forward": 49.9
+    },
+    "64": {
+     "differing": 7,
+     "compared": 320,
+     "rate_pct": 2.188,
+     "us_per_forward": 50.5
+    },
+    "128": {
+     "differing": 16,
+     "compared": 640,
+     "rate_pct": 2.5,
+     "us_per_forward": 50.1
+    }
+   },
+   "invariant": false
+  },
+  "torch_fp16": {
+   "rows": {
+    "16": {
+     "differing": 0,
+     "compared": 80,
+     "rate_pct": 0.0,
+     "us_per_forward": 29.3
+    },
+    "32": {
+     "differing": 0,
+     "compared": 160,
+     "rate_pct": 0.0,
+     "us_per_forward": 28.8
+    },
+    "64": {
+     "differing": 0,
+     "compared": 320,
+     "rate_pct": 0.0,
+     "us_per_forward": 29.1
+    },
+    "128": {
+     "differing": 0,
+     "compared": 640,
+     "rate_pct": 0.0,
+     "us_per_forward": 28.9
+    }
+   },
+   "invariant": true
+  },
+  "torch_fp32": {
+   "rows": {
+    "16": {
+     "differing": 2,
+     "compared": 80,
+     "rate_pct": 2.5,
+     "us_per_forward": 41.3
+    },
+    "32": {
+     "differing": 6,
+     "compared": 160,
+     "rate_pct": 3.75,
+     "us_per_forward": 41.0
+    },
+    "64": {
+     "differing": 23,
+     "compared": 320,
+     "rate_pct": 7.188,
+     "us_per_forward": 41.6
+    },
+    "128": {
+     "differing": 49,
+     "compared": 640,
+     "rate_pct": 7.656,
+     "us_per_forward": 41.4
+    }
+   },
+   "invariant": false
+  },
+  "rowwise": {
+   "rows": {
+    "16": {
+     "differing": 0,
+     "compared": 80,
+     "rate_pct": 0.0,
+     "us_per_forward": 673.4
+    },
+    "32": {
+     "differing": 0,
+     "compared": 160,
+     "rate_pct": 0.0,
+     "us_per_forward": 1350.9
+    },
+    "64": {
+     "differing": 0,
+     "compared": 320,
+     "rate_pct": 0.0,
+     "us_per_forward": 2720.9
+    },
+    "128": {
+     "differing": 0,
+     "compared": 640,
+     "rate_pct": 0.0,
+     "us_per_forward": 5446.5
+    }
+   },
+   "invariant": true
+  }
+ }
+}
