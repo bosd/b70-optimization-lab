@@ -1,0 +1,101 @@
+{
+ "schema": "b70-lab.result.v1",
+ "probe": "experiments/qwen35-9b-b70/probes/rmsnorm-row-invariance-probe.py",
+ "question": "Whether the RMSNorm Qwen3.5 runs on this stack gives a row the same result regardless of how many rows share its batch. The cross-card all-reduce was ruled out as the sole cause of the two-card identity loss (campaigns r0/r1), and the Flash-Next lane's precedent was that a norm was the second shape-dependent reduction.",
+ "method": "The op is instantiated directly inside a vLLM config context and fed the same rows alone and batched; outputs are compared bitwise. No server and no second card. float16, the model's serving dtype. The forward actually dispatched is forward_native, which matches what the server selects (IrOpPriorityConfig(rms_norm=['native'])); it lowers to ir.ops.rms_norm.",
+ "finding": "Row-count dependent. A row's output can differ from the same row computed alone, at roughly 2-3% of rows once the batch reaches 16, and never below 8 in this sample. Differences are last-bit float16.",
+ "rate_table": [
+  {
+   "rows": 1,
+   "seeds": 10,
+   "differing_rows": 0,
+   "rows_compared": 10,
+   "rate_pct": 0.0,
+   "example": null
+  },
+  {
+   "rows": 2,
+   "seeds": 10,
+   "differing_rows": 0,
+   "rows_compared": 20,
+   "rate_pct": 0.0,
+   "example": null
+  },
+  {
+   "rows": 4,
+   "seeds": 10,
+   "differing_rows": 0,
+   "rows_compared": 40,
+   "rate_pct": 0.0,
+   "example": null
+  },
+  {
+   "rows": 8,
+   "seeds": 10,
+   "differing_rows": 0,
+   "rows_compared": 80,
+   "rate_pct": 0.0,
+   "example": null
+  },
+  {
+   "rows": 16,
+   "seeds": 10,
+   "differing_rows": 3,
+   "rows_compared": 160,
+   "rate_pct": 1.875,
+   "example": {
+    "element": 1567,
+    "batched": 0.9755859375,
+    "alone": 0.97607421875
+   }
+  },
+  {
+   "rows": 32,
+   "seeds": 10,
+   "differing_rows": 9,
+   "rows_compared": 320,
+   "rate_pct": 2.812,
+   "example": {
+    "element": 134,
+    "batched": 0.59423828125,
+    "alone": 0.59375
+   }
+  },
+  {
+   "rows": 64,
+   "seeds": 10,
+   "differing_rows": 19,
+   "rows_compared": 640,
+   "rate_pct": 2.969,
+   "example": {
+    "element": 468,
+    "batched": -0.064697265625,
+    "alone": -0.06463623046875
+   }
+  },
+  {
+   "rows": 128,
+   "seeds": 10,
+   "differing_rows": 41,
+   "rows_compared": 1280,
+   "rate_pct": 3.203,
+   "example": {
+    "element": 468,
+    "batched": -0.064697265625,
+    "alone": -0.06463623046875
+   }
+  }
+ ],
+ "sampling_note": "An early single-seed run appeared to show a clean threshold at 32 rows. It does not hold: other seeds show differences at 16 and none at 32. The effect is stochastic and data-dependent, so the table above aggregates ten seeds per row count rather than reporting one draw.",
+ "input_caveat": "Inputs are standard normal, not real activations. The rate on real hidden states may differ; what is established is that the dependence exists on the serving path, not its exact frequency in production.",
+ "why_it_matters": "It supplies the residue the all-reduce experiment could not remove, and it fits the observed identity behaviour: ladders are exact at low concurrency, where the norm is invariant, and lose occasional requests from 16 users up, where a small fraction of rows carry a last-bit perturbation that only changes a token when it coincides with a near-tie. It also explains why the one-card W4A16 route can be exact at 64 users and still miss one request at 96: the perturbation rate is roughly flat while whether it matters is a matter of ties.",
+ "scope": "This does not show the norm causes any specific observed miss, and it does not make the GEMM story wrong. It shows the lab has been treating row-invariance as a property of the matmul when a second op on the same path does not have it.",
+ "environment": {
+  "device": "xpu",
+  "dtype": "torch.float16",
+  "hidden": 4096,
+  "dispatched_forward": "forward_native",
+  "vllm_xpu_rmsnorm_triton": "0"
+ },
+ "image": "neural-download/vllm-openai-xpu:qwen38-int4-gdn-spec-group-sync-free-r276 (sha256:521eb277)"
+}
