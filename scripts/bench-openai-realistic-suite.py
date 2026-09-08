@@ -7,8 +7,11 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import os
+import platform
 import re
 import statistics
+import subprocess
 import time
 import urllib.request
 from pathlib import Path
@@ -467,6 +470,46 @@ def promotion_gate_failures(
     return failures
 
 
+def _measuring_host() -> dict[str, Any]:
+    """Identify the machine that produced a result.
+
+    Which host set a record has had to be inferred from GPU-index directory names before now, which
+    is not a durable way to know it: the Gemma 4 26B replays on the two-card host sat 10% under a
+    record whose research ran on the four-card host, and establishing that meant counting how many
+    runs used indices this machine does not have. Recording it costs nothing and cannot affect a
+    measurement - none of these values reach the server or the timing path.
+    """
+    info: dict[str, Any] = {"hostname": platform.node(), "kernel": platform.release()}
+    try:
+        cpuinfo = Path("/proc/cpuinfo").read_text()
+        for line in cpuinfo.splitlines():
+            if line.startswith("model name"):
+                info["cpu"] = line.split(":", 1)[1].strip()
+                break
+        info["cpu_threads"] = cpuinfo.count("processor\t:")
+    except OSError:
+        pass
+    try:
+        meminfo = Path("/proc/meminfo").read_text()
+        for line in meminfo.splitlines():
+            if line.startswith("MemTotal:"):
+                info["ram_kb"] = int(line.split()[1])
+                break
+    except OSError:
+        pass
+    try:
+        out = subprocess.run(["xpu-smi", "discovery"], capture_output=True, text=True, timeout=20)
+        if out.returncode == 0:
+            info["gpus"] = out.stdout.count("Device Name:")
+            info["gpus_normal"] = out.stdout.count("Device State: normal")
+    except (OSError, subprocess.SubprocessError):
+        pass
+    for var in ("ZE_AFFINITY_MASK", "ONEAPI_DEVICE_SELECTOR"):
+        if os.environ.get(var):
+            info[var.lower()] = os.environ[var]
+    return info
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="http://127.0.0.1:18260")
@@ -789,6 +832,7 @@ def main() -> int:
     }
     result = {
         "run_identity": {
+            "measuring_host": _measuring_host(),
             "created_at_utc": dt.datetime.now(dt.UTC).isoformat(),
             "base_url": args.base_url,
             "model": args.model,
