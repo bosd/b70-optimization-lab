@@ -56,6 +56,24 @@ No speculation, 128-token completions on the small-context suite, warm pass of
 two, `max-model-len 256`, `max-num-seqs 64`. The identity ceiling is a property
 of the kernel, not of the model or the workload.
 
+### Speculative depth (campaigns d4, d5, d6)
+
+Depth 3 was originally taken from the FP8 route's sweep. Swept here it holds, and the identity
+column is the interesting one:
+
+| depth | W4A16 tok/s | W4A16 vs MTP0 oracle | FP8 tok/s | FP8 vs MTP0 oracle |
+| ---: | ---: | --- | ---: | --- |
+| 3 | **113.63 / 112.90** | 12/12 | 98.25 / 98.03 | 12/12 |
+| 4 | 108.45 / 108.24 | **12/12** | 98.42 / 98.55 | 8/12 |
+| 5 | 104.91 / 104.85 | **12/12** | 91.30 / 91.29 | 8/12 |
+| 6 | 99.27 / 99.32 | **12/12** | 88.60 / 88.68 | 8/12 |
+
+Every depth is lossless on this route; on FP8 only depth 3 was. A verify step at depth `d` processes
+`d+1` rows, so depth varies the GEMM's row count without varying the number of concurrent users.
+That makes this an independent test of the same kernel property the concurrency ladders measure, and
+it says FP8's loss of identity above depth 3 was never a property of speculative decoding - it was
+the row-count dependence its GEMM has and this one does not.
+
 ### Past 64 users (campaign x1)
 
 64 was the top of the ladder, not a measured ceiling, so campaign x1 ran the
@@ -160,10 +178,9 @@ All 18 depth-3 answers matched the oracle. The FP8 route of the same model runs 
 
 ## Known limits
 
-- Depth 3 was inherited from the FP8 route's sweep, not chosen on this one.
-  On FP8, depths 4 to 6 were repeat-exact but not lossless against the MTP0
-  oracle and no faster, which is consistent with the row-count dependence this
-  kernel removes, so the answer may differ here. A sweep is running.
+- Depth 3 is confirmed on this route's own evidence (campaigns d4/d5/d6),
+  not inherited: throughput falls monotonically with depth and no depth above 3
+  is faster. See the depth table below.
 - Graph-off and 2K-32K context rows exist for the FP8 route only.
 - Two-card concurrency identity is weaker than one-card: exact through 32
   users, 63/64 at 64 in both passes.

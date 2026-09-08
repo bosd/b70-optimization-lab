@@ -2716,6 +2716,7 @@
       "dependencies": [
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-fp8-matrix-result.json",
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-c128-identity-ladder.json",
+        "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-depth-sweep.json",
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json",
         "experiments/qwen35-9b-b70/notes/2026-09-07-qwen35-9b-fp8-one-card-quick-lane.md",
         "experiments/qwen35-9b-b70/scripts/run-20260907-qwen35-9b-campaign-v2.sh",
@@ -2758,6 +2759,7 @@
       ],
       "evidence": [
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-c128-identity-ladder.json",
+        "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-depth-sweep.json",
         "experiments/qwen35-9b-b70/data/2026-09-07-qwen35-9b-w4a16-matrix-result.json"
       ],
       "missing": [

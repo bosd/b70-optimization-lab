@@ -1,0 +1,115 @@
+{
+ "schema": "b70-lab.result.v1",
+ "campaign_id": "qwen35-9b-w4a16 depth sweep d4/d5/d6 vs published w1 (2026-09-07, one B70)",
+ "question": "Whether MTP depth 3 is right for the W4A16 route or was inherited from the FP8 route's sweep. There was a specific reason to expect a different answer: on FP8, depths 4, 5 and 6 were each repeat-exact but diverged from the MTP0 oracle on a third of the suite. A verify step at depth d processes d+1 rows, so depth changes the GEMM's row count - the same dependence that makes the FP8 route flip near-tie tokens as concurrency changes. The W4A16 kernel is row-count invariant, so deeper drafts should stay lossless.",
+ "arms": [
+  {
+   "depth": 3,
+   "campaign": "qwen35-9b-w4a16-tp1-mtp3-graph1-dhint4-20260907-w1",
+   "candidate_class_balanced_tok_s": [
+    113.627,
+    112.904
+   ],
+   "oracle_class_balanced_tok_s": [
+    64.332,
+    64.338
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp3-a vs mtp3-b": "12/12",
+    "G3 mtp3-a vs mtp0-a": "12/12",
+    "G3 mtp3-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 4,
+   "campaign": "qwen35-9b-w4a16-tp1-mtp4-graph1-dhint4-20260907-d4",
+   "candidate_class_balanced_tok_s": [
+    108.451,
+    108.24
+   ],
+   "oracle_class_balanced_tok_s": [
+    64.349,
+    64.329
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp4-a vs mtp4-b": "12/12",
+    "G3 mtp4-a vs mtp0-a": "12/12",
+    "G3 mtp4-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 5,
+   "campaign": "qwen35-9b-w4a16-tp1-mtp5-graph1-dhint4-20260907-d5",
+   "candidate_class_balanced_tok_s": [
+    104.905,
+    104.846
+   ],
+   "oracle_class_balanced_tok_s": [
+    64.36,
+    64.34
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp5-a vs mtp5-b": "12/12",
+    "G3 mtp5-a vs mtp0-a": "12/12",
+    "G3 mtp5-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  },
+  {
+   "depth": 6,
+   "campaign": "qwen35-9b-w4a16-tp1-mtp6-graph1-dhint4-20260907-d6",
+   "candidate_class_balanced_tok_s": [
+    99.266,
+    99.32
+   ],
+   "oracle_class_balanced_tok_s": [
+    64.321,
+    64.394
+   ],
+   "gates": {
+    "G1 mtp0-a vs mtp0-b": "12/12",
+    "G2 mtp6-a vs mtp6-b": "12/12",
+    "G3 mtp6-a vs mtp0-a": "12/12",
+    "G3 mtp6-b vs mtp0-a": "12/12"
+   },
+   "lossless": true
+  }
+ ],
+ "fp8_comparison": {
+  "depth3": {
+   "tok_s": [
+    98.251,
+    98.027
+   ],
+   "g3": "12/12"
+  },
+  "depth4": {
+   "tok_s": [
+    98.418,
+    98.55
+   ],
+   "g3": "8/12"
+  },
+  "depth5": {
+   "tok_s": [
+    91.301,
+    91.294
+   ],
+   "g3": "8/12"
+  },
+  "depth6": {
+   "tok_s": [
+    88.602,
+    88.677
+   ],
+   "g3": "8/12"
+  }
+ },
+ "finding": "Every depth from 3 to 6 is lossless on this route: G1, G2 and both G3 comparisons matched 12/12 at all four depths. On FP8 only depth 3 did. The prediction held, on an axis independent of the one it was derived from - depth changes the verify step's row count without changing the number of concurrent users - so FP8's loss of identity above depth 3 was not a property of speculative decoding but of the row-count dependence its GEMM has and this one does not.",
+ "speed": "Throughput falls monotonically with depth: 113.63/112.90 at depth 3, 108.45/108.24 at 4, 104.91/104.85 at 5, 99.27/99.32 at 6. Depth 3 is confirmed as the operating point, now on this route's own evidence rather than inherited. No speed was being left unclaimed."
+}
