@@ -1,0 +1,5 @@
+driver: server healthy at 00:46:26; exec frozen client /home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/tools/run-tp4-mtp0-4352-ple-only-a323-fullgraphdet-w13n64-client.sh
+INFO 09-08 00:46:35 [fused_moe.py:1165] Using configuration from /home/steve/llm-optimizations/experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n64/E=128,N=640,device_name=Intel(R)_Arc(TM)_Pro_B70_Graphics,dtype=fp8_w8a8,block_shape=[128,128].json for MoE layer.
+Traceback (most recent call last):
+  File "<stdin>", line 36, in <module>
+AssertionError
