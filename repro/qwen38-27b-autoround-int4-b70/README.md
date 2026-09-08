@@ -340,6 +340,12 @@ manifest `manifests/model-gptq-relabel-r212.json`). Change `--tensor-parallel-si
 (`0` for one card), `num_speculative_tokens` (drop `--speculative-config` for MTP0) and `VLLM_XPU_ENABLE_XPU_GRAPH`/the
 `cudagraph_mode` block (`"PIECEWISE"`, sizes `[1]`, for graphs off) to reach the other rows of the replication matrix.
 
+> The `gptq-relabel` directory below is the path this block used when the numbers were
+> taken; it is not present on the lab host today. The live local copy of the same pinned
+> revision is `/mnt/usb-models/llm-models/qwen3.8-27b-int4-autoround-devan` (see the
+> model-identity section), so set `MODEL_DIR` to that unless you have reconstructed the
+> relabelled copy yourself. Checked 2026-09-08.
+
 ```bash
 MODEL_DIR=/mnt/fast-ai/llm-models/qwen3.8-27b-int4-autoround-gptq-relabel
 CACHE_DIR=$(mktemp -d)   # empty compile cache; every published number was taken from an empty cache
