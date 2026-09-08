@@ -93,8 +93,11 @@ Open, in the order worth doing:
    costs nothing**: +0.06% at single-request shape and -0.2% to +0.6% across every ladder rung up to
    the 64-row threshold, on both the speculative and no-speculation paths, against an isolated ratio
    of about 33x. So the value-preserving fix is viable and the isolated ratio was not predictive.
-   What is still unknown is whether it closes the identity gap, which needs the many-pass
-   methodology, not two passes. Above 64 rows the knob does not engage and the cost is unmeasured.
+   **It does not close the identity gap**, measured properly: 20 passes at 64 users per arm, 1280
+   requests each, 7 divergent against the control's 9 - a difference of 2 events against a Poisson
+   standard error of 4. That rules out removal and any large reduction, not a modest one. Above 64
+   rows the knob does not engage and the cost is unmeasured. Neither mechanism removes the gap alone;
+   whether the pair does is running now (arm p2, both overlays in one image).
 2. Per-channel FP8 row-invariance. Specified in
    [this note](../experiments/qwen35-9b-b70/notes/2026-09-07-per-channel-fp8-row-invariance-specification.md)
    with guard conditions and the eight projection shapes; needs a oneDNN rebuild and a bitwise
