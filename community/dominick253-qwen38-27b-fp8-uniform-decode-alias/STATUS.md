@@ -5,15 +5,15 @@
 | Field | Value |
 | --- | --- |
 | Evidence level | `community-reported`; the upstream defect and PR are open items on the upstream tracker, not lab-confirmed |
-| Patch review status | read and executed on the contributor's host; not executed in the reference lab |
-| Tested in reference lab | no |
+| Patch review status | complete diff reviewed; applied and CPU-tested against both actual local R50 source copies, 2026-09-08 |
+| Tested in reference lab | classifier only (15 cases per source copy); no GPU/model/soak test |
 | Safe to merge as documentation | yes |
 | Eligible for `repro/` or `results/` | no until `B70-tested` |
 
 ## Provenance
 
 - Contributor: [`dominick253`](https://github.com/dominick253)
-- Source: this PR
+- Source: [PR #45](https://github.com/steveseguin/b70-optimization-lab/pull/45), commit `f12e834cf3eb53a03ce4eae46ae54029b51b86d6`; original packet preserved in local commit `41c934a39`
 - Upstream defect: [vllm-project/vllm issue #53051](https://github.com/vllm-project/vllm/issues/53051) ("Prefill misdispatched into spec-decode FULL cudagraph when prompt length == 1 + num_speculative_tokens → silent GDN state loss, garbage output (hybrid/Qwen3-Next models)")
 - Upstream fix (adopted here): [vllm-project/vllm PR #53059](https://github.com/vllm-project/vllm/pull/53059) — "[Bugfix] Reject shape-aliased prefills in uniform-decode classification" by `allenzz-dev` (open, unmerged at capture time)
 - Right-to-submit statement: present in the PR description
@@ -83,14 +83,12 @@ mitigation points that would both silence a shared root cause.
    require every request to be past its prompt
    (`num_computed_tokens_cpu[:num_reqs] >= num_prompt_tokens[:num_reqs]`).
    This is upstream PR #53059's guard.
-2. Veto microbatching for any step that splits a prefix from its writer
-   (`_allow_microbatching`), because a request admitted on a prefix-cache hit
-   against blocks another same-batch request is only now computing would read
-   unwritten KV if the step were split. (Contributor-added companion guard,
-   same stale-state family; included in the same diff for review.)
+2. **Maintainer correction:** no microbatch veto is present in the supplied
+   patch. `_allow_microbatching` appears only as unchanged trailing context.
+   A separate deployed contributor guard, if any, was not submitted or tested.
 
-`reported/test_is_uniform_decode_red_green.py` — RED/GREEN test that extracts
-`_is_uniform_decode` from the stock and patched files and runs 14 cases:
+`reported/test_is_uniform_decode_red_green.py` — illustrative RED/GREEN test
+with embedded stock and patched method strings, running 14 cases:
 stock must misclassify all 5 aliased shapes (2-token prompt at MTP1,
 3-token at MTP2, chunked last chunk, mixed batch, 1-token no-spec) and
 preserve all genuine decode classifications. Contributor run: RED PASS,
@@ -106,9 +104,11 @@ recreation. Keep the stock copy for rollback.
 
 - The upstream PR is open and unmerged at capture time; this packet records
   adoption, not an upstream endorsement.
-- The contributor's fix file also carries the microbatch veto (2), which is
-  NOT part of upstream #53059; reviewers should treat (1) as the reported fix
-  and (2) as a separate, unproven-on-this-lab guard.
+- The supplied patch has no microbatch veto; the original description of (2)
+  was inaccurate. No such guard is part of the local candidate image.
+- The original illustrative test prints failures without a failing exit code.
+  The maintainer's actual-source test enforces failures and covers capture
+  overrides before `input_batch` exists, prompt boundaries and padded rows.
 - No controlled on-demand reproduction exists here; the claim rests on the
   incident signature matching upstream #53051 plus post-fix stability, which
   is consistent-but-not-conclusive evidence.
@@ -126,6 +126,12 @@ recreation. Keep the stock copy for rollback.
   state write), or an independent kernel-path defect?
 
 ## Disposition
+
+The classifier fix is integrated in a separate local candidate image; build
+identity, reproduction commands, limits and contributor credit are in
+[validation/README.md](validation/README.md). No promoted runtime, benchmark
+identity or score was changed. CPU classifier validation does not establish
+the cause or resolution of the contributor's multi-hour GPU incident.
 
 Remains `community-reported` documentation. If the lab reproduces the alias
 trigger on its sealed lane and finds the classifier guard effective, this

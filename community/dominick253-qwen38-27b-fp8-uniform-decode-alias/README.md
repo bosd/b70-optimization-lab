@@ -1,5 +1,10 @@
 # Qwen3.8-27B FP8 vLLM XPU (R50 lineage): shape-aliased prefill silently skips GDN state writes → degenerate output walls
 
+> **Maintainer review, 2026-09-08:** the classifier defect and fix were
+> reproduced with 15 CPU cases against both actual R50 source copies.
+> A separate patched image builds successfully. The long-running GPU incident
+> remains unverified here; see [validation](validation/README.md).
+
 > **Read [STATUS.md](STATUS.md) first.** This is a `community-reported`
 > contribution: an incident analysis and patch adoption from a production
 > two-B70 host. It is not a lab result and not a promoted recipe.
@@ -39,13 +44,15 @@ return bool(
 ```
 
 Full diff: [`reported/vllm-gpu-model-runner-uniform-decode-alias.patch`](reported/vllm-gpu-model-runner-uniform-decode-alias.patch)
-(47 lines; also carries a companion microbatch veto guard, see STATUS Known
-Issues — that part is contributor-added, not upstream).
+(47 lines; changes only `_is_uniform_decode`. The original submission's
+description of a companion microbatch veto was incorrect: it is absent.)
 
 Regression test: [`reported/test_is_uniform_decode_red_green.py`](reported/test_is_uniform_decode_red_green.py)
-extracts the classifier from both files and runs 14 cases — the 5 aliased
+embeds copies of the classifier and runs 14 cases — the 5 aliased
 shapes must fail on stock (RED) and pass on patched (GREEN). Contributor run:
-both PASS.
+both PASS. That illustrative test does not exit nonzero on failure; use the
+maintainer's [actual-source test](validation/test_installed_classifier.py)
+for an enforcing regression check.
 
 ## Why this lane should care
 
