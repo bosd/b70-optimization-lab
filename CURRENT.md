@@ -1,6 +1,6 @@
 # Current Workspace State
 
-Last reviewed: **2026-09-09 02:26 UTC** (2026-09-08 22:26 EDT).
+Last reviewed: **2026-09-09 02:43 UTC** (2026-09-08 22:43 EDT).
 
 ## Authority And Update Rule
 
@@ -17,16 +17,18 @@ actions are historical, span multiple hosts, and are not current instructions.
 ## Local Host And Active Review
 
 Host: `steve-TURIND8-2L2T`, **two B70s**. At the verification time above,
-the isolated PR45 follow-up owns the GPUs and localhost port 18124. Recheck
-actual process and endpoint state before operational changes.
+no Docker containers are running; all PR45 review servers were stopped.
+Both GPUs and XCCL passed final postflight. Recheck actual process and endpoint
+state before operational changes.
 
 The active task is correctness and reproducibility review. An isolated
 Qwen3.8 27B official-FP8 R50 baseline/candidate comparison completed for PR #45:
 normal-suite parity passed, tiny-prompt screens failed, candidate not promoted.
 The initial review model containers were stopped; both GPUs and XCCL passed
-postflight. Follow-up operator census completed with healthy postflight; a
-fresh compilation-disabled target-only control is now running to isolate the
-remaining one-token failure. See the
+postflight. Follow-up isolated the fresh one-token GDN routing defect: the
+phase-guard candidate passed 120/120 probes, two fresh compiled MTP full suites,
+12/12 baseline/fresh-repeat parity and pre/post workload screens. The campaign
+is complete and stopped, not a permanent service. See the
 [preregistered follow-up](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/priority-followup-plan.md).
 Read the
 [maintainer validation record](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/README.md)
@@ -49,6 +51,9 @@ GPU lane at a time; verify endpoint and health independently of an image tag.
   Normal GPU suite passed 12/12 exact baseline/candidate parity, but both
   failed tiny-prefill screens; compilation-disabled candidate also failed.
   Sustained mixed-session validation remains unperformed; not a verified fix.
+  A separate maintainer GDN phase guard fixes the local one-token symptom in
+  the [bounded follow-up](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/priority-20260909/README.md),
+  but is not promoted as the contributor's incident resolution.
 - **Gemma 4 26B Q8:** [result/handoff](results/gemma4-26b-a4b-q8-b70/HANDOFF.md)
   and [standalone recipe](repro/gemma4-26b-a4b-q8-b70-125tps-20260701/README.md)
   preserve the measured setup. Their existence does not mean Gemma is loaded.
@@ -59,9 +64,10 @@ GPU lane at a time; verify endpoint and health independently of an image tag.
 
 ## Known Issues And Next Actions
 
-1. Investigate PR #45's remaining tiny-prompt output walls before promotion.
-   The bounded strict-suite and tiny/mixed-screen evidence is recorded; a
-   fresh candidate repeat and multi-hour soak were not run after failures.
+1. Before promoting the GDN local fix, complete the lane's matched-image MTP0
+   strict-oracle matrix, then the contributor's actual mixed-session soak.
+   The local one-token defect now has a bounded tested correction; fresh
+   compiled MTP repeat passed, but the multi-hour incident remains unverified.
 2. Reproduce one selected recipe end to end: pinned inputs, build, launch,
    quality gate and clean teardown. Correct defects found along that route
    before additional speed tuning.
@@ -76,9 +82,10 @@ GPU lane at a time; verify endpoint and health independently of an image tag.
    The broader 229 historical experimental hash mismatches were not blindly
    repinned. Four-card runtime replay remains untested on this two-card host.
 5. Keep ML Bottleneck automatic refresh paused. Numerical fixture tests are
-   now separated from refreshed-data checks, with 90/90 passing against both
-   snapshots. Strict physical audit still blocks two outliers; context-depth
-   semantics and missing offload/KV evidence need resolution. Details are in
+   now separated from refreshed-data checks. The ingestion parser correction
+   passes 94 tests and resolves the 3060 interpretation in a migration test.
+   Publication still blocks on the 4070, nine ambiguous measurements and
+   calibration thresholds. Published evidence remains unchanged. Details are in
    that repository's `docs/refresh-review-2026-09-08.md`.
 
 ## Other Host: Four-Card Work

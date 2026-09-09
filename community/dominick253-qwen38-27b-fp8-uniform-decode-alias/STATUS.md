@@ -6,7 +6,7 @@
 | --- | --- |
 | Evidence level | `community-reported`; the upstream defect and PR are open items on the upstream tracker, not lab-confirmed |
 | Patch review status | complete diff reviewed; applied and CPU-tested against both actual local R50 source copies, 2026-09-08 |
-| Tested in reference lab | 15 classifier cases per source copy; two-B70 strict suite 12/12 exact baseline/candidate parity, but tiny-prompt screen fails both and compilation-disabled diagnostic; no multi-hour soak |
+| Tested in reference lab | Original classifier: 15 CPU cases/copy, normal 12/12 parity but tiny screen fails. Separate maintainer GDN phase guard: 8 CPU cases/copy, 120/120 probes, two fresh compiled MTP strict suites with 12/12 exact parity. No multi-hour soak |
 | Safe to merge as documentation | yes |
 | Eligible for `repro/` or `results/` | no until `B70-tested` |
 
@@ -133,6 +133,11 @@ identity, reproduction commands, limits and contributor credit are in
 identity or score was changed. Bounded GPU tests did not eliminate tiny-prompt
 output walls; they do not establish the cause or resolution of the contributor's
 multi-hour incident. See the [GPU record](validation/gpu-20260909/README.md).
+
+A separate maintainer GDN phase-aware prefill correction subsequently passed
+the bounded local screen and normal-suite/fresh-server parity. See the
+[follow-up](validation/priority-20260909/README.md). This local finding is
+`B70-tested`; the original contributor incident remains `community-reported`.
 
 Remains `community-reported` documentation. If the lab reproduces the alias
 trigger on its sealed lane and finds the classifier guard effective, this

@@ -1,0 +1,42 @@
+{
+  "arm": "candidate-target-only",
+  "image": "sha256:4bb40c00826d3adeb577306afe8d7a6836eaef61d33e1e97a99b74ea85081fb4",
+  "started_utc": "2026-09-09T02:23:04.854190+00:00",
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 1024,
+  "status": "failed",
+  "performance_promotion": false,
+  "strict_workload_run": false,
+  "compilation_disabled": true,
+  "speculative_disabled": true,
+  "error": "CalledProcessError(1, ['python3', '/home/steve/b70-optimization-lab/community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/probe_endpoint.py', '--base-url', 'http://127.0.0.1:18124', '--model', 'pr45-review', '--out', '/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/candidate-target-only/probes.json'])",
+  "cleanup": {
+    "container": "pr45-review-candidate-target-only",
+    "errors": [],
+    "stop_returncode": 0,
+    "stop_stderr": "",
+    "launcher_reaped": true,
+    "container_absent": true,
+    "passed": true
+  },
+  "cleanup_passed": true,
+  "kernel_fault_seen_during_startup": false,
+  "postflight": {
+    "errors": [],
+    "kernel_passed": true,
+    "gpu_health": "passed",
+    "health_cleanup": {
+      "container": "pr45-review-health",
+      "errors": [],
+      "stop_returncode": 1,
+      "stop_stderr": "Error response from daemon: No such container: pr45-review-health\n",
+      "container_absent": true,
+      "passed": true
+    },
+    "passed": true
+  },
+  "postflight_passed": true,
+  "campaign_stage_complete": false,
+  "finished_utc": "2026-09-09T02:26:06.193748+00:00"
+}

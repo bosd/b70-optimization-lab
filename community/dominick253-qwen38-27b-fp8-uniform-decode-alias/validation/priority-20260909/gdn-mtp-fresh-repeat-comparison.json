@@ -1,0 +1,61 @@
+{
+  "comparison": {
+    "complete_token_arrays_exact": true,
+    "divergent_prompts": [],
+    "exact_prompts": 12,
+    "total_prompts": 12
+  },
+  "left": {
+    "artifacts": {
+      "canaries": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp/strict/canaries.json",
+        "sha256": "f234e605954b061e7f902eb92dd96739722df5437cadd9b2aceed79b976e45f8"
+      },
+      "identity": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp/strict/campaign-identity.json",
+        "sha256": "483ee870a182695911b16f220693b61974be4e1a3698d50541d1b05c43c7b0b8"
+      },
+      "performance": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp/strict/performance.json",
+        "sha256": "987470d5c5a48836140fa69977ff22267ff1294334bc4c3dc29204c302b68fbd"
+      }
+    },
+    "attempt": "gdn-mtp",
+    "cached_tokens_all_zero": true,
+    "canaries_passed": true,
+    "class_balanced_median_tok_s": 51.16866697177694,
+    "fresh_response_valid": true,
+    "performance_gate_passed": true,
+    "profile": "pr45-gdn-mtp"
+  },
+  "qualification": {
+    "all_workload_and_canary_gates_passed": true,
+    "required": "both complete fixed-suite attempts pass every workload/canary gate and match every complete token array",
+    "strict_pair_qualified": true
+  },
+  "right": {
+    "artifacts": {
+      "canaries": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp-repeat/strict/canaries.json",
+        "sha256": "f234e605954b061e7f902eb92dd96739722df5437cadd9b2aceed79b976e45f8"
+      },
+      "identity": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp-repeat/strict/campaign-identity.json",
+        "sha256": "eca2400f563fa3574af97ab4c97201770a5e2bb1bbe24e4a67f615cf6ba44ae3"
+      },
+      "performance": {
+        "path": "/mnt/fast-ai/bench-results/pr45-followup-20260909T0226Z/gdn-mtp-repeat/strict/performance.json",
+        "sha256": "93c0275e649c57ff6bf113ea4f61b36d3df0cf262954855ff610cf813ebf76f1"
+      }
+    },
+    "attempt": "gdn-mtp-repeat",
+    "cached_tokens_all_zero": true,
+    "canaries_passed": true,
+    "class_balanced_median_tok_s": 52.088054005054445,
+    "fresh_response_valid": true,
+    "performance_gate_passed": true,
+    "profile": "pr45-gdn-mtp-repeat"
+  },
+  "schema": "neural.download.strict-attempt-output-comparison.v1",
+  "suite_sha256": "df03f49d36c36d2b8ac4cd117b7cb2e42c74878af1f6926690ebb89eeccd47ac"
+}

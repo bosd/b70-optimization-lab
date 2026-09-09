@@ -1,0 +1,72 @@
+{
+  "schema": "pr45-phase-guard-screen-summary-v1",
+  "screens": [
+    {
+      "name": "gdn-target-only/probes.json",
+      "passed": true,
+      "request_count": 24,
+      "sequential_repeat_exact": {
+        "one-token": true,
+        "two-token": true,
+        "arithmetic": true,
+        "operations": true
+      }
+    },
+    {
+      "name": "gdn-mtp/probes-before-quality.json",
+      "passed": true,
+      "request_count": 24,
+      "sequential_repeat_exact": {
+        "one-token": true,
+        "two-token": true,
+        "arithmetic": true,
+        "operations": true
+      }
+    },
+    {
+      "name": "gdn-mtp/probes.json",
+      "passed": true,
+      "request_count": 24,
+      "sequential_repeat_exact": {
+        "one-token": true,
+        "two-token": true,
+        "arithmetic": true,
+        "operations": true
+      }
+    },
+    {
+      "name": "gdn-mtp-repeat/probes-before-quality.json",
+      "passed": true,
+      "request_count": 24,
+      "sequential_repeat_exact": {
+        "one-token": true,
+        "two-token": true,
+        "arithmetic": true,
+        "operations": true
+      }
+    },
+    {
+      "name": "gdn-mtp-repeat/probes.json",
+      "passed": true,
+      "request_count": 24,
+      "sequential_repeat_exact": {
+        "one-token": true,
+        "two-token": true,
+        "arithmetic": true,
+        "operations": true
+      }
+    }
+  ],
+  "passed_probes": 120,
+  "fresh_server_complete_probe_arrays_exact": {
+    "before_quality": {
+      "exact": 24,
+      "total": 24
+    },
+    "after_quality": {
+      "exact": 24,
+      "total": 24
+    }
+  },
+  "limits": "Diagnostic screen; mixed-batch token identity is not a hard gate, and this is not a multi-hour soak."
+}

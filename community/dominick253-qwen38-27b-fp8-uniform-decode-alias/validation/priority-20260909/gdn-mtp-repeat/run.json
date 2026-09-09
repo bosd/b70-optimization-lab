@@ -1,0 +1,42 @@
+{
+  "arm": "gdn-mtp-repeat",
+  "image": "sha256:334c353ffc543eaea2de85d25d947ab5a0db36b9cfa043d0ed7d849627662e81",
+  "started_utc": "2026-09-09T02:36:15.191237+00:00",
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 1024,
+  "status": "passed",
+  "performance_promotion": false,
+  "strict_workload_run": true,
+  "compilation_disabled": false,
+  "speculative_disabled": false,
+  "gdn_phase_guard": true,
+  "cleanup": {
+    "container": "pr45-review-gdn-mtp-repeat",
+    "errors": [],
+    "stop_returncode": 0,
+    "stop_stderr": "",
+    "launcher_reaped": true,
+    "container_absent": true,
+    "passed": true
+  },
+  "cleanup_passed": true,
+  "kernel_fault_seen_during_startup": false,
+  "postflight": {
+    "errors": [],
+    "kernel_passed": true,
+    "gpu_health": "passed",
+    "health_cleanup": {
+      "container": "pr45-review-health",
+      "errors": [],
+      "stop_returncode": 1,
+      "stop_stderr": "Error response from daemon: No such container: pr45-review-health\n",
+      "container_absent": true,
+      "passed": true
+    },
+    "passed": true
+  },
+  "postflight_passed": true,
+  "campaign_stage_complete": true,
+  "finished_utc": "2026-09-09T02:42:13.799148+00:00"
+}

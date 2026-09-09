@@ -55,6 +55,13 @@ not a published image or clean-host reproduction claim.
 
 ## Limits and next gate
 
+Follow-up: a separate maintainer GDN phase-guard patch resolves the local
+one-token screen on the tested configuration: 120/120 probes pass, plus
+12/12 normal-suite parity on two fresh compiled MTP servers. See the
+[bounded follow-up record](priority-20260909/README.md). This is a distinct
+change, not evidence that the original classifier patch alone fixes the
+contributor's multi-hour incident. No production recipe was changed.
+
 The [September 9 GPU record](gpu-20260909/README.md) includes real two-B70
 baseline and candidate runs: the normal strict suite passed with 12/12 exact
 complete token arrays, but both failed two of 24 tiny/mixed probes with

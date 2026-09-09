@@ -4,8 +4,10 @@
 > reproduced with 15 CPU cases against both actual R50 source copies.
 > A separate patched image builds successfully. September 9 two-B70 tests
 > passed normal-suite parity but tiny-prompt output walls persisted, including
-> with compilation disabled. The patch is not a verified fix; the long-running
-> incident remains unverified. See [validation](validation/README.md).
+> with compilation disabled. A separate maintainer GDN phase-guard correction
+> now passes 120/120 diagnostic probes and two fresh compiled normal-suite
+> comparisons. The original patch alone is not a verified incident fix;
+> the long-running incident remains unverified. See [validation](validation/README.md).
 
 > **Read [STATUS.md](STATUS.md) first.** This is a `community-reported`
 > contribution: an incident analysis and patch adoption from a production

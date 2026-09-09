@@ -1,0 +1,26 @@
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered blocking state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered disabled state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: veth295a36f: entered allmulticast mode
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: veth295a36f: entered promiscuous mode
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: eth0: renamed from veth169c094
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered blocking state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered forwarding state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered disabled state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: veth169c094: renamed from eth0
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered disabled state
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: veth295a36f (unregistering): left allmulticast mode
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: veth295a36f (unregistering): left promiscuous mode
+Sep 08 22:23:05 steve-TURIND8-2L2T kernel: docker0: port 1(veth295a36f) entered disabled state
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered blocking state
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered disabled state
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: vethf62cd43: entered allmulticast mode
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: vethf62cd43: entered promiscuous mode
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: eth0: renamed from veth5c7ef80
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered blocking state
+Sep 08 22:23:45 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered forwarding state
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered disabled state
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: veth5c7ef80: renamed from eth0
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered disabled state
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: vethf62cd43 (unregistering): left allmulticast mode
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: vethf62cd43 (unregistering): left promiscuous mode
+Sep 08 22:25:57 steve-TURIND8-2L2T kernel: docker0: port 1(vethf62cd43) entered disabled state
