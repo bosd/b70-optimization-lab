@@ -1,0 +1,41 @@
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered blocking state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered disabled state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: vethf963b2f: entered allmulticast mode
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: vethf963b2f: entered promiscuous mode
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: eth0: renamed from veth243ac32
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered blocking state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered forwarding state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered disabled state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: veth243ac32: renamed from eth0
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered disabled state
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: vethf963b2f (unregistering): left allmulticast mode
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: vethf963b2f (unregistering): left promiscuous mode
+Sep 08 23:07:55 steve-TURIND8-2L2T kernel: docker0: port 1(vethf963b2f) entered disabled state
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered blocking state
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered disabled state
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: veth22da85d: entered allmulticast mode
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: veth22da85d: entered promiscuous mode
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: eth0: renamed from veth418bcbc
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered blocking state
+Sep 08 23:08:35 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered forwarding state
+Sep 08 23:08:45 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=30668 PROTO=2 
+Sep 08 23:08:59 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=50220 PROTO=2 
+Sep 08 23:10:26 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=17412 PROTO=2 
+Sep 08 23:10:35 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=34881 PROTO=2 
+Sep 08 23:10:44 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=62867 PROTO=2 
+Sep 08 23:10:54 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=58286 PROTO=2 
+Sep 08 23:11:03 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=12937 PROTO=2 
+Sep 08 23:11:23 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=63372 PROTO=2 
+Sep 08 23:11:34 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=25944 PROTO=2 
+Sep 08 23:11:44 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=31129 PROTO=2 
+Sep 08 23:12:06 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=37543 PROTO=2 
+Sep 08 23:12:16 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=15712 PROTO=2 
+Sep 08 23:12:46 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=30228 PROTO=2 
+Sep 08 23:13:07 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=37567 PROTO=2 
+Sep 08 23:13:55 steve-TURIND8-2L2T kernel: [UFW BLOCK] IN=enp161s0f0np0 OUT= MAC=01:00:5e:00:00:fb:7e:db:b4:f8:4c:26:08:00 SRC=10.0.0.248 DST=224.0.0.251 LEN=32 TOS=0x00 PREC=0x00 TTL=1 ID=23080 PROTO=2 
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered disabled state
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: veth418bcbc: renamed from eth0
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered disabled state
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: veth22da85d (unregistering): left allmulticast mode
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: veth22da85d (unregistering): left promiscuous mode
+Sep 08 23:14:45 steve-TURIND8-2L2T kernel: docker0: port 1(veth22da85d) entered disabled state

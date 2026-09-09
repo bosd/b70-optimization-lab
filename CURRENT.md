@@ -1,6 +1,6 @@
 # Current Workspace State
 
-Last reviewed: **2026-09-09 02:43 UTC** (2026-09-08 22:43 EDT).
+Last reviewed: **2026-09-09 03:22 UTC** (2026-09-08 23:22 EDT).
 
 ## Authority And Update Rule
 
@@ -20,6 +20,12 @@ Host: `steve-TURIND8-2L2T`, **two B70s**. At the verification time above,
 no Docker containers are running; all PR45 review servers were stopped.
 Both GPUs and XCCL passed final postflight. Recheck actual process and endpoint
 state before operational changes.
+
+Target-oracle follow-up completed: both fresh compiled target-only strict tests
+passed, all five comparisons were 12/12 exact, and 96 additional probes passed.
+All owned containers stopped; localhost 18124 is closed and postflight passed. See
+[preregistration](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/target-oracle-20260909.md).
+The six-hour soak has not been started.
 
 The active task is correctness and reproducibility review. An isolated
 Qwen3.8 27B official-FP8 R50 baseline/candidate comparison completed for PR #45:
@@ -64,10 +70,10 @@ GPU lane at a time; verify endpoint and health independently of an image tag.
 
 ## Known Issues And Next Actions
 
-1. Before promoting the GDN local fix, complete the lane's matched-image MTP0
-   strict-oracle matrix, then the contributor's actual mixed-session soak.
-   The local one-token defect now has a bounded tested correction; fresh
-   compiled MTP repeat passed, but the multi-hour incident remains unverified.
+1. Before promoting the GDN local fix, run the contributor's actual mixed-session
+   soak. The matched-image MTP0/MTP1 strict-oracle matrix now passes; the
+   multi-hour incident remains unverified. PR #45 is merged as a community
+   contribution, not a production promotion.
 2. Reproduce one selected recipe end to end: pinned inputs, build, launch,
    quality gate and clean teardown. Correct defects found along that route
    before additional speed tuning.

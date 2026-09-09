@@ -99,6 +99,14 @@ class ReviewTest(unittest.TestCase):
         self.assertFalse(record["speculative_disabled"])
         self.assertTrue(record["strict_workload_run"])
 
+    def test_target_strict_keeps_compilation_and_full_workload(self):
+        for arm in ("gdn-target-strict", "gdn-target-strict-repeat"):
+            record, env = self.exercise(arm=arm)
+            self.assertEqual(env["SPECULATIVE_CONFIG"], "null")
+            self.assertFalse(record["compilation_disabled"])
+            self.assertTrue(record["strict_workload_run"])
+            self.assertEqual(env["IMAGE"], m.IMAGES["gdn"])
+
 
 if __name__ == "__main__":
     unittest.main()

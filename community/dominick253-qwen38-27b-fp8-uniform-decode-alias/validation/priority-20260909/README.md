@@ -76,6 +76,7 @@ quality oracle. Normal strict-suite evidence is retained under each MTP arm's
 The contributor's 6–24-hour workload and exact FP8-KV/prefix-cache settings have
 not been reproduced. Four-GPU model replay is unavailable on this two-card
 host. Neither limitation can be converted into a pass by this bounded review.
-The lane's full promotion matrix also requires two matched-image MTP0 strict
-oracle runs; this follow-up ran only a diagnostic MTP0 control. The existing
-production recipe and score remain unchanged.
+The two matched-image MTP0 strict oracle runs subsequently passed, including
+all five 12/12 target/repeat/MTP comparisons; see the
+[target-oracle follow-up](../target-oracle-20260909.md). The long-session soak
+remains pending. The existing production recipe and score remain unchanged.

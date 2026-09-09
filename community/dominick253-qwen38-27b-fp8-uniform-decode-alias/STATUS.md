@@ -139,6 +139,10 @@ the bounded local screen and normal-suite/fresh-server parity. See the
 [follow-up](validation/priority-20260909/README.md). This local finding is
 `B70-tested`; the original contributor incident remains `community-reported`.
 
+The [matched-image target-oracle matrix](validation/target-oracle-20260909.md)
+subsequently passed all five 12/12 comparisons, with 96 additional passing
+probes and healthy teardown. The multi-hour soak remains pending.
+
 Remains `community-reported` documentation. If the lab reproduces the alias
 trigger on its sealed lane and finds the classifier guard effective, this
 belongs in the R187/R50 chain's README as a known upstream defect with the

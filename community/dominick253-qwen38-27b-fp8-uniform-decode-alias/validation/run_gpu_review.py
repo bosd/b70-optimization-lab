@@ -27,7 +27,8 @@ def main():
     parser.add_argument("--model-dir", type=Path, required=True)
     parser.add_argument("--arms", nargs="+", default=["baseline", "candidate", "candidate-repeat"],
                         choices=["baseline", "candidate", "candidate-repeat", "candidate-no-compile",
-                                 "candidate-target-only", "gdn-target-only", "gdn-mtp", "gdn-mtp-repeat"])
+                                 "candidate-target-only", "gdn-target-only", "gdn-mtp", "gdn-mtp-repeat",
+                                 "gdn-target-strict", "gdn-target-strict-repeat"])
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     with open("/tmp/b70-pr45-review.lock", "w") as lock:
@@ -116,7 +117,8 @@ def run_arm(args, arm):
                MAX_MODEL_LEN="4096", MAX_NUM_SEQS="4", MAX_NUM_BATCHED_TOKENS="1024",
                CONTAINER_NAME=container, SERVED_MODEL_NAME="pr45-review", PORT="18124")
     probe_only = arm in ("candidate-no-compile", "candidate-target-only", "gdn-target-only")
-    target_only = arm in ("candidate-target-only", "gdn-target-only")
+    target_only = arm in ("candidate-target-only", "gdn-target-only",
+                          "gdn-target-strict", "gdn-target-strict-repeat")
     if probe_only:
         env["COMPILATION_CONFIG"] = '{"mode":0,"cudagraph_mode":"NONE"}'
     if target_only:
