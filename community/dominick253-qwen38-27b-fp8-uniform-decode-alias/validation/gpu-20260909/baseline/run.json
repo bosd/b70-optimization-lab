@@ -1,0 +1,12 @@
+{
+  "arm": "baseline",
+  "image": "sha256:2932e495b560e79c6301f5cc64584af928a2260f0d0d19c145142b2ef35860d3",
+  "started_utc": "2026-09-09T01:38:25.844951+00:00",
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 1024,
+  "status": "failed",
+  "performance_promotion": false,
+  "error": "Command '['python3', '/home/steve/b70-optimization-lab/community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/probe_endpoint.py', '--base-url', 'http://127.0.0.1:18124', '--model', 'pr45-review', '--out', '/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/baseline/probes.json']' returned non-zero exit status 1.",
+  "finished_utc": "2026-09-09T01:44:06.354981+00:00"
+}

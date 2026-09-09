@@ -1,0 +1,61 @@
+{
+  "comparison": {
+    "complete_token_arrays_exact": true,
+    "divergent_prompts": [],
+    "exact_prompts": 12,
+    "total_prompts": 12
+  },
+  "left": {
+    "artifacts": {
+      "canaries": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/baseline/strict/canaries.json",
+        "sha256": "f234e605954b061e7f902eb92dd96739722df5437cadd9b2aceed79b976e45f8"
+      },
+      "identity": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/baseline/strict/campaign-identity.json",
+        "sha256": "0ae02b9d663986679bdd3bd58b1dbf82d5506d2c9a0a29700a65afe8dad3c32e"
+      },
+      "performance": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/baseline/strict/performance.json",
+        "sha256": "3bd3870f0a84c9b682638c83d8b72a19d080951498a0f43785f16929defb735e"
+      }
+    },
+    "attempt": "baseline",
+    "cached_tokens_all_zero": true,
+    "canaries_passed": true,
+    "class_balanced_median_tok_s": 51.05777459283499,
+    "fresh_response_valid": true,
+    "performance_gate_passed": true,
+    "profile": "pr45-baseline"
+  },
+  "qualification": {
+    "all_workload_and_canary_gates_passed": true,
+    "required": "both complete fixed-suite attempts pass every workload/canary gate and match every complete token array",
+    "strict_pair_qualified": true
+  },
+  "right": {
+    "artifacts": {
+      "canaries": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/candidate/strict/canaries.json",
+        "sha256": "f234e605954b061e7f902eb92dd96739722df5437cadd9b2aceed79b976e45f8"
+      },
+      "identity": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/candidate/strict/campaign-identity.json",
+        "sha256": "b6ab2be0d68a8ee5f6ac28439f9a274ba67256bff82fc8748ceec5bf53c93150"
+      },
+      "performance": {
+        "path": "/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/candidate/strict/performance.json",
+        "sha256": "a5772af7b26b8646b70e14970fb85a7724b3c64d8fff815a98617912ee985db7"
+      }
+    },
+    "attempt": "candidate",
+    "cached_tokens_all_zero": true,
+    "canaries_passed": true,
+    "class_balanced_median_tok_s": 51.4156515928786,
+    "fresh_response_valid": true,
+    "performance_gate_passed": true,
+    "profile": "pr45-candidate"
+  },
+  "schema": "neural.download.strict-attempt-output-comparison.v1",
+  "suite_sha256": "df03f49d36c36d2b8ac4cd117b7cb2e42c74878af1f6926690ebb89eeccd47ac"
+}

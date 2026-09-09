@@ -1,0 +1,14 @@
+{
+  "arm": "candidate",
+  "image": "sha256:4bb40c00826d3adeb577306afe8d7a6836eaef61d33e1e97a99b74ea85081fb4",
+  "started_utc": "2026-09-09T01:47:24.203180+00:00",
+  "max_model_len": 4096,
+  "max_num_seqs": 4,
+  "max_num_batched_tokens": 1024,
+  "status": "failed",
+  "performance_promotion": false,
+  "error": "Command '['python3', '/home/steve/b70-optimization-lab/community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/probe_endpoint.py', '--base-url', 'http://127.0.0.1:18124', '--model', 'pr45-review', '--out', '/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/candidate/probes.json']' returned non-zero exit status 1.",
+  "finished_utc": "2026-09-09T01:53:00.863349+00:00",
+  "final_error": "Command '['python3', '/home/steve/b70-optimization-lab/community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/probe_endpoint.py', '--base-url', 'http://127.0.0.1:18124', '--model', 'pr45-review', '--out', '/mnt/fast-ai/bench-results/pr45-review-20260909T0130Z/candidate/probes.json']' returned non-zero exit status 1.",
+  "campaign_stage_complete": false
+}

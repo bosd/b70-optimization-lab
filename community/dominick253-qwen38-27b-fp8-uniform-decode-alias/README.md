@@ -2,8 +2,10 @@
 
 > **Maintainer review, 2026-09-08:** the classifier defect and fix were
 > reproduced with 15 CPU cases against both actual R50 source copies.
-> A separate patched image builds successfully. The long-running GPU incident
-> remains unverified here; see [validation](validation/README.md).
+> A separate patched image builds successfully. September 9 two-B70 tests
+> passed normal-suite parity but tiny-prompt output walls persisted, including
+> with compilation disabled. The patch is not a verified fix; the long-running
+> incident remains unverified. See [validation](validation/README.md).
 
 > **Read [STATUS.md](STATUS.md) first.** This is a `community-reported`
 > contribution: an incident analysis and patch adoption from a production

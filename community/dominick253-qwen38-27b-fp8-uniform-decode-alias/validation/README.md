@@ -34,7 +34,7 @@ directory change silently bypassing the fix.
 - Candidate tag:
   `neural-download/vllm-openai-xpu:qwen38-r50-uniform-decode-fix-review-20260908`.
 - Lab follow-up: actual-source tests, both-installation candidate build,
-  documentation corrections. No performance effect measured.
+  documentation corrections and bounded two-B70 GPU comparison.
 
 ## Replay on a host with the recorded local base
 
@@ -55,10 +55,11 @@ not a published image or clean-host reproduction claim.
 
 ## Limits and next gate
 
-Evidence remains `community-reported` for the incident. CPU validation proves
-the classification delta, not GPU state recovery, quality parity, throughput,
-or a multi-hour soak. No model server was started and historical images and
-recipes were preserved. The candidate still needs an eager-versus-compiled
-tiny-prefill comparison, the lane's strict model-quality suite and a sustained
-mixed-session soak before promotion. The submitted patch does not contain the
-microbatch guard described in its original prose; no such guard was adopted.
+The [September 9 GPU record](gpu-20260909/README.md) includes real two-B70
+baseline and candidate runs: the normal strict suite passed with 12/12 exact
+complete token arrays, but both failed two of 24 tiny/mixed probes with
+exclamation walls. A compilation-disabled candidate diagnostic also failed
+(one of 24 probes). The patch is **not promoted or a verified incident fix**.
+No multi-hour soak or fresh candidate repeat was completed after these failures.
+Historical images and recipes were preserved. The submitted patch does not
+contain the microbatch guard described in its original prose; none was adopted.
