@@ -69,7 +69,7 @@ class FamilyCoverageTest(unittest.TestCase):
             self.assertIn(mode, index_html)
         # The picker says it in plain words: every route states whether MTP is on.
         self.assertGreaterEqual(index_html.count("no MTP"), 9)
-        self.assertIn("MTP / DFlash / DSpark = a small helper drafts words ahead", index_html)
+        self.assertIn('<a href="learn.html">Model names and speed labels explained', index_html)
         self.assertNotIn("status-ico", index_html)
 
     def test_home_picker_surfaces_existing_exact_32k_and_raw_aggregate_evidence(self) -> None:
