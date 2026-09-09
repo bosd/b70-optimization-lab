@@ -22,6 +22,7 @@ on:
       - "tools/build-family-pages.py"
       - "tools/build-model-pages.py"
       - "tools/test_build_family_pages.py"
+      - "tools/test_guides_browser.cjs"
       - "tools/test_measured_opt_contract.py"
       - "tools/validate-repro-guides.py"
       - "tools/test_validate_repro_guides.py"
@@ -67,6 +68,7 @@ on:
       - "tools/build-family-pages.py"
       - "tools/build-model-pages.py"
       - "tools/test_build_family_pages.py"
+      - "tools/test_guides_browser.cjs"
       - "tools/test_measured_opt_contract.py"
       - "tools/validate-repro-guides.py"
       - "tools/test_validate_repro_guides.py"
@@ -99,6 +101,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: python3 tools/validate-repro-guides.py
+      - run: node --test tools/test_guides_browser.cjs
       - run: python3 -m unittest tools/test_validate_repro_guides.py tools/test_sync_depth_sweep_profiles.py
       - run: python3 tools/validate-recipe-publication.py
       - run: python3 -m unittest tools/test_validate_recipe_publication.py
