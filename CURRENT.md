@@ -1,6 +1,6 @@
 # Current Workspace State
 
-Last reviewed: **2026-09-09 02:00 UTC** (2026-09-08 22:00 EDT).
+Last reviewed: **2026-09-09 02:26 UTC** (2026-09-08 22:26 EDT).
 
 ## Authority And Update Rule
 
@@ -17,13 +17,17 @@ actions are historical, span multiple hosts, and are not current instructions.
 ## Local Host And Active Review
 
 Host: `steve-TURIND8-2L2T`, **two B70s**. At the verification time above,
-no Docker containers were running. That observation does not establish the
-absence of host-native services or certify GPU health. Recheck before launch.
+the isolated PR45 follow-up owns the GPUs and localhost port 18124. Recheck
+actual process and endpoint state before operational changes.
 
 The active task is correctness and reproducibility review. An isolated
 Qwen3.8 27B official-FP8 R50 baseline/candidate comparison completed for PR #45:
 normal-suite parity passed, tiny-prompt screens failed, candidate not promoted.
-All review model containers were stopped; both GPUs and XCCL passed postflight.
+The initial review model containers were stopped; both GPUs and XCCL passed
+postflight. Follow-up operator census completed with healthy postflight; a
+fresh compilation-disabled target-only control is now running to isolate the
+remaining one-token failure. See the
+[preregistered follow-up](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/priority-followup-plan.md).
 Read the
 [maintainer validation record](community/dominick253-qwen38-27b-fp8-uniform-decode-alias/validation/README.md)
 for the candidate identity, completed tests and outstanding gates.

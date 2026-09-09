@@ -1,0 +1,10 @@
+# Local diagnostic on historical R50, not a promoted runtime.
+ARG BASE_IMAGE=sha256:4bb40c00826d3adeb577306afe8d7a6836eaef61d33e1e97a99b74ea85081fb4
+FROM ${BASE_IMAGE}
+COPY validation/gdn-short-prefill-candidate.patch /tmp/gdn-short-prefill.patch
+COPY validation/test_gdn_short_prefill.py /tmp/test_gdn_short_prefill.py
+RUN for root in /workspace/vllm/vllm /opt/venv/lib/python3.12/site-packages/vllm; do \
+      /opt/venv/bin/python /tmp/test_gdn_short_prefill.py --source-root "$root" --expect-stock && \
+      patch --batch --forward "$root/v1/attention/backends/gdn_attn.py" /tmp/gdn-short-prefill.patch && \
+      /opt/venv/bin/python /tmp/test_gdn_short_prefill.py --source-root "$root" --expect-fixed || exit 1; \
+    done
