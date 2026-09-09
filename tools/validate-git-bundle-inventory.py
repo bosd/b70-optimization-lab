@@ -42,6 +42,7 @@ LEGACY_CLASSIFICATIONS = {
 MANIFEST_CLASSIFICATIONS = {
     "manifest-backed-self-contained": "self-contained",
     "manifest-backed-thin-public-prerequisite": "thin-public-prerequisite",
+    "manifest-backed-tracked-chain": "tracked-chain",
 }
 
 
@@ -196,6 +197,8 @@ def _validate_manifest_contract(
             raise ValidationError(f"{label} must be an object")
         declared_commits.append(_require_oid(prerequisite.get("commit"), f"{label}.commit"))
         _require_oid(prerequisite.get("tree"), f"{label}.tree")
+        if expected_manifest_class == "tracked-chain":
+            continue
         remote = prerequisite.get("public_remote")
         remote_name = prerequisite.get("provenance_remote_name")
         remote_ref = prerequisite.get("provenance_ref")
@@ -208,7 +211,9 @@ def _validate_manifest_contract(
     if declared_commits != entry["prerequisites"]:
         raise ValidationError(f"{entry['path']}: manifest prerequisite set does not match header")
 
-    if expected_manifest_class == "self-contained":
+    if expected_manifest_class == "tracked-chain":
+        _validate_tracked_chain(repo_root, entry, manifest)
+    elif expected_manifest_class == "self-contained":
         if declared_commits:
             raise ValidationError(f"{entry['path']}: self-contained manifest declares prerequisites")
         with tempfile.TemporaryDirectory(prefix="git-bundle-inventory-restore-") as raw:
@@ -252,6 +257,77 @@ def _validate_manifest_contract(
             _require_oid(recovery.get("commit"), f"{label}.commit")
             _require_oid(recovery.get("tree"), f"{label}.tree")
     return manifest
+
+
+def _validate_tracked_chain(repo_root: Path, entry: dict, manifest: dict) -> list[dict]:
+    """Validate an ordered, hash-bound bundle chain rooted at a public commit.
+
+    Offline validation proves declarations and artifact identity; publication validation
+    additionally fetches the public base and reconstructs every tip in an empty repository.
+    """
+    base = manifest.get("public_base")
+    if not isinstance(base, dict) or not str(base.get("remote", "")).startswith("https://"):
+        raise ValidationError("tracked chain requires an HTTPS public_base")
+    previous = _require_oid(base.get("commit"), "public_base.commit")
+    previous_tree = _require_oid(base.get("tree"), "public_base.tree")
+    chain = manifest.get("recovery_chain")
+    if not isinstance(chain, list) or not chain:
+        raise ValidationError("recovery_chain must be non-empty")
+    seen_paths, seen_tips = set(), {previous}
+    for step in chain:
+        if not isinstance(step, dict):
+            raise ValidationError("recovery_chain steps must be objects")
+        relative = _safe_relative(step.get("path"), "chain.path")
+        path = repo_root / relative
+        if relative.as_posix() in seen_paths or not path.is_file():
+            raise ValidationError("recovery_chain has a duplicate or missing bundle")
+        seen_paths.add(relative.as_posix())
+        _run(["git", "ls-files", "--error-unmatch", relative.as_posix()], cwd=repo_root)
+        if _sha256(path) != _require_sha256(step.get("sha256"), "chain.sha256"):
+            raise ValidationError("recovery_chain bundle hash mismatch")
+        _, prerequisites, refs = _bundle_header(path)
+        if prerequisites != [previous] or step.get("prerequisite") != previous:
+            raise ValidationError("recovery_chain prerequisite/order mismatch")
+        if refs != [{"ref": step.get("ref"), "tip": step.get("tip")}]:
+            raise ValidationError("recovery_chain advertised ref/tip mismatch")
+        tip = _require_oid(step.get("tip"), "chain.tip")
+        if tip in seen_tips:
+            raise ValidationError("recovery_chain contains a cycle")
+        seen_tips.add(tip)
+        tree = _require_oid(step.get("tree"), "chain.tree")
+        if relative.as_posix() == entry["path"]:
+            if step is not chain[-1] or manifest["prerequisites"] != [{"commit": previous, "tree": previous_tree}]:
+                raise ValidationError("target bundle must terminate the chain with its exact prerequisite")
+        previous, previous_tree = tip, tree
+    last = chain[-1]
+    if (last["path"] != entry["path"] or previous != manifest["expected_tip"]
+            or previous_tree != manifest["expected_tree"]):
+        raise ValidationError("recovery_chain does not end at the declared target")
+    return chain
+
+
+def _prove_tracked_chain(repo_root: Path, entry: dict, manifest: dict) -> None:
+    chain = _validate_tracked_chain(repo_root, entry, manifest)
+    base = manifest["public_base"]
+    with tempfile.TemporaryDirectory(prefix="git-bundle-chain-restore-") as raw:
+        consumer = Path(raw) / "consumer.git"
+        _run(["git", "init", "--bare", "-q", str(consumer)])
+        git = ["git", "--git-dir", str(consumer)]
+        _run(git + ["fetch", "--quiet", "--depth=1", "--no-tags", base["remote"],
+                    f"{base['commit']}:refs/provenance/base"], timeout=600)
+        observed = _run(git + ["rev-parse", "refs/provenance/base^{tree}"]).stdout.strip()
+        if observed != base["tree"]:
+            raise ValidationError("public base tree mismatch")
+        for index, step in enumerate(chain):
+            bundle = str(repo_root / step["path"])
+            _run(git + ["bundle", "verify", bundle])
+            destination = f"refs/restored/chain-{index}"
+            _run(git + ["fetch", "--quiet", "--no-tags", bundle, f"{step['ref']}:{destination}"])
+            observed = _run(git + ["show", "-s", "--format=%H %T", destination]).stdout.strip()
+            if observed != f"{step['tip']} {step['tree']}":
+                raise ValidationError("restored chain tip/tree mismatch")
+            _run(git + ["merge-base", "--is-ancestor", step["prerequisite"], step["tip"]])
+        _run(git + ["fsck", "--connectivity-only", "--no-dangling"])
 
 
 def _tracking_ref_to_public_ref(remote_name: str, tracking_ref: str, label: str) -> str:
@@ -498,6 +574,9 @@ def validate_inventory(
             manifest = _validate_manifest_contract(repo_root, entry, bundle)
             if classification == "manifest-backed-thin-public-prerequisite" and verify_public_remotes:
                 _prove_manifest_public_restore(bundle, manifest, str(relative))
+                public_remote_proofs += 1
+            elif classification == "manifest-backed-tracked-chain" and verify_public_remotes:
+                _prove_tracked_chain(repo_root, entry, manifest)
                 public_remote_proofs += 1
 
     declared_legacy_digest = _require_sha256(

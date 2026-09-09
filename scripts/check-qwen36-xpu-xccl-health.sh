@@ -43,14 +43,20 @@ overall_rc=0
 echo "[xpu-health] physical_devices=$PHYSICAL_DEVICES"
 for dev in "${physical[@]}"; do
   echo "[xpu-health] single-device smoke level_zero:$dev"
-  if ! ONEAPI_DEVICE_SELECTOR="level_zero:$dev" timeout 20s "$PYTHON" - <<'PY'; then
+  if ! XPU_HEALTH_DEVICE_INDEX="$dev" timeout 20s "$PYTHON" - <<'PY'; then
+import os
 import torch
 
 print("device_count", torch.xpu.device_count(), flush=True)
-torch.xpu.set_device(0)
+device = int(os.environ["XPU_HEALTH_DEVICE_INDEX"])
+# ONEAPI_DEVICE_SELECTOR is not honored by every installed torch runtime.
+# Select the requested visible ordinal explicitly instead of probing GPU 0 twice.
+torch.xpu.set_device(device)
+print("selected_device", torch.xpu.current_device(), flush=True)
 x = torch.ones((1024, 1024), device="xpu")
 y = float((x + 1).sum().cpu().item())
 torch.xpu.synchronize()
+assert y == 2097152.0, f"incorrect device result: {y}"
 print("ok", y, flush=True)
 PY
     echo "[xpu-health] single-device smoke FAILED for physical device $dev" >&2
@@ -69,7 +75,7 @@ if ! ONEAPI_DEVICE_SELECTOR="level_zero:$XCCL_DEVICES" \
   FI_TCP_IFACE="${FI_TCP_IFACE:-lo}" \
   CCL_KVS_IFACE="${CCL_KVS_IFACE:-lo}" \
   timeout "$TIMEOUT_S"s "$PYTHON" -m torch.distributed.run \
-    --standalone \
+    --master-addr=127.0.0.1 --master-port="${XCCL_MASTER_PORT:-29500}" \
     --nproc_per_node="$XCCL_NPROC" \
     "$ROOT/tools/xccl_probe.py" allreduce; then
   echo "[xpu-health] XCCL all-reduce FAILED for devices $XCCL_DEVICES" >&2

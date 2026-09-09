@@ -22,6 +22,9 @@ done
 run_dir="$results/qwen38-flash-next-fp8-tp4-ep4-fullgraphdet-mtp1-4352-ple-only-r1-attempt${attempt}"
 [[ -d "$run_dir" ]] || { echo "run directory absent: $run_dir"; exit 1; }
 [[ ! -e "$run_dir/realistic-suite-v1-result.json" ]] || { echo "refusing to overwrite the suite result"; exit 1; }
+# Request the owned server's shutdown even when the benchmark exits nonzero.
+# An EXIT trap preserves that failure status under set -e.
+trap 'rc=$?; printf "STOP after the replay suite a%s (rc=%s)\\n" "$attempt" "$rc" > "$stop_file"; exit "$rc"' EXIT
 sleep 30
 echo "server healthy at $(date +%H:%M:%S); sending the fixed cold realistic suite once"
 "$python" "$repo/scripts/bench-openai-realistic-suite.py" --base-url "http://127.0.0.1:${port}" --model qwen38-flash-next-fp8-tp4 --api-mode chat \

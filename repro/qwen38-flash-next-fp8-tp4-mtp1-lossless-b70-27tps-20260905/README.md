@@ -49,7 +49,7 @@ The narrative is in the [result packet](../../results/qwen38-flash-next-fp8-b70/
 | Model | publisher revision `bcd9f01d`, [contract](../qwen38-flash-next-fp8-tp4-mtp3-b70/model-contract.json) and [`verify-model.py`](../qwen38-flash-next-fp8-tp4-mtp3-b70/verify-model.py) |
 | Configuration | the frozen A189 packet (four scripts pinned by [`frozen-a189-packet.sha256`](frozen-a189-packet.sha256)); server line in [`container-serve.sh`](container-serve.sh) |
 | Execution | `verify-identity.sh`, `run-record-gate.sh` (below); container route unbuilt |
-| Verifier pin | the frozen packet pins the exactness verifier by bytes; [`verifier-pin.txt`](verifier-pin.txt) records its SHA-256, git blob and the last lab commit that carries it, and `verify-identity.sh` names that commit when the file has moved on |
+| Verifier pin | [`verify-moe-selection-frozen.py`](verify-moe-selection-frozen.py) preserves the exact historical bytes recorded in [`verifier-pin.txt`](verifier-pin.txt); identity checks and generated replay clients use this copy without changing the evolving shared verifier |
 | Validation | frozen client: fixed cold realistic suite once, exactness verifier `verify-moe-m1-w13-n32-selection.py` (`0bd36f13…`), fresh-response gates; `check-replay-result.py` compares output pins and gates with the record |
 
 ## Restore source
@@ -83,7 +83,7 @@ elsewhere, and an absent default stops with the variable's name.
 
 `run-record-gate.sh` derives a fresh attempt from the frozen A189 packet
 (`make-replay-attempt.py`: byte-identical apart from attempt number, port and
-state names, internal hashes recomputed), runs the packet's own static
+state names and the historical verifier's local path, internal hashes recomputed), runs the packet's own static
 validation, launches it through the lab's host-controlled launcher (root:
 swap and ASPM reset, page-cache drop, fail-closed preflight on processes,
 ports, mounts and free space), waits for `/health`, sends the fixed cold

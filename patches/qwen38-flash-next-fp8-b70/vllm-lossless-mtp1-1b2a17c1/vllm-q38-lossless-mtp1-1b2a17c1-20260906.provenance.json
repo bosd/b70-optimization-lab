@@ -1,0 +1,31 @@
+{
+  "schema": "neural.download.git-bundle-provenance.v1",
+  "bundle": "vllm-q38-lossless-mtp1-1b2a17c1-20260906.bundle",
+  "bundle_sha256": "722c83e858e58bf50ba14f2acdab9a7e6ad3ddff5fdcd154f66a1d25c1901e3a",
+  "bundle_size": 423506,
+  "classification": "tracked-chain",
+  "expected_ref": "refs/tags/q38-lossless-mtp1-1b2a17c1",
+  "expected_tip": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+  "expected_tree": "1cb86e078991895906e75544207733ee7373c55d",
+  "prerequisites": [
+    {
+      "commit": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+      "tree": "03683d021463aae4a0121e3a749e88f22de29988"
+    }
+  ],
+  "public_base": {
+    "remote": "https://github.com/vllm-project/vllm.git",
+    "commit": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+    "tree": "03683d021463aae4a0121e3a749e88f22de29988"
+  },
+  "recovery_chain": [
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-lossless-mtp1-1b2a17c1/vllm-q38-lossless-mtp1-1b2a17c1-20260906.bundle",
+      "sha256": "722c83e858e58bf50ba14f2acdab9a7e6ad3ddff5fdcd154f66a1d25c1901e3a",
+      "prerequisite": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+      "ref": "refs/tags/q38-lossless-mtp1-1b2a17c1",
+      "tip": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+      "tree": "1cb86e078991895906e75544207733ee7373c55d"
+    }
+  ]
+}

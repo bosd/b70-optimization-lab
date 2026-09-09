@@ -10,6 +10,7 @@ on:
       - "patches/**/*.provenance.json"
       - "tools/validate-git-bundle-inventory.py"
       - "tools/test_validate_git_bundle_inventory.py"
+      - "tools/test_tracked_bundle_chain.py"
   push:
     branches: [main]
     paths:
@@ -19,6 +20,7 @@ on:
       - "patches/**/*.provenance.json"
       - "tools/validate-git-bundle-inventory.py"
       - "tools/test_validate_git_bundle_inventory.py"
+      - "tools/test_tracked_bundle_chain.py"
 
 jobs:
   validate:
@@ -26,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run offline inventory policy regressions
-        run: python3 -m unittest tools/test_validate_git_bundle_inventory.py
+        run: python3 -m unittest tools/test_validate_git_bundle_inventory.py tools/test_tracked_bundle_chain.py
       - name: Prove public prerequisites and disposable restoration
         run: >-
           python3 tools/validate-git-bundle-inventory.py

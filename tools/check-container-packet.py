@@ -120,11 +120,17 @@ def check(packet: Path) -> list[str]:
         errs.append(f"{packet.name}/one-gpu: tensor parallel size is not 1")
     if arg(cmds["two-gpu"], "--tensor-parallel-size") != "2":
         errs.append(f"{packet.name}/two-gpu: tensor parallel size is not 2")
+    normalized = {}
     for name, cmd in cmds.items():
-        one = [c for c in cmd if c != arg(cmd, "--tensor-parallel-size")]
+        # Only the value belonging to this flag may differ. Removing every "1" or "2"
+        # would also hide drift in unrelated settings such as MTP depth.
+        normalized[name] = list(cmd)
+        if "--tensor-parallel-size" in cmd and arg(cmd, "--tensor-parallel-size") is not None:
+            normalized[name][cmd.index("--tensor-parallel-size") + 1] = "<tensor-parallel-size>"
         if "--no-enable-prefix-caching" not in cmd:
             errs.append(f"{packet.name}/{name}: prefix caching is not disabled; results would not be cache-zero")
-        del one
+    if normalized["one-gpu"] != normalized["two-gpu"]:
+        errs.append(f"{packet.name}: serving arguments differ beyond tensor parallel size")
     return errs
 
 

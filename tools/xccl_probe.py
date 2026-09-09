@@ -22,7 +22,11 @@ def main() -> None:
         x = torch.ones(1, dtype=torch.float16, device=f"xpu:{local_rank}")
         dist.all_reduce(x)
         torch.xpu.synchronize()
-        print(f"rank {rank} allreduce ok {float(x.cpu()[0])}", flush=True)
+        actual = float(x.cpu()[0])
+        expected = float(dist.get_world_size())
+        if actual != expected:
+            raise RuntimeError(f"rank {rank} allreduce returned {actual}, expected {expected}")
+        print(f"rank {rank} allreduce ok {actual}", flush=True)
 
     dist.destroy_process_group()
 

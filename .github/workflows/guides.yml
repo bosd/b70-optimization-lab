@@ -32,11 +32,18 @@ on:
       - "tools/sync-public-result-summary.py"
       - "tools/test_sync_public_result_summary.py"
       - "tools/check-doc-links.py"
+      - "scripts/check-qwen36-xpu-xccl-health.sh"
+      - "tools/xccl_probe.py"
+      - "tools/test_xccl_probe.py"
       - "tools/check-manifest-paths.py"
       - "tools/container-packet/**"
       - "tools/test_container_packet_smoke.py"
       - "tools/check-container-packet.py"
       - "tools/test_check_container_packet.py"
+      - "tools/audit-launcher-env-implemented.py"
+      - "tools/test_audit_launcher_env_implemented.py"
+      - "tools/test_flash_next_frozen_verifiers.py"
+      - "tools/test_flash_next_replay_cleanup.py"
   push:
     branches: [main]
     paths:
@@ -69,11 +76,18 @@ on:
       - "tools/sync-public-result-summary.py"
       - "tools/test_sync_public_result_summary.py"
       - "tools/check-doc-links.py"
+      - "scripts/check-qwen36-xpu-xccl-health.sh"
+      - "tools/xccl_probe.py"
+      - "tools/test_xccl_probe.py"
       - "tools/check-manifest-paths.py"
       - "tools/container-packet/**"
       - "tools/test_container_packet_smoke.py"
       - "tools/check-container-packet.py"
       - "tools/test_check_container_packet.py"
+      - "tools/audit-launcher-env-implemented.py"
+      - "tools/test_audit_launcher_env_implemented.py"
+      - "tools/test_flash_next_frozen_verifiers.py"
+      - "tools/test_flash_next_replay_cleanup.py"
 
 jobs:
   validate:
@@ -96,6 +110,7 @@ jobs:
       # Offline: resolves repository-relative links in the guides and site pages. Publisher-side manifest checking
       # (tools/verify-model-manifests-remote.py) stays manual, since it needs the Hugging Face API and would flake here.
       - run: python3 tools/check-doc-links.py
+      - run: python3 -m unittest tools/test_xccl_probe.py
       - run: python3 tools/check-manifest-paths.py
       - run: python3 -m unittest tools/test_container_packet_smoke.py
       # Container packets are generated from the recipe launchers. This is the static half of that
@@ -104,3 +119,4 @@ jobs:
       - run: pip install --quiet pyyaml
       - run: python3 tools/check-container-packet.py
       - run: python3 -m unittest tools/test_check_container_packet.py
+      - run: python3 -m unittest tools/test_audit_launcher_env_implemented.py tools/test_flash_next_frozen_verifiers.py tools/test_flash_next_replay_cleanup.py

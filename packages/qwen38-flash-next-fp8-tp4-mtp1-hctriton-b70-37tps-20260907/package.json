@@ -99,6 +99,7 @@
     "stop": "The packet supervisor tears the server down after the client run and writes /tmp/q38-mtp1-ple-only-a<N>.rc; verify no Worker_TP process or listener on the packet port remains."
   },
   "dependencies": [
+    "repro/qwen38-flash-next-fp8-tp4-mtp1-hctriton-b70-37tps-20260907/verify-moe-selection-frozen.py",
     "data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp0-placement-hctriton-realistic-20260907.json",
     "data/localmaxxing-responses/qwen38-flash-next-fp8-tp4-mtp1-placement-hctriton-realistic-20260907.json",
     "experiments/qwen38-flash-next-fp8-b70/configs/moe-m1-w13-n32",

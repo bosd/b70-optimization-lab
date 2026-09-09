@@ -1,0 +1,47 @@
+{
+  "schema": "neural.download.git-bundle-provenance.v1",
+  "bundle": "vllm-q38-hctriton-mtp1-62219122-20260907.bundle",
+  "bundle_sha256": "1dc0501666d502e38606c9267e1f6880140678bec1f189ad028b368fb4c500c9",
+  "bundle_size": 1376,
+  "classification": "tracked-chain",
+  "expected_ref": "refs/tags/q38-hctriton-mtp1-62219122",
+  "expected_tip": "622191221475b53cc6f7f4d847860939f4c300ab",
+  "expected_tree": "e79ab58bb96b807d4bebad5644bafa5e0d4327aa",
+  "prerequisites": [
+    {
+      "commit": "005dc57895896f770157ea94f68e473e7447139e",
+      "tree": "d82fb5f2461be1a1f1050c1f681d17f5e7325a17"
+    }
+  ],
+  "public_base": {
+    "remote": "https://github.com/vllm-project/vllm.git",
+    "commit": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+    "tree": "03683d021463aae4a0121e3a749e88f22de29988"
+  },
+  "recovery_chain": [
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-lossless-mtp1-1b2a17c1/vllm-q38-lossless-mtp1-1b2a17c1-20260906.bundle",
+      "sha256": "722c83e858e58bf50ba14f2acdab9a7e6ad3ddff5fdcd154f66a1d25c1901e3a",
+      "prerequisite": "76cfe1cd88d30d525eec8be5bff75f8b77471c88",
+      "ref": "refs/tags/q38-lossless-mtp1-1b2a17c1",
+      "tip": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+      "tree": "1cb86e078991895906e75544207733ee7373c55d"
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-placement-mtp1-005dc578/vllm-q38-placement-mtp1-005dc578-20260906.bundle",
+      "sha256": "c51efd3d1ce5201b9bb57ac7fb83bc86be56f6ff2b6bab5ce76c4a368198b128",
+      "prerequisite": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60",
+      "ref": "refs/tags/q38-placement-mtp1-005dc578",
+      "tip": "005dc57895896f770157ea94f68e473e7447139e",
+      "tree": "d82fb5f2461be1a1f1050c1f681d17f5e7325a17"
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/vllm-q38-hctriton-mtp1-62219122-20260907.bundle",
+      "sha256": "1dc0501666d502e38606c9267e1f6880140678bec1f189ad028b368fb4c500c9",
+      "prerequisite": "005dc57895896f770157ea94f68e473e7447139e",
+      "ref": "refs/tags/q38-hctriton-mtp1-62219122",
+      "tip": "622191221475b53cc6f7f4d847860939f4c300ab",
+      "tree": "e79ab58bb96b807d4bebad5644bafa5e0d4327aa"
+    }
+  ]
+}

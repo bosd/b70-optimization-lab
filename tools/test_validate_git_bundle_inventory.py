@@ -29,9 +29,9 @@ class BundleInventoryRepositoryTest(unittest.TestCase):
             repo / "data/git-bundle-portability-inventory-v1.json",
             repo_root=repo,
         )
-        self.assertEqual(result["bundle_count"], 54)
+        self.assertEqual(result["bundle_count"], 58)
         self.assertEqual(result["legacy_frozen_count"], 53)
-        self.assertEqual(result["manifest_backed_count"], 1)
+        self.assertEqual(result["manifest_backed_count"], 5)
         self.assertEqual(result["public_remote_proofs"], 0)
         self.assertFalse(result["network_used"])
 

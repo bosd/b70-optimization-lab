@@ -10,7 +10,7 @@ ancestor `2169dbfe`, by the deterministic full-decode-graph MTP0 line
 - public base: `vllm-project/vllm` commit `76cfe1cd88d30d525eec8be5bff75f8b77471c88`;
 - overlay head: `1b2a17c1e7c41985d6a5e0eb324ada4775c25e60`, tree `1cb86e078991895906e75544207733ee7373c55d`;
 - MTP0 lineage head inside the series: `2169dbfe` (tree `e3377212a70a67a426d244cf5ded86dfffa942df`);
-- 55 linear commits, no merges; the complete-history bundle
+- 55 linear commits, no merges; the thin bundle (requires the public base above)
   `vllm-q38-lossless-mtp1-1b2a17c1-20260906.bundle` carries tag
   `q38-lossless-mtp1-1b2a17c1`;
 - `series.sha256` pins every patch and the bundle; `verify-series.sh`

@@ -11,12 +11,12 @@
     "publication_ci": "Manifest-backed thin bundles additionally require a live public-ref ancestry/tree proof and disposable restore."
   },
   "audit_summary": {
-    "date": "2026-08-26",
-    "total_bundles": 54,
+    "date": "2026-09-09",
+    "total_bundles": 58,
     "legacy_frozen": 53,
-    "manifest_backed": 1,
+    "manifest_backed": 5,
     "zero_prerequisite": 26,
-    "thin": 28
+    "thin": 32
   },
   "bundles": [
     {
@@ -888,6 +888,90 @@
         }
       ],
       "recovery_basis": "audited 2026-08-26: prerequisite is public or recoverable from a tracked full bundle"
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/vllm-q38-hctriton-mtp1-62219122-20260907.bundle",
+      "sha256": "1dc0501666d502e38606c9267e1f6880140678bec1f189ad028b368fb4c500c9",
+      "size": 1376,
+      "signature": "# v2 git bundle",
+      "classification": "manifest-backed-tracked-chain",
+      "prerequisites": [
+        "005dc57895896f770157ea94f68e473e7447139e"
+      ],
+      "advertised_refs": [
+        {
+          "ref": "refs/tags/q38-hctriton-mtp1-62219122",
+          "tip": "622191221475b53cc6f7f4d847860939f4c300ab"
+        }
+      ],
+      "recovery_basis": "Ordered tracked bundles rooted at the pinned public vLLM commit; publication validation reconstructs each tip and tree in a disposable bare repository.",
+      "manifest": {
+        "path": "patches/qwen38-flash-next-fp8-b70/vllm-hctriton-mtp1-62219122/vllm-q38-hctriton-mtp1-62219122-20260907.provenance.json",
+        "sha256": "94d16343dde285c45018a9cd03c4e2a6139979a4168731a3c14099eb0aab873f"
+      }
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-lossless-mtp1-1b2a17c1/vllm-q38-lossless-mtp1-1b2a17c1-20260906.bundle",
+      "sha256": "722c83e858e58bf50ba14f2acdab9a7e6ad3ddff5fdcd154f66a1d25c1901e3a",
+      "size": 423506,
+      "signature": "# v2 git bundle",
+      "classification": "manifest-backed-tracked-chain",
+      "prerequisites": [
+        "76cfe1cd88d30d525eec8be5bff75f8b77471c88"
+      ],
+      "advertised_refs": [
+        {
+          "ref": "refs/tags/q38-lossless-mtp1-1b2a17c1",
+          "tip": "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60"
+        }
+      ],
+      "recovery_basis": "Ordered tracked bundles rooted at the pinned public vLLM commit; publication validation reconstructs each tip and tree in a disposable bare repository.",
+      "manifest": {
+        "path": "patches/qwen38-flash-next-fp8-b70/vllm-lossless-mtp1-1b2a17c1/vllm-q38-lossless-mtp1-1b2a17c1-20260906.provenance.json",
+        "sha256": "aef77c31473971c11e434e73d415fdce4b866834dceef6ac73ec2161ece7fc14"
+      }
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-placement-mtp1-005dc578/vllm-q38-placement-mtp1-005dc578-20260906.bundle",
+      "sha256": "c51efd3d1ce5201b9bb57ac7fb83bc86be56f6ff2b6bab5ce76c4a368198b128",
+      "size": 12728,
+      "signature": "# v2 git bundle",
+      "classification": "manifest-backed-tracked-chain",
+      "prerequisites": [
+        "1b2a17c1e7c41985d6a5e0eb324ada4775c25e60"
+      ],
+      "advertised_refs": [
+        {
+          "ref": "refs/tags/q38-placement-mtp1-005dc578",
+          "tip": "005dc57895896f770157ea94f68e473e7447139e"
+        }
+      ],
+      "recovery_basis": "Ordered tracked bundles rooted at the pinned public vLLM commit; publication validation reconstructs each tip and tree in a disposable bare repository.",
+      "manifest": {
+        "path": "patches/qwen38-flash-next-fp8-b70/vllm-placement-mtp1-005dc578/vllm-q38-placement-mtp1-005dc578-20260906.provenance.json",
+        "sha256": "fdf37499f56b5a1c7d5ce41b315e52ce1dac3270d9eab588245ecea1617678fb"
+      }
+    },
+    {
+      "path": "patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/vllm-q38-qsafused-mtp1-6d872457-20260907.bundle",
+      "sha256": "95e5caee937d128177d34e268f56586879a0dab4cf3f3c6c1bddab1fec7bd3fc",
+      "size": 3065,
+      "signature": "# v2 git bundle",
+      "classification": "manifest-backed-tracked-chain",
+      "prerequisites": [
+        "622191221475b53cc6f7f4d847860939f4c300ab"
+      ],
+      "advertised_refs": [
+        {
+          "ref": "refs/tags/q38-qsafused-mtp1-6d872457",
+          "tip": "6d8724577dabbee5fa0bbc70c4d927c6174c8d8a"
+        }
+      ],
+      "recovery_basis": "Ordered tracked bundles rooted at the pinned public vLLM commit; publication validation reconstructs each tip and tree in a disposable bare repository.",
+      "manifest": {
+        "path": "patches/qwen38-flash-next-fp8-b70/vllm-qsafused-mtp1-6d872457/vllm-q38-qsafused-mtp1-6d872457-20260907.provenance.json",
+        "sha256": "016d6a7978d98047f92f15a4247a8ddee29eee7d005c6bb807ef8b845cc48948"
+      }
     }
   ]
 }

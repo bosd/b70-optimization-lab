@@ -85,6 +85,25 @@ class ContainerPacketCheckerTest(unittest.TestCase):
         errs = self._mutated(one_service_only)
         self.assertTrue(any("differ only in device selection" in e for e in errs), errs)
 
+    def test_serving_argument_drift_fails(self):
+        def change_one_profile(source):
+            doc = self.m.yaml.safe_load(source)
+            cmd = doc["services"]["two-gpu"]["command"]
+            cmd[cmd.index("--max-model-len") + 1] = "1"
+            return self.m.yaml.safe_dump(doc)
+
+        errs = self._mutated(change_one_profile)
+        self.assertTrue(any("serving arguments differ" in e for e in errs), errs)
+
+    def test_extra_serving_argument_fails(self):
+        def change_one_profile(source):
+            doc = self.m.yaml.safe_load(source)
+            doc["services"]["two-gpu"]["command"].extend(["--seed", "2"])
+            return self.m.yaml.safe_dump(doc)
+
+        errs = self._mutated(change_one_profile)
+        self.assertTrue(any("serving arguments differ" in e for e in errs), errs)
+
 
 if __name__ == "__main__":
     unittest.main()

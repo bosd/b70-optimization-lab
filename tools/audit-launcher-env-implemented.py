@@ -42,13 +42,18 @@ def forwarded() -> set[str]:
 
 def implemented(image: str, names: list[str]) -> dict[str, str]:
     """Ask the image once whether each name appears anywhere under site-packages."""
-    script = "; ".join(
-        f'printf "%s %s\\n" {n} "$(grep -rl {n} /opt/venv/lib/python3.12/site-packages/ 2>/dev/null | head -1)"'
+    script = """scan_root=/opt/venv/lib/python3.12/site-packages/
+[[ -d "$scan_root" && -r "$scan_root" ]] || { echo 'site-packages unavailable' >&2; exit 2; }
+command -v grep >/dev/null || exit 2
+""" + "\n".join(
+        f'''matches=$(grep -rl -- {n} "$scan_root" 2>&1); rc=$?
+(( rc <= 1 )) || {{ printf '%s\\n' "$matches" >&2; exit "$rc"; }}
+printf '%s %s\\n' {n} "${{matches%%$'\\n'*}}"'''
         for n in names
     )
     out = subprocess.run(
         ["docker", "run", "--rm", "--entrypoint", "bash", image, "-lc", script],
-        capture_output=True, text=True, timeout=1800,
+        capture_output=True, text=True, timeout=1800, check=True,
     )
     found = {}
     for line in out.stdout.splitlines():
@@ -65,7 +70,14 @@ def main() -> int:
         return 2
     image = args[0]
     names = sorted(forwarded())
-    where = implemented(image, names)
+    try:
+        where = implemented(image, names)
+    except (OSError, subprocess.SubprocessError) as exc:
+        print(f"image inspection failed; no environment-variable verdict: {exc}", file=sys.stderr)
+        return 1
+    if set(where) != set(names):
+        print("image inspection was incomplete; no environment-variable verdict", file=sys.stderr)
+        return 1
     live = {n: where[n] for n in names if where.get(n)}
     inert = [n for n in names if not where.get(n)]
     print(f"image: {image}")

@@ -2,7 +2,8 @@
 """Derive a replay packet a<N> from the frozen A272 packet (lossless MTP1 + Triton HC glue, 37.045844 tok/s).
 
 The four A272 scripts are pinned by frozen-a272-packet.sha256. The derived packet is
-byte-identical apart from the attempt number, port, and state-file names; every
+byte-identical apart from the attempt number, port, state-file names, and the
+client's path to its byte-identical packaged historical verifier; every
 hash token (64/40 hex) is preserved and the packet's own internal hashes
 (expected_derived, expected_wrapper, expected_client, expected_supervisor) are
 recomputed exactly the way the lab's generators do. Usage:
@@ -49,6 +50,18 @@ def source(name: str, pins: dict[str, str]) -> str:
     return data.decode()
 
 
+def frozen_client(text: str) -> str:
+    """Bind replay to the historical verifier without changing the shared tool."""
+    pin = dict(line.split("=", 1) for line in (HERE / "verifier-pin.txt").read_text().splitlines())
+    snapshot = HERE / "verify-moe-selection-frozen.py"
+    if digest(snapshot.read_bytes()) != pin["sha256"]:
+        raise ValueError("packaged exactness verifier differs from verifier-pin.txt")
+    old = pin["path"]
+    if text.count(old) != 2:
+        raise ValueError("expected exactly the frozen client's verifier check and invocation")
+    return text.replace(old, snapshot.relative_to(HERE.parents[1]).as_posix())
+
+
 def successor(text: str, attempt: int, port: str) -> str:
     def rename(seg: str) -> str:
         seg = seg.replace("tp4-mtp1-4352-ple-only-a272", f"tp4-mtp1-4352-ple-only-a{attempt}")
@@ -87,7 +100,7 @@ def main() -> int:
     Path(f"/tmp/q38-ple2k-a{attempt}-base.sh").unlink(missing_ok=True)
     assert f"q38-ple2k-a{attempt}" in derived
     launcher = launcher.replace("expected_derived=" + "0" * 64, "expected_derived=" + digest(derived))
-    client = successor(source(SRC["client"], pins), attempt, port)
+    client = frozen_client(successor(source(SRC["client"], pins), attempt, port))
     supervisor = successor(source(SRC["supervisor"], pins), attempt, port)
     supervisor = replace_once(supervisor, "expected_wrapper=" + pins[SRC["launcher"]], "expected_wrapper=" + digest(launcher))
     supervisor = replace_once(supervisor, "expected_client=" + pins[SRC["client"]], "expected_client=" + digest(client))
