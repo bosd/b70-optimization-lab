@@ -69,7 +69,7 @@ test('null and absent metrics show escaped pending status, not fabricated speeds
   const page = await load(data);
   assert.equal(page.errors.length, 0);
   assert.equal(ids(page).length, 2);
-  assert.equal((page.elements['package-grid'].innerHTML.match(/Strict headline pending/g) || []).length, 2);
+  assert.equal((page.elements['package-grid'].innerHTML.match(/Benchmark pending/g) || []).length, 2);
   assert.match(page.elements['package-grid'].innerHTML, /&lt;script&gt;bad&lt;\/script&gt;/);
   page.elements.sort.value = 'speed';
   assert.doesNotThrow(() => page.elements.sort.events.change());
@@ -79,4 +79,26 @@ test('real fetch failures retain the GitHub fallback', async () => {
   const page = await load(catalog, false);
   assert.equal(page.elements['result-count'].textContent, 'Catalog unavailable');
   assert.match(page.elements['package-grid'].innerHTML, /Browse packages on GitHub/);
+});
+
+test('cards keep evidence intact but collapsed, with short everyday summaries', async () => {
+  const page = await load();
+  const cards = [...page.elements['package-grid'].innerHTML.matchAll(/<article\b[\s\S]*?<\/article>/g)];
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  for (const [card] of cards) {
+    const item = catalog.packages.find(p => card.includes(`data-id="${p.id}"`));
+    const visible = card.replace(/<details\b[\s\S]*?<\/details>/g, '');
+    assert.doesNotMatch(card, /<details[^>]*\bopen\b/);
+    assert.ok(card.includes(escape(item.library.summary)));
+    assert.ok(!visible.includes(escape(item.library.summary)));
+    if (item.library.featured_metric) {
+      assert.ok(card.includes(escape(item.library.featured_metric.scope)));
+      assert.ok(!visible.includes(escape(item.library.featured_metric.scope)));
+    }
+    for (const person of item.contributors) assert.ok(card.includes(escape(person.contribution)));
+    for (const limitation of item.missing) assert.ok(card.includes(escape(limitation)));
+    assert.ok(visible.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').length < 700, item.id);
+    assert.match(visible, /View setup/);
+    if (item.status === 'candidate') assert.match(visible, /Needs testing/);
+  }
 });

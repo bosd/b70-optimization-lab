@@ -85,11 +85,14 @@
   .status.preview { color: var(--warn); }
   .status.starter { background: var(--spot); border-color: var(--spot); color: #fff; }
   .package-body { display: flex; flex: 1; flex-direction: column; padding: 14px 17px 17px; }
-  .package-summary { min-height: 42px; margin: 0 0 12px; color: var(--muted); }
+  .package-summary { margin: 0 0 12px; color: var(--muted); }
+  .technical { overflow-wrap: anywhere; color: var(--muted); font-size: 12px; }
+  .technical summary { color: var(--ink); }
+  .testing-note { margin: 9px 0 0; color: var(--warn); font-size: 12px; }
   .facts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
   .fact { padding: 3px 6px; background: var(--surface); font: 10px var(--mono); }
   .metric { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 11px 12px; border: 2px solid var(--ink); }
-  .metric strong { font: 900 24px/1 var(--display); white-space: nowrap; }
+  .metric strong { font: 900 24px/1.15 var(--display); }
   .metric span { color: var(--muted); font-size: 11px; }
   .performance { margin-top: 12px; padding: 0; border: 1px solid var(--ink); background: var(--surface); }
   .performance summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 10px; list-style-position: inside; }
@@ -168,15 +171,14 @@
 </div></div>
 
 <header><div class="wrap">
-  <p class="kicker">Models · quants · card counts · Linux · Docker · future Windows</p>
-  <h1>Find the deployment that fits your machine.</h1>
-  <p>The homepage stays curated. This library scales: every card is generated from a validated package manifest, links the human guide and exact patches, and states what still needs testing. Where measured, open a package's performance curves for decode, prefill, and time-to-first-token (TTFT) behavior over context.</p>
-  <p class="mut" style="font-size:12.5px;max-width:72ch;">How to read the captions: <em>target-only</em> = no draft model assisting · <em>cache-zero</em> = a fresh start, nothing pre-computed · <em>99-interval median</em> = the middle rate across 99 measured stretches of a long answer · <em>tg128</em> = a raw 128-token generation benchmark, not the headline suite.</p>
+  <p class="kicker">Run AI on Intel Arc Pro B70</p>
+  <h1>Find a recipe for your machine.</h1>
+  <p>Choose a model and the number of cards you have. Open a recipe for setup instructions, or expand its test results to learn more.</p>
 </div></header>
 
 <main id="main"><div class="wrap">
   <div class="library-intro">
-    <div><h2>Recipes</h2><p class="sub">A model can appear more than once because a quant, GPU count, operating system, or native/container route is a different deployment. Speeds are never compared as if those identities were interchangeable.</p></div>
+    <div><h2>Recipes</h2><p class="sub">Each card is a different setup. Speeds apply to that setup's tests, not every task. Recipes marked “Needs testing” are not yet fully validated.</p></div>
     <div class="summary" id="catalog-summary">Loading catalog…</div>
   </div>
 
@@ -186,7 +188,7 @@
     <label>Quantization<select id="quant" name="quant"><option value="">Any</option></select></label>
     <label>Operating system<select id="os" name="os"><option value="">Any</option></select></label>
     <label>Delivery<select id="delivery" name="delivery"><option value="">Any</option></select></label>
-    <label>Status<select id="status" name="status"><option value="">Any</option><option value="starter">Starter</option><option value="candidate">Candidate</option><option value="preview">Preview</option></select></label>
+    <label>Status<select id="status" name="status"><option value="">Any</option><option value="starter">Starter</option><option value="candidate">Needs testing</option><option value="preview">Preview</option></select></label>
     <label>Sort<select id="sort" name="sort"><option value="newest">Newest</option><option value="name">Model name</option><option value="speed">Measured rate</option><option value="cards">Fewest cards</option></select></label>
   </form>
   <div class="filter-footer"><span id="result-count" aria-live="polite">Loading packages…</span><button class="reset" type="button" id="reset">Clear filters</button></div>
@@ -196,7 +198,7 @@
 
   <aside class="boundary">
     <h2>Why some experiments are absent</h2>
-    <p>The repository contains many more lab replays, records, archived routes, and research lanes. They stay in the <a href="https://github.com/steveseguin/b70-optimization-lab/blob/main/repro/guide-catalog.json">evidence catalog</a> until a user-facing package closes the required identity and dependency links. A high research number alone does not make an install recommendation.</p>
+    <p>Some experiments don't have a complete setup guide yet. You can find them in the <a href="https://github.com/steveseguin/b70-optimization-lab/blob/main/repro/guide-catalog.json">lab records</a>. A fast test alone doesn't make a recipe ready to use.</p>
   </aside>
 </div></main>
 
@@ -262,6 +264,10 @@
   const card = item => {
     const lib = item.library;
     const metric = lib.featured_metric;
+    const size = lib.variant.match(/\b\d+(?:\.\d+)?B(?:[- ]A\d+(?:\.\d+)?B)?\b/i)?.[0];
+    const uses = {general: "Everyday chat", chat: "Everyday chat", coding: "Coding", "long-context": "Long documents", vision: "Images", "structured-output": "Structured writing"};
+    const summary = [...new Set(lib.use_cases.map(value => uses[value]).filter(Boolean))].slice(0, 3).join(" · ");
+    const statusLabel = {starter: "Starter", candidate: "Needs testing", preview: "Preview"}[item.status] || item.status;
     const people = item.contributors.map(person => `<a href="${escapeHtml(person.profile)}"><strong>${escapeHtml(person.name)}</strong></a> · ${escapeHtml(person.contribution)}`).join("<br>");
     const facts = [
       `${item.hardware.cards}× B70`, lib.quantization, lib.runtime_label,
@@ -272,16 +278,23 @@
     const readme = packageReadme(item);
     const title = `[result] ${lib.model_family} ${lib.variant} ${lib.quantization} ${item.hardware.cards}xB70`;
     return `<article class="package" data-id="${escapeHtml(item.id)}">
-      <div class="package-head"><div><h3>${escapeHtml(lib.model_family)}</h3><p class="variant">${escapeHtml(lib.variant)} · ${escapeHtml(lib.publisher)}</p></div><span class="status ${escapeHtml(item.status)}">${escapeHtml(item.status)} package</span></div>
-      <div class="package-body"><p class="package-summary">${escapeHtml(lib.summary)}</p>
+      <div class="package-head"><div><h3>${escapeHtml(lib.model_family)}</h3><p class="variant">${escapeHtml([size, lib.publisher].filter(Boolean).join(" · "))}</p></div><span class="status ${escapeHtml(item.status)}">${escapeHtml(statusLabel)}</span></div>
+      <div class="package-body">${summary ? `<p class="package-summary">${escapeHtml(summary)}</p>` : ""}
       <div class="facts">${facts.map(value => `<span class="fact">${escapeHtml(value)}</span>`).join("")}</div>
       <div class="metric">${metric
-        ? `<strong>${escapeHtml(Number(metric.value).toFixed(metric.value >= 100 ? 2 : 3))} ${escapeHtml(metric.unit)}</strong><span>${escapeHtml(metric.scope)}</span>`
-        : `<strong>Strict headline pending</strong><span>${escapeHtml(lib.benchmark_status || "No qualified headline measurement is published yet.")}</span>`}</div>
+        ? `<strong>${escapeHtml(Number(metric.value).toFixed(metric.value >= 100 ? 2 : 3))} ${escapeHtml(metric.unit)}</strong><span>Measured generation speed. Test conditions below.</span>`
+        : `<strong>Benchmark pending</strong><span>No qualified speed published yet.</span>`}</div>
+      ${item.missing.length ? `<p class="testing-note">${item.missing.length} validation check${item.missing.length === 1 ? "" : "s"} still open. See limitations below.</p>` : ""}
       ${performanceBlock(item)}
+      <details class="technical"><summary>Test details, limitations &amp; credits</summary>
+      <p><strong>Exact setup:</strong> ${escapeHtml(lib.variant)}</p>
+      <p>${escapeHtml(lib.summary)}</p>
+      ${metric ? `<p><strong>Speed test:</strong> ${escapeHtml(metric.scope)}</p>` : ""}
+      ${lib.benchmark_status ? `<p><strong>Testing status:</strong> ${escapeHtml(lib.benchmark_status)}</p>` : ""}
       <p class="credit"><strong>Built with:</strong> ${people}</p>
-      <details><summary>${item.missing.length} remaining package gate${item.missing.length === 1 ? "" : "s"}</summary><ul>${missing}</ul></details>
-      <div class="actions"><a class="button" href="models/${encodeURIComponent(item.id)}.html">Details page</a><a class="button secondary" href="${GITHUB}${encodeURI(readme)}">Open guide</a><button class="copy" type="button" data-copy="${escapeHtml(readme)}">Copy Markdown</button><a class="submit" href="${ISSUE}${encodeURIComponent(title)}">Submit an optimization</a></div>
+      ${missing ? `<p><strong>Still to validate:</strong></p><ul>${missing}</ul>` : ""}
+      <div class="actions"><button class="copy" type="button" data-copy="${escapeHtml(readme)}">Copy Markdown</button><a class="submit" href="${ISSUE}${encodeURIComponent(title)}">Submit an optimization</a></div></details>
+      <div class="actions"><a class="button" href="models/${encodeURIComponent(item.id)}.html">View setup</a><a class="button secondary" href="${GITHUB}${encodeURI(readme)}">Open recipe</a></div>
       </div></article>`;
   };
 
@@ -357,7 +370,7 @@
     populate("os", packages.flatMap(item => item.library.operating_systems));
     populate("delivery", packages.flatMap(item => item.library.delivery), value => value === "container" ? "Docker / container" : value[0].toUpperCase() + value.slice(1));
     restoreParams();
-    document.getElementById("catalog-summary").textContent = `${packages.length} structured package${packages.length === 1 ? "" : "s"} · generated from manifests`;
+    document.getElementById("catalog-summary").textContent = `${packages.length} recipes`;
     render();
   }).catch(error => {
     console.error(error); count.textContent = "Catalog unavailable";
