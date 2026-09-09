@@ -51,33 +51,41 @@ printf '%s\n' "$a" >"${out}/answer-1.json"; printf '%s\n' "$b" >"${out}/answer-2
 "${compose[@]}" logs --no-color >"${out}/server.log" 2>&1 || true
 
 if (( rc_a != 0 || rc_b != 0 )); then echo "FAIL: completion request errored"; exit 1; fi
-text_a=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['choices'][0]['text'])" "${out}/answer-1.json")
-text_b=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['choices'][0]['text'])" "${out}/answer-2.json")
-[[ -n "${text_a}" ]] || { echo "FAIL: empty completion"; exit 1; }
-if [[ "${text_a}" != "${text_b}" ]]; then
-  echo "FAIL: two identical greedy requests returned different text"
-  printf '  first : %s\n  second: %s\n' "${text_a}" "${text_b}"; exit 1
-fi
-
-python3 - "${out}" "${profile}" "${PACKAGE_DIR}" <<'PY' >"${out}/result.json"
-import json,platform,subprocess,sys,datetime
+if ! python3 - "${out}" "${profile}" "${PACKAGE_DIR}" <<'PY'
+import json,platform,sys,datetime
+from pathlib import Path
 out,profile=sys.argv[1],sys.argv[2]
-ans=json.load(open(f"{out}/answer-1.json"))
-print(json.dumps({
+try:
+    ans=json.load(open(f"{out}/answer-1.json"))
+    other=json.load(open(f"{out}/answer-2.json"))
+    first,second=ans["choices"][0]["text"],other["choices"][0]["text"]
+    if not isinstance(first,str) or not isinstance(second,str):
+        raise ValueError("completion text must be a string")
+    if not first.strip():
+        raise ValueError("empty completion")
+    if first != second:
+        raise ValueError("two identical greedy requests returned different text")
+except (OSError,ValueError,KeyError,IndexError,TypeError) as exc:
+    print(f"FAIL: invalid completion pair: {exc}",file=sys.stderr)
+    sys.exit(1)
+Path(out,"result.json").write_text(json.dumps({
  "packet":sys.argv[3],"profile":profile,
  "checked_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),
  "host":platform.node(),"kernel":platform.release(),
  "repeat_exact":True,"completion_tokens":ans.get("usage",{}).get("completion_tokens"),
  "sample_text":ans["choices"][0]["text"][:400],
-},indent=1))
+},indent=1)+"\n")
+print(f"  answer: {first}")
 PY
+then
+  exit 1
+fi
 
 echo
 echo "PASS  two identical greedy requests returned byte-identical text"
-echo "  answer: ${text_a}"
 echo "  packet result: ${out}/result.json"
 echo "  OpenAI-compatible endpoint: http://127.0.0.1:${port}/v1  (model: '"${served}"')"
 echo "  example: curl http://127.0.0.1:${port}/v1/completions -H 'Content-Type: application/json' \\"
-echo "             -d '{\"model\":\"qwen35-9b-w4a16\",\"prompt\":\"Hello\",\"max_tokens\":32,\"temperature\":0}'"
+echo "             -d '{\"model\":\"${served}\",\"prompt\":\"Hello\",\"max_tokens\":32,\"temperature\":0}'"
 [[ "${KEEP_UP:-0}" == 1 ]] && echo "  server left running; stop it with: docker compose -f ${pkg}/compose.yaml down"
 exit 0
