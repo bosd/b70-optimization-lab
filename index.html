@@ -173,7 +173,7 @@ Style genome (duotone-hixffp):
   .guide-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; white-space: normal; }
   .model-picker td.model-actions { min-width: 0; }
   .model-picker td.model-use { white-space: nowrap; }
-  .model-picker .model-group-row th { padding: 16px 10px 2px; border-bottom: 0; font-size: 15.5px; text-align: left; }
+  .model-picker .model-group-row th { padding: 16px 0 8px; border-top: 2px solid var(--ink); border-bottom: 0; font-size: 15.5px; text-align: left; }
   .model-picker .model-group-row .use-chip { margin-left: 8px; vertical-align: 2px; }
   .model-picker .variant-row th.model { padding-left: 26px; white-space: nowrap; }
   .model-picker .variant-row th.model .variant-label { display: inline; }
@@ -328,8 +328,8 @@ Style genome (duotone-hixffp):
     }
     .model-picker td.model-speed { font-size: 16px; font-weight: 700; }
     .model-picker td.model-32k, .model-picker td.model-agg { font-size: 13px; }
-    .model-picker .model-group-row { padding: 0 2px; border: 0; background: none; }
-    .model-picker .model-group-row th { padding: 6px 0 0; font-size: 16px; }
+    .model-picker .model-group-row { padding: 0; border: 0; background: none; }
+    .model-picker .model-group-row th { grid-column: 1 / -1; padding: 14px 0 0; font-size: 16px; }
     .model-picker .model-group-row th small { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin: 2px 0 6px; }
     .model-picker .model-group-row .use-chip { margin-left: 0; }
     .model-picker tr { grid-template-columns: 1fr 1fr 1fr; }
